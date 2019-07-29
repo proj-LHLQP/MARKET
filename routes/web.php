@@ -12,9 +12,20 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('homepage');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+//demo
+Route::get('/getProvince','MyController@getProvince');
+Route::get('/getDistrict','MyController@getDistrict');
+Route::get('/getWard','MyController@getWard');
+Route::get('/getVillage','MyController@getVillage');
+
+//homepage
+Route::get('/homepage','MyController@getHomePage');
+Route::get('/seach','MyController@getSeachPage');
