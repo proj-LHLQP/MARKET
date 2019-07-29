@@ -33,4 +33,6 @@ class MyController extends Controller
     public function getSeachPage(){
         return view('seach');
     }
+
+
 }

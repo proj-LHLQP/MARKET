@@ -29,3 +29,13 @@ Route::get('/getVillage','MyController@getVillage');
 //homepage
 Route::get('/homepage','MyController@getHomePage');
 Route::get('/seach','MyController@getSeachPage');
+
+
+
+//admin
+Route::group(['prefix'=>'admin'],function (){
+    Route::get('dashboard','AdminController@getDashboard');
+    Route::get('list-users','AdminController@getListUser');
+    Route::get('edit-user','AdminController@editUser');
+    Route::post('edit-user','AdminController@saveUser');
+});
