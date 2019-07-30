@@ -95,7 +95,7 @@
                                             <th>ID</th>
                                             <th>Name</th>
                                             <th>Email</th>
-                                            <th>Avata</th>
+                                            <th>Avatar</th>
                                             <th>Create At</th>
                                             <th style="width: 10%">Action</th>
                                         </tr>
@@ -105,7 +105,7 @@
                                             <th>ID</th>
                                             <th>Name</th>
                                             <th>Email</th>
-                                            <th>Avata</th>
+                                            <th>Avatar</th>
                                             <th>Create At</th>
                                             <th>Action</th>
                                         </tr>
@@ -116,7 +116,7 @@
                                                 <td>{{$user->id}}</td>
                                                 <td>{{$user->name}}</td>
                                                 <td>{{$user->email}}</td>
-                                                <td>AVATA</td>
+                                                <td></td>
                                                 <td>{{$user->created_at}}</td>
                                                 <td>
                                                     <div class="form-button-action">

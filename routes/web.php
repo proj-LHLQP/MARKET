@@ -26,10 +26,16 @@ Route::get('/getDistrict','MyController@getDistrict');
 Route::get('/getWard','MyController@getWard');
 Route::get('/getVillage','MyController@getVillage');
 
-//homepage
-Route::get('/homepage','MyController@getHomePage');
-Route::get('/seach','MyController@getSeachPage');
-
+//DEMO
+Route::get('/homepage','HomeController@getHomePage');
+Route::get('/blogs','HomeController@getBlogsPage');
+Route::get('/blog-detail','HomeController@getBlogDetail');
+Route::get('/about','HomeController@getAboutPage');
+Route::get('/contact','HomeController@getContact');
+Route::get('/category','HomeController@getCategory');
+Route::get('/product-detail','HomeController@getProductDetail');
+Route::get('/checkout','HomeController@geCheckOut');
+Route::get('/cart-detail','HomeController@geCartDetail');
 
 
 //admin
