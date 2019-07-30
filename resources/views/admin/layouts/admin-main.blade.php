@@ -328,6 +328,22 @@
                     </div>
                 </li>
                 <li class="nav-item">
+                    <a data-toggle="collapse" href="#roles">
+                        <i class="fas fa-lock"></i>
+                        <p>Roles</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="roles">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="{{asset('admin/role')}}">
+                                    <i class="fas fa-list"></i><span>List Roles</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
                     <a data-toggle="collapse" href="#customers">
                         <i class="fas icon-people"></i>
                         <p>Customer</p>

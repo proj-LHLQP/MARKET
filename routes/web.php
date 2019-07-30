@@ -33,9 +33,15 @@ Route::get('/seach','MyController@getSeachPage');
 
 
 //admin
-Route::group(['prefix'=>'admin'],function (){
+Route::group(['prefix'=>'admin','as'=>'admin.'],function (){
     Route::get('dashboard','AdminController@getDashboard');
     Route::get('list-users','AdminController@getListUser');
     Route::get('edit-user','AdminController@editUser');
     Route::post('edit-user','AdminController@saveUser');
+
+    Route::get('role','RoleController@index');
+    Route::get('edit-role/{id}','RoleController@edit');
+    Route::post('update-role/{id}','RoleController@store')->name('role.update');
+
+
 });
