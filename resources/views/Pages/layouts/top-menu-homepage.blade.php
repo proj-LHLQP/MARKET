@@ -195,28 +195,11 @@
                     <button type="submit" class="pull-right btn-search"><i class="fa fa-search"></i></button>
                 </form>
             </div>
-            <div class="col-sm-4 col-md-3 col-lg-2 group-link-main-menu">
-                <div class="language link-mainmenu">
-                    <div class="dropdown">
-                        <a class="current-open" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
-                            <img alt="email" src="assets-home/images/fr.jpg" />French
+            <div class="col-sm-4 col-md-3 col-lg-2">
 
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#"><img alt="email" src="assets-home/images/en.jpg" />English</a></li>
-                            <li><a href="#"><img alt="email" src="assets-home/images/fr.jpg" />French</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="currency link-mainmenu">
-                    <div class="dropdown">
-                        <a class="current-open" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">USD</a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Dollar</a></li>
-                            <li><a href="#">Euro</a></li>
-                        </ul>
-                    </div>
-                </div>
+                <a  href="{{'post-product'}}" class="text-center">
+                    <button style="background-color: #1269db; width: 100%;height: 40px; color: #fff; border-radius: 2px"><strong>Post Product</strong></button>
+                </a>
             </div>
         </div>
     </div>
