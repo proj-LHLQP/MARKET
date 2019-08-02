@@ -27,7 +27,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <form action="edit-user" enctype="multipart/form-data" method="POST">
+                        <form action="{{route('admin.user.update',$user->id)}}" enctype="multipart/form-data" method="POST">
                             <div class="card">
                                 <div class="card-header">
                                     <div class="card-title">Edit User</div>
@@ -45,13 +45,28 @@
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label for="email">Email</label>
-                                                <input class="form-control " name="email" value="{{$user->email}}" disabled>
+                                                <input class="form-control " name="email" value="{{$user->email}}" readonly>
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label for="avata">Avata</label>
                                                 <input type="file" class="form-control " name="avata">
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label class="form-label">Role</label>
+                                                <div class="selectgroup selectgroup-pills">
+                                                    @foreach($roles as $r)
+                                                    <label class="selectgroup-item">
+
+                                                        <input id="role-{{$r->id}}" {{in_array($r->id,$idRoleSelected)?'checked="checked"':''}} type="checkbox" name="roles[]" value="{{$r->id}}" class="selectgroup-input" >
+                                                        <span class="selectgroup-button">{{$r->name}}</span>
+                                                    </label>
+                                                    @endforeach
+
+                                                </div>
                                             </div>
                                         </div>
 

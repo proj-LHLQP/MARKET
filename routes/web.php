@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@getHomePage')->name('home');
 
 
 //demo
@@ -39,15 +39,28 @@ Route::get('/cart-detail','HomeController@geCartDetail');
 
 
 //admin
-Route::group(['prefix'=>'admin','as'=>'admin.'],function (){
+Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'],function (){
     Route::get('dashboard','AdminController@getDashboard');
-    Route::get('list-users','AdminController@getListUser');
-    Route::get('edit-user','AdminController@editUser');
-    Route::post('edit-user','AdminController@saveUser');
+    Route::get('not-permit', function () {
+        return view('admin.not-permit');
+    })->name('not-permit');
 
-    Route::get('role','RoleController@index');
+    //Phong start user manager
+    Route::group(['middleware' => 'role:admin'],function(){
+        Route::get('users','UserController@index')->name('user.index');
+    });
+
+    Route::get('edit-user/{id}','UserController@edit')->name('user.edit');
+    Route::get('delete-user/{id}','UserController@destroy')->name('user.delete');
+    Route::post('update-user/{id}','UserController@update')->name('user.update');
+    Route::post('store-user','UserController@store')->name('user.store');
+
+    //Phong start role manager
+    Route::get('role','RoleController@index')->name('role.index');
+    Route::get('create-role','RoleController@create')->name('role.create');
+    Route::post('store-role','RoleController@store')->name('role.store');
     Route::get('edit-role/{id}','RoleController@edit');
-    Route::post('update-role/{id}','RoleController@store')->name('role.update');
-
+    Route::post('update-role/{id}','RoleController@update')->name('role.update');
+    Route::get('delete-role/{id}','RoleController@destroy');
 
 });

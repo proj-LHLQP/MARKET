@@ -26,35 +26,32 @@
                     </ul>
                 </div>
                 @if($errors->any())
-                <div class="alert alert-danger">{{$errors->first()}}</div>
+                    <div class="alert alert-danger">{{$errors->first()}}</div>
                 @endif
                 <div class="row">
                     <div class="col-md-12">
-                        <form action="{{route('admin.role.update',$role->id)}}" method="POST">
+                        <form action="{{route('admin.role.store')}}" method="POST">
                             <div class="card">
                                 <div class="card-header">
-                                    <div class="card-title">Edit User</div>
+                                    <div class="card-title">Add Role</div>
                                 </div>
                                 <div class="card-body">
 
                                     @csrf
-                                    <input name="id" value="{{$role->id}}" hidden>
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="name">Name</label>
-                                            <input class="form-control" name="name" value="{{$role->name}}">
+                                            <input class="form-control" required="true" name="name" >
                                         </div>
                                     </div>
 
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="email">Quyền</label>
-                                            @if($allPermit->count())
-                                            @foreach($allPermit as $ap)
-                                                <input type="checkbox" class="form-control" {{in_array($ap->name,$allNamePermit)?'checked':''}} value="{{$ap->id}}" name="permission[]" >
-                                            {{$ap->name}} <br/>
+                                            @foreach($permissions as $p)
+                                                <input type="checkbox" class="form-control" value="{{$p->id}}" name="permission[]" >
+                                            {{$p->name}} <br/>
                                             @endforeach
-                                            @endif
                                         </div>
                                     </div>
 

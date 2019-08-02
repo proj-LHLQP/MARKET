@@ -29,64 +29,23 @@
                 @if(session('message-success'))
                     <div class="alert alert-success">{{session('message-success')}}</div>
                     @endif
+                @if(session('message-err'))
+                    <div class="alert alert-danger">{{session('message-err')}}</div>
+                    @endif
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <div class="d-flex align-items-center">
-                                    <h4 class="card-title">List Users</h4>
-                                    <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#addRowModal">
-                                        <i class="fa fa-plus"></i>
-                                        Add User
-                                    </button>
+                                <a class="d-flex align-items-center">
+                                    <h4 class="card-title">List Roles</h4>
+                                     <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#addRowModal">
+                                        <a href="{{route('admin.role.create')}}">
+                                            <i class="fa fa-plus"></i>
+                                            Add Role
+                                        </a>
+                                        </button>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <!-- Modal -->
-                                <div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header ">
-                                                <h3 class="modal-title">
-													Create new User
-                                                </h3>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form>
-                                                    @csrf
-                                                    <div class="row">
-                                                        <div class="col-sm-12">
-                                                            <div class="form-group">
-                                                                <label for="name">Full Name: </label>
-                                                                <input id="name" type="text" class="form-control" placeholder="Full Name">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-12">
-                                                            <div class="form-group">
-                                                                <label for="email">Email: </label>
-                                                                <input id="email" type="text" class="form-control" placeholder="Email">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-12">
-                                                            <div class="form-group">
-                                                                <label for="name">Full Name: </label>
-                                                                <input id="name" type="text" class="form-control" placeholder="Full Name">
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer no-bd">
-
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                                <button type="button" id="addRowButton" class="btn btn-primary">Add</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
 
                                 <div class="table-responsive">
                                     <table id="add-row" class="display table table-striped table-hover" >
@@ -108,14 +67,16 @@
                                                 <td>{{$allRole->where('name',$r->name)->count()}}</td>
                                                 <td>
                                                     <div class="form-button-action">
-                                                       <a href="edit-role/{{$r->id}}">
-                                                           <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
-                                                               <i class="fa fa-edit"></i>
-                                                           </button>
-                                                       </a>
-                                                        <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove">
+                                                    <a href="edit-role/{{$r->id}}">
+                                                        <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
+                                                            <i class="fa fa-edit"></i>
+                                                        </button>
+                                                    </a>
+                                                    <a href="delete-role/{{$r->id}}">
+                                                        <button type="button" data-toggle="tooltip" onclick="return confirm('Bạn chắc chắn xóa ?')" title="" class="btn btn-link btn-danger" data-original-title="Remove">
                                                             <i class="fa fa-times"></i>
                                                         </button>
+                                                    </a>
                                                     </div>
                                                 </td>
                                             </tr>

@@ -54,35 +54,57 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <form>
+                                                <form action="{{route('admin.user.store')}}" enctype="multipart/form-data" method="POST">
                                                     @csrf
                                                     <div class="row">
                                                         <div class="col-sm-12">
-                                                            <div class="form-group">
-                                                                <label for="name">Full Name: </label>
-                                                                <input id="name" type="text" class="form-control" placeholder="Full Name">
+<!--                                                            <div class="form-group">-->
+<!--                                                                <label for="name">Full Name: </label>-->
+<!--                                                                <input id="name" name="name" type="text" class="form-control" placeholder="Full Name">-->
+<!--                                                            </div>-->
+                                                            <div class="form-group form-floating-label">
+                                                                <input name="name" id="inputFloatingLabel2" type="text" class="form-control input-border-bottom" required="">
+                                                                <label for="inputFloatingLabel2" class="placeholder">Full Name</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-12">
+<!--                                                            <div class="form-group">-->
+<!--                                                                <label for="email">Email: </label>-->
+<!--                                                                <input id="email" name="email" type="text" class="form-control" placeholder="Email">-->
+<!--                                                            </div>-->
+                                                            <div class="form-group form-floating-label">
+                                                                <input name="email" id="inputFloatingLabel" type="text" class="form-control input-border-bottom" required="">
+                                                                <label for="inputFloatingLabel" class="placeholder">Email</label>
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-12">
                                                             <div class="form-group">
-                                                                <label for="email">Email: </label>
-                                                                <input id="email" type="text" class="form-control" placeholder="Email">
+                                                                <label for="name">Avatar: </label>
+                                                                <input id="avatar" name="avatar"  type="file" class="form-control">
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-12">
                                                             <div class="form-group">
-                                                                <label for="name">Full Name: </label>
-                                                                <input id="name" type="text" class="form-control" placeholder="Full Name">
-                                                            </div>
-                                                        </div>
+                                                                <label class="form-label">Role</label>
+                                                                <div class="selectgroup selectgroup-pills">
+                                                                    @foreach($roles as $r)
+                                                                    <label class="selectgroup-item">
+                                                                        <input id="role-{{$r->id}}" type="checkbox" name="roles[]" value="{{$r->id}}" class="selectgroup-input" >
+                                                                        <span class="selectgroup-button">{{$r->name}}</span>
+                                                                    </label>
+                                                                    @endforeach
 
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer no-bd">
+
+                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                        <!--                                                    <button type="button" id="addRowButton" class="btn btn-primary">Add</button>-->
+                                                        <input type="submit" class="btn btn-primary" value="Add">
                                                     </div>
                                                 </form>
-                                            </div>
-                                            <div class="modal-footer no-bd">
-
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                                <button type="button" id="addRowButton" class="btn btn-primary">Add</button>
                                             </div>
                                         </div>
                                     </div>
@@ -120,14 +142,19 @@
                                                 <td>{{$user->created_at}}</td>
                                                 <td>
                                                     <div class="form-button-action">
-                                                       <a href="edit-user?id={{$user->id}}">
+                                                       <a href="edit-user/{{$user->id}}">
                                                            <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
                                                                <i class="fa fa-edit"></i>
                                                            </button>
                                                        </a>
-                                                        <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove">
-                                                            <i class="fa fa-times"></i>
-                                                        </button>
+<!--                                                        <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove">-->
+<!--                                                            <i class="fa fa-times"></i>-->
+<!--                                                        </button>-->
+                                                        <a href="delete-user/{{$user->id}}">
+                                                            <button type="button" data-toggle="tooltip" onclick="return confirm('Bạn chắc chắn xóa ?')" title="" class="btn btn-link btn-danger" data-original-title="Remove">
+                                                                <i class="fa fa-times"></i>
+                                                            </button>
+                                                        </a>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -182,18 +209,18 @@
                 "pageLength": 5,
             });
 
-            var action = '<td> <div class="form-button-action"> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"> <i class="fa fa-edit"></i> </button> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"> <i class="fa fa-times"></i> </button> </div> </td>';
-
-            $('#addRowButton').click(function() {
-                $('#add-row').dataTable().fnAddData([
-                    $("#addName").val(),
-                    $("#addPosition").val(),
-                    $("#addOffice").val(),
-                    action
-                ]);
-                $('#addRowModal').modal('hide');
-
-            });
+            // var action = '<td> <div class="form-button-action"> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"> <i class="fa fa-edit"></i> </button> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"> <i class="fa fa-times"></i> </button> </div> </td>';
+            //
+            // $('#addRowButton').click(function() {
+            //     $('#add-row').dataTable().fnAddData([
+            //         $("#addName").val(),
+            //         $("#addPosition").val(),
+            //         $("#addOffice").val(),
+            //         action
+            //     ]);
+            //     $('#addRowModal').modal('hide');
+            //
+            // });
         });
     </script>
     @endsection

@@ -4,32 +4,110 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role as ModelOrigin;
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role as RoleOrigin;
 use Spatie\Permission\Models\Permission;
+use App\Role;
+use Illuminate\Support\Facades\Redirect;
 
 class RoleController extends Controller
 {
     public function index(){
-        $roles = ModelOrigin::all();
+
+        $roles = RoleOrigin::all();
 //        dd($role);
         return view('admin.role.index')->with(['allRole'=>$roles]);
     }
 
-    public function edit($id){
-        $role = ModelOrigin::findById($id);
-        $permissions = $role->permissions;
-        $allPermit = Permission::all();
-//        dd($allPermit);
-        $allNamePermit = [];
-        foreach ($permissions as $p){
-            $allNamePermit[] = $p->name;
-        }
-//        dd($allNamePermit);
-        return view('admin.role.edit-role')->with(['allNamePermit'=>$allNamePermit,'allPermit'=>$allPermit,'role'=>$role]);
-//        return view('admin.role.edit-role',compact(['permissions','role']));
+    public function create(){
+        $per = Permission::all();
+        return view('admin.role.create-role')->withPermissions($per);
     }
 
-    public function store(Request $request, Role $role){
-        dd($role);
+    public function store(Request $request){
+
+        $nameGeted = $request->name;
+        $rName =[];
+        $roles = DB::table('roles')->select('name')->get();
+        foreach ($roles as $r){
+            $rName[] = $r->name;
+        }
+        if (in_array($nameGeted,$rName)){
+            return Redirect::back()->withErrors(['Role đã tồn tại']);
+        } else{
+            $roles = RoleOrigin::create(['name'=>$nameGeted]);
+            $roles->syncPermissions($request->permission);
+            $request->session()->flash('message-success', 'Thêm mới role thành công!');
+            return redirect(route('admin.role.index'));
+        }
+    }
+
+    public function edit($id){
+        $role = RoleOrigin::findById($id);
+        if($role !== null) {
+            $permissions = $role->permissions;
+            $allPermit = Permission::all();
+            //        dd($allPermit);
+            $allNamePermit = [];
+            foreach ($permissions as $p) {
+                $allNamePermit[] = $p->name;
+            }
+            //        dd($allNamePermit);
+            return view('admin.role.edit-role')->with(['allNamePermit' => $allNamePermit, 'allPermit' => $allPermit, 'role' => $role]);
+            //        return view('admin.role.edit-role',compact(['permissions','role']));
+        }else{
+            $request->session()->flash('message-err', 'Không tìm thấy Role cần sửa!');
+            return redirect(route('admin.role.index'));
+        }
+    }
+
+    public function update(Request $request,$id, Role $role){
+        //Lay ra role dang sua
+        $role = RoleOrigin::findById($id);
+        if($role !== null){
+
+            //Lay name hien tai cua role
+            $orgName = $role->name;
+
+            //Lay name submit vao form
+            $nameGeted = $request->name;
+            $rName =[];
+            $roles = DB::table('roles')->select('name')->get();
+            foreach ($roles as $r){
+                $rName[] = $r->name;
+            }
+            if (($key = array_search($orgName, $rName)) !== false) {
+                unset($rName[$key]);
+            }
+            if (in_array($nameGeted,$rName)){
+                return Redirect::back()->withErrors(['Role đã tồn tại']);
+            } else{
+                $role->name = $nameGeted;
+                $role->save();
+                $role->syncPermissions($request->permission);
+                $request->session()->flash('message-success', 'Cập nhật role thành công!');
+                return redirect(route('admin.role.index'));
+            }
+        } else{
+            $request->session()->flash('message-err', 'Không tìm thấy Role cần sửa!');
+            return redirect(route('admin.role.index'));
+        }
+
+
+    }
+
+    public function destroy(Request $request, $id){
+//        dd($id);
+        $role = RoleOrigin::findById($id);
+        if($role !== null) {
+            $permissions = $role->permissions;
+            $role->revokePermissionTo($permissions);
+            $role->delete();
+            $request->session()->flash('message-success', 'Xóa role thành công!');
+            return redirect(route('admin.role.index'));
+        }else{
+            $request->session()->flash('message-err', 'Không tìm thấy Role cần xóa!');
+            return redirect(route('admin.role.index'));
+        }
     }
 }
