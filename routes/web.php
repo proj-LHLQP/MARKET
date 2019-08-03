@@ -36,7 +36,7 @@ Route::get('/category','HomeController@getCategory');
 Route::get('/product-detail','HomeController@getProductDetail');
 Route::get('/checkout','HomeController@geCheckOut');
 Route::get('/cart-detail','HomeController@geCartDetail');
-
+Route::get('/post-product',"HomeController@getPostProduct");
 
 //admin
 Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'],function (){
