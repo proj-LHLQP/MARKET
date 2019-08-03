@@ -27,7 +27,7 @@ Route::get('/getWard','MyController@getWard');
 Route::get('/getVillage','MyController@getVillage');
 
 //DEMO
-Route::get('/homepage','HomeController@getHomePage');
+Route::get('/homepage','HomeController@getHomePage')->name(HOME_PAGE);
 Route::get('/blogs','HomeController@getBlogsPage');
 Route::get('/blog-detail','HomeController@getBlogDetail');
 Route::get('/about','HomeController@getAboutPage');
@@ -37,6 +37,11 @@ Route::get('/product-detail','HomeController@getProductDetail');
 Route::get('/checkout','HomeController@geCheckOut');
 Route::get('/cart-detail','HomeController@geCartDetail');
 
+//homepage
+Route::get('login', 'MyController@getLogin');
+Route::post('login', 'MyController@postLogin')->name(CLIENT_LOGIN);
+Route::get('register', 'MyController@getRegister');
+Route::post('register', 'MyController@postRegister')->name(CLIENT_REGISTER);
 
 //admin
 Route::group(['prefix'=>'admin'],function (){
