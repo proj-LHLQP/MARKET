@@ -14,6 +14,10 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets-home/css/style.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('assets-home/css/responsive.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('assets-home/css/option7.css')}}" />
+    {{-- <!-- Main CSS-->--}}
+    <link href="{{ asset('dist/css/theme.min.css') }}" rel="stylesheet" media="all">
+    <link href="{{ asset('dist/css/custom.min.css') }}" rel="stylesheet" media="all">
+
     <title>HOMEPAGE</title>
     <style>
         .wapper-page{
@@ -89,7 +93,7 @@
                 <div class="dropdown">
                     <a class="current-open" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><span>My Account</span></a>
                     <ul class="dropdown-menu mega_dropdown" role="menu">
-                        <li><a href="login.html">Login</a></li>
+                        <li><a href="{{ route(CLIENT_LOGIN) }}">Login</a></li>
                         <li><a href="#">Compare</a></li>
                         <li><a href="#">Wishlists</a></li>
                     </ul>
@@ -523,6 +527,9 @@
 <script type="text/javascript" src="{{asset('assets-home/js/theme-script.js')}}"></script>
 <script type="text/javascript" src="{{asset('assets-home/lib/jquery.elevatezoom.js')}}"></script>
 <script type="text/javascript" src="{{asset('assets-home/lib/fancyBox/jquery.fancybox.js')}}"></script>
+<!-- Main JS-->
+<script src="{{ asset('dist/js/main.min.js') }}"></script>
+<script src="{{ asset('dist/js/custom.min.js') }}"></script>
 @yield('script')
 <script>
     jQuery(document).ready(function () {
