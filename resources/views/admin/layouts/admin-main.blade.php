@@ -349,6 +349,8 @@
                         </ul>
                     </div>
                 </li>
+
+
                 <li class="nav-item">
                     <a data-toggle="collapse" href="#customers">
                         <i class="fas icon-people"></i>
@@ -365,6 +367,40 @@
                             <li>
                                 <a href="components/buttons.html">
                                     <i class="fas icon-user-follow"></i><span>Add Customer</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#category">
+                        <i class="fas icon-people"></i>
+                        <p>Category</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="category">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="category">
+                                    <i class="fas fa-list"></i><span>List Category</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#posted-products">
+                        <i class="fas fa-lock"></i>
+                        <p>Posted Products</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="posted-products">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="{{asset('admin/posted-products')}}">
+                                    <i class="fas fa-list"></i><span>List</span>
                                 </a>
                             </li>
                         </ul>

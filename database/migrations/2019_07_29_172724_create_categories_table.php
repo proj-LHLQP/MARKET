@@ -18,6 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->bigInteger('parent_id');
+            $table->softDeletes();
             $table->timestamps();
 
         });
