@@ -90,14 +90,23 @@
                 <a href="#">Support</a>
             </div>
             <div id="user-info-top" class="user-info pull-right">
-                <div class="dropdown">
-                    <a class="current-open" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><span>My Account</span></a>
-                    <ul class="dropdown-menu mega_dropdown" role="menu">
-                        <li><a href="{{ route(CLIENT_LOGIN) }}">Login</a></li>
-                        <li><a href="#">Compare</a></li>
-                        <li><a href="#">Wishlists</a></li>
-                    </ul>
-                </div>
+                @if(!Auth::check())
+                    <div class="dropdown">
+                        <a class="current-open" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><span>My Account</span></a>
+                        <ul class="dropdown-menu mega_dropdown" role="menu">
+                            <li><a href="{{ route(CLIENT_LOGIN) }}">Login</a></li>
+                            <li><a href="{{ route(CLIENT_REGISTER) }}">Register</a></li>
+                        </ul>
+                    </div>
+                @else
+                    <div class="dropdown">
+                        <a class="current-open" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false" href="#"><span>{{ Auth::user()->name }}</span></a>
+                        <ul class="dropdown-menu mega_dropdown" role="menu">
+                            <li><a href="{{ route(CLIENT_LOGOUT) }}">Logout</a></li>
+                        </ul>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

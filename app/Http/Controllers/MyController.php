@@ -46,6 +46,7 @@ class MyController extends Controller
     public function postRegister(RegisterRequest $request)
     {
         $input = $request->all();
+        $input['password'] = bcrypt($request->password);
         if (User::addUser($input)) {
             session()->flash(SUCCESS, __('message.register_success'));
             return redirect()->route(CLIENT_REGISTER)->withInput();
@@ -69,4 +70,9 @@ class MyController extends Controller
         return redirect()->back()->withInput();
     }
 
+    public function getLogout()
+    {
+        Auth::logout();
+        return redirect()->route(CLIENT_LOGIN);
+    }
 }
