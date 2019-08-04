@@ -61,6 +61,10 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'],function ()
     Route::post('update-user/{id}','UserController@update')->name('user.update');
     Route::post('store-user','UserController@store')->name('user.store');
 
+    //category
+
+    Route::resource('category','CategoryController');
+
     //Phong start role manager
     Route::get('role','RoleController@index')->name('role.index');
     Route::get('create-role','RoleController@create')->name('role.create');
