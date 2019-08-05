@@ -15,8 +15,9 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets-home/css/responsive.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('assets-home/css/option7.css')}}" />
     {{-- <!-- Main CSS-->--}}
-    <link href="{{ asset('dist/css/theme.min.css') }}" rel="stylesheet" media="all">
-    <link href="{{ asset('dist/css/custom.min.css') }}" rel="stylesheet" media="all">
+    <link href="{{ asset('css/common.css') }}" rel="stylesheet" media="all">
+{{--    <link href="{{ asset('dist/css/theme.min.css') }}" rel="stylesheet" media="all">--}}
+{{--    <link href="{{ asset('dist/css/custom.min.css') }}" rel="stylesheet" media="all">--}}
 
     <title>HOMEPAGE</title>
     <style>
