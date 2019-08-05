@@ -53,7 +53,7 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'],function ()
     })->name('not-permit');
 
     //Phong start user manager
-    Route::group(['middleware' => 'role:admin'],function(){
+    Route::group(['middleware' => 'role:'.config('access.roles.admin')],function(){
         Route::get('users','UserController@index')->name('user.index');
     });
 
