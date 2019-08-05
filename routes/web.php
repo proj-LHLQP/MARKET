@@ -36,7 +36,7 @@ Route::get('/category','HomeController@getCategory');
 Route::get('/product-detail','HomeController@getProductDetail');
 Route::get('/checkout','HomeController@geCheckOut');
 Route::get('/cart-detail','HomeController@geCartDetail');
-
+Route::get('/post-product',"HomeController@getPostProduct");
 
 //admin
 Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'],function (){
@@ -54,6 +54,10 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'],function ()
     Route::get('delete-user/{id}','UserController@destroy')->name('user.delete');
     Route::post('update-user/{id}','UserController@update')->name('user.update');
     Route::post('store-user','UserController@store')->name('user.store');
+
+    //category
+
+    Route::resource('category','CategoryController');
 
     //Phong start role manager
     Route::get('role','RoleController@index')->name('role.index');

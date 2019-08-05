@@ -1,0 +1,164 @@
+@extends('admin.layouts.index')
+@section('content')
+    <div class="main-panel">
+        <div class="content">
+            <div class="page-inner">
+                <div class="page-header">
+                    <ul class="breadcrumbs">
+                        <li class="nav-home">
+                            <a href="#">
+                                <i class="flaticon-home"></i>
+                            </a>
+                        </li>
+                        <li class="separator">
+                            <i class="flaticon-right-arrow"></i>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#">Category</a>
+                        </li>
+
+{{--                        <li class="separator">--}}
+{{--                            <i class="flaticon-right-arrow"></i>--}}
+{{--                        </li>--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="#">List Category</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="separator">--}}
+{{--                            <i class="flaticon-right-arrow"></i>--}}
+{{--                        </li>--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="#">Add Category</a>--}}
+
+                    </ul>
+                </div>
+                @if(session('message-success'))
+                    <div class="alert alert-success">{{session('message-success')}}</div>
+                @endif
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="d-flex align-items-center">
+                                <h4 class="card-title">List Category</h4>
+                                <a href="category/create" class="ml-auto">
+                                    <button class="btn btn-primary btn-round">
+                                        <i class="fa fa-plus"></i>
+                                        Add Category
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <!-- Modal -->
+
+
+                            <div class="table-responsive">
+                                <table id="add-row" class="display table table-striped table-hover" >
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Parent_id</th>
+                                        <th>Create At</th>
+                                        <th>Update_at</th>
+                                        <th style="width: 10%">Action</th>
+                                    </tr>
+                                    </thead>
+{{--                                    <tfoot>--}}
+{{--                                        <tr>--}}
+{{--                                            <th>ID</th>--}}
+{{--                                            <th>Name</th>--}}
+{{--                                            <th>Parent_id</th>--}}
+{{--                                            <th>Create At</th>--}}
+{{--                                            <th>update_at</th>--}}
+{{--                                            <th style="width: 10%">Action</th>--}}
+{{--                                        </tr>--}}
+{{--                                    </tfoot>--}}
+                                    <tbody>
+                                    @foreach($category as $key =>$value)
+                                        <tr>
+                                            <td>{{$key+1}}</td>
+                                            <td>{{$value->name}}</td>
+                                            <td>{{$value->parent_id}}</td>
+                                            <td>{{$value->created_at}}</td>
+                                            <td>{{$value->updeat_at}}</td>
+                                            <td>
+                                                <button class="btn btn-primary edit" title="{{ "Sửa ".$value->name }}" data-toggle="modal" data-target="#edit" type="button" data-id="{{ $value->id }}"><i class="fas fa-edit"></i></button>
+                                                <button class="btn btn-danger delete" title="{{ "Xóa ".$value->name }}" data-toggle="modal" data-target="#deleteCategory" type="button" data-id="{{ $value->id }}"><i class="fas fa-trash-alt"></i></button>
+                                            </td>
+
+
+                                        </tr>
+                                    @endforeach
+
+                                    </tbody>
+                                </table>
+                                <div class="pull-right">{{ $category->links() }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Chỉnh sửa category <span class="title"></span></h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row" style="margin: 5px">
+                        <div class="col-lg-12">
+                            <form role="form">
+                                <fieldset class="form-group">
+                                    <label>Name</label>
+                                    <input class="form-control name" name="name" placeholder="Nhập tên category">
+                                </fieldset>
+                                <div class="form-group">
+                                    <label>Parent_id</label>
+                                    <select class="form-control parent_id" name="parent_id">
+                                        <option value="0" ></option>
+                                        <option value="1" >Đồ điện tử</option>
+                                        <option value="2">Bất động sản</option>
+                                        <option value="3">Thời trang</option>
+                                        <option value="4"> Dịch vụ du lịch</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-success">Submit Button</button>
+                                <button type="reset" class="btn btn-primary">Reset Button</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success update">Save</button>
+                    <button type="reset" class="btn btn-primary">Làm Lại</button>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- delete Modal-->
+    <div class="modal fade" id="deleteCategory" tabindex="-1" role="dialog" aria-labelledby="deleteCategory" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteCategory">Bạn có muốn xóa ?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="margin-left: 183px;">
+                    <button type="button" class="btn btn-success del">Có</button>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Không</button>
+                    <div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @endsection

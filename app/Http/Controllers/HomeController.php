@@ -49,4 +49,7 @@ class HomeController extends Controller
     public  function geCartDetail(){
         return view('Pages.cart-detail');
     }
+    public function getPostProduct(){
+        return view('Pages.post-product');
+    }
 }

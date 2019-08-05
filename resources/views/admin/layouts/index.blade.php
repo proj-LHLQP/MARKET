@@ -4,7 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Admin-Market</title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link rel="icon" href="{{asset('shopping-basket.png')}}" type="image/x-icon"/>
     <!-- Fonts and icons -->
     <script src="{{asset('assets/js/plugin/webfont/webfont.min.js')}}"></script>
@@ -80,16 +80,16 @@
 <!-- Atlantis DEMO methods, don't include it in your project! -->
 <script src="{{asset('assets/js/setting-demo.js')}}"></script>
 <script src="{{asset('assets/js/demo.js')}}"></script>
-
+<script src="{{asset('js/ajax.js')}}"></script>
 @yield('script')
 <script>
     Circles.create({
         id:'circles-1',
-        radius:45,
-        value:60,
+        radius:60,
+        value:90,
         maxValue:100,
         width:7,
-        text: 5,
+        text: 50,
         colors:['#f1f1f1', '#FF9E27'],
         duration:400,
         wrpClass:'circles-wrp',
