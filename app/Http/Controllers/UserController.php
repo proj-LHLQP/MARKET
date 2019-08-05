@@ -89,4 +89,9 @@ class UserController extends Controller
         return redirect(route('admin.user.index'));
     }
 
+    public function logout(){
+        Auth::logout();
+        return redirect('login');
+    }
+
 }

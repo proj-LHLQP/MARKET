@@ -14,7 +14,7 @@
         </h2>
         <!-- ../page heading-->
         <div class="page-content page-contact" style="width: 600px; margin-right: auto; margin-left: auto; font-size: 20px">
-            <form action="post-demo" method="POST">
+            <form action="post-product" method="POST">
                 @csrf
                 <div class="place" style="border: 1px solid #ccc; padding: 30px; border-radius: 5px; box-shadow: 0px 0px 10px 0.5px">
                     <div class="text-center"><strong>Place</strong></div>
@@ -51,7 +51,7 @@
                     </div>
 
                     <div class="form-group mt-5" >
-                        <label for="category-child">Select Category Child: </label>
+                        <label for="category-child">Select Category Detail: </label>
                         <select type="text" class="form-control" name="category-child" id="category-child" >
                         </select>
                     </div>
@@ -95,8 +95,8 @@
                     </div>
                 </div>
 
-                <div class="mt-5">
-                    <button  type="button" class="btn-success btn" id="submit" type="submit">Submit</button>
+                <div class="text-center" style="margin-top: 50px">
+                    <button  type="submit" class="btn-success btn" id="submit" type="submit">Submit</button>
                 </div>
             </form>
 

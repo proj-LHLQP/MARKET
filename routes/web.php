@@ -25,6 +25,12 @@ Route::get('/getProvince','MyController@getProvince');
 Route::get('/getDistrict','MyController@getDistrict');
 Route::get('/getWard','MyController@getWard');
 Route::get('/getVillage','MyController@getVillage');
+Route::get('/list-cate','MyController@getCate');
+Route::get('/category-child','MyController@getCateChild');
+
+//post-products
+Route::post('post-product','ProductController@saveProducts');
+
 
 //DEMO
 Route::get('/homepage','HomeController@getHomePage')->name(HOME_PAGE);
@@ -45,6 +51,9 @@ Route::get('register', 'MyController@getRegister');
 Route::post('register', 'MyController@postRegister')->name(CLIENT_REGISTER);
 Route::get('logout', 'MyController@getLogout')->name(CLIENT_LOGOUT);
 
+
+//logout
+Route::get('/logout','UserController@logout');
 //admin
 Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'],function (){
     Route::get('dashboard','AdminController@getDashboard');
