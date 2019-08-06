@@ -87,7 +87,7 @@
                     </div>
                     <div class="form-group mt-5" >
                         <label for="price">Detail: </label>
-                        <textarea  type="text" class="form-control" name="detail" id="detail" ></textarea>
+                        <textarea  type="text" class="form-control ckeditor" name="detail" id="detail" ></textarea>
                     </div>
                     <div class="form-group mt-5" >
                         <label for="price">Cover: </label>

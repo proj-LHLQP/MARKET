@@ -541,6 +541,11 @@
 <!-- Main JS-->
 <script src="{{ asset('dist/js/main.min.js') }}"></script>
 <script src="{{ asset('dist/js/custom.min.js') }}"></script>
+{{--ckediter--}}
+<script src="{{asset('vendor/unisharp/laravel-ckeditor/ckeditor.js')}}"></script>
+<script>
+    CKEDITOR.replace( 'article-ckeditor' );
+</script>
 @yield('script')
 <script>
     jQuery(document).ready(function () {
