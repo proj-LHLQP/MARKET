@@ -67,4 +67,8 @@ class CategoryController extends Controller
     public function destroy($id){
         Category::destroy($id);
     }
+    public function getAllCategory(){
+        $categories = Category::where('parent_id',0)->get();
+        return $categories;
+    }
 }

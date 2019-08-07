@@ -40,6 +40,7 @@ return array(
     'App\\Http\\Requests\\RegisterRequest' => $baseDir . '/app/Http/Requests/RegisterRequest.php',
     'App\\Log' => $baseDir . '/app/Log.php',
     'App\\Product' => $baseDir . '/app/Product.php',
+    'App\\ProductImage' => $baseDir . '/app/ProductImage.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',

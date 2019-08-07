@@ -30,8 +30,11 @@ Route::get('/category-child','MyController@getCateChild');
 
 //post-products
 Route::post('post-product','ProductController@saveProducts');
+Route::post('uploadImg', 'ProductController@postImages');
+Route::post('deleteImg', 'ProductController@deleteImages');
 
-
+//listCategory
+Route::get('list-category','CategoryController@getAllCategory');
 //DEMO
 Route::get('/homepage','HomeController@getHomePage')->name(HOME_PAGE);
 Route::get('/blogs','HomeController@getBlogsPage');

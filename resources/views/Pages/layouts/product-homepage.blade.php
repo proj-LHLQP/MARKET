@@ -180,10 +180,8 @@
             </div>
             <div class="box-product-head-right">
                 <ul class="box-tabs nav-tab">
-                    <li class="active"><a data-toggle="tab" href="#tab-1">Best salers</a></li>
-                    <li><a data-toggle="tab" href="#tab-2">Specials</a></li>
-                    <li><a data-toggle="tab" href="#tab-1">New Arrivals</a></li>
-                    <li><a data-toggle="tab" href="#tab-2">Most Reviews</a></li>
+                    <li class="active"><a data-toggle="tab" href="#tab-1">Cần Bán</a></li>
+                    <li><a data-toggle="tab" href="#tab-2">Cần Mua</a></li>
                 </ul>
                 <div id="elevator-1" class="floor-elevator">
                     <a href="#elevator-1" class="btn-elevator up fa fa-angle-up"></a>
@@ -194,37 +192,13 @@
         <div class="box-produts-content">
             <div class="block-product-left">
                 <div class="block-sub-cat owl-carousel" data-items="1" data-nav="true" data-loop="true" data-dots="false">
-                    <ul class="list-cat">
+                    <ul class="list-cat" style="height: 246px">
                         <li><a href="#">Summer Dresses</a></li>
                         <li><a href="#">Casual Dresses</a></li>
-                        <li><a href="#">Blouses</a></li>
-                        <li><a href="#">Skirts</a></li>
-                        <li><a href="#">Jumpsuits</a></li>
-                        <li><a href="#">T-Shirts</a></li>
-                        <li><a href="#">Jackets</a></li>
-                        <li><a href="#">Bikinis</a></li>
-                        <li><a href="#">Sunglasses</a></li>
-                        <li><a href="#">Scarves</a></li>
-                        <li><a href="#">Coats & Jackets</a></li>
-                        <li><a href="#">Hosiery & Socks</a></li>
-                        <li><a href="#">Hair Accessories</a></li>
-                        <li><a href="#">Jeans</a></li>
                     </ul>
                     <ul class="list-cat">
-                        <li><a href="#">Summer Dresses</a></li>
-                        <li><a href="#">Casual Dresses</a></li>
-                        <li><a href="#">Blouses</a></li>
-                        <li><a href="#">Skirts</a></li>
-                        <li><a href="#">Jumpsuits</a></li>
-                        <li><a href="#">T-Shirts</a></li>
-                        <li><a href="#">Jackets</a></li>
-                        <li><a href="#">Bikinis</a></li>
-                        <li><a href="#">Sunglasses</a></li>
-                        <li><a href="#">Scarves</a></li>
-                        <li><a href="#">Coats & Jackets</a></li>
-                        <li><a href="#">Hosiery & Socks</a></li>
-                        <li><a href="#">Hair Accessories</a></li>
-                        <li><a href="#">Jeans</a></li>
+                        <li><a href="#">a</a></li>
+
                     </ul>
                 </div>
                 <div class="block-box-products-banner banner-img">
@@ -3525,44 +3499,6 @@
             </div>
         </div>
         <!-- ./blog list -->
-        <div class="row-brand">
-            <h2 class="page-heading">
-                <span class="page-heading-title">Brand showcase</span>
-            </h2>
-            <ul class="band-logo owl-carousel"  data-dots="false" data-loop="true" data-nav = "true" data-margin = "2" data-autoplay="true" data-responsive='{"0":{"items":3},"600":{"items":5},"1000":{"items":8}}'>
-                <li>
-                    <a href="#"><img src="assets-home/data/option6/band-logo.png" alt="Band logo"></a>
-                    <a href="#"><img src="assets-home/data/option6/band-logo.png" alt="Band logo"></a>
-                </li>
-                <li>
-                    <a href="#"><img src="assets-home/data/option6/band-logo.png" alt="Band logo"></a>
-                    <a href="#"><img src="assets-home/data/option6/band-logo.png" alt="Band logo"></a>
-                </li>
-                <li>
-                    <a href="#"><img src="assets-home/data/option6/band-logo.png" alt="Band logo"></a>
-                    <a href="#"><img src="assets-home/data/option6/band-logo.png" alt="Band logo"></a>
-                </li>
-                <li>
-                    <a href="#"><img src="assets-home/data/option6/band-logo.png" alt="Band logo"></a>
-                    <a href="#"><img src="assets-home/data/option6/band-logo.png" alt="Band logo"></a>
-                </li>
-                <li>
-                    <a href="#"><img src="assets-home/data/option6/band-logo.png" alt="Band logo"></a>
-                    <a href="#"><img src="assets-home/data/option6/band-logo.png" alt="Band logo"></a>
-                </li>
-                <li>
-                    <a href="#"><img src="assets-home/data/option6/band-logo.png" alt="Band logo"></a>
-                    <a href="#"><img src="assets-home/data/option6/band-logo.png" alt="Band logo"></a>
-                </li>
-                <li>
-                    <a href="#"><img src="assets-home/data/option6/band-logo.png" alt="Band logo"></a>
-                    <a href="#"><img src="assets-home/data/option6/band-logo.png" alt="Band logo"></a>
-                </li>
-                <li>
-                    <a href="#"><img src="assets-home/data/option6/band-logo.png" alt="Band logo"></a>
-                    <a href="#"><img src="assets-home/data/option6/band-logo.png" alt="Band logo"></a>
-                </li>
-            </ul>
-        </div>
+
     </div>
 </div>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAddressesTable extends Migration
+class CreateProductImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateAddressesTable extends Migration
      */
     public function up()
     {
-        Schema::create('addresses', function (Blueprint $table) {
-            $table->engine = 'MyISAM';
+        Schema::create('product_images', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('product_id');
-            $table->string('province_id');
-            $table->string('district_id')->nullable();
-            $table->string('ward_id')->nullable();
-            $table->string('village_id')->nullable();
+            $table->bigInteger('product_id')->nullable();;
+            $table->string('image_path');
+            $table->string('image_name');
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ class CreateAddressesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('addresses');
+        Schema::dropIfExists('product_images');
     }
 }

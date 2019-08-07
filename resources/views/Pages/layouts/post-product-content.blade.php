@@ -16,12 +16,13 @@
         <div class="page-content page-contact" style="width: 600px; margin-right: auto; margin-left: auto; font-size: 20px">
             <form action="post-product" method="POST">
                 @csrf
+                <input name="user_id" value="{{Auth::user()->id}}" hidden>
                 <div class="place" style="border: 1px solid #ccc; padding: 30px; border-radius: 5px; box-shadow: 0px 0px 10px 0.5px">
                     <div class="text-center"><strong>Place</strong></div>
                     <div class="form-group mt-5">
                         <label for="province">Province:</label>
                         <select class="form-control" name="province" id="province">
-                            <option>Toàn Quốc</option>
+                            <option value="0">Toàn Quốc</option>
                         </select>
                     </div>
                     <div class="form-group mt-2">
@@ -56,14 +57,14 @@
                         </select>
                     </div>
                     <div class="form-group mt-5" >
-                        <div class="mb-2">You Post:</div>
+                        <label class="mb-2">You Post:</label>
                         <p>
-                            <input type="radio" id="sell" name="you_post" value="sell">
-                            <label for="sell">Need sell</label>
+                            <input type="radio" id="sell" name="status" value="0">
+                            <label  class="option_" for="sell">Need sell</label>
                         </p>
                         <p>
-                            <input type="radio" id="buy" name="you_post" value="buy">
-                            <label for="buy">Need buy</label>
+                            <input type="radio" id="buy" name="status" value="1">
+                            <label class="option_" for="buy">Need buy</label>
                         </p>
                     </div>
                     <div class="form-group mt-5" >
@@ -71,14 +72,18 @@
                         <input style="color: red" type="text" class="form-control" name="price" id="price" >
                     </div>
                     <div class="form-group mt-5" >
-                        <div class="mb-2">Tình trạng:</div>
+                        <label for="sale">Sale(%): </label>
+                        <input style="color: red" type="text" class="form-control" name="sale" id="sale" >
+                    </div>
+                    <div class="form-group mt-5" >
+                        <label class="mb-2">Tình trạng:</label>
                         <p>
-                            <input type="radio" id="new" name="tt" value="new">
-                            <label for="new">New</label>
+                            <input type="radio" id="new" name="new" value="0">
+                            <label class="option_" for="new">New</label>
                         </p>
                         <p>
-                            <input type="radio" id="used" name="tt" value="used">
-                            <label for="used">Used</label>
+                            <input type="radio" id="used" name="new" value="1">
+                            <label class="option_" for="used">Used</label>
                         </p>
                     </div>
                     <div class="form-group mt-5" >
@@ -89,9 +94,11 @@
                         <label for="price">Detail: </label>
                         <textarea  type="text" class="form-control ckeditor" name="detail" id="detail" ></textarea>
                     </div>
-                    <div class="form-group mt-5" >
-                        <label for="price">Cover: </label>
-                        <input  type="file" class="form-control" name="cover[]" id="cover" multiple="true" >
+                    <div class="form-group">
+                        <label for="myDropzone">Cover: </label>
+                        <div class="dropzone" id="my-dropzone" name="myDropzone">
+
+                        </div>
                     </div>
                 </div>
 
@@ -107,7 +114,7 @@
     <script>
         jQuery(document).ready(function () {
             jQuery('#submit').click(()=>{
-                console.log(jQuery('#cover').val())
+                console.log(jQuery('#cover').val());
             })
             getAjax = (url,method,data)=>{
                 return jQuery.ajax({
@@ -187,5 +194,69 @@
             })
         })
     </script>
+
+{{--    //dropzone--}}
+    <link rel="stylesheet" href="{{ asset('dropzone/dist/dropzone.css') }}">
+    <script src="{{ asset('dropzone/dist/dropzone.js') }}"></script>
+    <script type="text/javascript">
+        Dropzone.options.myDropzone= {
+            url: '{{ url('/uploadImg') }}',
+            headers: {
+                'X-CSRF-TOKEN': '{!! csrf_token() !!}'
+            },
+            autoProcessQueue: true,
+            uploadMultiple: true,
+            parallelUploads: 5,
+            maxFiles: 10,
+            maxFilesize: 5,
+            acceptedFiles: ".jpeg,.jpg,.png,.gif",
+            dictFileTooBig: 'Image is bigger than 5MB',
+            addRemoveLinks: true,
+            removedfile: function(file) {
+                var name = file.name;
+                name =name.replace(/\s+/g, '-').toLowerCase();    /*only spaces*/
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ url('/deleteImg') }}',
+                    headers: {
+                        'X-CSRF-TOKEN': '{!! csrf_token() !!}'
+                    },
+                    data: "id="+name,
+                    dataType: 'html',
+                    success: function(data) {
+                        console.log(data)
+                        $("#msg").html(data);
+                    }
+                });
+                var _ref;
+                if (file.previewElement) {
+                    if ((_ref = file.previewElement) != null) {
+                        _ref.parentNode.removeChild(file.previewElement);
+                    }
+                }
+                return this._updateMaxFilesReachedClass();
+            },
+            previewsContainer: null,
+            hiddenInputContainer: "body",
+        }
+    </script>
+    <style>
+        .dropzone {
+            border: 2px dashed #0087F7;
+            border-radius: 5px;
+            background: white;
+        }
+    </style>
+    @endsection
+@section('css')
+    <style>
+        label{
+            font-size: 20px;
+            color: #ba8b00;
+        }
+        .option_{
+            font-size: 15px;
+        }
+    </style>
     @endsection
 <!-- ./page wapper-->

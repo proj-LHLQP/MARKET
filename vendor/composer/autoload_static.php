@@ -428,6 +428,7 @@ class ComposerStaticInite8a2ce8691e5c0fd047035f7a96931cb
         'App\\Http\\Requests\\RegisterRequest' => __DIR__ . '/../..' . '/app/Http/Requests/RegisterRequest.php',
         'App\\Log' => __DIR__ . '/../..' . '/app/Log.php',
         'App\\Product' => __DIR__ . '/../..' . '/app/Product.php',
+        'App\\ProductImage' => __DIR__ . '/../..' . '/app/ProductImage.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',

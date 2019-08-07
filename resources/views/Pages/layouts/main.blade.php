@@ -15,6 +15,8 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets-home/css/style.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('assets-home/css/responsive.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('assets-home/css/option7.css')}}" />
+    @yield('css')
+
     {{-- <!-- Main CSS-->--}}
     <link href="{{ asset('css/common.css') }}" rel="stylesheet" media="all">
 {{--    <link href="{{ asset('dist/css/theme.min.css') }}" rel="stylesheet" media="all">--}}

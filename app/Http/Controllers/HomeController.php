@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -21,12 +22,15 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
     public function getHomePage()
     {
-        return view('Pages.homepage');
+        $categories = Category::where('parent_id',0)->get();
+        return view('Pages.homepage')->with('categories',$categories);
     }
     public function getBlogsPage(){
-        return view('Pages.blogs');
+        $categories = Category::where('parent_id',0)->get();
+        return view('Pages.blogs')->with('categories',$categories);
     }
     public function getBlogDetail(){
         return view('Pages.blog-detail');
@@ -50,6 +54,7 @@ class HomeController extends Controller
         return view('Pages.cart-detail');
     }
     public function getPostProduct(){
-        return view('Pages.post-product');
+        $categories = Category::where('parent_id',0)->get();
+        return view('Pages.post-product')->with('categories',$categories);
     }
 }

@@ -19,12 +19,14 @@ class CreateProductsTable extends Migration
             $table->string('name')->nullable();
             $table->bigInteger('seller_id')->nullable();
             $table->bigInteger('buyer_id')->nullable();
-            $table->text('gallery')->nullable();
+//            $table->text('gallery')->nullable();
             $table->text('detail')->nullable();
             $table->double('price')->nullable();
+            $table->double('sale')->nullable();
             $table->tinyInteger('new');
-            $table->tinyInteger('active');
             $table->tinyInteger('status');
+            $table->tinyInteger('active')->default(0);
+//
             $table->timestamps();
 
         });
