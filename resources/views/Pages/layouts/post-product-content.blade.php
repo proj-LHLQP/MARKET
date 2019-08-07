@@ -14,7 +14,7 @@
         </h2>
         <!-- ../page heading-->
         <div class="page-content page-contact" style="width: 600px; margin-right: auto; margin-left: auto; font-size: 20px">
-            <form action="post-product" method="POST">
+            <form action="post-product" method="POST" onsubmit="return true">
                 @csrf
                 <input name="user_id" value="{{Auth::user()->id}}" hidden>
                 <div class="place" style="border: 1px solid #ccc; padding: 30px; border-radius: 5px; box-shadow: 0px 0px 10px 0.5px">
@@ -46,14 +46,14 @@
                     <div class="text-center"><strong>Product Info</strong></div>
                     <div class="form-group mt-5">
                         <label for="category">Select Category: </label>
-                        <select type="text" class="form-control" name="category" id="category" >
+                        <select type="text" class="form-control" name="category" id="category" required >
                             <option></option>
                         </select>
                     </div>
 
                     <div class="form-group mt-5" >
                         <label for="category-child">Select Category Detail: </label>
-                        <select type="text" class="form-control" name="category-child" id="category-child" >
+                        <select type="text" class="form-control" name="category-child" id="category-child" required>
                         </select>
                     </div>
                     <div class="form-group mt-5" >
@@ -69,11 +69,10 @@
                     </div>
                     <div class="form-group mt-5" >
                         <label for="price">Price(VND): </label>
-                        <input style="color: red" type="text" class="form-control" name="price" id="price" >
+                        <input style="color: red" type="text" class="form-control" name="price" id="price" required >
                     </div>
-                    <div class="form-group mt-5" >
-                        <label for="sale">Sale(%): </label>
-                        <input style="color: red" type="text" class="form-control" name="sale" id="sale" >
+                    <div class="form-group mt-5" id="sale">
+
                     </div>
                     <div class="form-group mt-5" >
                         <label class="mb-2">Tình trạng:</label>
@@ -88,7 +87,7 @@
                     </div>
                     <div class="form-group mt-5" >
                         <label for="price">Name: </label>
-                        <input style="" type="text" class="form-control" name="name" id="name" >
+                        <input style="" type="text" class="form-control" name="name" id="name" required>
                     </div>
                     <div class="form-group mt-5" >
                         <label for="price">Detail: </label>
@@ -103,7 +102,7 @@
                 </div>
 
                 <div class="text-center" style="margin-top: 50px">
-                    <button  type="submit" class="btn-success btn" id="submit" type="submit">Submit</button>
+                    <button  type="submit" class="btn-success btn"  id="submit" type="submit">Submit</button>
                 </div>
             </form>
 
@@ -113,6 +112,19 @@
 @section('script')
     <script>
         jQuery(document).ready(function () {
+            $('input[type=radio][name=status]').change(function() {
+                if(this.value == 0){
+                    jQuery('#sale').html(
+                        '<label for="sale">Sale(%): </label>' +
+                        '<input style="color: red" type="text" class="form-control" name="sale" id="sale" >'
+                    )
+                }
+                else {
+                    jQuery('#sale').html('');
+                }
+            });
+
+
             jQuery('#submit').click(()=>{
                 console.log(jQuery('#cover').val());
             })

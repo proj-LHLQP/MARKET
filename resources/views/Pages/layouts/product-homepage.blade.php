@@ -3,7 +3,7 @@
     <div class="container">
         <div class="hot-deals-box">
             <div class="row">
-                <div class="col-sm-12 col-md-2 col-lg-2">
+                <div class="col-sm-12 col-md-1 col-lg-1">
                     <div class="hot-deals-tab">
                         <div class="hot-deals-title vertical-text">
                             <span>h</span>
@@ -15,14 +15,10 @@
                             <span class="yellow">l</span>
                             <span class="yellow">s</span>
                         </div>
-                        <div class="hot-deals-tab-box">
-                            <div class="box-count-down">
-                                <span class="countdown-lastest" data-y="2015" data-m="9" data-d="1" data-h="00" data-i="00" data-s="00"></span>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-10 col-lg-10 hot-deals-tab-content-col">
+                <div class="col-sm-12 col-md-11 col-lg-11 hot-deals-tab-content-col">
                     <div class="hot-deals-tab-content tab-container">
                         <ul class="products owl-carousel" data-dots="false" data-loop="true" data-nav = "true" data-margin = "15" data-autoplayTimeout="1000" data-autoplayHoverPause = "true" data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4},"1200":{"items":5}}'>
                             <li class="product">
