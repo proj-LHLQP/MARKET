@@ -50,41 +50,32 @@ class MyController extends Controller
         return view('seach');
     }
 
-    public function getRegister()
-    {
-        return view('Pages.register');
-    }
-
     public function postRegister(RegisterRequest $request)
     {
-        $input = $request->all();
-        $input['password'] = bcrypt($request->password);
-        if (User::addUser($input)) {
-            session()->flash(SUCCESS, __('message.register_success'));
-            return redirect()->route(CLIENT_REGISTER)->withInput();
-        } else {
-            session()->flash(ERROR, __('message.register_failed'));
-            return redirect()->back()->withInput();
+        if ($request->isMethod('post')) {
+            $input = $request->all();
+            $input['password'] = bcrypt($request->password);
+            $status = false;
+            $message = __('message.register_failed');
+            if (User::addUser($input)) {
+                $status = true;
+                $message = __('message.register_success');
+            }
+            return response()->json(['status' => $status, 'message' => $message]);
         }
-    }
-
-    public function getLogin()
-    {
-        return view('Pages.login');
     }
 
     public function postLogin(LoginRequest $request)
     {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect()->route(HOME_PAGE)->withInput();
+            return response()->json(['status' => true]);
         }
-        session()->flash(ERROR, __('message.login_failed'));
-        return redirect()->back()->withInput();
+        return response()->json(['status' => false, 'message' => __('message.login_failed')]);
     }
 
     public function getLogout()
     {
         Auth::logout();
-        return redirect()->route(CLIENT_LOGIN);
+        return redirect()->route(HOME_PAGE);
     }
 }

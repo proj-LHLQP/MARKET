@@ -48,9 +48,7 @@ Route::get('/cart-detail','HomeController@geCartDetail');
 Route::get('/post-product',"HomeController@getPostProduct");
 
 //homepage
-Route::get('login', 'MyController@getLogin');
 Route::post('login', 'MyController@postLogin')->name(CLIENT_LOGIN);
-Route::get('register', 'MyController@getRegister');
 Route::post('register', 'MyController@postRegister')->name(CLIENT_REGISTER);
 Route::get('logout', 'MyController@getLogout')->name(CLIENT_LOGOUT);
 
