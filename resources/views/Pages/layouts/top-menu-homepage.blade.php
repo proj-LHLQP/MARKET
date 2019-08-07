@@ -96,10 +96,15 @@
                 </form>
             </div>
             <div class="col-sm-4 col-md-3 col-lg-2">
-
-                <a  href="{{'post-product'}}" class="text-center">
-                    <button style="background-color: #1269db; width: 100%;height: 40px; color: #fff; border-radius: 2px"><strong>Post Product</strong></button>
-                </a>
+                @if(!Auth::check())
+                    <a  href="javascript:void(0)" onclick="openLoginModal();" class="text-center">
+                        <button style="background-color: #1269db; width: 100%;height: 40px; color: #fff; border-radius: 2px"><strong>Post Product</strong></button>
+                    </a>
+                @else
+                    <a  href="{{'post-product'}}" class="text-center">
+                        <button style="background-color: #1269db; width: 100%;height: 40px; color: #fff; border-radius: 2px"><strong>Post Product</strong></button>
+                    </a>
+                @endif
             </div>
         </div>
     </div>

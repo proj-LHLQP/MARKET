@@ -47,10 +47,10 @@ class HomeController extends Controller
     public function getProductDetail(){
         return view('Pages.product-detail');
     }
-    public function geCheckOut(){
+    public function getCheckOut(){
         return view('Pages.checkout');
     }
-    public  function geCartDetail(){
+    public  function getCartDetail(){
         return view('Pages.cart-detail');
     }
     public function getPostProduct(){
