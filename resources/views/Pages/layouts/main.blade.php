@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
     <link rel="stylesheet" type="text/css" href="{{asset('assets-home/lib/bootstrap/css/bootstrap.min.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('assets-home/lib/font-awesome/css/font-awesome.min.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('assets-home/lib/select2/css/select2.min.css')}}" />
@@ -634,6 +635,11 @@
 <!-- Main JS-->
 <script src="{{ asset('dist/js/main.min.js') }}"></script>
 <script src="{{ asset('dist/js/custom.min.js') }}"></script>
+{{--ckediter--}}
+<script src="{{asset('vendor/unisharp/laravel-ckeditor/ckeditor.js')}}"></script>
+<script>
+    CKEDITOR.replace( 'article-ckeditor' );
+</script>
 @yield('script')
 <script>
     jQuery(document).ready(function () {

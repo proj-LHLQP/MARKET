@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\District;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
@@ -29,6 +30,17 @@ class MyController extends Controller
     public function getVillage(Request $request){
         $villages = Village::where('wardid',$request->wardid)->get();
         return $villages;
+    }
+
+    public function getCate(){
+        $cates = Category::where('parent_id',0)->get();
+        return $cates;
+    }
+
+    public function getCateChild(Request $request){
+        $cate_parentId = $request->category;
+        $list = Category::where('parent_id',$cate_parentId)->get();
+        return $list;
     }
 
     public function getHomePage(){
