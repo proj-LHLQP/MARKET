@@ -114,7 +114,6 @@ class ProductController extends Controller
 
             DB::commit();
             return redirect()->route(HOME_PAGE);
-            return view('home');
         } catch (Exception $e) {
             DB::rollBack();
 
