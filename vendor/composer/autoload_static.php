@@ -104,12 +104,17 @@ class ComposerStaticInite8a2ce8691e5c0fd047035f7a96931cb
         ),
         'J' => 
         array (
+            'Jenssegers\\Model\\' => 17,
             'JakubOnderka\\PhpConsoleHighlighter\\' => 35,
             'JakubOnderka\\PhpConsoleColor\\' => 29,
         ),
         'I' => 
         array (
             'Illuminate\\' => 11,
+        ),
+        'G' => 
+        array (
+            'GeneaLabs\\LaravelCaffeine\\' => 26,
         ),
         'F' => 
         array (
@@ -310,6 +315,10 @@ class ComposerStaticInite8a2ce8691e5c0fd047035f7a96931cb
         array (
             0 => __DIR__ . '/..' . '/laravel/tinker/src',
         ),
+        'Jenssegers\\Model\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jenssegers/model/src',
+        ),
         'JakubOnderka\\PhpConsoleHighlighter\\' => 
         array (
             0 => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src',
@@ -321,6 +330,10 @@ class ComposerStaticInite8a2ce8691e5c0fd047035f7a96931cb
         'Illuminate\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate',
+        ),
+        'GeneaLabs\\LaravelCaffeine\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/genealabs/laravel-caffeine/src',
         ),
         'Fideloper\\Proxy\\' => 
         array (
@@ -1051,6 +1064,11 @@ class ComposerStaticInite8a2ce8691e5c0fd047035f7a96931cb
         'Faker\\ValidGenerator' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/ValidGenerator.php',
         'Fideloper\\Proxy\\TrustProxies' => __DIR__ . '/..' . '/fideloper/proxy/src/TrustProxies.php',
         'Fideloper\\Proxy\\TrustedProxyServiceProvider' => __DIR__ . '/..' . '/fideloper/proxy/src/TrustedProxyServiceProvider.php',
+        'GeneaLabs\\LaravelCaffeine\\Console\\Commands\\Publish' => __DIR__ . '/..' . '/genealabs/laravel-caffeine/src/Console/Commands/Publish.php',
+        'GeneaLabs\\LaravelCaffeine\\Dripper' => __DIR__ . '/..' . '/genealabs/laravel-caffeine/src/Dripper.php',
+        'GeneaLabs\\LaravelCaffeine\\Http\\Controllers\\Drip' => __DIR__ . '/..' . '/genealabs/laravel-caffeine/src/Http/Controllers/Drip.php',
+        'GeneaLabs\\LaravelCaffeine\\Http\\Middleware\\LaravelCaffeineDripMiddleware' => __DIR__ . '/..' . '/genealabs/laravel-caffeine/src/Http/Middleware/LaravelCaffeineDripMiddleware.php',
+        'GeneaLabs\\LaravelCaffeine\\Providers\\Service' => __DIR__ . '/..' . '/genealabs/laravel-caffeine/src/Providers/Service.php',
         'Hamcrest\\Arrays\\IsArray' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArray.php',
         'Hamcrest\\Arrays\\IsArrayContaining' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArrayContaining.php',
         'Hamcrest\\Arrays\\IsArrayContainingInAnyOrder' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArrayContainingInAnyOrder.php',
@@ -1949,6 +1967,8 @@ class ComposerStaticInite8a2ce8691e5c0fd047035f7a96931cb
         'JakubOnderka\\PhpConsoleColor\\ConsoleColor' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/ConsoleColor.php',
         'JakubOnderka\\PhpConsoleColor\\InvalidStyleException' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/InvalidStyleException.php',
         'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src/Highlighter.php',
+        'Jenssegers\\Model\\MassAssignmentException' => __DIR__ . '/..' . '/jenssegers/model/src/MassAssignmentException.php',
+        'Jenssegers\\Model\\Model' => __DIR__ . '/..' . '/jenssegers/model/src/Model.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
         'Laravel\\Tinker\\ClassAliasAutoloader' => __DIR__ . '/..' . '/laravel/tinker/src/ClassAliasAutoloader.php',
         'Laravel\\Tinker\\Console\\TinkerCommand' => __DIR__ . '/..' . '/laravel/tinker/src/Console/TinkerCommand.php',
