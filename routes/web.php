@@ -25,18 +25,34 @@ Route::get('/getProvince','MyController@getProvince');
 Route::get('/getDistrict','MyController@getDistrict');
 Route::get('/getWard','MyController@getWard');
 Route::get('/getVillage','MyController@getVillage');
+Route::get('/list-cate','MyController@getCate');
+Route::get('/category-child','MyController@getCateChild');
 
+//post-products
+Route::post('post-product','ProductController@saveProducts');
+Route::post('uploadImg', 'ProductController@postImages');
+Route::post('deleteImg', 'ProductController@deleteImages');
+
+//listCategory
+Route::get('list-category','CategoryController@getAllCategory');
 //DEMO
-Route::get('/homepage','HomeController@getHomePage');
+Route::get('/homepage','HomeController@getHomePage')->name(HOME_PAGE);
 Route::get('/blogs','HomeController@getBlogsPage');
 Route::get('/blog-detail','HomeController@getBlogDetail');
 Route::get('/about','HomeController@getAboutPage');
 Route::get('/contact','HomeController@getContact');
 Route::get('/category','HomeController@getCategory');
 Route::get('/product-detail','HomeController@getProductDetail');
-Route::get('/checkout','HomeController@geCheckOut');
-Route::get('/cart-detail','HomeController@geCartDetail');
+Route::get('/checkout','HomeController@getCheckOut');
+Route::get('/cart-detail','HomeController@getCartDetail');
 Route::get('/post-product',"HomeController@getPostProduct");
+
+//homepage
+Route::post('login', 'MyController@postLogin')->name(CLIENT_LOGIN);
+Route::post('register', 'MyController@postRegister')->name(CLIENT_REGISTER);
+Route::get('logout', 'MyController@getLogout')->name(CLIENT_LOGOUT);
+
+
 
 //admin
 Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'],function (){

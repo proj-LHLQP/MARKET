@@ -16,10 +16,11 @@ class CreateAddressesTable extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             $table->engine = 'MyISAM';
             $table->bigIncrements('id');
-            $table->bigInteger('customer_id');
-            $table->bigInteger('province_id');
-            $table->bigInteger('district_id');
-            $table->bigInteger('ward_id');
+            $table->bigInteger('product_id');
+            $table->string('province_id');
+            $table->string('district_id')->nullable();
+            $table->string('ward_id')->nullable();
+            $table->string('village_id')->nullable();
             $table->timestamps();
         });
     }

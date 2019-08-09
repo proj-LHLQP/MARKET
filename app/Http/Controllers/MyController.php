@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\District;
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Province;
+use App\User;
 use App\Village;
 use App\Ward;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MyController extends Controller
 {
@@ -27,6 +32,17 @@ class MyController extends Controller
         return $villages;
     }
 
+    public function getCate(){
+        $cates = Category::where('parent_id',0)->get();
+        return $cates;
+    }
+
+    public function getCateChild(Request $request){
+        $cate_parentId = $request->category;
+        $list = Category::where('parent_id',$cate_parentId)->get();
+        return $list;
+    }
+
     public function getHomePage(){
         return view('homepage');
     }
@@ -34,5 +50,32 @@ class MyController extends Controller
         return view('seach');
     }
 
+    public function postRegister(RegisterRequest $request)
+    {
+        if ($request->isMethod('post')) {
+            $input = $request->all();
+            $input['password'] = bcrypt($request->password);
+            $status = false;
+            $message = __('message.register_failed');
+            if (User::addUser($input)) {
+                $status = true;
+                $message = __('message.register_success');
+            }
+            return response()->json(['status' => $status, 'message' => $message]);
+        }
+    }
 
+    public function postLogin(LoginRequest $request)
+    {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            return response()->json(['status' => true]);
+        }
+        return response()->json(['status' => false, 'message' => __('message.login_failed')]);
+    }
+
+    public function getLogout()
+    {
+        Auth::logout();
+        return redirect()->route(HOME_PAGE);
+    }
 }

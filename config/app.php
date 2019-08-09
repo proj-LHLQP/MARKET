@@ -178,6 +178,8 @@ return [
         //Phong them phan quyen
         Spatie\Permission\PermissionServiceProvider::class,
 
+        Unisharp\Ckeditor\ServiceProvider::class,
+
     ],
 
     /*

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
     <link rel="stylesheet" type="text/css" href="{{asset('assets-home/lib/bootstrap/css/bootstrap.min.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('assets-home/lib/font-awesome/css/font-awesome.min.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('assets-home/lib/select2/css/select2.min.css')}}" />
@@ -14,6 +15,13 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets-home/css/style.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('assets-home/css/responsive.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('assets-home/css/option7.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('template-login/css/login-register.css')}}" />
+    @yield('css')
+    {{-- <!-- Main CSS-->--}}
+    <link href="{{ asset('css/common.css') }}" rel="stylesheet" media="all">
+{{--    <link href="{{ asset('dist/css/theme.min.css') }}" rel="stylesheet" media="all">--}}
+{{--    <link href="{{ asset('dist/css/custom.min.css') }}" rel="stylesheet" media="all">--}}
+
     <title>HOMEPAGE</title>
     <style>
         .wapper-page{
@@ -86,18 +94,118 @@
                 <a href="#">Support</a>
             </div>
             <div id="user-info-top" class="user-info pull-right">
-                <div class="dropdown">
-                    <a class="current-open" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><span>My Account</span></a>
-                    <ul class="dropdown-menu mega_dropdown" role="menu">
-                        <li><a href="login.html">Login</a></li>
-                        <li><a href="#">Compare</a></li>
-                        <li><a href="#">Wishlists</a></li>
-                    </ul>
-                </div>
+                @if(!Auth::check())
+                    <div class="dropdown">
+                        <a class="current-open" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><span>My Account</span></a>
+                        <ul class="dropdown-menu mega_dropdown" role="menu">
+                            <li><a class="btn big-login" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Login</a></li>
+                            <li><a class="btn big-register" data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();">Register</a></li>
+                        </ul>
+                    </div>
+                @else
+                    <div class="dropdown">
+                        <a class="current-open" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false" href="#"><span>{{ Auth::user()->name }}</span></a>
+                        <ul class="dropdown-menu mega_dropdown" role="menu">
+                            <li><a href="{{ route(CLIENT_LOGOUT) }}">Logout</a></li>
+                        </ul>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
     <!--/.top-header -->
+
+    <div class="container">
+        <div class="modal fade login" id="loginModal">
+            <div class="modal-dialog login animated">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Login with</h4>
+                    </div>
+                    <div class="text-center">
+                        <span class="font-size-message" id="message"></span>
+                    </div>
+                    <div class="modal-body">
+                        <div class="box" id="login-user">
+                            <div class="content">
+                                <div class="social">
+                                    <a class="circle github" href="#">
+                                        <i class="fa fa-github fa-fw"></i>
+                                    </a>
+                                    <a id="google_login" class="circle google" href="#">
+                                        <i class="fa fa-google-plus fa-fw"></i>
+                                    </a>
+                                    <a id="facebook_login" class="circle facebook" href="#">
+                                        <i class="fa fa-facebook fa-fw"></i>
+                                    </a>
+                                </div>
+                                <div class="division">
+                                    <div class="line l"></div>
+                                    <span>or</span>
+                                    <div class="line r"></div>
+                                </div>
+                                <div class="error"></div>
+                                <div class="form loginBox">
+                                    <form method="post" id="loginUserForm" accept-charset="UTF-8">
+                                        @csrf
+                                        <div>
+                                            <input id="email" class="form-control" type="text" placeholder="Email" name="email">
+                                            <span class="text-error message-validate" data-error="email"></span>
+                                        </div>
+                                        <div>
+                                            <input id="password" class="form-control" type="password" placeholder="Password" name="password">
+                                            <span class="text-error message-validate" data-error="password"></span>
+                                        </div>
+                                        <input id="user-login" class="btn btn-default btn-login" type="button" value="Login">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box" id="add-user">
+                            <div class="content registerBox" style="display:none;">
+                                <div class="form">
+                                    <form method="post" id="addUserForm" html="{:multipart=>true}" data-remote="true" accept-charset="UTF-8">
+                                        @csrf
+                                        <div>
+                                            <input id="email" class="form-control" type="text" placeholder="Full name" name="name">
+                                            <span class="text-error message-validate" data-error="name"></span>
+                                        </div>
+                                        <div>
+                                            <input id="email" class="form-control" type="text" placeholder="Email" name="email">
+                                            <span class="text-error message-validate" data-error="email"></span>
+                                        </div>
+                                        <div>
+                                            <input id="password" class="form-control" type="password" placeholder="Password" name="password">
+                                            <span class="text-error message-validate" data-error="password"></span>
+                                        </div>
+                                        <div>
+                                            <input id="password_confirmation" class="form-control" type="password" placeholder="Repeat Password" name="passwordAgain">
+                                            <span class="text-error message-validate" data-error="passwordAgain"></span>
+                                        </div>
+                                        <input id="user-submit" class="btn btn-default btn-register" type="button" value="Create account" name="commit">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="forgot login-footer">
+                            <span>Looking to
+                                 <a href="javascript: showRegisterForm();">create an account</a>
+                            ?</span>
+                        </div>
+                        <div class="forgot register-footer" style="display:none">
+                            <span>Already have an account?</span>
+                            <a href="javascript: showLoginForm();">Login</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- MAIN HEADER -->
     <div id="main-header">
         <div class="container main-header">
@@ -523,6 +631,16 @@
 <script type="text/javascript" src="{{asset('assets-home/js/theme-script.js')}}"></script>
 <script type="text/javascript" src="{{asset('assets-home/lib/jquery.elevatezoom.js')}}"></script>
 <script type="text/javascript" src="{{asset('assets-home/lib/fancyBox/jquery.fancybox.js')}}"></script>
+<script type="text/javascript" src="{{asset('template-login/js/login-register.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/register_login.js')}}"></script>
+<!-- Main JS-->
+<script src="{{ asset('dist/js/main.min.js') }}"></script>
+<script src="{{ asset('dist/js/custom.min.js') }}"></script>
+{{--ckediter--}}
+<script src="{{asset('vendor/unisharp/laravel-ckeditor/ckeditor.js')}}"></script>
+<script>
+    CKEDITOR.replace( 'article-ckeditor' );
+</script>
 @yield('script')
 <script>
     jQuery(document).ready(function () {
