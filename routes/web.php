@@ -67,6 +67,10 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'],function ()
         Route::get('users','UserController@index')->name('user.index');
     });
 
+    Route::get('create-user','UserController@create')->name('user.create');
+    Route::get('profile','UserController@profile')->name('user.profile');
+    Route::post('update-infor','UserController@updateInfor')->name('user.update-infor');
+    Route::post('update-pass','UserController@updatePassword')->name('user.update-pass');
     Route::get('edit-user/{id}','UserController@edit')->name('user.edit');
     Route::get('delete-user/{id}','UserController@destroy')->name('user.delete');
     Route::post('update-user/{id}','UserController@update')->name('user.update');

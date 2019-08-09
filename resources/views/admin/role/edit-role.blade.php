@@ -60,7 +60,7 @@
 
                                 </div>
                                 <div class="card-action">
-                                    <button type="button" class="btn btn-danger">Cancel</button>
+                                    <a href="{{route('admin.role.index')}}"><button type="button" class="btn btn-danger">Cancel</button></a>
                                     <button type="submit" class="btn btn-success">Submit</button>
                                 </div>
                             </div>

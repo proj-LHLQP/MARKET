@@ -32,12 +32,7 @@
 </head>
 <body>
 
-<div class="wrapper">
-     @include('Admin.layouts.admin-main')
-    @yield('content')
 
-    @include('Admin.layouts.custom')
-</div>
 
 
 <script src="{{asset('assets/js/core/jquery.3.2.1.min.js')}}"></script>
@@ -176,5 +171,11 @@
         fillColor: 'rgba(255, 165, 52, .14)'
     });
 </script>
+<div class="wrapper">
+    @include('Admin.layouts.admin-main')
+    @yield('content')
+
+    @include('Admin.layouts.custom')
+</div>
 </body>
 </html>

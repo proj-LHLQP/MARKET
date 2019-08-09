@@ -35,14 +35,12 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <a class="d-flex align-items-center">
-                                    <h4 class="card-title">List Roles</h4>
-                                     <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#addRowModal">
-                                        <a href="{{route('admin.role.create')}}">
+                                <a class="align-items-center">
+                                    <h4 class="card-title pull-left">List Roles</h4>
+                                    <a class="pull-right" href="{{route('admin.role.create')}}"><button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#addRowModal">
                                             <i class="fa fa-plus"></i>
                                             Add Role
-                                        </a>
-                                        </button>
+                                        </button></a>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -55,7 +53,7 @@
                                                 <th>Vai trò</th>
                                                 <th>Quyền</th>
                                                 <th>Số user</th>
-                                                <th style="width: 10%">Action</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -64,7 +62,12 @@
                                                 <td>{{$i+1}}</td>
                                                 <td>{{$r->name}}</td>
                                                 <td>{{$r->name}}</td>
-                                                <td>{{$allRole->where('name',$r->name)->count()}}</td>
+                                                @foreach($allUserHasRoleGroupByRoles as $k => $v)
+                                                @if($k === $r->id)
+                                                <td>{{$v->count()}}</td>
+                                                @break
+                                                @endif
+                                                @endforeach
                                                 <td>
                                                     <div class="form-button-action">
                                                     <a href="edit-role/{{$r->id}}">
@@ -81,7 +84,6 @@
                                                 </td>
                                             </tr>
                                             @endforeach
-
                                         </tbody>
                                     </table>
                                 </div>
@@ -90,10 +92,7 @@
                     </div>
                 </div>
             </div>
-
     @include('Admin.layouts.footer')
-
-
     </div>
     @endsection
 @section('script')

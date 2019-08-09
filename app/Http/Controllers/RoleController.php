@@ -13,10 +13,13 @@ use Illuminate\Support\Facades\Redirect;
 class RoleController extends Controller
 {
     public function index(){
-
+        //Lay tat ca roles
         $roles = RoleOrigin::all();
-//        dd($role);
-        return view('admin.role.index')->with(['allRole'=>$roles]);
+        //Lay tat ca user co roles
+        $allModelHasRoleCOllection = DB::table('model_has_roles')->get();
+        $allUserHasRoleGroupByRoles = $allModelHasRoleCOllection->groupBy('role_id');
+//        dd($allUserHasRoleGroupByRoles[15]->count());
+        return view('admin.role.index')->with(['allRole'=>$roles,'allUserHasRoleGroupByRoles'=>$allUserHasRoleGroupByRoles]);
     }
 
     public function create(){

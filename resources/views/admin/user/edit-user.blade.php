@@ -1,5 +1,32 @@
 @extends('Admin.layouts.index')
+<style rel="stylesheet" >
+    @import url('//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css');
 
+    .info-msg,
+    .success-msg,
+    .warning-msg,
+    .error-msg {
+        margin: 8px 0;
+        padding: 5px;
+        border-radius: 3px 3px 3px 3px;
+    }
+    .info-msg {
+        color: #059;
+        background-color: #BEF;
+    }
+    .success-msg {
+        color: #270;
+        background-color: #DFF2BF;
+    }
+    .warning-msg {
+        color: #9F6000;
+        background-color: #FEEFB3;
+    }
+    .error-msg {
+        color: #D8000C;
+        background-color: #FFBABA;
+    }
+</style>
 @section('content')
     <div class="main-panel">
         <div class="content">
@@ -32,6 +59,18 @@
                                 <div class="card-header">
                                     <div class="card-title">Edit User</div>
                                 </div>
+                                @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul class="list-unstyled">
+                                        @foreach ($errors->all() as $error)
+                                        <div class="error-msg">
+                                            <i class="fa fa-times-circle"></i>
+                                            {{$error}}
+                                        </div>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                @endif
                                 <div class="card-body">
 
                                         @csrf
@@ -45,13 +84,19 @@
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label for="email">Email</label>
-                                                <input class="form-control " name="email" value="{{$user->email}}" readonly>
+                                                <input class="form-control " name="email" value="{{$user->email}}" >
                                             </div>
                                         </div>
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <label for="avata">Avata</label>
-                                                <input type="file" class="form-control " name="avata">
+                                        <div class="col-sm-12">
+                                            <div class="form-group form-floating-label">
+                                                <input name="password" id="inputFloatingLabel" type="password" class="form-control input-border-bottom" >
+                                                <label for="inputFloatingLabel" class="placeholder">Password</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group form-floating-label">
+                                                <input name="password_confirmation" id="inputFloatingLabel" type="password" class="form-control input-border-bottom" >
+                                                <label for="inputFloatingLabel" class="placeholder">Confirm Password</label>
                                             </div>
                                         </div>
                                         <div class="col-6">
@@ -72,7 +117,7 @@
 
                                 </div>
                                 <div class="card-action">
-                                    <button type="button" class="btn btn-danger">Cancel</button>
+                                    <a href="{{route('admin.user.index')}}"><button type="button" class="btn btn-danger">Cancel</button></a>
                                     <button type="submit" class="btn btn-success">Submit</button>
                                 </div>
                             </div>
