@@ -18,4 +18,25 @@ return [
         'view-user' => 'view-user',
     ],
 
+    //Định dạng ảnh
+    'format_image' => [
+        'image/jpeg',
+        'image/png'
+    ],
+
+    //Blacklist name user
+    'blacklist_user' => [
+        'all' => [
+            'admin',
+            'administrator',
+            'manager',
+            'editor'
+        ]
+    ],
+
+    'default' =>[
+        'avatar' => '../avatars/default-user.png'
+    ]
+
+
 ];
