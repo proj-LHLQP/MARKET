@@ -21,10 +21,15 @@
                 <div class="col-sm-12 col-md-11 col-lg-11 hot-deals-tab-content-col">
                     <div class="hot-deals-tab-content tab-container">
                         <ul class="products owl-carousel" data-dots="false" data-loop="true" data-nav = "true" data-margin = "15" data-autoplayTimeout="1000" data-autoplayHoverPause = "true" data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4},"1200":{"items":5}}'>
-                            <li class="product">
+                            @foreach($productHotDeal as $product)
+                                <li class="product">
                                 <div class="product-container">
                                     <div class="product-image">
-                                        <a href="#"><img src="assets-home/data/option7/p1.jpg" alt="Product"></a>
+                                        @if(count($product->images)>0)
+                                            <a href="product-detail?id={{$product->id}}"><img style="height: 209px" src="{{$product->images[0]->image_path}}" alt="Product"></a>
+                                        @else
+                                            <a href="product-detail?id={{$product->id}}"><img style="height: 209px" src="uploads/product_images/no-image.jpg" alt="Product"></a>
+                                        @endif
                                         <div class="group-tool-button">
                                             <a class="withlist" href="#">withlist</a>
                                             <a class="compare" href="#">compare</a>
@@ -32,7 +37,7 @@
                                         </div>
                                     </div>
                                     <div class="product-info">
-                                        <h5 class="product-name"><a href="#">Headphone & earphone</a></h5>
+                                        <h5 class="product-name"><a href="#">{{substr($product->name,0,22)}}</a></h5>
                                         <div class="product-rating">
                                             <i class="fa fa-star-o"></i>
                                             <i class="fa fa-star-o"></i>
@@ -42,120 +47,13 @@
                                         </div>
 
                                         <div class="box-price">
-                                            <span class="product-price">$99.95</span>
-                                            <span class="old-price">$110</span>
+                                            <span class="product-price">${{$product->price-($product->price*$product->sale/100)}}</span>
+                                            <span class="old-price">${{$product->price}}</span>
                                         </div>
                                     </div>
                                 </div>
                             </li>
-                            <li class="product">
-                                <div class="product-container">
-                                    <div class="product-image">
-                                        <a href="#"><img src="assets-home/data/option7/p2.jpg" alt="Product"></a>
-                                        <div class="group-tool-button">
-                                            <a class="withlist" href="#">withlist</a>
-                                            <a class="compare" href="#">compare</a>
-                                            <a class="cart" href="#">cart</a>
-                                        </div>
-                                    </div>
-                                    <div class="product-info">
-                                        <h5 class="product-name"><a href="#">Headphone & earphone</a></h5>
-                                        <div class="product-rating">
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-
-                                        <div class="box-price">
-                                            <span class="product-price">$99.95</span>
-                                            <span class="old-price">$110</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="product">
-                                <div class="product-container">
-                                    <div class="product-image">
-                                        <a href="#"><img src="assets-home/data/option7/p3.jpg" alt="Product"></a>
-                                        <div class="group-tool-button">
-                                            <a class="withlist" href="#">withlist</a>
-                                            <a class="compare" href="#">compare</a>
-                                            <a class="cart" href="#">cart</a>
-                                        </div>
-                                    </div>
-                                    <div class="product-info">
-                                        <h5 class="product-name"><a href="#">Headphone & earphone</a></h5>
-                                        <div class="product-rating">
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-
-                                        <div class="box-price">
-                                            <span class="product-price">$99.95</span>
-                                            <span class="old-price">$110</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="product">
-                                <div class="product-container">
-                                    <div class="product-image">
-                                        <a href="#"><img src="assets-home/data/option7/p4.jpg" alt="Product"></a>
-                                        <div class="group-tool-button">
-                                            <a class="withlist" href="#">withlist</a>
-                                            <a class="compare" href="#">compare</a>
-                                            <a class="cart" href="#">cart</a>
-                                        </div>
-                                    </div>
-                                    <div class="product-info">
-                                        <h5 class="product-name"><a href="#">Headphone & earphone</a></h5>
-                                        <div class="product-rating">
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-
-                                        <div class="box-price">
-                                            <span class="product-price">$99.95</span>
-                                            <span class="old-price">$110</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="product">
-                                <div class="product-container">
-                                    <div class="product-image">
-                                        <a href="#"><img src="assets-home/data/option7/p5.jpg" alt="Product"></a>
-                                        <div class="group-tool-button">
-                                            <a class="withlist" href="#">withlist</a>
-                                            <a class="compare" href="#">compare</a>
-                                            <a class="cart" href="#">cart</a>
-                                        </div>
-                                    </div>
-                                    <div class="product-info">
-                                        <h5 class="product-name"><a href="#">Headphone & earphone</a></h5>
-                                        <div class="product-rating">
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-
-                                        <div class="box-price">
-                                            <span class="product-price">$99.95</span>
-                                            <span class="old-price">$110</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>

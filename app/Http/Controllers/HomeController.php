@@ -27,8 +27,12 @@ class HomeController extends Controller
     public function getHomePage()
     {
         $categories = Category::where('parent_id',0)->get();
-//        dd($categories);
-        return view('Pages.homepage')->with('categories',$categories);
+        $productHotDeal = Product::orderBy('sale','DESC')->limit(10)->get();
+//        dd($productHotDeal);
+        return view('Pages.homepage')->with([
+            'categories'=>$categories,
+            'productHotDeal'=>$productHotDeal
+        ]);
     }
     public function getBlogsPage(){
         $categories = Category::where('parent_id',0)->get();
