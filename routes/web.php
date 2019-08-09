@@ -46,12 +46,13 @@ Route::get('/product-detail','HomeController@getProductDetail');
 Route::get('/checkout','HomeController@getCheckOut');
 Route::get('/cart-detail','HomeController@getCartDetail');
 Route::get('/post-product',"HomeController@getPostProduct");
-
+Route::get('/posted-product',"HomeController@getPostedProduct")->middleware('view_posted');
+Route::get('/not-found',"HomeController@getNotFound");
 //homepage
 Route::post('login', 'MyController@postLogin')->name(CLIENT_LOGIN);
 Route::post('register', 'MyController@postRegister')->name(CLIENT_REGISTER);
 Route::get('logout', 'MyController@getLogout')->name(CLIENT_LOGOUT);
-
+Route::post('login-page', 'MyController@postLoginPage')->name(CLIENT_LOGIN);
 
 
 //admin

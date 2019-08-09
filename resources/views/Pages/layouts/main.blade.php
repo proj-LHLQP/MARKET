@@ -27,6 +27,9 @@
         .wapper-page{
             background-color: #fff;margin-top: 20px; padding: 20px
         }
+        .min-height-800{
+            min-height: 800px;
+        }
     </style>
 </head>
 <body class="home option7">
@@ -108,6 +111,10 @@
                            aria-expanded="false" href="#"><span>{{ Auth::user()->name }}</span></a>
                         <ul class="dropdown-menu mega_dropdown" role="menu">
                             <li><a href="{{ route(CLIENT_LOGOUT) }}">Logout</a></li>
+                        </ul>
+                        <ul class="dropdown-menu mega_dropdown" role="menu">
+                            <li><a style="padding: 10px 0; margin: 5px  " href="posted-product?id={{Auth::user()->id}}"><i style="font-size: 20px"class="fas fa-upload"></i>&nbsp;Sản phẩn đã đăng</a></li>
+                            <li><a style="padding: 10px 0; margin: 5px  "href="{{ route(CLIENT_LOGOUT) }}"><i style="font-size: 20px" class="fas fa-sign-out-alt"></i>&nbsp;Đăng Xuất</a></li>
                         </ul>
                     </div>
                 @endif
@@ -432,45 +439,46 @@
         </div>
     </div>
     <!-- END MANIN HEADER -->
-    <div class="service-header">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6 col-md-3">
-                    <div class="item">
-                        <a href="#">
-                            <img src="assets-home/data/option7/s1.png" alt="Service">
-                            <span>Worldwide Delivery</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="item">
-                        <a href="#">
-                            <img src="assets-home/data/option7/s2.png" alt="Service">
-                            <span>24/7 Help Center</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="item">
-                        <a href="#">
-                            <img src="assets-home/data/option7/s3.png" alt="Service">
-                            <span>shop with confidence</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="item">
-                        <a href="#">
-                            <img src="assets-home/data/option7/s4.png" alt="Service">
-                            <span>Safe Payment</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+{{--    <div class="service-header">--}}
+{{--        <div class="container">--}}
+{{--            <div class="row">--}}
+{{--                <div class="col-sm-6 col-md-3">--}}
+{{--                    <div class="item">--}}
+{{--                        <a href="#">--}}
+{{--                            <img src="assets-home/data/option7/s1.png" alt="Service">--}}
+{{--                            <span>Worldwide Delivery</span>--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-sm-6 col-md-3">--}}
+{{--                    <div class="item">--}}
+{{--                        <a href="#">--}}
+{{--                            <img src="assets-home/data/option7/s2.png" alt="Service">--}}
+{{--                            <span>24/7 Help Center</span>--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-sm-6 col-md-3">--}}
+{{--                    <div class="item">--}}
+{{--                        <a href="#">--}}
+{{--                            <img src="assets-home/data/option7/s3.png" alt="Service">--}}
+{{--                            <span>shop with confidence</span>--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-sm-6 col-md-3">--}}
+{{--                    <div class="item">--}}
+{{--                        <a href="#">--}}
+{{--                            <img src="assets-home/data/option7/s4.png" alt="Service">--}}
+{{--                            <span>Safe Payment</span>--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
     @yield('top-menu')
+
 </div>
 <!-- end header-->
 

@@ -21,6 +21,13 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link rel="icon" href="{{asset('shopping-basket.png')}}">
+    <style>
+        body{
+            background-image: url("images/bg-01.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
 </head>
 <body>
         <nav class="navbar navbar-expand-md navbar-light shadow-sm header-menu" >

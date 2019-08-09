@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Product;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -26,6 +27,7 @@ class HomeController extends Controller
     public function getHomePage()
     {
         $categories = Category::where('parent_id',0)->get();
+//        dd($categories);
         return view('Pages.homepage')->with('categories',$categories);
     }
     public function getBlogsPage(){
@@ -33,28 +35,67 @@ class HomeController extends Controller
         return view('Pages.blogs')->with('categories',$categories);
     }
     public function getBlogDetail(){
-        return view('Pages.blog-detail');
+        $categories = Category::where('parent_id',0)->get();
+        return view('Pages.blog-detail')->with('categories',$categories);
     }
     public function getAboutPage(){
-        return view('Pages.about');
+        $categories = Category::where('parent_id',0)->get();
+        return view('Pages.about')->with('categories',$categories);
     }
     public function getContact(){
-        return view('Pages.contact');
+        $categories = Category::where('parent_id',0)->get();
+        return view('Pages.contact')->with('categories',$categories);
     }
     public function getCategory(){
-        return view('Pages.category');
+        $categories = Category::where('parent_id',0)->get();
+        return view('Pages.category')->with('categories',$categories);
     }
-    public function getProductDetail(){
-        return view('Pages.product-detail');
+    public function getProductDetail(Request $request){
+        $id = $request->id;
+        $product = Product::find($id);
+
+        $product->category1 = $product->category[1]->name;
+        $product->category2 = $product->category[0]->name;
+
+        $temps =[];
+        $temps[] = $product->address->village();
+        $temps[] = $product->address->ward();
+        $temps[] = $product->address->district();
+        $temps[] = $product->address->province();
+        $address ='';
+
+        foreach ($temps as $temp){
+            if($temp !== null){
+                $address = $address.$temp.', ';
+            }
+        }
+        $product->address = substr($address,0,strlen($address)-2);
+        $categories = Category::where('parent_id',0)->get();
+        return view('Pages.product-detail')->with([
+            'categories'=>$categories,
+            'product'=>$product
+        ]);
     }
     public function getCheckOut(){
-        return view('Pages.checkout');
+        $categories = Category::where('parent_id',0)->get();
+        return view('Pages.checkout')->with('categories',$categories);
     }
     public  function getCartDetail(){
-        return view('Pages.cart-detail');
+        $categories = Category::where('parent_id',0)->get();
+        return view('Pages.cart-detail')->with('categories',$categories);
     }
     public function getPostProduct(){
         $categories = Category::where('parent_id',0)->get();
         return view('Pages.post-product')->with('categories',$categories);
+    }
+    public function getNotFound(){
+        return view('404_notfound');
+    }
+    public  function getPostedProduct(Request $request){
+        $id = $request->id;
+        $categories = Category::where('parent_id',0)->get();
+        $needBuy = Product::where([['user_id',$id],['status',1]])->get();
+        $needSell = Product::where([['user_id',$id],['status',0]])->get();
+       return view('Pages.posted-product')->with(['neddBuy'=>$needBuy,'needSell'=>$needSell,'categories'=>$categories]);
     }
 }

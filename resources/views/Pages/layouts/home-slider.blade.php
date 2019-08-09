@@ -67,7 +67,7 @@
                 <div class="banner-opacity"><a href="#"><img src="assets-home/data/option7/b1.jpg" alt="Banner"></a></div>
             </li>
             <li>
-                <div class="banner-opacity"><a href="#"><img src="assets-home   /data/option7/b2.jpg" alt="Banner"></a></div>
+                <div class="banner-opacity"><a href="#"><img src="assets-home/data/option7/b9.jpg" alt="Banner"></a></div>
             </li>
         </ul>
     </div>

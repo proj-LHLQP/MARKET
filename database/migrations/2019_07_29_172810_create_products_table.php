@@ -16,13 +16,14 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->engine = 'MyISAM';
             $table->bigIncrements('id');
+            $table->bigInteger('user_id');
             $table->string('name')->nullable();
             $table->bigInteger('seller_id')->nullable();
             $table->bigInteger('buyer_id')->nullable();
 //            $table->text('gallery')->nullable();
             $table->text('detail')->nullable();
             $table->double('price')->nullable();
-            $table->double('sale')->nullable();
+            $table->double('sale')->default(0);
             $table->tinyInteger('new');
             $table->tinyInteger('status');
             $table->tinyInteger('active')->default(0);
