@@ -1,6 +1,4 @@
-@extends('Pages.layouts.main')
 
-@section('content')
 <div class="center-container">
     <div class="main-content-agile">
         <div class="sub-main-w3">
@@ -43,5 +41,5 @@
         </div>
     </div>
 </div>
-@endsection
+
 

@@ -12,6 +12,14 @@ class Category extends Model
         'name','parent_id','created_at','update_at'
     ];
     public function productType(){
-        return $this->hasMany('app\product','idCategory', 'id');
+        return $this->hasMany('app\Product','idCategory', 'id');
     }
+    public function subCategory(){
+        return $this->hasMany('App\Category','parent_id','id');
+    }
+    public function category(){
+//        $cate = Category::where('')
+    }
+
+
 }

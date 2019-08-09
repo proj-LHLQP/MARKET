@@ -9,72 +9,64 @@
                     </h4>
                     <div class="vertical-menu-content is-home" id="list-cate" style="display: none">
                         <ul class="vertical-menu-list">
-                            @foreach($categories as $category)
-                                <li>
-                                    <a class="parent" href="#"><img class="icon-menu" alt="Funky roots" width="35px" src="images/category_image/{{$category->image}}">{{$category->name}}</a>
-                                    <div class="vertical-dropdown-menu">
-                                        <div class="vertical-groups col-sm-12">
-                                            <div class="mega-group col-sm-4">
-                                                <h4 class="mega-group-header"><span>Tennis</span></h4>
-                                                <ul class="group-link-default">
-                                                    <li><a href="#">Tennis</a></li>
-                                                    <li><a href="#">Coats &amp; Jackets</a></li>
-                                                    <li><a href="#">Blouses &amp; Shirts</a></li>
-                                                    <li><a href="#">Tops &amp; Tees</a></li>
-                                                    <li><a href="#">Hoodies &amp; Sweatshirts</a></li>
-                                                    <li><a href="#">Intimates</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="mega-group col-sm-4">
-                                                <h4 class="mega-group-header"><span>Swimming</span></h4>
-                                                <ul class="group-link-default">
-                                                    <li><a href="#">Dresses</a></li>
-                                                    <li><a href="#">Coats &amp; Jackets</a></li>
-                                                    <li><a href="#">Blouses &amp; Shirts</a></li>
-                                                    <li><a href="#">Tops &amp; Tees</a></li>
-                                                    <li><a href="#">Hoodies &amp; Sweatshirts</a></li>
-                                                    <li><a href="#">Intimates</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="mega-group col-sm-4">
-                                                <h4 class="mega-group-header"><span>Shoes</span></h4>
-                                                <ul class="group-link-default">
-                                                    <li><a href="#">Dresses</a></li>
-                                                    <li><a href="#">Coats &amp; Jackets</a></li>
-                                                    <li><a href="#">Blouses &amp; Shirts</a></li>
-                                                    <li><a href="#">Tops &amp; Tees</a></li>
-                                                    <li><a href="#">Hoodies &amp; Sweatshirts</a></li>
-                                                    <li><a href="#">Intimates</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="mega-custom-html col-sm-12">
-                                                <a href="#"><img src="assets-home/data/banner-megamenu.jpg" alt="Banner"></a>
+                            @for($i = 0; $i < 11;$i++)
+                                @if(count($categories[$i]->subCategory)!=0)
+                                    <li>
+                                        <a class="parent" href="#"><img class="icon-menu" alt="Funky roots" width="35px" src="images/category_image/{{$categories[$i]->image}}">{{$categories[$i]->name}}</a>
+                                        <div class="vertical-dropdown-menu" style="box-shadow: 0px 0px 10px 1px" >
+                                            <div class="vertical-groups col-sm-12">
+                                                <div class="mega-group">
+                                                    <h4 class="mega-group-header"><span>
+                                                            <img src="images/category_image/{{$categories[$i]->image}}">&nbsp;&nbsp;{{$categories[$i]->name}}
+                                                        </span>
+                                                    </h4>
+                                                    <ul class="group-link-default">
+                                                        @foreach($categories[$i]->subCategory as $subCate)
+                                                            <li><a href="#">{{$subCate->name}}</a></li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
+                                                <div class="mega-custom-html col-sm-12">
+                                                    <a href="#"><img src="assets-home/data/banner-bottom2.jpg" alt="Banner"></a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </li>
-                            @endforeach
-
-
-                            <li class="cat-link-orther">
-                                <a href="#">
-                                    <img class="icon-menu" alt="Funky roots" src="assets-home/data/22.png">
-                                    Television
-                                </a>
-                            </li>
-                            <li class="cat-link-orther">
-                                <a href="#">
-                                    <img class="icon-menu" alt="Funky roots" src="assets-home/data/12.png">Computers &amp; Networking
-                                </a>
-                            </li>
-                            <li class="cat-link-orther">
-                                <a href="#">
-                                    <img class="icon-menu" alt="Funky roots" src="assets-home/data/14.png">
-                                    Toys &amp; Hobbies
-                                </a>
-                            </li>
-                            <li class="cat-link-orther">
-                                <a href="#"><img class="icon-menu" alt="Funky roots" src="assets-home/data/17.png">Jewelry &amp; Watches</a></li>
+                                    </li>
+                                @else
+                                    <li><a href="#"><img class="icon-menu" alt="Funky roots" src="assets/data/14.png">{{$categories[$i]->name}}</a></li>
+                                @endif
+                            @endfor
+                                @for($i = 11; $i <count($categories);$i++)
+                                    @if(count($categories[$i]->subCategory)!=0)
+                                        <li class="cat-link-orther">
+                                            <a class="parent" href="#"><img class="icon-menu" alt="Funky roots" width="35px" src="images/category_image/{{$categories[$i]->image}}">{{$categories[$i]->name}}</a>
+                                            <div class="vertical-dropdown-menu" style="box-shadow: 0px 0px 10px 1px" >
+                                                <div class="vertical-groups col-sm-12">
+                                                    <div class="mega-group">
+                                                        <h4 class="mega-group-header"><span>
+                                                            <img src="images/category_image/{{$categories[$i]->image}}">&nbsp;&nbsp;{{$categories[$i]->name}}
+                                                        </span></h4>
+                                                        <ul class="group-link-default">
+                                                            @foreach($categories[$i]->subCategory as $subCate)
+                                                                <li><a href="#">{{$subCate->name}}</a></li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+                                                    <div class="mega-custom-html col-sm-12">
+                                                        {{--                                                <a href="#"><img src="assets-home/data/banner-megamenu.jpg" alt="Banner"></a>--}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    @else
+                                        <li class="cat-link-orther">
+                                            <a href="#">
+                                                <img class="icon-menu" alt="Funky roots" src="images/category_image/{{$categories[$i]->image}}">
+                                                Toys &amp; Hobbies
+                                            </a>
+                                        </li>
+                                    @endif
+                                @endfor
                         </ul>
                         <div class="all-category"><span class="open-cate">All Categories</span></div>
                     </div>

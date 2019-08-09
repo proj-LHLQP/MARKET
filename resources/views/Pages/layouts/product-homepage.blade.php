@@ -210,9 +210,7 @@
                                     <div class="product-image">
                                         <a href="#"><img src="assets-home/data/option7/p6.jpg" alt="Product"></a>
                                         <div class="group-tool-button">
-                                            <a class="search" href="#">search</a>
                                             <a class="withlist" href="#">withlist</a>
-                                            <a class="compare" href="#">compare</a>
                                             <a class="cart" href="#">cart</a>
                                         </div>
                                         <a href="{{asset('product-detail')}}" class="quick-view">Qick view</a>
@@ -221,7 +219,7 @@
                                     <div class="product-info">
                                         <h5 class="product-name"><a href="#">Headphone & earphone</a></h5>
                                         <div class="product-rating">
-                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star"></i>
                                             <i class="fa fa-star-o"></i>
                                             <i class="fa fa-star-o"></i>
                                             <i class="fa fa-star-o"></i>

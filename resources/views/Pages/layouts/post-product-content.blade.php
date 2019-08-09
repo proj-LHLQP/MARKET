@@ -53,7 +53,7 @@
 
                     <div class="form-group mt-5" >
                         <label for="category-child">Select Category Detail: </label>
-                        <select type="text" class="form-control" name="category-child" id="category-child" required>
+                        <select type="text" class="form-control" name="category_child" id="category-child" required>
                         </select>
                     </div>
                     <div class="form-group mt-5" >

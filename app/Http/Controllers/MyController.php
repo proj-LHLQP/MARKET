@@ -72,7 +72,12 @@ class MyController extends Controller
         }
         return response()->json(['status' => false, 'message' => __('message.login_failed')]);
     }
-
+    public function postLoginPage(Request $request){
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            return redirect()->route(HOME_PAGE);
+        }
+        return view('/login');
+    }
     public function getLogout()
     {
         Auth::logout();

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Address;
 use App\Product;
+use App\ProductCategory;
 use App\ProductImage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -12,75 +13,14 @@ use Illuminate\Support\Facades\Input;
 
 class ProductController extends Controller
 {
-    public static function addMembers($input)
-    {
-        DB::beginTransaction();
-        try {
-            $members = Member::create(Member::$_formatrequestMembers($input));
-            $members->memberPositions()->createMany(Member::_formatPositions($input['positions']));
-            DB::commit();
-            return true;
-        }
-        catch (\Exception $exception) {
-            \Log::info($exception->getMessage());
-            DB::rollBack();
-            return false;
-        }
-    }
-    public function addProduct($data){
-        DB::beginTransaction();
-        try {
-            if($data->status ==0){
-                $product = Product::create([
-                    'name' => $data->name,
-                    'seller_id'=>$data->user_id,
-                    'detail'=>$data->detail,
-                    'price'=>$data->price,
-                    'sale'=>$data->sale,
-                    'new'=>$data->new,
-                    'status'=>$data->status,
-                ]);
-            }
-            else if($data->status ==1){
-                $product = Product::create([
-                    'name' => $data->name,
-                    'buyer_id'=>$data->user_id,
-                    'detail'=>$data->detail,
-                    'price'=>$data->price,
-                    'sale'=>$data->sale,
-                    'new'=>$data->new,
-                    'status'=>$data->status,
-                ]);
-            }
-            $address = Address::create([
-                'product_id' => $product->id,
-                'province_id' => $product->province,
-                'district_id' => $data->district,
-                'ward_id' => $data->ward,
-                'village_id' => $data->village,
-            ]);
-            $product_images = ProductImage::where('product_id',0)->get();
-            foreach ($product_images as $product_image){
-                $product_image->update(['product_id'=>$product->id]);
-            }
-
-            DB::commit();
-            return redirect()->route(HOME_PAGE);
-            return view('home');
-        } catch (Exception $e) {
-            DB::rollBack();
-
-            throw new Exception($e->getMessage());
-        }
-    }
 
     public function saveProducts(Request $request){
-        //$this->addProduct($request);
-        DB::beginTransaction();
-        try {
+//        DB::beginTransaction();
+//        try {
             if($request->status ==0){
                 $product = Product::create([
                     'name' => $request->name,
+                    'user_id'=>$request->user_id,
                     'seller_id'=>$request->user_id,
                     'detail'=>$request->detail,
                     'price'=>$request->price,
@@ -92,6 +32,7 @@ class ProductController extends Controller
             else if($request->status ==1){
                 $product = Product::create([
                     'name' => $request->name,
+                    'user_id'=>$request->user_id,
                     'buyer_id'=>$request->user_id,
                     'detail'=>$request->detail,
                     'price'=>$request->price,
@@ -102,24 +43,33 @@ class ProductController extends Controller
             }
             $address = Address::create([
                 'product_id' => $product->id,
-                'province_id' => $product->province,
+                'province_id' => $request->province,
                 'district_id' => $request->district,
                 'ward_id' => $request->ward,
                 'village_id' => $request->village,
             ]);
+            ProductCategory::insert(
+                [
+                    'product_id' => $product->id,
+                    'category_id' =>$request->category,
+                ]);
+            ProductCategory::insert([
+                    'product_id' => $product->id,
+                    'category_id' =>$request->category_child,
+                ]);
             $product_images = ProductImage::where('product_id',0)->get();
             foreach ($product_images as $product_image){
                 $product_image->update(['product_id'=>$product->id]);
             }
-
-            DB::commit();
-            return redirect()->route(HOME_PAGE);
-            return view('home');
-        } catch (Exception $e) {
-            DB::rollBack();
-
-            throw new Exception($e->getMessage());
-        }
+            return $request->category_child;
+//            DB::commit();
+//            return redirect()->route(HOME_PAGE);
+//            return view('home');
+//        } catch (Exception $e) {
+//            DB::rollBack();
+//
+//            throw new Exception($e->getMessage());
+//        }
     }
 
     function postImages(Request $request)
@@ -139,7 +89,7 @@ class ProductController extends Controller
                         // make destination file name
                         $destinationFileName = time() . $fileObject->getClientOriginalName();
                         // move the file from tmp to the destination path
-                        $fileObject->move($destinationPath, $destinationFileName);
+                        $fileObject->move($folderDir, $destinationFileName);
                         // save the the destination filename
                         $prodcuctImage = new ProductImage();
                         $prodcuctImage->image_path = $folderDir .'/'. $destinationFileName;

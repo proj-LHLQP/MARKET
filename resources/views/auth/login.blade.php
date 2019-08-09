@@ -1,21 +1,45 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-@section('content')
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>Market</title>
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+       <style>
+               body{
+                   background-image: url("images/bg-01.jpg");
+                   background-repeat: no-repeat;
+                   background-size: cover;
+               }
+           </style>
+</head>
+<body>
 <div class="container">
     <div style="width: 45%; margin: 126px auto 0;box-shadow: 0px 0px 15px 0px; border-radius:5px">
         <div class="card">
             <div class="card-header bg-info text-white">
                 <div style="font-size: 20px">Đăng Nhập</div>
             </div>
-            @if(session('errors'))
-                @foreach(session('errors')->all() as $err)
-                    <div class="alert alert-danger">{{$err}}</div>
-                @endforeach
-            @endif
+
             @if(session('thongbao'))
                 <div class="alert alert-danger">{{session('thongbao')}}</div>
                 @endif
-            <form method="POST" action="{{ route('login') }}">
+            <form method="POST" action="login-page">
                 @csrf
                 <div class="card-body" style="background-color: rgba(230,230,230,0.3)">
                     <div>
@@ -57,5 +81,7 @@
         </div>
     </div>
 </div>
+</body>
 
-@endsection
+<script src="js/jquery-3.4.1.min.js"></script>
+</html>
