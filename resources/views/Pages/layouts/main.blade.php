@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
+
+    <base href="{{asset('')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets-home/lib/bootstrap/css/bootstrap.min.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('assets-home/lib/font-awesome/css/font-awesome.min.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('assets-home/lib/select2/css/select2.min.css')}}" />
@@ -17,6 +19,12 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets-home/css/option7.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('template-login/css/login-register.css')}}" />
     @yield('css')
+    <style>
+        .tt-suggestion strong {
+            font-weight: normal;
+            color: red;
+        }
+    </style>
     {{-- <!-- Main CSS-->--}}
     <link href="{{ asset('css/common.css') }}" rel="stylesheet" media="all">
 {{--    <link href="{{ asset('dist/css/theme.min.css') }}" rel="stylesheet" media="all">--}}
@@ -641,6 +649,8 @@
 <script type="text/javascript" src="{{asset('assets-home/lib/fancyBox/jquery.fancybox.js')}}"></script>
 <script type="text/javascript" src="{{asset('template-login/js/login-register.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/register_login.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/typeahead.bundle.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/search.js')}}"></script>
 <!-- Main JS-->
 <script src="{{ asset('dist/js/main.min.js') }}"></script>
 <script src="{{ asset('dist/js/custom.min.js') }}"></script>
@@ -651,11 +661,7 @@
 </script>
 @yield('script')
 <script>
-    jQuery(document).ready(function () {
-        jQuery('#open-list-cate').click(function () {
-            jQuery('#list-cate').slideToggle(250);
-        })
-    })
+
 
 </script>
 

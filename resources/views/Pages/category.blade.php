@@ -4,6 +4,6 @@
 @endsection
 
 @section('content')
-    @include('Pages.layouts.categoty-content')
+    @include('Pages.layouts.category-content')
     {{--    @include('Pages.layouts.product-homepage')--}}
 @endsection

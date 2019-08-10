@@ -12,7 +12,7 @@
                             @for($i = 0; $i < 11;$i++)
                                 @if(count($categories[$i]->subCategory)!=0)
                                     <li>
-                                        <a class="parent" href="#"><img class="icon-menu" alt="Funky roots" width="35px" src="images/category_image/{{$categories[$i]->image}}">{{$categories[$i]->name}}</a>
+                                        <a class="parent" href="category/{{$categories[$i]->id}}"><img class="icon-menu" alt="Funky roots" width="35px" src="images/category_image/{{$categories[$i]->image}}">{{$categories[$i]->name}}</a>
                                         <div class="vertical-dropdown-menu" style="box-shadow: 0px 0px 10px 1px" >
                                             <div class="vertical-groups col-sm-12">
                                                 <div class="mega-group">
@@ -22,7 +22,7 @@
                                                     </h4>
                                                     <ul class="group-link-default">
                                                         @foreach($categories[$i]->subCategory as $subCate)
-                                                            <li><a href="#">{{$subCate->name}}</a></li>
+                                                            <li><a href="category/{{$subCate->id}}">{{$subCate->name}}</a></li>
                                                         @endforeach
                                                     </ul>
                                                 </div>
@@ -39,7 +39,7 @@
                                 @for($i = 11; $i <count($categories);$i++)
                                     @if(count($categories[$i]->subCategory)!=0)
                                         <li class="cat-link-orther">
-                                            <a class="parent" href="#"><img class="icon-menu" alt="Funky roots" width="35px" src="images/category_image/{{$categories[$i]->image}}">{{$categories[$i]->name}}</a>
+                                            <a class="parent" href="category/{{$categories[$i]->id}}"><img class="icon-menu" alt="Funky roots" width="35px" src="images/category_image/{{$categories[$i]->image}}">{{$categories[$i]->name}}</a>
                                             <div class="vertical-dropdown-menu" style="box-shadow: 0px 0px 10px 1px" >
                                                 <div class="vertical-groups col-sm-12">
                                                     <div class="mega-group">
@@ -48,7 +48,7 @@
                                                         </span></h4>
                                                         <ul class="group-link-default">
                                                             @foreach($categories[$i]->subCategory as $subCate)
-                                                                <li><a href="#">{{$subCate->name}}</a></li>
+                                                                <li><a href="category/{{$subCate->id}}">{{$subCate->name}}</a></li>
                                                             @endforeach
                                                         </ul>
                                                     </div>
@@ -82,7 +82,7 @@
                         </select>
                     </div>
                     <div class="form-group input-serach">
-                        <input type="text"  placeholder="Type Your Keyword...">
+                        <input type="text" class="search-input" autocomplete="off" style="width: 100%" placeholder="Type Your Keyword...">
                     </div>
                     <button type="submit" class="pull-right btn-search"><i class="fa fa-search"></i></button>
                 </form>

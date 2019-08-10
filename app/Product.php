@@ -20,5 +20,13 @@ class Product extends Model
     public function category(){
         return $this->belongsToMany('App\Category','product_categories','product_id','category_id');
     }
-
+    public function productActived($listProducts){
+        $result =[];
+        foreach ($listProducts as $product){
+            if($product->actived == 1){
+                $result[] = $product;
+            }
+        }
+        return $result;
+    }
 }

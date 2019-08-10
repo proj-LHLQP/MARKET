@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -23,11 +24,19 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    public function queryProduct($categoryId){
+        $data = Product::
+            join('product_categories', 'products.id', '=', 'product_categories.product_id')
+            ->join('categories', 'categories.id', '=', 'product_categories.category_id')
+                ->where([['categories.id',$categoryId],['active',1]])->select('products.*')
+            ->paginate(1);
+        return $data;
+    }
 
     public function getHomePage()
     {
         $categories = Category::where('parent_id',0)->get();
-        $productHotDeal = Product::orderBy('sale','DESC')->limit(10)->get();
+        $productHotDeal = Product::where([['active',1],['sale','<>','null']])->orderBy('sale','DESC')->limit(10)->get();
 //        dd($productHotDeal);
         return view('Pages.homepage')->with([
             'categories'=>$categories,
@@ -50,9 +59,27 @@ class HomeController extends Controller
         $categories = Category::where('parent_id',0)->get();
         return view('Pages.contact')->with('categories',$categories);
     }
-    public function getCategory(){
+    public function getCategory(Request $request){
+
+
         $categories = Category::where('parent_id',0)->get();
-        return view('Pages.category')->with('categories',$categories);
+        $category = Category::find($request->id);
+        $parentCategory='';
+        if($category->parent_id != 0){
+            $parentCategory = Category::find($category->parent_id);
+        }
+        $subCategories = Category::where('parent_id',$request->id)->get();
+
+        $products = $this->queryProduct($request->id);
+//        dd($products);
+        //$products = $category->productActived();
+        return view('Pages.category')->with([
+            'categories'=>$categories,
+            'category'=>$category,
+            'parentCategory'=>$parentCategory,
+            'subCategories'=>$subCategories,
+            'products'=>$products
+        ]);
     }
     public function getProductDetail(Request $request){
         $id = $request->id;

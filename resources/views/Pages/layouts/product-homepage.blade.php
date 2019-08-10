@@ -26,9 +26,9 @@
                                 <div class="product-container">
                                     <div class="product-image">
                                         @if(count($product->images)>0)
-                                            <a href="product-detail?id={{$product->id}}"><img style="height: 209px" src="{{$product->images[0]->image_path}}" alt="Product"></a>
+                                            <a href="product-detail/{{$product->id}}"><img style="height: 209px" src="{{$product->images[0]->image_path}}" alt="Product"></a>
                                         @else
-                                            <a href="product-detail?id={{$product->id}}"><img style="height: 209px" src="uploads/product_images/no-image.jpg" alt="Product"></a>
+                                            <a href="product-detail/{{$product->id}}"><img style="height: 209px" src="uploads/product_images/no-image.jpg" alt="Product"></a>
                                         @endif
                                         <div class="group-tool-button">
                                             <a class="withlist" href="#">withlist</a>

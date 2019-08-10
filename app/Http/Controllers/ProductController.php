@@ -63,11 +63,11 @@ class ProductController extends Controller
             }
             DB::commit();
             return redirect()->route(HOME_PAGE);
-        } catch (Exception $e) {
-            DB::rollBack();
-
-            throw new Exception($e->getMessage());
-        }
+//        } catch (Exception $e) {
+//            DB::rollBack();
+//
+//            throw new Exception($e->getMessage());
+//        }
     }
 
     function postImages(Request $request)
@@ -103,8 +103,7 @@ class ProductController extends Controller
     {
 //        return $request;
         if ($request->ajax()) {
-            $product_id = Product::max('id')+1;
-            ProductImage::where([['image_name',$request->id],['product_id',$product_id]])->delete();
+            ProductImage::where([['image_name',$request->id],['product_id',0]])->delete();
             return "success!!";
         }
     }

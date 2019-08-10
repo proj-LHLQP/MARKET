@@ -41,8 +41,8 @@ Route::get('/blogs','HomeController@getBlogsPage');
 Route::get('/blog-detail','HomeController@getBlogDetail');
 Route::get('/about','HomeController@getAboutPage');
 Route::get('/contact','HomeController@getContact');
-Route::get('/category','HomeController@getCategory');
-Route::get('/product-detail','HomeController@getProductDetail');
+Route::get('/category/{id}','HomeController@getCategory');
+Route::get('/product-detail/{id}','HomeController@getProductDetail')->middleware('checkActiveProduct');
 Route::get('/checkout','HomeController@getCheckOut');
 Route::get('/cart-detail','HomeController@getCartDetail');
 Route::get('/post-product',"HomeController@getPostProduct");
@@ -54,6 +54,13 @@ Route::post('register', 'MyController@postRegister')->name(CLIENT_REGISTER);
 Route::get('logout', 'MyController@getLogout')->name(CLIENT_LOGOUT);
 Route::post('login-page', 'MyController@postLoginPage')->name(CLIENT_LOGIN);
 
+
+//seach
+
+
+
+Route::get('/search/name', 'SearchController@searchByName');
+Route::get('/search/category', 'SearchController@searchByCategory');
 
 //admin
 Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'],function (){
