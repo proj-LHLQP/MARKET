@@ -56,9 +56,6 @@ Route::post('login-page', 'MyController@postLoginPage')->name(CLIENT_LOGIN);
 
 
 //seach
-
-
-
 Route::get('/search/name', 'SearchController@searchByName');
 Route::get('/search/category', 'SearchController@searchByCategory');
 
@@ -96,3 +93,7 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'],function ()
     Route::get('delete-role/{id}','RoleController@destroy');
 
 });
+
+//fblogin
+Route::get('auth/facebook', 'FacebookAuthController@redirectToProvider')->name('facebook.login') ;
+Route::get('auth/facebook/callback', 'FacebookAuthController@handleProviderCallback');

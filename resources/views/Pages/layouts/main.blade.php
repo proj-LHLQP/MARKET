@@ -152,7 +152,7 @@
                                     <a id="google_login" class="circle google" href="#">
                                         <i class="fa fa-google-plus fa-fw"></i>
                                     </a>
-                                    <a id="facebook_login" class="circle facebook" href="#">
+                                    <a id="facebook_login" class="circle facebook" href="{{route('facebook.login')}}">
                                         <i class="fa fa-facebook fa-fw"></i>
                                     </a>
                                 </div>

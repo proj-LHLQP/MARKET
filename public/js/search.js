@@ -41,7 +41,7 @@ jQuery(document).ready(function () {
                     '<div class="list-group" style="width:470px"></div>'
                 ],
                 suggestion: function (data) {
-                    return '<a href="product-detail?id=' + data.id + '" class="list-group-item">' + data.name + '</a>';
+                    return '<a href="product-detail/' + data.id + '" class="list-group-item">' + data.name + '</a>';
                 }
             }
         },
@@ -59,7 +59,7 @@ jQuery(document).ready(function () {
                     '<div class="list-group"style="width:470px"></div>'
                 ],
                 suggestion: function (data) {
-                    return '<a href="category?id=' + data.id + '" class="list-group-item">' + data.name + '</a>';
+                    return '<a href="category/' + data.id + '" class="list-group-item">' + data.name + '</a>';
                 }
             }
         }
