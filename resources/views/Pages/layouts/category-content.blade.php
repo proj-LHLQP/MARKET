@@ -306,34 +306,11 @@
                     </ul>
                 </div>
                 <!-- ./category-slider -->
-                <!-- subcategories -->
-                <div class="subcategories">
-                    <ul>
-                        <li class="current-categorie">
-                            <a href="#">Women's Fashion</a>
-                        </li>
-                        <li>
-                            <a href="#">Tops</a>
-                        </li>
-                        <li>
-                            <a href="#">Dresses</a>
-                        </li>
-                        <li>
-                            <a href="#">Bags & Shoes</a>
-                        </li>
-                        <li>
-                            <a href="#">Pants</a>
-                        </li>
-                        <li>
-                            <a href="#">Blouses</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- ./subcategories -->
+
                 <!-- view-product-list-->
                 <div id="view-product-list" class="view-product-list">
                     <h2 class="page-heading">
-                        <span class="page-heading-title">Women</span>
+                        <span class="page-heading-title">Sản Phẩm</span>
                     </h2>
                     <ul class="display-product-option">
                         <li class="view-as-grid selected">
@@ -358,7 +335,6 @@
                                     </a>
                                     <div class="quick-view">
                                         <a title="Add to my wishlist" class="heart" href="#"></a>
-                                        <a title="Add to compare" class="compare" href="#"></a>
                                         <a title="Quick view" class="search" href="#"></a>
                                     </div>
                                     <div class="add-to-cart">
@@ -368,7 +344,8 @@
                                 <div class="right-block">
                                     <h5 class="product-name"><a href="#">{{$product->name}}</a></h5>
                                     <div>
-                                        Người đăng: <strong>{{$product->user->name}}</strong>
+                                        Người đăng: <strong>{{$product->user->name}}</strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;<i style="font-size: 15px" class="fas fa-eye mt-1">  {{$product->view->view}}</i>
+
                                     </div>
                                     <div class="content_price">
                                         <span class="price product-price">${{$product->price-($product->price*$product->sale/100)}}</span>

@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','provider', 'provider_id'
+        'name', 'email', 'password','provider', 'provider_id','avatar'
     ];
 
     /**
@@ -49,4 +49,8 @@ class User extends Authenticatable
             return false;
         }
     }
+    public function rates(){
+        return $this->hasMany('App\UserRate','user_id','id');
+    }
+
 }

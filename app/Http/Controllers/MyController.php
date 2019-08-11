@@ -76,7 +76,7 @@ class MyController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             return redirect()->route(HOME_PAGE);
         }
-        return view('/login');
+        return redirect('/login');
     }
     public function getLogout()
     {

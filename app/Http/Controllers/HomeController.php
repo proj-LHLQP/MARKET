@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Product;
+use App\View;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -83,10 +85,18 @@ class HomeController extends Controller
     }
     public function getProductDetail(Request $request){
         $id = $request->id;
+        $sessionKey = 'product_' . $id;
+        $sessionView = session()->get($sessionKey);
+        $view = View::where('product_id',$id)->first();
+        if (!$sessionView) {
+            session()->put($sessionKey, 1);
+            $view->increment('view');
+        }
+
         $product = Product::find($id);
 
-        $product->category1 = $product->category[1]->name;
-        $product->category2 = $product->category[0]->name;
+        $product->category1 = $product->category[1];
+        $product->category2 = $product->category[0];
 
         $temps =[];
         $temps[] = $product->address->village();

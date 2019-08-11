@@ -32,7 +32,6 @@
                                         @endif
                                         <div class="group-tool-button">
                                             <a class="withlist" href="#">withlist</a>
-                                            <a class="compare" href="#">compare</a>
                                             <a class="cart" href="#">cart</a>
                                         </div>
                                     </div>
@@ -45,7 +44,7 @@
                                             <i class="fa fa-star-o"></i>
                                             <i class="fa fa-star-o"></i>
                                         </div>
-
+                                        <span class="status-sale"></span>
                                         <div class="box-price">
                                             <span class="product-price">${{$product->price-($product->price*$product->sale/100)}}</span>
                                             <span class="old-price">${{$product->price}}</span>
@@ -106,7 +105,7 @@
                             <li class="product">
                                 <div class="product-container">
                                     <div class="product-image">
-                                        <a href="#"><img src="assets-home/data/option7/p6.jpg" alt="Product"></a>
+                                        <a href="#"><img src="assets-home/data/option7/p9.jpg" alt="Product"></a>
                                         <div class="group-tool-button">
                                             <a class="withlist" href="#">withlist</a>
                                             <a class="cart" href="#">cart</a>

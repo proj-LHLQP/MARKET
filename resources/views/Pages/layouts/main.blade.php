@@ -26,7 +26,7 @@
         }
     </style>
     {{-- <!-- Main CSS-->--}}
-    <link href="{{ asset('css/common.css') }}" rel="stylesheet" media="all">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/common.css') }}" media="all">
 {{--    <link href="{{ asset('dist/css/theme.min.css') }}" rel="stylesheet" media="all">--}}
 {{--    <link href="{{ asset('dist/css/custom.min.css') }}" rel="stylesheet" media="all">--}}
 
@@ -46,7 +46,7 @@
     <div class="top-header">
         <div class="container">
             <div class="nav-top-links">
-                <a class="first-item" href="#">Welcome to KuteShop</a>
+                <a class="first-item" href="#">Welcome</a>
                 <a href="#">Call Us: +09 957774334</a>
             </div>
             <div class="top-bar-social">
@@ -146,14 +146,11 @@
                         <div class="box" id="login-user">
                             <div class="content">
                                 <div class="social">
-                                    <a class="circle github" href="#">
-                                        <i class="fa fa-github fa-fw"></i>
+                                    <a id="google_login" href="{{route('google.login')}}">
+                                        <button class="btn btn-danger"><i class="fa fa-google-plus fa-fw"></i>Google</button>
                                     </a>
-                                    <a id="google_login" class="circle google" href="#">
-                                        <i class="fa fa-google-plus fa-fw"></i>
-                                    </a>
-                                    <a id="facebook_login" class="circle facebook" href="{{route('facebook.login')}}">
-                                        <i class="fa fa-facebook fa-fw"></i>
+                                    <a id="facebook_login" href="{{route('facebook.login')}}">
+                                        <button class="btn btn-primary"><i class="fa fa-facebook fa-fw"></i>Facebook</button>
                                     </a>
                                 </div>
                                 <div class="division">
@@ -239,7 +236,7 @@
                             </div>
                             <div id="navbar" class="navbar-collapse collapse">
                                 <ul class="nav navbar-nav">
-                                    <li class="active"><a href="{{asset('homepage')}}">Home</a></li>
+                                    <li class=""><a href="{{asset('homepage')}}">Home</a></li>
                                     <li class="dropdown">
                                         <a href="category.html" class="dropdown-toggle" data-toggle="dropdown">Fashion</a>
                                         <ul class="dropdown-menu mega_dropdown" role="menu" style="width: 830px;">
@@ -651,6 +648,7 @@
 <script type="text/javascript" src="{{asset('js/register_login.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/typeahead.bundle.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/search.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/rater.js')}}" charset="utf-8"></script>
 <!-- Main JS-->
 <script src="{{ asset('dist/js/main.min.js') }}"></script>
 <script src="{{ asset('dist/js/custom.min.js') }}"></script>

@@ -49,5 +49,10 @@ return [
         'client_secret' => env('FACEBOOK_SECRET'),
         'redirect' => env('FACEBOOK_URL'),
     ],
+    'google' => [
+        'client_id' => '298401904288-bhhbos50knppuoiqhedmqsp44a7haanv.apps.googleusercontent.com',
+        'client_secret' => 'h_hAi5DIJSZIq-BF8tmUPyC-',
+        'redirect' => 'https://nmquang21.com/public/auth/google/callback',
+    ],
 
 ];

@@ -10,5 +10,7 @@ class AdminController extends Controller
     public function getDashboard(){
         return view('admin.dashboard');
     }
-
+    public function test(Request $request){
+        return $request;
+    }
 }

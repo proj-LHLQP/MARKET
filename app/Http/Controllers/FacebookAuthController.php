@@ -21,12 +21,13 @@ class FacebookAuthController extends Controller
     {
         $user = Socialite::driver('facebook')->user();
 
+   //     dd($user->avatar);
         $authUser = $this->findOrCreateUser($user);
 
-        // Chỗ này để check xem nó có chạy hay không
+
 //        dd($user);
 
-        Auth::login($authUser, true);
+        Auth::login($authUser);
 
         return redirect()->route('homepage');
     }
@@ -41,9 +42,11 @@ class FacebookAuthController extends Controller
         return User::create([
             'name' => $facebookUser->name,
             'password' => $facebookUser->token,
+            //'password'=>bcrypt(11111111),
             'email' => $facebookUser->email,
             'provider_id' => $facebookUser->id,
             'provider' => $facebookUser->id,
+            'avatar'=>$facebookUser->avatar,
         ]);
     }
 }

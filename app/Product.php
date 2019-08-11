@@ -20,6 +20,10 @@ class Product extends Model
     public function category(){
         return $this->belongsToMany('App\Category','product_categories','product_id','category_id');
     }
+    public function view(){
+        return $this->hasOne('App\View','product_id','id');
+    }
+
     public function productActived($listProducts){
         $result =[];
         foreach ($listProducts as $product){

@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('homepage');
+    return view('Pages.homepage');
 });
 
 Auth::routes();
@@ -94,6 +94,12 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'],function ()
 
 });
 
-//fblogin
+//social login
 Route::get('auth/facebook', 'FacebookAuthController@redirectToProvider')->name('facebook.login') ;
 Route::get('auth/facebook/callback', 'FacebookAuthController@handleProviderCallback');
+
+Route::get('auth/google', 'GoogleAuthController@redirectToProvider')->name('google.login') ;
+Route::get('auth/google/callback', 'GoogleAuthController@handleProviderCallback');
+
+
+Route::post('test','AdminController@test');

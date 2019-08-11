@@ -6,6 +6,7 @@ use App\Address;
 use App\Product;
 use App\ProductCategory;
 use App\ProductImage;
+use App\View;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -47,6 +48,9 @@ class ProductController extends Controller
                 'district_id' => $request->district,
                 'ward_id' => $request->ward,
                 'village_id' => $request->village,
+            ]);
+            View::insert([
+                'product_id' => $product->id,
             ]);
             ProductCategory::insert(
                 [

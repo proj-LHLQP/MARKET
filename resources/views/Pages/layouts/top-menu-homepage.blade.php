@@ -4,7 +4,7 @@
             <div class="col-sm-3" id="box-vertical-megamenus">
                 <div class="box-vertical-megamenus">
                     <h4 class="title">
-                        <span class="title-menu">Categories</span>
+                        <span class="title-menu">Danh mục sản phẩm</span>
                         <span class="btn-open-mobile pull-right" id="open-list-cate"><i class="fa fa-bars"></i></span>
                     </h4>
                     <div class="vertical-menu-content is-home" id="list-cate" style="display: none">
@@ -60,15 +60,15 @@
                                         </li>
                                     @else
                                         <li class="cat-link-orther">
-                                            <a href="#">
-                                                <img class="icon-menu" alt="Funky roots" src="images/category_image/{{$categories[$i]->image}}">
-                                                Toys &amp; Hobbies
+                                            <a href="category/{{$categories[$i]->id}}">
+                                                <img class="icon-menu" alt="Funky roots" style="width: 35px" src="images/category_image/{{$categories[$i]->image}}">
+                                                {{$categories[$i]->name}}
                                             </a>
                                         </li>
                                     @endif
                                 @endfor
                         </ul>
-                        <div class="all-category"><span class="open-cate">All Categories</span></div>
+                        <div class="all-category"><span class="open-cate">Tất cả danh mục</span></div>
                     </div>
                 </div>
             </div>
@@ -94,7 +94,7 @@
                     </a>
                 @else
                     <a  href="{{'post-product'}}" class="text-center">
-                        <button style="background-color: #1269db; width: 100%;height: 40px; color: #fff; border-radius: 2px"><strong>Post Product</strong></button>
+                        <button style="background-color: #1269db; width: 100%;height: 40px; color: #fff; border-radius: 2px"><strong style="font-size: 17px">Đăng tin</strong></button>
                     </a>
                 @endif
             </div>

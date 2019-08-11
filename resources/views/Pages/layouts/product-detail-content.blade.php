@@ -1,12 +1,20 @@
 <div class="columns-container">
     <div class="container wapper-page" id="columns">
         <!-- breadcrumb -->
+
+        @if($product->status == 0)
+            <strong class="btn-buy-sell">
+                Cần bán
+            </strong>
+        @else
+            <strong class="btn-buy-sell" style="background-color: #2fa360">Cần mua</strong>
+         @endif
         <div class="breadcrumb clearfix">
             <a class="home" href="#" title="Return to Home">Home</a>
             <span class="navigation-pipe">&nbsp;</span>
-            <a href="#" title="Return to {{$product->category1}}">{{$product->category1}}</a>
+            <a href="category/{{$product->category1->id}}" title="Return to {{$product->category1}}">{{$product->category1->name}}</a>
             <span class="navigation-pipe">&nbsp;</span>
-            <a href="#" title="Return to {{$product->category2}}">{{$product->category2}}</a>
+            <a href="category/{{$product->category2->id}}" title="Return to {{$product->category2}}">{{$product->category2->name}}</a>
             <span class="navigation-pipe">&nbsp;</span>
             <span class="navigation_page">{{$product->name}}</span>
         </div>
@@ -309,6 +317,7 @@
                         </div>
                         <div class="pb-right-column col-xs-12 col-sm-6">
                             <h1 class="product-name">{{$product->name}}</h1>
+                            <i data-toggle="tooltip" data-placement="top" title="{{$product->view->view}} views"style="font-size: 20px" class="fas fa-eye mt-1">  {{$product->view->view}}</i>
                             <div>Người đăng: <strong>{{$product->user->name}}</strong></div>
                             <div class="product-comments">
                                 <div class="product-star">
@@ -317,12 +326,6 @@
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star-half-o"></i>
-                                </div>
-
-                                <div class="comments-advices">
-
-                                    <a href="#">Based  on 3 ratings</a>
-                                    <a href="#"><i class="fa fa-pencil"></i> write a review</a>
                                 </div>
                             </div>
                             <div class="product-price-group">
@@ -336,8 +339,9 @@
                                 <p>{!!$product->detail!!}</p>
                             </div>
                             <div class="form-option">
-                                <div>Điện thoại người đăng:</div>
-
+                                <strong>Thông tin người đăng:</strong>
+                                <p>{{$product->user->email}}</p>
+                                <p>{{$product->user->phone}}</p>
                             </div>
                             <div class="form-option">
                                 <strong>Địa chỉ: {{$product->address}}</strong>
@@ -350,17 +354,6 @@
                                 <div class="button-group">
                                     <a class="wishlist" href="#"><i class="fa fa-heart-o"></i>
                                         <br>Wishlist</a>
-                                    <a class="compare" href="#"><i class="fa fa-signal"></i>
-                                        <br>
-                                        Compare</a>
-                                </div>
-                            </div>
-                            <div class="form-share">
-                                <div class="sendtofriend-print">
-                                    <a href="javascript:print();"><i class="fa fa-print"></i> Print</a>
-                                    <a href="#"><i class="fa fa-envelope-o fa-fw"></i>Send to a friend</a>
-                                </div>
-                                <div class="network-share">
                                 </div>
                             </div>
                         </div>
@@ -369,18 +362,20 @@
                     <div class="product-tab">
                         <ul class="nav-tab">
                             <li class="active">
-                                <a aria-expanded="false" data-toggle="tab" href="#product-detail">Product Details</a>
+                                <a aria-expanded="false" data-toggle="tab" href="#product-detail">Chi tiết sản phẩm</a>
                             </li>
-
                             <li>
-                                <a data-toggle="tab" href="#reviews">reviews</a>
+                                <a data-toggle="tab" href="#reviews-product">Đánh giá sản phẩm</a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#reviews_user">Đánh giá người đăng</a>
                             </li>
                         </ul>
                         <div class="tab-container">
-                            <div id="product-detail" class="tab-panel active">
+                            <div id="product-detail" class="tab-panel ">
                                 {!! $product->detail !!}
                             </div>
-                            <div id="reviews" class="tab-panel">
+                            <div id="reviews-product" class="tab-panel">
                                 <div class="product-comments-block-tab">
                                     <div class="comment row">
                                         <div class="col-sm-3 author">
@@ -401,6 +396,97 @@
                                         </div>
                                         <div class="col-sm-9 commnet-dettail">
                                             Phasellus accumsan cursus velit. Pellentesque egestas, neque sit amet convallis pulvinar
+                                        </div>
+                                    </div>
+                                    <p>
+                                        <a class="btn-comment" href="#">Write your review !</a>
+                                    </p>
+                                </div>
+
+                            </div>
+                            <div id="reviews_user" class="tab-panel active" style="min-height: 650px">
+                                <div class="product-comments-block-tab">
+                                    <div>
+                                        <strong>Người đăng:  </strong>
+                                        <img width="30px"; style="border: 1px solid #ba8b00" src="h2.png">&nbsp;{{$product->user->name}}
+                                    </div>
+                                    <hr>
+                                    <div class="comment row">
+                                        <div class="col-sm-3 author" style="line-height:3">
+
+                                            <div class="grade text-center">
+                                                <span style="font-size: 35px" class="reviewRating">
+                                                        <strong>5</strong>&nbsp;<i class="fa fa-star"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-9 commnet-dettail">
+
+                                            <div style="clear: both">
+                                                <div style="width: 6%; float: left">
+                                                    5&nbsp;<i class="fa fa-star"></i>
+                                                </div>
+                                                <div class="progress" style="width: 75%; float: left; margin-top: 10px">
+                                                    <div class="progress-bar" role="progressbar" aria-valuenow="20"
+                                                         aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                                                    </div>
+                                                </div>
+                                                <div style="float:left;margin-left:30px">
+                                                    1 đánh giá
+                                                </div>
+                                            </div>
+                                            <div style="clear: both">
+                                                <div style="width: 6%; float: left">
+                                                    4&nbsp;<i class="fa fa-star"></i>
+                                                </div>
+                                                <div class="progress" style="width: 75%; float: left; margin-top: 10px">
+                                                    <div class="progress-bar" role="progressbar" aria-valuenow="20"
+                                                         aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                                                    </div>
+                                                </div>
+                                                <div style="float:left;margin-left:30px">
+                                                    1 đánh giá
+                                                </div>
+                                            </div>
+                                            <div style="clear: both">
+                                                <div style="width: 6%; float: left">
+                                                    3&nbsp;<i class="fa fa-star"></i>
+                                                </div>
+                                                <div class="progress" style="width: 75%; float: left; margin-top: 10px">
+                                                    <div class="progress-bar" role="progressbar" aria-valuenow="20"
+                                                         aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                                                    </div>
+                                                </div>
+                                                <div style="float:left;margin-left:30px">
+                                                    1 đánh giá
+                                                </div>
+                                            </div>
+                                            <div style="clear: both">
+                                                <div style="width: 6%; float: left">
+                                                    2&nbsp;<i class="fa fa-star"></i>
+                                                </div>
+                                                <div class="progress" style="width: 75%; float: left; margin-top: 10px">
+                                                    <div class="progress-bar" role="progressbar" aria-valuenow="20"
+                                                         aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                                                    </div>
+                                                </div>
+                                                <div style="float:left;margin-left:30px">
+                                                    1 đánh giá
+                                                </div>
+                                            </div>
+                                            <div style="clear: both">
+                                                <div style="width: 6%; float: left">
+                                                    1&nbsp;<i class="fa fa-star"></i>
+                                                </div>
+                                                <div class="progress" style="width: 75%; float: left; margin-top: 10px">
+                                                    <div class="progress-bar" role="progressbar" aria-valuenow="20"
+                                                         aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                                                    </div>
+                                                </div>
+                                                <div style="float:left;margin-left:30px">
+                                                    1 đánh giá
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="comment row">
@@ -424,9 +510,41 @@
                                             Phasellus accumsan cursus velit. Pellentesque egestas, neque sit amet convallis pulvinar
                                         </div>
                                     </div>
-                                    <p>
-                                        <a class="btn-comment" href="#">Write your review !</a>
-                                    </p>
+{{--                                    <p>--}}
+{{--                                        <a class="btn-comment" href="#">Write your review !</a>--}}
+{{--                                    </p>--}}
+                                    <div style="position: absolute; bottom: 0; width: 100%">
+                                        @if(Auth::check())
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    Gửi đánh giá của bạn
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-9">
+                                                            <div class="form-group">
+                                                                <label for="comment">Đánh giá: </label>
+                                                                <textarea class="form-control" style="width: 100%;height: 140px" name="comment" id="comment"></textarea>
+                                                            </div>
+                                                            <input id="user_rate_id" value="{{Auth::user()->id}}" type="hidden">
+                                                            @csrf
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <div style="font-size: 33px; line-height: 42px" class="rate"></div>
+                                                            <div id="star-info" style="color: #2fa360"></div>
+{{--                                                            <input id="input2" type="text" style="width: 10px;" disabled="true">--}}
+                                                            <button class="btn btn-info mt-5" id="send-rate">Gửi đánh giá</button>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        @else
+                                            <a data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">
+                                                <button class="btn btn-info">Đăng nhập để đánh giá</button>
+                                            </a>
+                                        @endif
+                                    </div>
                                 </div>
 
                             </div>
@@ -703,3 +821,68 @@
         <!-- ./row-->
     </div>
 </div>
+@section('script')
+    <script>
+        jQuery(document).ready(function () {
+            //console.log($product);
+            let star = 0;
+            var data = <?php echo $product; ?>;
+            console.log(data);
+            var options = {
+                max_value: 5,
+                step_size: 1,
+                initial_value: 0,
+                update_input_field_name: $("#input2"),
+            }
+
+            $(".rate").rate(options);
+
+            $(".rate").on("change", function(ev, data){
+                let selected = jQuery('#star-info');
+                switch (data.to) {
+                    case 1:
+                        selected.html('<div style="color: red">Không hài lòng</div>');
+                        break;
+                    case 2:
+                        selected.html('<div style="color: #ffe924">Tạm được</div>');
+                        break;
+                    case 3:
+                        selected.html('<div style="color: #00b5e9">Bình thường</div>');
+                        break;
+                    case 4:
+                        selected.html('<div style="color: #00abb3">Tốt</div>');
+                        break;
+                    case 5:
+                        selected.html('<div style="color: #2fa360">Tuyệt vời!!!</div>');
+                        break;
+                }
+                star = data.to;
+                console.log(data.to);
+            });
+            jQuery('#send-rate').click(function () {
+                if(star == 0){
+                    alert("Bạn chưa đánh giá sao")
+                }
+                else{
+                    var user_rate_id = jQuery("#user_rate_id").val();
+                    var user_id = data.user_id;
+                    var comment = jQuery('#comment').val();
+                    var _token = jQuery("input[name=_token]").val();
+                    jQuery.ajax({
+                        url :'test',
+                        method: 'post',
+                        data: {
+                            'user_rate_id':user_rate_id,
+                            'user_id':user_id,
+                            'comment':comment,
+                            '_token':_token
+                        }
+                    }).done(function (result) {
+                        console.log(result);
+                    })
+
+                }
+            })
+        });
+    </script>
+ @endsection
