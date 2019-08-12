@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Address;
+use App\CommentProduct;
 use App\Product;
 use App\ProductCategory;
 use App\ProductImage;
@@ -21,8 +22,8 @@ class ProductController extends Controller
             if($request->status ==0){
                 $product = Product::create([
                     'name' => $request->name,
-                    'user_id'=>$request->user_id,
-                    'seller_id'=>$request->user_id,
+                    'customer_id'=>$request->customer_id,
+                    'seller_id'=>$request->customer_id,
                     'detail'=>$request->detail,
                     'price'=>$request->price,
                     'sale'=>$request->sale,
@@ -33,8 +34,8 @@ class ProductController extends Controller
             else if($request->status ==1){
                 $product = Product::create([
                     'name' => $request->name,
-                    'user_id'=>$request->user_id,
-                    'buyer_id'=>$request->user_id,
+                    'customer_id'=>$request->customer_id,
+                    'buyer_id'=>$request->customer_id,
                     'detail'=>$request->detail,
                     'price'=>$request->price,
                     'sale'=>$request->sale,
@@ -110,5 +111,12 @@ class ProductController extends Controller
             ProductImage::where([['image_name',$request->id],['product_id',0]])->delete();
             return "success!!";
         }
+    }
+
+    public function postCommentProduct(Request $request){
+        $comment = new CommentProduct($request->all());
+        $comment->save();
+        $customer = $comment->customer;
+        return $comment;
     }
 }

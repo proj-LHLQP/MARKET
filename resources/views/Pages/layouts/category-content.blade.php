@@ -344,7 +344,7 @@
                                 <div class="right-block">
                                     <h5 class="product-name"><a href="#">{{$product->name}}</a></h5>
                                     <div>
-                                        Người đăng: <strong>{{$product->user->name}}</strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;<i style="font-size: 15px" class="fas fa-eye mt-1">  {{$product->view->view}}</i>
+                                        Người đăng: <strong>{{$product->customer->name}}</strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;<i style="font-size: 15px" class="fas fa-eye mt-1">  {{$product->view->view}}</i>
 
                                     </div>
                                     <div class="content_price">

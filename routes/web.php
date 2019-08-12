@@ -54,7 +54,10 @@ Route::post('register', 'MyController@postRegister')->name(CLIENT_REGISTER);
 Route::get('logout', 'MyController@getLogout')->name(CLIENT_LOGOUT);
 Route::post('login-page', 'MyController@postLoginPage')->name(CLIENT_LOGIN);
 
-
+//post-rate
+Route::post('rate-user','RateController@postRateUser');
+//comment product
+Route::post('comment-product','ProductController@postCommentProduct');
 //seach
 Route::get('/search/name', 'SearchController@searchByName');
 Route::get('/search/category', 'SearchController@searchByCategory');
@@ -101,5 +104,4 @@ Route::get('auth/facebook/callback', 'FacebookAuthController@handleProviderCallb
 Route::get('auth/google', 'GoogleAuthController@redirectToProvider')->name('google.login') ;
 Route::get('auth/google/callback', 'GoogleAuthController@handleProviderCallback');
 
-
-Route::post('test','AdminController@test');
+Route::get('test-mail', 'MyController@testMail');

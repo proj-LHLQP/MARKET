@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Customer;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -16,27 +17,28 @@ class GoogleAuthController extends Controller
     }
     public function handleProviderCallback()
     {
-        $user = Socialite::driver('google')->user();
+        $customer = Socialite::driver('google')->user();
 
-        $authUser = $this->findOrCreateUser($user);
+        $authCustomer = $this->findOrCreateUser($customer);
 
 
 //        dd($user);
 
-        Auth::login($authUser);
+        Auth::guard('customer')->login($authCustomer);
 
         return redirect()->route('homepage');
     }
 
     private function findOrCreateUser($googleUser){
-        $authUser = User::where('provider_id', $googleUser->id)->first();
+        $authUser = Customer::where('provider_id', $googleUser->id)->first();
 
         if($authUser){
             return $authUser;
         }
 
-        return User::create([
+        return Customer::create([
             'name' => $googleUser->name,
+            'username'=>$googleUser->email,
             'password' => $googleUser->token,
             //'password'=>bcrypt(11111111),
             'email' => $googleUser->email,

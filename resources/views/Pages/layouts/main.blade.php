@@ -105,7 +105,7 @@
                 <a href="#">Support</a>
             </div>
             <div id="user-info-top" class="user-info pull-right">
-                @if(!Auth::check())
+                @if(!Auth::guard('customer')->check())
                     <div class="dropdown">
                         <a class="current-open" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><span>My Account</span></a>
                         <ul class="dropdown-menu mega_dropdown" role="menu">
@@ -116,12 +116,12 @@
                 @else
                     <div class="dropdown">
                         <a class="current-open" data-toggle="dropdown" aria-haspopup="true"
-                           aria-expanded="false" href="#"><span>{{ Auth::user()->name }}</span></a>
+                           aria-expanded="false" href="#"><span>{{ Auth::guard('customer')->user()->name}}</span></a>
                         <ul class="dropdown-menu mega_dropdown" role="menu">
                             <li><a href="{{ route(CLIENT_LOGOUT) }}">Logout</a></li>
                         </ul>
                         <ul class="dropdown-menu mega_dropdown" role="menu">
-                            <li><a style="padding: 10px 0; margin: 5px  " href="posted-product?id={{Auth::user()->id}}"><i style="font-size: 20px"class="fas fa-upload"></i>&nbsp;Sản phẩn đã đăng</a></li>
+                            <li><a style="padding: 10px 0; margin: 5px  " href="posted-product?id={{Auth::guard('customer')->user()->id}}"><i style="font-size: 20px"class="fas fa-upload"></i>&nbsp;Sản phẩn đã đăng</a></li>
                             <li><a style="padding: 10px 0; margin: 5px  "href="{{ route(CLIENT_LOGOUT) }}"><i style="font-size: 20px" class="fas fa-sign-out-alt"></i>&nbsp;Đăng Xuất</a></li>
                         </ul>
                     </div>
@@ -649,6 +649,7 @@
 <script type="text/javascript" src="{{asset('js/typeahead.bundle.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/search.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/rater.js')}}" charset="utf-8"></script>
+<script type="text/javascript" src="{{asset('js/notify.js')}}" charset="utf-8"></script>
 <!-- Main JS-->
 <script src="{{ asset('dist/js/main.min.js') }}"></script>
 <script src="{{ asset('dist/js/custom.min.js') }}"></script>

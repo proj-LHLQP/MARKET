@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserRatesTable extends Migration
+class CreateCustomerRatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateUserRatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_rates', function (Blueprint $table) {
+        Schema::create('customer_rates', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('user_id');
+            $table->bigInteger('customer_id');
             $table->integer('star');
             $table->string('comment');
-            $table->bigInteger('user_rate_id');
+            $table->bigInteger('customer_rate_id');
+            $table->integer('active')->default(0);
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateUserRatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_rates');
+        Schema::dropIfExists('customer_rates');
     }
 }

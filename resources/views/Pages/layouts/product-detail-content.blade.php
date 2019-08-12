@@ -10,7 +10,7 @@
             <strong class="btn-buy-sell" style="background-color: #2fa360">Cần mua</strong>
          @endif
         <div class="breadcrumb clearfix">
-            <a class="home" href="#" title="Return to Home">Home</a>
+            <a class="home" href="homepage" title="Return to Home">Home</a>
             <span class="navigation-pipe">&nbsp;</span>
             <a href="category/{{$product->category1->id}}" title="Return to {{$product->category1}}">{{$product->category1->name}}</a>
             <span class="navigation-pipe">&nbsp;</span>
@@ -32,7 +32,7 @@
                             <div class="layered-content">
                                 <ul class="tree-menu">
                                     @foreach($categories as $cate)
-                                        <li><span></span><a href="#">{{$cate->name}}</a></li>
+                                        <li><span></span><a href="category/{{$cate->id}}">{{$cate->name}}</a></li>
                                     @endforeach
                                 </ul>
                             </div>
@@ -318,14 +318,15 @@
                         <div class="pb-right-column col-xs-12 col-sm-6">
                             <h1 class="product-name">{{$product->name}}</h1>
                             <i data-toggle="tooltip" data-placement="top" title="{{$product->view->view}} views"style="font-size: 20px" class="fas fa-eye mt-1">  {{$product->view->view}}</i>
-                            <div>Người đăng: <strong>{{$product->user->name}}</strong></div>
+                            <div>Người đăng: <strong>{{$product->customer->name}}</strong></div>
                             <div class="product-comments">
                                 <div class="product-star">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half-o"></i>
+                                    @for($i = 0; $i<round($product->customer->countStar()); $i++)
+                                        <i class="fa fa-star"></i>
+                                    @endfor
+                                    @for($i = round($product->customer->countStar()); $i<5; $i++)
+                                        <i class="fa fa-star-o"></i>
+                                    @endfor
                                 </div>
                             </div>
                             <div class="product-price-group">
@@ -339,9 +340,17 @@
                                 <p>{!!$product->detail!!}</p>
                             </div>
                             <div class="form-option">
+                                <strong>Tình trạng sản phẩm: </strong>
+                                @if($product->new == 0)
+                                    Mới
+                                    @else
+                                    Cũ
+                                @endif
+                            </div>
+                            <div class="form-option">
                                 <strong>Thông tin người đăng:</strong>
-                                <p>{{$product->user->email}}</p>
-                                <p>{{$product->user->phone}}</p>
+                                <p>{{$product->customer->email}}</p>
+                                <p>{{$product->customer->phone}}</p>
                             </div>
                             <div class="form-option">
                                 <strong>Địa chỉ: {{$product->address}}</strong>
@@ -372,43 +381,49 @@
                             </li>
                         </ul>
                         <div class="tab-container">
-                            <div id="product-detail" class="tab-panel ">
+                            <div id="product-detail" class="tab-panel active">
                                 {!! $product->detail !!}
                             </div>
                             <div id="reviews-product" class="tab-panel">
-                                <div class="product-comments-block-tab">
-                                    <div class="comment row">
-                                        <div class="col-sm-3 author">
-                                            <div class="grade">
-                                                <span>Grade</span>
-                                                <span class="reviewRating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </span>
+                                <div class="product-comments-block-tab" >
+                                    @foreach($comments as $comment)
+                                        <div class="comment row">
+                                            <div class="col-sm-3 author">
+
+                                                <span class="text-center"><img width="35px"  style="border: 1.5px solid #ba8b00" src="{{$comment->customer->avatar}}"></span>
+                                                <span class="info-author">
+                                                    <div><strong>{{$comment->customer->name}}</strong></div>
+                                                    <div>{{date('M d Y', strtotime($comment->updated_at))}}</div>
+                                                </span>
                                             </div>
-                                            <div class="info-author">
-                                                <span><strong>Jame</strong></span>
-                                                <em>04/08/2015</em>
+                                            <div class="col-sm-9 commnet-dettail">
+                                                {{$comment->comment}}
                                             </div>
                                         </div>
-                                        <div class="col-sm-9 commnet-dettail">
-                                            Phasellus accumsan cursus velit. Pellentesque egestas, neque sit amet convallis pulvinar
-                                        </div>
+                                    @endforeach
+                                    <div id="comment-detail"></div>
+                                    <div style="width: 100%; margin-top: 120px">
+                                        <hr>
+                                        @if(Auth::guard('customer')->check())
+                                            <div class="form-group">
+                                                <label for="comment">Đánh giá: </label>
+                                                <textarea class="form-control" style="width: 100%;height: 140px" name="comment" id="comment-product"></textarea>
+                                            </div>
+                                            <button id="send-comment" class="btn btn-primary" style="float:right;">Gửi</button>
+                                        @else
+                                            <a data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">
+                                                <button class="btn btn-info">Đăng nhập để đánh giá</button>
+                                            </a>
+                                        @endif
                                     </div>
-                                    <p>
-                                        <a class="btn-comment" href="#">Write your review !</a>
-                                    </p>
                                 </div>
 
                             </div>
-                            <div id="reviews_user" class="tab-panel active" style="min-height: 650px">
+                            <div id="reviews_user" class="tab-panel" style="min-height: 650px">
                                 <div class="product-comments-block-tab">
                                     <div>
                                         <strong>Người đăng:  </strong>
-                                        <img width="30px"; style="border: 1px solid #ba8b00" src="h2.png">&nbsp;{{$product->user->name}}
+                                        <img width="30px"; style="border: 1px solid #ba8b00" src="h2.png">&nbsp;{{$product->customer->name}}
                                     </div>
                                     <hr>
                                     <div class="comment row">
@@ -416,7 +431,8 @@
 
                                             <div class="grade text-center">
                                                 <span style="font-size: 35px" class="reviewRating">
-                                                        <strong>5</strong>&nbsp;<i class="fa fa-star"></i>
+                                                        <strong>{{$product->customer->countStar()}}</strong>&nbsp;<i class="fa fa-star"></i>
+{{--                                                    {{$product->user->starDetail()}}--}}
                                                 </span>
                                             </div>
                                         </div>
@@ -428,11 +444,11 @@
                                                 </div>
                                                 <div class="progress" style="width: 75%; float: left; margin-top: 10px">
                                                     <div class="progress-bar" role="progressbar" aria-valuenow="20"
-                                                         aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                                                         aria-valuemin="0" aria-valuemax="100" style="width:{{$product->customer->starDetail()->total!=0?($product->customer->starDetail()->star_5/$product->customer->starDetail()->total)*100:0}}%">
                                                     </div>
                                                 </div>
                                                 <div style="float:left;margin-left:30px">
-                                                    1 đánh giá
+                                                    {{$product->customer->starDetail()->star_5}} đánh giá
                                                 </div>
                                             </div>
                                             <div style="clear: both">
@@ -441,11 +457,11 @@
                                                 </div>
                                                 <div class="progress" style="width: 75%; float: left; margin-top: 10px">
                                                     <div class="progress-bar" role="progressbar" aria-valuenow="20"
-                                                         aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                                                         aria-valuemin="0" aria-valuemax="100" style="width:{{$product->customer->starDetail()->total!=0?($product->customer->starDetail()->star_4/$product->customer->starDetail()->total)*100:0}}%">
                                                     </div>
                                                 </div>
                                                 <div style="float:left;margin-left:30px">
-                                                    1 đánh giá
+                                                    {{$product->customer->starDetail()->star_4}} đánh giá
                                                 </div>
                                             </div>
                                             <div style="clear: both">
@@ -454,11 +470,11 @@
                                                 </div>
                                                 <div class="progress" style="width: 75%; float: left; margin-top: 10px">
                                                     <div class="progress-bar" role="progressbar" aria-valuenow="20"
-                                                         aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                                                         aria-valuemin="0" aria-valuemax="100" style="width:{{$product->customer->starDetail()->total!=0?($product->customer->starDetail()->star_3/$product->customer->starDetail()->total)*100:0}}%">
                                                     </div>
                                                 </div>
                                                 <div style="float:left;margin-left:30px">
-                                                    1 đánh giá
+                                                    {{$product->customer->starDetail()->star_3}} đánh giá
                                                 </div>
                                             </div>
                                             <div style="clear: both">
@@ -467,11 +483,11 @@
                                                 </div>
                                                 <div class="progress" style="width: 75%; float: left; margin-top: 10px">
                                                     <div class="progress-bar" role="progressbar" aria-valuenow="20"
-                                                         aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                                                         aria-valuemin="0" aria-valuemax="100" style="width:{{$product->customer->starDetail()->total!=0?($product->customer->starDetail()->star_2/$product->customer->starDetail()->total)*100:0}}%">
                                                     </div>
                                                 </div>
                                                 <div style="float:left;margin-left:30px">
-                                                    1 đánh giá
+                                                    {{$product->customer->starDetail()->star_2}} đánh giá
                                                 </div>
                                             </div>
                                             <div style="clear: both">
@@ -480,41 +496,45 @@
                                                 </div>
                                                 <div class="progress" style="width: 75%; float: left; margin-top: 10px">
                                                     <div class="progress-bar" role="progressbar" aria-valuenow="20"
-                                                         aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                                                         aria-valuemin="0" aria-valuemax="100" style="width:{{$product->customer->starDetail()->total!=0?($product->customer->starDetail()->star_1/$product->customer->starDetail()->total)*100:0}}%">
                                                     </div>
                                                 </div>
                                                 <div style="float:left;margin-left:30px">
-                                                    1 đánh giá
+                                                    {{$product->customer->starDetail()->star_1}} đánh giá
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="comment row">
-                                        <div class="col-sm-3 author">
-                                            <div class="grade">
-                                                <span>Grade</span>
-                                                <span class="reviewRating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
+                                    @foreach($rates as $rate)
+                                        <div class="comment row">
+                                            <div class="col-sm-3 author">
+                                                <div class="grade">
+                                                    <span>Đánh giá: </span>
+                                                    <span class="reviewRating">
+                                                        @for($i = 0; $i<$rate->star; $i++)
+                                                            <i class="fa fa-star"></i>
+                                                        @endfor
+                                                        @for($i = $rate->star; $i<5; $i++)
+                                                            <i class="fa fa-star-o"></i>
+                                                        @endfor
                                                     </span>
+                                                </div>
+                                                <div class="info-author">
+                                                    <span><strong>{{$rate->CustomerRate->name}}</strong></span>
+                                                    <em>{{date('M d Y', strtotime($rate->updated_at))}}</em>
+                                                </div>
                                             </div>
-                                            <div class="info-author">
-                                                <span><strong>Author</strong></span>
-                                                <em>04/08/2015</em>
+                                            <div class="col-sm-9 commnet-dettail">
+                                                {{$rate->comment}}
                                             </div>
                                         </div>
-                                        <div class="col-sm-9 commnet-dettail">
-                                            Phasellus accumsan cursus velit. Pellentesque egestas, neque sit amet convallis pulvinar
-                                        </div>
-                                    </div>
+                                    @endforeach
+
 {{--                                    <p>--}}
 {{--                                        <a class="btn-comment" href="#">Write your review !</a>--}}
 {{--                                    </p>--}}
-                                    <div style="position: absolute; bottom: 0; width: 100%">
-                                        @if(Auth::check())
+                                    <div style="width: 100%; margin-top: 120px">
+                                        @if(Auth::guard('customer')->check())
                                             <div class="card">
                                                 <div class="card-header">
                                                     Gửi đánh giá của bạn
@@ -526,7 +546,7 @@
                                                                 <label for="comment">Đánh giá: </label>
                                                                 <textarea class="form-control" style="width: 100%;height: 140px" name="comment" id="comment"></textarea>
                                                             </div>
-                                                            <input id="user_rate_id" value="{{Auth::user()->id}}" type="hidden">
+                                                            <input id="user_rate_id" value="{{Auth::guard('customer')->user()->id}}" type="hidden">
                                                             @csrf
                                                         </div>
                                                         <div class="col-sm-3">
@@ -826,9 +846,9 @@
         jQuery(document).ready(function () {
             //console.log($product);
             let star = 0;
-            var data = <?php echo $product; ?>;
+            let data = <?php echo $product; ?>;
             console.log(data);
-            var options = {
+            let options = {
                 max_value: 5,
                 step_size: 1,
                 initial_value: 0,
@@ -864,24 +884,60 @@
                     alert("Bạn chưa đánh giá sao")
                 }
                 else{
-                    var user_rate_id = jQuery("#user_rate_id").val();
-                    var user_id = data.user_id;
-                    var comment = jQuery('#comment').val();
-                    var _token = jQuery("input[name=_token]").val();
+                    let user_rate_id = jQuery("#user_rate_id").val();
+                    let user_id = data.user_id;
+                    let comment = jQuery('#comment').val();
+                    let _token = jQuery("input[name=_token]").val();
                     jQuery.ajax({
-                        url :'test',
+                        url :'rate-user',
                         method: 'post',
                         data: {
-                            'user_rate_id':user_rate_id,
-                            'user_id':user_id,
+                            'customer_rate_id':user_rate_id,
+                            'customer_id':data.customer_id,
                             'comment':comment,
+                            'star':star,
                             '_token':_token
                         }
                     }).done(function (result) {
-                        console.log(result);
+                        jQuery('#comment').val('');
+                        $(".rate").rate(options);
+                        $.notify("Đánh giá của bạn sẽ được hệ thống kiểm duyệt.",{ position:"right" });
                     })
 
                 }
+            });
+            jQuery('#send-comment').click(function () {
+                let customer_id = jQuery("#user_rate_id").val();
+                let product_id = data.id;
+                let comment = jQuery('#comment-product').val();
+                let _token = jQuery("input[name=_token]").val();
+                jQuery.ajax({
+                    url :'comment-product',
+                    method: 'post',
+                    data: {
+                        'customer_id':customer_id,
+                        'comment':comment,
+                        'product_id':product_id,
+                        '_token':_token
+                    }
+                }).done(function (result) {
+                    console.log(result)
+                    var html ='';
+                        html+='<div class="comment row">';
+                        html+='<div class="col-sm-3 author">';
+
+                        html+='<span class="text-center"><img width="35px"  style="border: 1.5px solid #ba8b00" src="'+result.customer.avatar+'"></span>';
+                        html+='<span class="info-author">';
+                        html+='<div><strong>'+result.customer.name+'</strong></div>';
+                        html+="<div>"+new Date(result.created_at)+"</div>";
+                        {{--html+="<div>{{date(\'M d Y\', strtotime("+result.updated_at+'))}}</div>';--}}
+                        html+='</span>';
+                        html+='</div>';
+                        html+='<div class="col-sm-9 commnet-dettail">'+result.comment+'</div>';
+                        html+='</div>';
+                    jQuery('#comment-detail').append(html);
+                    jQuery('#comment-product').val('');
+                })
             })
         });
     </script>

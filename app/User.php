@@ -39,18 +39,5 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public static function addUser($input)
-    {
-        try {
-            self::create($input);
-            return true;
-        } catch (\Exception $exception) {
-            Log::info($exception->getMessage());
-            return false;
-        }
-    }
-    public function rates(){
-        return $this->hasMany('App\UserRate','user_id','id');
-    }
 
 }

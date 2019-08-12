@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\CommentProduct;
+use App\CustomerRate;
 use App\Product;
 use App\View;
 use Illuminate\Contracts\Session\Session;
@@ -112,9 +114,14 @@ class HomeController extends Controller
         }
         $product->address = substr($address,0,strlen($address)-2);
         $categories = Category::where('parent_id',0)->get();
+
+        $rates = CustomerRate::where([['customer_id',$product->customer->id],['active',1]])->get();
+        $comments = CommentProduct::where('product_id',$id)->get();
         return view('Pages.product-detail')->with([
             'categories'=>$categories,
-            'product'=>$product
+            'product'=>$product,
+            'rates'=>$rates,
+            'comments'=>$comments
         ]);
     }
     public function getCheckOut(){
@@ -135,8 +142,8 @@ class HomeController extends Controller
     public  function getPostedProduct(Request $request){
         $id = $request->id;
         $categories = Category::where('parent_id',0)->get();
-        $needBuy = Product::where([['user_id',$id],['status',1]])->get();
-        $needSell = Product::where([['user_id',$id],['status',0]])->get();
+        $needBuy = Product::where([['customer_id',$id],['status',1]])->get();
+        $needSell = Product::where([['customer_id',$id],['status',0]])->get();
        return view('Pages.posted-product')->with(['neddBuy'=>$needBuy,'needSell'=>$needSell,'categories'=>$categories]);
     }
 }

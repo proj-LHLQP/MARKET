@@ -16,7 +16,7 @@
         <div class="page-content page-contact" style="width: 600px; margin-right: auto; margin-left: auto; font-size: 20px">
             <form action="post-product" method="POST" onsubmit="return true">
                 @csrf
-                <input name="user_id" value="{{Auth::user()->id}}" hidden>
+                <input name="customer_id" value="{{Auth::guard('customer')->user()->id}}" hidden>
                 <div class="place" style="border: 1px solid #ccc; padding: 30px; border-radius: 5px; box-shadow: 0px 0px 10px 0.5px">
                     <div class="text-center"><strong>Place</strong></div>
                     <div class="form-group mt-5">

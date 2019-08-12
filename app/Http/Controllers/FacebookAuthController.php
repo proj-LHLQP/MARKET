@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Customer;
 use Auth;
 use App\User;
 use Socialite;
@@ -19,28 +20,27 @@ class FacebookAuthController extends Controller
      */
     public function handleProviderCallback()
     {
-        $user = Socialite::driver('facebook')->user();
+        $customer = Socialite::driver('facebook')->user();
 
    //     dd($user->avatar);
-        $authUser = $this->findOrCreateUser($user);
+        $authCustomer = $this->findOrCreateCustomer($customer);
 
 
-//        dd($user);
 
-        Auth::login($authUser);
-
+       Auth::guard('customer')->login($authCustomer);
         return redirect()->route('homepage');
     }
 
-    private function findOrCreateUser($facebookUser){
-        $authUser = User::where('provider_id', $facebookUser->id)->first();
+    private function findOrCreateCustomer($facebookUser){
+        $authUser = Customer::where('provider_id', $facebookUser->id)->first();
 
         if($authUser){
             return $authUser;
         }
 
-        return User::create([
+        return Customer::create([
             'name' => $facebookUser->name,
+            'username' => $facebookUser->email,
             'password' => $facebookUser->token,
             //'password'=>bcrypt(11111111),
             'email' => $facebookUser->email,
