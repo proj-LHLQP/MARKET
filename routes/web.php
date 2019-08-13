@@ -19,7 +19,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@getHomePage')->name('home');
 
-
 //demo
 Route::get('/getProvince','MyController@getProvince');
 Route::get('/getDistrict','MyController@getDistrict');
@@ -65,7 +64,6 @@ Route::post('comment-product','ProductController@postCommentProduct');
 Route::get('/search/name', 'SearchController@searchByName');
 Route::get('/search/category', 'SearchController@searchByCategory');
 
-
 //admin
 Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'],function (){
     Route::get('dashboard','AdminController@getDashboard');
@@ -88,7 +86,6 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'],function ()
     Route::post('store-user','UserController@store')->name('user.store');
 
     //category
-
     Route::resource('category','CategoryController');
 
     //Phong start role manager
