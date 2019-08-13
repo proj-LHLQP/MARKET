@@ -40,8 +40,8 @@ Route::get('/blogs','HomeController@getBlogsPage');
 Route::get('/blog-detail','HomeController@getBlogDetail');
 Route::get('/about','HomeController@getAboutPage');
 Route::get('/contact','HomeController@getContact');
-Route::get('/category','HomeController@getCategory');
-Route::get('/product-detail','HomeController@getProductDetail');
+Route::get('/category/{id}','HomeController@getCategory');
+Route::get('/product-detail/{id}','HomeController@getProductDetail')->middleware('checkActiveProduct');
 Route::get('/checkout','HomeController@getCheckOut');
 Route::get('/cart-detail','HomeController@getCartDetail');
 Route::get('/post-product',"HomeController@getPostProduct");
@@ -52,6 +52,17 @@ Route::post('login', 'MyController@postLogin')->name(CLIENT_LOGIN);
 Route::post('register', 'MyController@postRegister')->name(CLIENT_REGISTER);
 Route::get('logout', 'MyController@getLogout')->name(CLIENT_LOGOUT);
 Route::post('login-page', 'MyController@postLoginPage')->name(CLIENT_LOGIN);
+
+//WishList
+Route::post('wishlist','MyController@postWishList');
+
+//post-rate
+Route::post('rate-user','RateController@postRateUser');
+//comment product
+Route::post('comment-product','ProductController@postCommentProduct');
+//seach
+Route::get('/search/name', 'SearchController@searchByName');
+Route::get('/search/category', 'SearchController@searchByCategory');
 
 //admin
 Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'],function (){
@@ -86,3 +97,12 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'],function ()
     Route::get('delete-role/{id}','RoleController@destroy');
 
 });
+
+//social login
+Route::get('auth/facebook', 'FacebookAuthController@redirectToProvider')->name('facebook.login') ;
+Route::get('auth/facebook/callback', 'FacebookAuthController@handleProviderCallback');
+
+Route::get('auth/google', 'GoogleAuthController@redirectToProvider')->name('google.login') ;
+Route::get('auth/google/callback', 'GoogleAuthController@handleProviderCallback');
+
+Route::get('test-mail', 'MyController@testMail');

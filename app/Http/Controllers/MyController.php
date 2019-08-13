@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Customer;
 use App\District;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Province;
-use App\User;
 use App\Village;
 use App\Ward;
+use App\WishList;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class MyController extends Controller
 {
@@ -57,9 +59,10 @@ class MyController extends Controller
             $input['password'] = bcrypt($request->password);
             $status = false;
             $message = __('message.register_failed');
-            if (User::addUser($input)) {
+            if (Customer::addCustomer($input)) {
                 $status = true;
                 $message = __('message.register_success');
+                Auth::guard('customer')->attempt(['email' => $request->email, 'password' => $request->password]);
             }
             return response()->json(['status' => $status, 'message' => $message]);
         }
@@ -67,20 +70,45 @@ class MyController extends Controller
 
     public function postLogin(LoginRequest $request)
     {
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+//        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+//            return response()->json(['status' => true]);
+//        }
+        if (Auth::guard('customer')->attempt(['email' => $request->email, 'password' => $request->password])) {
             return response()->json(['status' => true]);
         }
         return response()->json(['status' => false, 'message' => __('message.login_failed')]);
     }
     public function postLoginPage(Request $request){
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect()->route(HOME_PAGE);
+        if (Auth::guard('customer')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            return response()->json(['status' => true]);
         }
-        return view('/login');
+        return redirect('/login');
     }
     public function getLogout()
     {
-        Auth::logout();
+        Auth::guard('customer')->logout();
         return redirect()->route(HOME_PAGE);
     }
+
+    public function postWishList(Request $request){
+        if(Auth::guard('customer')->check()){
+            $customer = Auth::guard('customer')->user();
+            $wish = WishList::where([['customer_id',$customer->id],['product_id',$request->product_id]])->first();
+            if(!$wish){
+                $wish = new WishList();
+                $wish->customer_id = $customer->id;
+                $wish->product_id = $request->product_id;
+                $wish->save();
+            }
+            return $wish;
+        }
+        return -1;
+    }
+//    public function testMail(){
+//        $data =['name'=>'QUANG','messages'=>'Đăng kí tài khoản thành công'];
+//        Mail::send('Email.mail-content',$data,function ($message){
+//            $message->to('nmquang21@gmail.com')->subject('Market2nd Feedback!');
+//        });
+//        return 'OK';
+//    }
 }

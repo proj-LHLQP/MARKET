@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Address;
+use App\CommentProduct;
 use App\Product;
 use App\ProductCategory;
 use App\ProductImage;
+use App\View;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -20,8 +22,8 @@ class ProductController extends Controller
             if($request->status ==0){
                 $product = Product::create([
                     'name' => $request->name,
-                    'user_id'=>$request->user_id,
-                    'seller_id'=>$request->user_id,
+                    'customer_id'=>$request->customer_id,
+                    'seller_id'=>$request->customer_id,
                     'detail'=>$request->detail,
                     'price'=>$request->price,
                     'sale'=>$request->sale,
@@ -32,8 +34,8 @@ class ProductController extends Controller
             else if($request->status ==1){
                 $product = Product::create([
                     'name' => $request->name,
-                    'user_id'=>$request->user_id,
-                    'buyer_id'=>$request->user_id,
+                    'customer_id'=>$request->customer_id,
+                    'buyer_id'=>$request->customer_id,
                     'detail'=>$request->detail,
                     'price'=>$request->price,
                     'sale'=>$request->sale,
@@ -47,6 +49,9 @@ class ProductController extends Controller
                 'district_id' => $request->district,
                 'ward_id' => $request->ward,
                 'village_id' => $request->village,
+            ]);
+            View::insert([
+                'product_id' => $product->id,
             ]);
             ProductCategory::insert(
                 [
@@ -63,11 +68,11 @@ class ProductController extends Controller
             }
             DB::commit();
             return redirect()->route(HOME_PAGE);
-        } catch (Exception $e) {
-            DB::rollBack();
-
-            throw new Exception($e->getMessage());
-        }
+//        } catch (Exception $e) {
+//            DB::rollBack();
+//
+//            throw new Exception($e->getMessage());
+//        }
     }
 
     function postImages(Request $request)
@@ -103,9 +108,15 @@ class ProductController extends Controller
     {
 //        return $request;
         if ($request->ajax()) {
-            $product_id = Product::max('id')+1;
-            ProductImage::where([['image_name',$request->id],['product_id',$product_id]])->delete();
+            ProductImage::where([['image_name',$request->id],['product_id',0]])->delete();
             return "success!!";
         }
+    }
+
+    public function postCommentProduct(Request $request){
+        $comment = new CommentProduct($request->all());
+        $comment->save();
+        $customer = $comment->customer;
+        return $comment;
     }
 }

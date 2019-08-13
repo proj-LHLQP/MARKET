@@ -4,7 +4,7 @@
             <div class="col-sm-3" id="box-vertical-megamenus">
                 <div class="box-vertical-megamenus">
                     <h4 class="title">
-                        <span class="title-menu">Categories</span>
+                        <span class="title-menu">Danh mục sản phẩm</span>
                         <span class="btn-open-mobile pull-right" id="open-list-cate"><i class="fa fa-bars"></i></span>
                     </h4>
                     <div class="vertical-menu-content is-home" id="list-cate" style="display: none">
@@ -12,7 +12,7 @@
                             @for($i = 0; $i < 11;$i++)
                                 @if(count($categories[$i]->subCategory)!=0)
                                     <li>
-                                        <a class="parent" href="#"><img class="icon-menu" alt="Funky roots" width="35px" src="images/category_image/{{$categories[$i]->image}}">{{$categories[$i]->name}}</a>
+                                        <a class="parent" href="category/{{$categories[$i]->id}}"><img class="icon-menu" alt="Funky roots" width="35px" src="images/category_image/{{$categories[$i]->image}}">{{$categories[$i]->name}}</a>
                                         <div class="vertical-dropdown-menu" style="box-shadow: 0px 0px 10px 1px" >
                                             <div class="vertical-groups col-sm-12">
                                                 <div class="mega-group">
@@ -22,7 +22,7 @@
                                                     </h4>
                                                     <ul class="group-link-default">
                                                         @foreach($categories[$i]->subCategory as $subCate)
-                                                            <li><a href="#">{{$subCate->name}}</a></li>
+                                                            <li><a href="category/{{$subCate->id}}">{{$subCate->name}}</a></li>
                                                         @endforeach
                                                     </ul>
                                                 </div>
@@ -39,7 +39,7 @@
                                 @for($i = 11; $i <count($categories);$i++)
                                     @if(count($categories[$i]->subCategory)!=0)
                                         <li class="cat-link-orther">
-                                            <a class="parent" href="#"><img class="icon-menu" alt="Funky roots" width="35px" src="images/category_image/{{$categories[$i]->image}}">{{$categories[$i]->name}}</a>
+                                            <a class="parent" href="category/{{$categories[$i]->id}}"><img class="icon-menu" alt="Funky roots" width="35px" src="images/category_image/{{$categories[$i]->image}}">{{$categories[$i]->name}}</a>
                                             <div class="vertical-dropdown-menu" style="box-shadow: 0px 0px 10px 1px" >
                                                 <div class="vertical-groups col-sm-12">
                                                     <div class="mega-group">
@@ -48,7 +48,7 @@
                                                         </span></h4>
                                                         <ul class="group-link-default">
                                                             @foreach($categories[$i]->subCategory as $subCate)
-                                                                <li><a href="#">{{$subCate->name}}</a></li>
+                                                                <li><a href="category/{{$subCate->id}}">{{$subCate->name}}</a></li>
                                                             @endforeach
                                                         </ul>
                                                     </div>
@@ -60,15 +60,15 @@
                                         </li>
                                     @else
                                         <li class="cat-link-orther">
-                                            <a href="#">
-                                                <img class="icon-menu" alt="Funky roots" src="images/category_image/{{$categories[$i]->image}}">
-                                                Toys &amp; Hobbies
+                                            <a href="category/{{$categories[$i]->id}}">
+                                                <img class="icon-menu" alt="Funky roots" style="width: 35px" src="images/category_image/{{$categories[$i]->image}}">
+                                                {{$categories[$i]->name}}
                                             </a>
                                         </li>
                                     @endif
                                 @endfor
                         </ul>
-                        <div class="all-category"><span class="open-cate">All Categories</span></div>
+                        <div class="all-category"><span class="open-cate">Tất cả danh mục</span></div>
                     </div>
                 </div>
             </div>
@@ -82,19 +82,19 @@
                         </select>
                     </div>
                     <div class="form-group input-serach">
-                        <input type="text"  placeholder="Type Your Keyword...">
+                        <input type="text" class="search-input" autocomplete="off" style="width: 100%" placeholder="Type Your Keyword...">
                     </div>
                     <button type="submit" class="pull-right btn-search"><i class="fa fa-search"></i></button>
                 </form>
             </div>
             <div class="col-sm-4 col-md-3 col-lg-2">
-                @if(!Auth::check())
+                @if(!Auth::guard('customer')->check())
                     <a  href="javascript:void(0)" onclick="openLoginModal();" class="text-center">
                         <button style="background-color: #1269db; width: 100%;height: 40px; color: #fff; border-radius: 2px"><strong>Post Product</strong></button>
                     </a>
                 @else
                     <a  href="{{'post-product'}}" class="text-center">
-                        <button style="background-color: #1269db; width: 100%;height: 40px; color: #fff; border-radius: 2px"><strong>Post Product</strong></button>
+                        <button style="background-color: #1269db; width: 100%;height: 40px; color: #fff; border-radius: 2px"><strong style="font-size: 17px">Đăng tin</strong></button>
                     </a>
                 @endif
             </div>

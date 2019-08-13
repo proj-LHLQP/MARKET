@@ -18,15 +18,15 @@ class CreateCustomersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->nullable();
             $table->string('avatar')->nullable();
-            $table->string('passport')->nullable();
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->double('wallet')->default(0);
             $table->double('wallet_freeze')->default(0);
             $table->bigInteger('reward')->nullable();
             $table->unsignedTinyInteger('active')->default(1);
-            $table->unsignedTinyInteger('type');
             $table->string('password');
+            $table->string('provider');
+            $table->string('provider_id');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

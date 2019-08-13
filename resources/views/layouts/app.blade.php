@@ -92,21 +92,21 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" >
 
 
-                                    @guest
-                                        <div class="dropdown-item">
-                                            <a class="dropdown-item" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                        </div>
-                                        @if (Route::has('register'))
-                                            <div class="dropdown-item">
-                                                <a class="dropdown-item" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                            </div>
-                                        @endif
-                                    @else
+{{--                                    @guest--}}
+{{--                                        <div class="dropdown-item">--}}
+{{--                                            <a class="dropdown-item" href="{{ route('login') }}">{{ __('Login') }}</a>--}}
+{{--                                        </div>--}}
+{{--                                        @if (Route::has('register'))--}}
+{{--                                            <div class="dropdown-item">--}}
+{{--                                                <a class="dropdown-item" href="{{ route('register') }}">{{ __('Register') }}</a>--}}
+{{--                                            </div>--}}
+{{--                                        @endif--}}
+{{--                                    @else--}}
                                     <div class="dropdown-item">
                                         <span>
                                             <img  style="width: 70px" src="h2.png">
                                         </span>
-                                        {{Auth::user()->name}}
+{{--                                        {{Auth::user()->name}}--}}aaaaaaaaaaaaaaaaa
                                     </div>
                                     <hr>
                                     <a class="dropdown-item" style="color: #e4606d" href="login">
@@ -143,7 +143,7 @@
                                             @csrf
                                         </form>
                                     </div>
-                                    @endguest
+{{--                                    @endguest--}}
                             </div>
                         </li>
                         <a style="line-height: 47px; margin-left: 5px">

@@ -17,9 +17,20 @@ class Category extends Model
     public function subCategory(){
         return $this->hasMany('App\Category','parent_id','id');
     }
-    public function category(){
-//        $cate = Category::where('')
+    public function product(){
+        return $this->belongsToMany('App\Product','product_categories','category_id','product_id');
     }
+    public function productActived(){
+        $products = $this->product;
+        $productActived = [];
+        foreach ($products as $product){
+            if($product->active == 1){
+                $productActived[] = $product;
+            }
+        }
+        return $productActived;
+    }
+
 
 
 }

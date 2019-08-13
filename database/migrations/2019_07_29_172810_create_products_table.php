@@ -16,7 +16,7 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->engine = 'MyISAM';
             $table->bigIncrements('id');
-            $table->bigInteger('user_id');
+            $table->bigInteger('customer_id');
             $table->string('name')->nullable();
             $table->bigInteger('seller_id')->nullable();
             $table->bigInteger('buyer_id')->nullable();

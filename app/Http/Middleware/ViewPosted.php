@@ -16,7 +16,7 @@ class ViewPosted
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::check() && Auth::user()->id == $request->id)
+        if(Auth::guard('customer')->check() && Auth::guard('customer')->user()->id == $request->id)
             return $next($request);
         else{
             return redirect('not-found');

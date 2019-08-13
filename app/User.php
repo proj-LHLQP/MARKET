@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','provider', 'provider_id','avatar'
     ];
 
     /**
@@ -39,14 +39,5 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public static function addUser($input)
-    {
-        try {
-            self::create($input);
-            return true;
-        } catch (\Exception $exception) {
-            Log::info($exception->getMessage());
-            return false;
-        }
-    }
+
 }

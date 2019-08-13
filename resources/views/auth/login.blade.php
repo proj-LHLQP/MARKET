@@ -44,7 +44,7 @@
                 <div class="card-body" style="background-color: rgba(230,230,230,0.3)">
                     <div>
                         <label for="username">Email:</label>
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email" autofocus>
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -59,7 +59,7 @@
                                Quên mật khẩu?
                             </a>
                         @endif
-                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="current-password">
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -70,10 +70,19 @@
                         <input type="checkbox"  name="remember" id="remember" class=" form-input" {{ old('remember') ? 'checked' : '' }}>
                         <label for="username">Ghi nhớ tài khoản?</label>
                     </div>
+                    <div class="mt-2 text-center">
+                            <a id="google_login" class="google" href="{{route('facebook.login')}}">
+                               <button type="button" class="btn btn-primary"> <i style="font-size:20px"class="fab fa-facebook-square"></i>&nbsp;<span>Đăng nhập bằng Facebook</span>
+                                </button>
+                            </a>
+                            <a id="google_login" class="google" href="{{route('google.login')}}">
+                               <button type="button" class="btn btn-danger"> <i style="font-size:20px"class="fab fa-google-plus-square"></i>&nbsp;Đăng nhập bằng Google
+                                </button>
+                            </a>
+                    </div>
                 </div>
                 <div class="card-footer">
                     <div style="display:flex;justify-content: flex-end">
-                        <button style="margin-right: 10px" id="cancel" type="button" class="btn btn-danger">Xóa</button>
                         <button type="submit" class="btn btn-success">Đăng Nhập</button>
                     </div>
                 </div>

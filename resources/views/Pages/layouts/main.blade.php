@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
+
+    <base href="{{asset('')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets-home/lib/bootstrap/css/bootstrap.min.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('assets-home/lib/font-awesome/css/font-awesome.min.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('assets-home/lib/select2/css/select2.min.css')}}" />
@@ -17,8 +19,14 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets-home/css/option7.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('template-login/css/login-register.css')}}" />
     @yield('css')
+    <style>
+        .tt-suggestion strong {
+            font-weight: normal;
+            color: red;
+        }
+    </style>
     {{-- <!-- Main CSS-->--}}
-    <link href="{{ asset('css/common.css') }}" rel="stylesheet" media="all">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/common.css') }}" media="all">
 {{--    <link href="{{ asset('dist/css/theme.min.css') }}" rel="stylesheet" media="all">--}}
 {{--    <link href="{{ asset('dist/css/custom.min.css') }}" rel="stylesheet" media="all">--}}
 
@@ -38,7 +46,7 @@
     <div class="top-header">
         <div class="container">
             <div class="nav-top-links">
-                <a class="first-item" href="#">Welcome to KuteShop</a>
+                <a class="first-item" href="#">Welcome</a>
                 <a href="#">Call Us: +09 957774334</a>
             </div>
             <div class="top-bar-social">
@@ -46,6 +54,90 @@
                 <a href="#"><i class="fa fa-twitter"></i></a>
                 <a href="#"><i class="fa fa-pinterest"></i></a>
                 <a href="#"><i class="fa fa-google-plus"></i></a>
+            </div>
+            <div class="bolock-heart-topbar" id="cart-block">
+                <a href="{{asset('cart-detail')}}">Wishlist<span class="count">0</span></a>
+                <div class="cart-block">
+                    <div class="cart-block-content">
+                        <strong  class="cart-title text-center">2 Items in my Wishlist</strong>
+                        <div class="cart-block-list">
+                            <ul>
+                                <li class="product-info">
+                                    <div class="p-left">
+                                        <a href="#">
+                                            <img class="img-responsive" src="assets-home/data/product-100x122.jpg" alt="p10">
+                                        </a>
+                                    </div>
+                                    <div class="p-right">
+                                        <p class="p-name">Donec Ac Tempus</p>
+                                        <p class="p-rice">61,19 €</p>
+                                        <p>Qty: 1</p>
+                                    </div>
+                                </li>
+                                <li class="product-info">
+                                    <div class="p-left">
+                                        <a href="#">
+                                            <img class="img-responsive" src="assets-home/data/product-100x122.jpg" alt="p10">
+                                        </a>
+                                    </div>
+                                    <div class="p-right">
+                                        <p class="p-name">Donec Ac Tempus</p>
+                                        <p class="p-rice">61,19 €</p>
+                                        <p>Qty: 1</p>
+                                    </div>
+                                </li>
+                                <li class="product-info">
+                                    <div class="p-left">
+                                        <a href="#">
+                                            <img class="img-responsive" src="assets-home/data/product-100x122.jpg" alt="p10">
+                                        </a>
+                                    </div>
+                                    <div class="p-right">
+                                        <p class="p-name">Donec Ac Tempus</p>
+                                        <p class="p-rice">61,19 €</p>
+                                        <p>Qty: 1</p>
+                                    </div>
+                                </li>
+                                <li class="product-info">
+                                    <div class="p-left">
+                                        <a href="#">
+                                            <img class="img-responsive" src="assets-home/data/product-100x122.jpg" alt="p10">
+                                        </a>
+                                    </div>
+                                    <div class="p-right">
+                                        <p class="p-name">Donec Ac Tempus</p>
+                                        <p class="p-rice">61,19 €</p>
+                                        <p>Qty: 1</p>
+                                    </div>
+                                </li>
+                                <li class="product-info">
+                                    <div class="p-left">
+                                        <a href="#">
+                                            <img class="img-responsive" src="assets-home/data/product-100x122.jpg" alt="p10">
+                                        </a>
+                                    </div>
+                                    <div class="p-right">
+                                        <p class="p-name">Donec Ac Tempus</p>
+                                        <p class="p-rice">61,19 €</p>
+                                        <p>Qty: 1</p>
+                                    </div>
+                                </li>
+                                <li class="product-info">
+                                    <div class="p-left">
+                                        <a href="#">
+                                            <img class="img-responsive" src="assets-home/data/product-s5-100x122.jpg" alt="p10">
+                                        </a>
+                                    </div>
+                                    <div class="p-right">
+                                        <p class="p-name">Donec Ac Tempus</p>
+                                        <p class="p-rice">61,19 €</p>
+                                        <p>Qty: 1</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="bolock-cart-topbar" id="cart-block">
                 <a title="My cart" href="{{asset('cart-detail')}}">Cart<span class="count">2</span></a>
@@ -92,12 +184,11 @@
                     </div>
                 </div>
             </div>
-            <div class="support-link">
-                <a href="#">Services</a>
-                <a href="#">Support</a>
-            </div>
+{{--            <div class="support-link">--}}
+{{--                <a href="#">Support</a>--}}
+{{--            </div>--}}
             <div id="user-info-top" class="user-info pull-right">
-                @if(!Auth::check())
+                @if(!Auth::guard('customer')->check())
                     <div class="dropdown">
                         <a class="current-open" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><span>My Account</span></a>
                         <ul class="dropdown-menu mega_dropdown" role="menu">
@@ -108,12 +199,26 @@
                 @else
                     <div class="dropdown">
                         <a class="current-open" data-toggle="dropdown" aria-haspopup="true"
-                           aria-expanded="false" href="#"><span>{{ Auth::user()->name }}</span></a>
+                           aria-expanded="false" href="#"><span>{{ Auth::guard('customer')->user()->name}}</span></a>
                         <ul class="dropdown-menu mega_dropdown" role="menu">
                             <li><a href="{{ route(CLIENT_LOGOUT) }}">Logout</a></li>
                         </ul>
-                        <ul class="dropdown-menu mega_dropdown" role="menu">
-                            <li><a style="padding: 10px 0; margin: 5px  " href="posted-product?id={{Auth::user()->id}}"><i style="font-size: 20px"class="fas fa-upload"></i>&nbsp;Sản phẩn đã đăng</a></li>
+                        <ul class="dropdown-menu mega_dropdown p-3" role="menu" style="min-width: 270px">
+                            <li>
+                                <a href="customer-info">
+                                    <div>
+                                        <img style="width: 35px; border: 1px solid #1269db" src="{{Auth::guard('customer')->user()->avatar}}">
+                                        {{Auth::guard('customer')->user()->name}}
+                                    </div>
+                                </a>
+                            </li>
+                            <hr>
+                            <li><a style="padding: 10px 0; margin: 5px  " href="posted-product?id={{Auth::guard('customer')->user()->id}}"><i style="font-size: 20px; color: #00b5e9"class="fas fa-upload"></i>&nbsp;Sản phẩn đã đăng</a></li>
+                            <li><a style="padding: 10px 0; margin: 5px  " href="posted-product?id={{Auth::guard('customer')->user()->id}}"><i style="font-size: 20px; color: red"class="fas fa-shopping-bag"></i>&nbsp;Sản phẩn đã giao dịch</a></li>
+                            <li><a style="padding: 10px 0; margin: 5px  " href=""><i style="font-size: 20px; color: #ba8b00"class="fas fa-wallet"></i>&nbsp;Ví Tiền</a></li>
+                            <li><a style="padding: 10px 0; margin: 5px  " href=""><i style="font-size: 20px; color: #9561e2"class="fas fa-file-invoice-dollar"></i>&nbsp;Ví đóng băng</a></li>
+                            <li><a style="padding: 10px 0; margin: 5px  " href=""><i style="font-size: 20px; color:#2fa360"class="fas fa-donate"></i>&nbsp;Điểm thưởng</a></li>
+                            <hr>
                             <li><a style="padding: 10px 0; margin: 5px  "href="{{ route(CLIENT_LOGOUT) }}"><i style="font-size: 20px" class="fas fa-sign-out-alt"></i>&nbsp;Đăng Xuất</a></li>
                         </ul>
                     </div>
@@ -138,14 +243,11 @@
                         <div class="box" id="login-user">
                             <div class="content">
                                 <div class="social">
-                                    <a class="circle github" href="#">
-                                        <i class="fa fa-github fa-fw"></i>
+                                    <a id="google_login" href="{{route('google.login')}}">
+                                        <button class="btn btn-danger"><i class="fa fa-google-plus fa-fw"></i>Google</button>
                                     </a>
-                                    <a id="google_login" class="circle google" href="#">
-                                        <i class="fa fa-google-plus fa-fw"></i>
-                                    </a>
-                                    <a id="facebook_login" class="circle facebook" href="#">
-                                        <i class="fa fa-facebook fa-fw"></i>
+                                    <a id="facebook_login" href="{{route('facebook.login')}}">
+                                        <button class="btn btn-primary"><i class="fa fa-facebook fa-fw"></i>Facebook</button>
                                     </a>
                                 </div>
                                 <div class="division">
@@ -218,7 +320,7 @@
         <div class="container main-header">
             <div class="row">
                 <div class="col-xs-12 col-sm-3 logo">
-                    <a href="{{asset('homepage')}}"><img alt="Kute Shop" src="assets-home/data/option7/logo.png" /></a>
+                    <a href="{{asset('homepage')}}"><img alt="Kute Shop" src="assets-home/data/option7/logo5.png" /></a>
                 </div>
                 <div id="main-menu" class="col-sm-12 col-md-9 main-menu">
                     <nav class="navbar navbar-default">
@@ -231,7 +333,7 @@
                             </div>
                             <div id="navbar" class="navbar-collapse collapse">
                                 <ul class="nav navbar-nav">
-                                    <li class="active"><a href="{{asset('homepage')}}">Home</a></li>
+                                    <li class=""><a href="{{asset('homepage')}}">Home</a></li>
                                     <li class="dropdown">
                                         <a href="category.html" class="dropdown-toggle" data-toggle="dropdown">Fashion</a>
                                         <ul class="dropdown-menu mega_dropdown" role="menu" style="width: 830px;">
@@ -494,7 +596,7 @@
             <div class="row">
                 <div class="col-sm-3">
                     <div class="footer-logo">
-                        <a href="#"><img src="assets-home/data/option7/logo2.png" alt="Logo"></a>
+                        <a href="#"><img src="assets-home/data/option7/logo5.png" alt="Logo"></a>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-6">
@@ -641,6 +743,10 @@
 <script type="text/javascript" src="{{asset('assets-home/lib/fancyBox/jquery.fancybox.js')}}"></script>
 <script type="text/javascript" src="{{asset('template-login/js/login-register.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/register_login.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/typeahead.bundle.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/search.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/rater.js')}}" charset="utf-8"></script>
+<script type="text/javascript" src="{{asset('js/notify.js')}}" charset="utf-8"></script>
 <!-- Main JS-->
 <script src="{{ asset('dist/js/main.min.js') }}"></script>
 <script src="{{ asset('dist/js/custom.min.js') }}"></script>
@@ -650,12 +756,9 @@
     CKEDITOR.replace( 'article-ckeditor' );
 </script>
 @yield('script')
+@yield('script-1')
 <script>
-    jQuery(document).ready(function () {
-        jQuery('#open-list-cate').click(function () {
-            jQuery('#list-cate').slideToggle(250);
-        })
-    })
+
 
 </script>
 
