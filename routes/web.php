@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('Pages.homepage');
+    return view('homepage');
 });
 
 Auth::routes();
@@ -54,6 +54,9 @@ Route::post('register', 'MyController@postRegister')->name(CLIENT_REGISTER);
 Route::get('logout', 'MyController@getLogout')->name(CLIENT_LOGOUT);
 Route::post('login-page', 'MyController@postLoginPage')->name(CLIENT_LOGIN);
 
+//WishList
+Route::post('wishlist','MyController@postWishList');
+
 //post-rate
 Route::post('rate-user','RateController@postRateUser');
 //comment product
@@ -61,6 +64,7 @@ Route::post('comment-product','ProductController@postCommentProduct');
 //seach
 Route::get('/search/name', 'SearchController@searchByName');
 Route::get('/search/category', 'SearchController@searchByCategory');
+
 
 //admin
 Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'],function (){

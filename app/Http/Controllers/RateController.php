@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 class RateController extends Controller
 {
     public function postRateUser(Request $request){
-        $userRate = CustomerRate::where([['customer_id',$request->user_id],['customer_rate_id',$request->user_rate_id]])->first();
+        $userRate = CustomerRate::where([['customer_id',$request->customer_id],['customer_rate_id',$request->customer_rate_id]])->first();
         if(!$userRate){
             $userRate = new CustomerRate($request->all());
             $userRate->save();

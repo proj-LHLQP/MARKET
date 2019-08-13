@@ -8,23 +8,24 @@
 	position: relative;
 }
 .option7 .bolock-cart-topbar>a{
-	line-height: 34px;
-	border: none;
-	position: relative;
-	background: url('../images/icon-cart-topbar7.png') no-repeat left center;
-	width: 23px;
-	height: 35px;
-	font-size: 0;
-	display: block;
-	margin: 0 10px;
-}
+      line-height: 34px;
+      border: none;
+      position: relative;
+      background: url('../images/icon-cart-topbar7.png') no-repeat left center;
+      width: 23px;
+      height: 35px;
+      font-size: 0;
+      display: block;
+      margin: 0 10px;
+  }
+
 .option7 .bolock-cart-topbar>a>.count{
 	width: 18px;
 	height: 18px;
 	position: absolute;
 	right: -20px;
 	top: -3px;
-	background: #fe9b00;
+	background: #2BB930;
 	line-height: 18px;
 	text-align: center;
 	color: #fff;
@@ -38,6 +39,48 @@
 	transform: translate(0,0);
 	opacity: 1;
 	visibility: visible;
+}
+
+
+.option7 .bolock-heart-topbar{
+    width: auto;
+    float: right;
+    display: inline-block;
+    position: relative;
+}
+.option7 .bolock-heart-topbar>a{
+    line-height: 34px;
+    border: none;
+    position: relative;
+    background: url('../images/heart-icon1.png') no-repeat left center;
+    width: 27px;
+    height: 35px;
+    font-size: 0;
+    display: block;
+    margin: 0 25px;
+
+}
+
+.option7 .bolock-heart-topbar>a>.count{
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    right: -20px;
+    top: -3px;
+    background: #fe9b00;
+    line-height: 18px;
+    text-align: center;
+    color: #fff;
+    font-size: 13px;
+}
+.option7 #cart-block:hover .cart-block{
+    -webkit-transform: translate(0,0);
+    -moz-transform: translate(0,0);
+    -o-transform: translate(0,0);
+    -ms-transform: translate(0,0);
+    transform: translate(0,0);
+    opacity: 1;
+    visibility: visible;
 }
 .option7 .top-header{
 	background: #cd2600;

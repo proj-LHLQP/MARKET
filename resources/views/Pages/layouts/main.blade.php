@@ -55,6 +55,90 @@
                 <a href="#"><i class="fa fa-pinterest"></i></a>
                 <a href="#"><i class="fa fa-google-plus"></i></a>
             </div>
+            <div class="bolock-heart-topbar" id="cart-block">
+                <a href="{{asset('cart-detail')}}">Wishlist<span class="count">0</span></a>
+                <div class="cart-block">
+                    <div class="cart-block-content">
+                        <strong  class="cart-title text-center">2 Items in my Wishlist</strong>
+                        <div class="cart-block-list">
+                            <ul>
+                                <li class="product-info">
+                                    <div class="p-left">
+                                        <a href="#">
+                                            <img class="img-responsive" src="assets-home/data/product-100x122.jpg" alt="p10">
+                                        </a>
+                                    </div>
+                                    <div class="p-right">
+                                        <p class="p-name">Donec Ac Tempus</p>
+                                        <p class="p-rice">61,19 €</p>
+                                        <p>Qty: 1</p>
+                                    </div>
+                                </li>
+                                <li class="product-info">
+                                    <div class="p-left">
+                                        <a href="#">
+                                            <img class="img-responsive" src="assets-home/data/product-100x122.jpg" alt="p10">
+                                        </a>
+                                    </div>
+                                    <div class="p-right">
+                                        <p class="p-name">Donec Ac Tempus</p>
+                                        <p class="p-rice">61,19 €</p>
+                                        <p>Qty: 1</p>
+                                    </div>
+                                </li>
+                                <li class="product-info">
+                                    <div class="p-left">
+                                        <a href="#">
+                                            <img class="img-responsive" src="assets-home/data/product-100x122.jpg" alt="p10">
+                                        </a>
+                                    </div>
+                                    <div class="p-right">
+                                        <p class="p-name">Donec Ac Tempus</p>
+                                        <p class="p-rice">61,19 €</p>
+                                        <p>Qty: 1</p>
+                                    </div>
+                                </li>
+                                <li class="product-info">
+                                    <div class="p-left">
+                                        <a href="#">
+                                            <img class="img-responsive" src="assets-home/data/product-100x122.jpg" alt="p10">
+                                        </a>
+                                    </div>
+                                    <div class="p-right">
+                                        <p class="p-name">Donec Ac Tempus</p>
+                                        <p class="p-rice">61,19 €</p>
+                                        <p>Qty: 1</p>
+                                    </div>
+                                </li>
+                                <li class="product-info">
+                                    <div class="p-left">
+                                        <a href="#">
+                                            <img class="img-responsive" src="assets-home/data/product-100x122.jpg" alt="p10">
+                                        </a>
+                                    </div>
+                                    <div class="p-right">
+                                        <p class="p-name">Donec Ac Tempus</p>
+                                        <p class="p-rice">61,19 €</p>
+                                        <p>Qty: 1</p>
+                                    </div>
+                                </li>
+                                <li class="product-info">
+                                    <div class="p-left">
+                                        <a href="#">
+                                            <img class="img-responsive" src="assets-home/data/product-s5-100x122.jpg" alt="p10">
+                                        </a>
+                                    </div>
+                                    <div class="p-right">
+                                        <p class="p-name">Donec Ac Tempus</p>
+                                        <p class="p-rice">61,19 €</p>
+                                        <p>Qty: 1</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="bolock-cart-topbar" id="cart-block">
                 <a title="My cart" href="{{asset('cart-detail')}}">Cart<span class="count">2</span></a>
                 <div class="cart-block">
@@ -100,10 +184,9 @@
                     </div>
                 </div>
             </div>
-            <div class="support-link">
-                <a href="#">Services</a>
-                <a href="#">Support</a>
-            </div>
+{{--            <div class="support-link">--}}
+{{--                <a href="#">Support</a>--}}
+{{--            </div>--}}
             <div id="user-info-top" class="user-info pull-right">
                 @if(!Auth::guard('customer')->check())
                     <div class="dropdown">
@@ -120,8 +203,22 @@
                         <ul class="dropdown-menu mega_dropdown" role="menu">
                             <li><a href="{{ route(CLIENT_LOGOUT) }}">Logout</a></li>
                         </ul>
-                        <ul class="dropdown-menu mega_dropdown" role="menu">
-                            <li><a style="padding: 10px 0; margin: 5px  " href="posted-product?id={{Auth::guard('customer')->user()->id}}"><i style="font-size: 20px"class="fas fa-upload"></i>&nbsp;Sản phẩn đã đăng</a></li>
+                        <ul class="dropdown-menu mega_dropdown p-3" role="menu" style="min-width: 270px">
+                            <li>
+                                <a href="customer-info">
+                                    <div>
+                                        <img style="width: 35px; border: 1px solid #1269db" src="{{Auth::guard('customer')->user()->avatar}}">
+                                        {{Auth::guard('customer')->user()->name}}
+                                    </div>
+                                </a>
+                            </li>
+                            <hr>
+                            <li><a style="padding: 10px 0; margin: 5px  " href="posted-product?id={{Auth::guard('customer')->user()->id}}"><i style="font-size: 20px; color: #00b5e9"class="fas fa-upload"></i>&nbsp;Sản phẩn đã đăng</a></li>
+                            <li><a style="padding: 10px 0; margin: 5px  " href="posted-product?id={{Auth::guard('customer')->user()->id}}"><i style="font-size: 20px; color: red"class="fas fa-shopping-bag"></i>&nbsp;Sản phẩn đã giao dịch</a></li>
+                            <li><a style="padding: 10px 0; margin: 5px  " href=""><i style="font-size: 20px; color: #ba8b00"class="fas fa-wallet"></i>&nbsp;Ví Tiền</a></li>
+                            <li><a style="padding: 10px 0; margin: 5px  " href=""><i style="font-size: 20px; color: #9561e2"class="fas fa-file-invoice-dollar"></i>&nbsp;Ví đóng băng</a></li>
+                            <li><a style="padding: 10px 0; margin: 5px  " href=""><i style="font-size: 20px; color:#2fa360"class="fas fa-donate"></i>&nbsp;Điểm thưởng</a></li>
+                            <hr>
                             <li><a style="padding: 10px 0; margin: 5px  "href="{{ route(CLIENT_LOGOUT) }}"><i style="font-size: 20px" class="fas fa-sign-out-alt"></i>&nbsp;Đăng Xuất</a></li>
                         </ul>
                     </div>
@@ -223,7 +320,7 @@
         <div class="container main-header">
             <div class="row">
                 <div class="col-xs-12 col-sm-3 logo">
-                    <a href="{{asset('homepage')}}"><img alt="Kute Shop" src="assets-home/data/option7/logo.png" /></a>
+                    <a href="{{asset('homepage')}}"><img alt="Kute Shop" src="assets-home/data/option7/logo5.png" /></a>
                 </div>
                 <div id="main-menu" class="col-sm-12 col-md-9 main-menu">
                     <nav class="navbar navbar-default">
@@ -499,7 +596,7 @@
             <div class="row">
                 <div class="col-sm-3">
                     <div class="footer-logo">
-                        <a href="#"><img src="assets-home/data/option7/logo2.png" alt="Logo"></a>
+                        <a href="#"><img src="assets-home/data/option7/logo5.png" alt="Logo"></a>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-6">
@@ -659,6 +756,7 @@
     CKEDITOR.replace( 'article-ckeditor' );
 </script>
 @yield('script')
+@yield('script-1')
 <script>
 
 

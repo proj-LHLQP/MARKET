@@ -10,6 +10,7 @@ use App\Http\Requests\RegisterRequest;
 use App\Province;
 use App\Village;
 use App\Ward;
+use App\WishList;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -89,6 +90,20 @@ class MyController extends Controller
         return redirect()->route(HOME_PAGE);
     }
 
+    public function postWishList(Request $request){
+        if(Auth::guard('customer')->check()){
+            $customer = Auth::guard('customer')->user();
+            $wish = WishList::where([['customer_id',$customer->id],['product_id',$request->product_id]])->first();
+            if(!$wish){
+                $wish = new WishList();
+                $wish->customer_id = $customer->id;
+                $wish->product_id = $request->product_id;
+                $wish->save();
+            }
+            return $wish;
+        }
+        return -1;
+    }
 //    public function testMail(){
 //        $data =['name'=>'QUANG','messages'=>'Đăng kí tài khoản thành công'];
 //        Mail::send('Email.mail-content',$data,function ($message){
