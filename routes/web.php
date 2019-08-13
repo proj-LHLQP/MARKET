@@ -19,7 +19,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@getHomePage')->name('home');
 
-
 //demo
 Route::get('/getProvince','MyController@getProvince');
 Route::get('/getDistrict','MyController@getDistrict');
@@ -54,7 +53,6 @@ Route::post('register', 'MyController@postRegister')->name(CLIENT_REGISTER);
 Route::get('logout', 'MyController@getLogout')->name(CLIENT_LOGOUT);
 Route::post('login-page', 'MyController@postLoginPage')->name(CLIENT_LOGIN);
 
-
 //admin
 Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'],function (){
     Route::get('dashboard','AdminController@getDashboard');
@@ -77,7 +75,6 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'],function ()
     Route::post('store-user','UserController@store')->name('user.store');
 
     //category
-
     Route::resource('category','CategoryController');
 
     //Phong start role manager
