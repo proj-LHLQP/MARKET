@@ -56,84 +56,40 @@
                 <a href="#"><i class="fa fa-google-plus"></i></a>
             </div>
             <div class="bolock-heart-topbar" id="cart-block">
-                <a href="{{asset('cart-detail')}}">Wishlist<span class="count">0</span></a>
+                <a style="cursor: pointer">Wishlist<span class="count">{{count($wishlist_product)}}</span></a>
                 <div class="cart-block">
                     <div class="cart-block-content">
-                        <strong  class="cart-title text-center">2 Items in my Wishlist</strong>
+                        <strong  class="cart-title text-center">Danh sách yêu thích</strong>
+                        <hr>
                         <div class="cart-block-list">
                             <ul>
-                                <li class="product-info">
-                                    <div class="p-left">
-                                        <a href="#">
-                                            <img class="img-responsive" src="assets-home/data/product-100x122.jpg" alt="p10">
-                                        </a>
-                                    </div>
-                                    <div class="p-right">
-                                        <p class="p-name">Donec Ac Tempus</p>
-                                        <p class="p-rice">61,19 €</p>
-                                        <p>Qty: 1</p>
-                                    </div>
-                                </li>
-                                <li class="product-info">
-                                    <div class="p-left">
-                                        <a href="#">
-                                            <img class="img-responsive" src="assets-home/data/product-100x122.jpg" alt="p10">
-                                        </a>
-                                    </div>
-                                    <div class="p-right">
-                                        <p class="p-name">Donec Ac Tempus</p>
-                                        <p class="p-rice">61,19 €</p>
-                                        <p>Qty: 1</p>
-                                    </div>
-                                </li>
-                                <li class="product-info">
-                                    <div class="p-left">
-                                        <a href="#">
-                                            <img class="img-responsive" src="assets-home/data/product-100x122.jpg" alt="p10">
-                                        </a>
-                                    </div>
-                                    <div class="p-right">
-                                        <p class="p-name">Donec Ac Tempus</p>
-                                        <p class="p-rice">61,19 €</p>
-                                        <p>Qty: 1</p>
-                                    </div>
-                                </li>
-                                <li class="product-info">
-                                    <div class="p-left">
-                                        <a href="#">
-                                            <img class="img-responsive" src="assets-home/data/product-100x122.jpg" alt="p10">
-                                        </a>
-                                    </div>
-                                    <div class="p-right">
-                                        <p class="p-name">Donec Ac Tempus</p>
-                                        <p class="p-rice">61,19 €</p>
-                                        <p>Qty: 1</p>
-                                    </div>
-                                </li>
-                                <li class="product-info">
-                                    <div class="p-left">
-                                        <a href="#">
-                                            <img class="img-responsive" src="assets-home/data/product-100x122.jpg" alt="p10">
-                                        </a>
-                                    </div>
-                                    <div class="p-right">
-                                        <p class="p-name">Donec Ac Tempus</p>
-                                        <p class="p-rice">61,19 €</p>
-                                        <p>Qty: 1</p>
-                                    </div>
-                                </li>
-                                <li class="product-info">
-                                    <div class="p-left">
-                                        <a href="#">
-                                            <img class="img-responsive" src="assets-home/data/product-s5-100x122.jpg" alt="p10">
-                                        </a>
-                                    </div>
-                                    <div class="p-right">
-                                        <p class="p-name">Donec Ac Tempus</p>
-                                        <p class="p-rice">61,19 €</p>
-                                        <p>Qty: 1</p>
-                                    </div>
-                                </li>
+                                @foreach($wishlist_product as $product)
+                                    <li class="product-info">
+                                        <div class="p-left">
+                                            <a href="product-detail/{{$product->id}}">
+                                                @if(count($product->images)>0)
+                                                    <img class="img-responsive" width="80%" src="{{$product->images[0]->image_path}}" alt="p10">
+                                                    @else
+                                                    <img id="product-zoom" height="85px" src='uploads/product_images/no-image.jpg' data-zoom-image="uploads/product_images/no-image.jpg"/>
+                                                @endif
+                                            </a>
+                                        </div>
+                                        <div class="p-right">
+                                            <strong class="p-name">{{$product->name}}</strong>
+                                            <div>
+                                                <span style="color: red">${{$product->price-($product->price*$product->sale/100)}}</span>
+                                            </div>
+                                            @if($product->status == 0)
+                                                <strong style="color: red">
+                                                    Cần bán
+                                                </strong>
+                                            @else
+                                                <strong style="color: #2fa360">Cần mua</strong>
+                                            @endif
+                                            <p>Nguời đăng: {{$product->customer->name}}</p>
+                                        </div>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -207,7 +163,11 @@
                             <li>
                                 <a href="customer-info">
                                     <div>
-                                        <img style="width: 35px; border: 1px solid #1269db" src="{{Auth::guard('customer')->user()->avatar}}">
+                                        @if(Auth::guard('customer')->user()->avatar)
+                                            <img style="width: 40px; border: 1px solid #1269db" src="{{Auth::guard('customer')->user()->avatar}}">
+                                        @else
+                                            <img style="width: 40px; border: 1px solid #1269db" src="uploads/product_images/no-image.jpg">
+                                        @endif
                                         {{Auth::guard('customer')->user()->name}}
                                     </div>
                                 </a>
@@ -758,6 +718,21 @@
 @yield('script')
 @yield('script-1')
 <script>
+
+    jQuery(document).ready(function () {
+        jQuery('.wishlist').click(function () {
+            let product_id = jQuery(this).attr('id-product');
+            alert(1111111)
+            jQuery.ajax({
+                url:'wishlist',
+                method:'post',
+                data:{'product_id':product_id, "_token": "{{ csrf_token() }}"}
+            }).done(function (result) {
+                console.log(result);
+            })
+        })
+    })
+</script>
 
 
 </script>

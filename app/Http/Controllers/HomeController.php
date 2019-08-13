@@ -39,34 +39,29 @@ class HomeController extends Controller
 
     public function getHomePage()
     {
-        $categories = Category::where('parent_id',0)->get();
         $productHotDeal = Product::where([['active',1],['sale','<>','null']])->orderBy('sale','DESC')->limit(10)->get();
 //        dd($productHotDeal);
         return view('Pages.homepage')->with([
-            'categories'=>$categories,
             'productHotDeal'=>$productHotDeal
         ]);
     }
     public function getBlogsPage(){
-        $categories = Category::where('parent_id',0)->get();
-        return view('Pages.blogs')->with('categories',$categories);
+
+        return view('Pages.blogs');
     }
     public function getBlogDetail(){
-        $categories = Category::where('parent_id',0)->get();
-        return view('Pages.blog-detail')->with('categories',$categories);
+
+        return view('Pages.blog-detail');
     }
     public function getAboutPage(){
-        $categories = Category::where('parent_id',0)->get();
-        return view('Pages.about')->with('categories',$categories);
+        return view('Pages.about');
     }
     public function getContact(){
-        $categories = Category::where('parent_id',0)->get();
-        return view('Pages.contact')->with('categories',$categories);
+        return view('Pages.contact');
     }
     public function getCategory(Request $request){
 
 
-        $categories = Category::where('parent_id',0)->get();
         $category = Category::find($request->id);
         $parentCategory='';
         if($category->parent_id != 0){
@@ -78,7 +73,6 @@ class HomeController extends Controller
 //        dd($products);
         //$products = $category->productActived();
         return view('Pages.category')->with([
-            'categories'=>$categories,
             'category'=>$category,
             'parentCategory'=>$parentCategory,
             'subCategories'=>$subCategories,
@@ -113,28 +107,26 @@ class HomeController extends Controller
             }
         }
         $product->address = substr($address,0,strlen($address)-2);
-        $categories = Category::where('parent_id',0)->get();
 
         $rates = CustomerRate::where([['customer_id',$product->customer->id],['active',1]])->get();
         $comments = CommentProduct::where('product_id',$id)->get();
         return view('Pages.product-detail')->with([
-            'categories'=>$categories,
             'product'=>$product,
             'rates'=>$rates,
             'comments'=>$comments
         ]);
     }
     public function getCheckOut(){
-        $categories = Category::where('parent_id',0)->get();
-        return view('Pages.checkout')->with('categories',$categories);
+
+        return view('Pages.checkout');
     }
     public  function getCartDetail(){
-        $categories = Category::where('parent_id',0)->get();
-        return view('Pages.cart-detail')->with('categories',$categories);
+
+        return view('Pages.cart-detail');
     }
     public function getPostProduct(){
-        $categories = Category::where('parent_id',0)->get();
-        return view('Pages.post-product')->with('categories',$categories);
+
+        return view('Pages.post-product');
     }
     public function getNotFound(){
         return view('404_notfound');
