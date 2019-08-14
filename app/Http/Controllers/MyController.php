@@ -7,6 +7,7 @@ use App\Customer;
 use App\District;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Product;
 use App\Province;
 use App\Village;
 use App\Ward;
@@ -79,10 +80,10 @@ class MyController extends Controller
         return response()->json(['status' => false, 'message' => __('message.login_failed')]);
     }
     public function postLoginPage(Request $request){
-        if (Auth::guard('customer')->attempt(['email' => $request->email, 'password' => $request->password])) {
-            return response()->json(['status' => true]);
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            return redirect('/admin/dashboard');
         }
-        return redirect('/login');
+        return redirect('/login')->with('thongbao','Sai tên đăng nhập hoặc mật khẩu');
     }
     public function getLogout()
     {
@@ -99,16 +100,26 @@ class MyController extends Controller
                 $wish->customer_id = $customer->id;
                 $wish->product_id = $request->product_id;
                 $wish->save();
+
+                $product =  Product::find($request->product_id);
+                $product->images;
+                $product->customer;
+                return $product;
             }
-            return $wish;
+            return -1;
         }
-        return -1;
+        return 0;
     }
-//    public function testMail(){
-//        $data =['name'=>'QUANG','messages'=>'Đăng kí tài khoản thành công'];
-//        Mail::send('Email.mail-content',$data,function ($message){
-//            $message->to('nmquang21@gmail.com')->subject('Market2nd Feedback!');
-//        });
-//        return 'OK';
-//    }
+    public function postDeleteWishList(Request $request){
+        $customer_id = Auth::guard('customer')->user()->id;
+        WishList::where([['customer_id',$customer_id],['product_id',$request->product_id]])->delete();
+        return 'ok';
+    }
+    public function testMail(){
+        $data =['name'=>'QUANG','messages'=>'Đăng kí tài khoản thành công'];
+        Mail::send('Email.mail-content',$data,function ($message){
+            $message->to('nmquang21@gmail.com')->subject('Market2nd Feedback!');
+        });
+        return 'OK';
+    }
 }

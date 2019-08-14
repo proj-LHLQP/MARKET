@@ -31,7 +31,7 @@
                                             <a href="product-detail/{{$product->id}}"><img style="height: 209px" src="uploads/product_images/no-image.jpg" alt="Product"></a>
                                         @endif
                                         <div class="group-tool-button">
-                                            <a class="wishlist" id-product = "{{$product->id}}" style="cursor: pointer">withlist</a>
+                                            <a class="wishlist withlist" id-product = "{{$product->id}}" style="cursor: pointer">withlist</a>
                                             <a class="cart" href="#">cart</a>
                                         </div>
                                     </div>

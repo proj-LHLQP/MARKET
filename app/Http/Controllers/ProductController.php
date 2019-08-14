@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Mail;
 
 class ProductController extends Controller
 {
@@ -66,6 +67,13 @@ class ProductController extends Controller
             foreach ($product_images as $product_image){
                 $product_image->update(['product_id'=>$product->id]);
             }
+            //send mail
+
+            $data =['name'=>'MARKER2ND','messages'=>'Đăng kí tài khoản thành công'];
+            Mail::send('Email.mail-content',$data,function ($message){
+                $message->to($data->customer->email)->subject('Đăng sản phẩm thành công');
+            });
+
             DB::commit();
             return redirect()->route(HOME_PAGE);
 //        } catch (Exception $e) {
