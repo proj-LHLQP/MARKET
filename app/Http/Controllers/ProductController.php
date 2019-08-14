@@ -69,10 +69,7 @@ class ProductController extends Controller
             }
             //send mail
 
-            $data =['name'=>'MARKER2ND','messages'=>'Đăng kí tài khoản thành công'];
-            Mail::send('Email.mail-content',$data,function ($message){
-                $message->to($data->customer->email)->subject('Đăng sản phẩm thành công');
-            });
+
 
             DB::commit();
             return redirect()->route(HOME_PAGE);
