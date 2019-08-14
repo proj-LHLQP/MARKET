@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Mail;
 
 class MyController extends Controller
 {
+    var $email;
     public function getProvince(){
         $provinces = Province::OrderBy('name')->get();
         return $provinces;
@@ -116,9 +117,11 @@ class MyController extends Controller
         return 'ok';
     }
     public function testMail(){
+        $this->email = 'nmquang21@gmail.com';
+        $EMAIL = 'nmquang21@gmail.com';
         $data =['name'=>'QUANG','messages'=>'Đăng kí tài khoản thành công'];
         Mail::send('Email.mail-content',$data,function ($message){
-            $message->to('nmquang21@gmail.com')->subject('Market2nd Feedback!');
+            $message->to($this->email)->subject('Market2nd Feedback!');
         });
         return 'OK';
     }
