@@ -62,7 +62,6 @@ return array(
     'App\\Traits\\Attribute\\RoleAttribute' => $baseDir . '/app/Traits/Attribute/RoleAttribute.php',
     'App\\Traits\\Method\\RoleMethod' => $baseDir . '/app/Traits/Method/RoleMethod.php',
     'App\\User' => $baseDir . '/app/User.php',
-    'App\\UserRate' => $baseDir . '/app/UserRate.php',
     'App\\View' => $baseDir . '/app/View.php',
     'App\\Village' => $baseDir . '/app/Village.php',
     'App\\Ward' => $baseDir . '/app/Ward.php',

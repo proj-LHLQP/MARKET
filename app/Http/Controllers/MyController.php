@@ -79,10 +79,10 @@ class MyController extends Controller
         return response()->json(['status' => false, 'message' => __('message.login_failed')]);
     }
     public function postLoginPage(Request $request){
-        if (Auth::guard('customer')->attempt(['email' => $request->email, 'password' => $request->password])) {
-            return response()->json(['status' => true]);
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            return redirect('/admin/dashboard');
         }
-        return redirect('/login');
+        return redirect('/login')->with('thongbao','Sai tên đăng nhập hoặc mật khẩu');
     }
     public function getLogout()
     {
