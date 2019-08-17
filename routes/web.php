@@ -19,6 +19,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@getHomePage')->name('home');
 
+Route::get('topup','MyController@topup')->name('topup');
+Route::post('charge','MyController@charge')->name('charge');
+
+Route::get('confirm-buy','BuyProductController@getDetail')->name('confirm.buy');
+
 //demo
 Route::get('/getProvince','MyController@getProvince');
 Route::get('/getDistrict','MyController@getDistrict');
@@ -108,3 +113,7 @@ Route::get('auth/google', 'GoogleAuthController@redirectToProvider')->name('goog
 Route::get('auth/google/callback', 'GoogleAuthController@handleProviderCallback');
 
 Route::get('test-mail', 'MyController@testMail');
+
+//Chart
+Route::get('charts/{id}', 'ProductController@showChart');
+

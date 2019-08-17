@@ -9,6 +9,7 @@ use App\Product;
 use App\ProductCategory;
 use App\ProductImage;
 use App\View;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -133,6 +134,7 @@ class ProductController extends Controller
         $customer = $comment->customer;
         return $comment;
     }
+
     public function deleteProduct(Request $request){
         $id = $request->id;
         $product = Product::find($id);
@@ -155,6 +157,33 @@ class ProductController extends Controller
            $product->images;
        }
         return $products;
+    }
+
+
+
+    public function showChart(Request $request)
+    {
+        $revenue = [];
+        $orders = [];
+        for ($i=1; $i<=12 ; $i++) {
+            $stats = DB::table('products')
+                ->where('user_id', $request->id)
+                ->whereMonth('buy_date', '=', $i)
+                ->where('status', 0)
+                ->where('buyer_id', '<>', null)
+                ->sum('price');
+            array_push($revenue, $stats);
+
+            $orderCount = DB::table('products')
+                ->where('user_id', $request->id)
+                ->whereMonth('buy_date', '=', $i)
+                ->where('status', 0)
+                ->where('buyer_id', '<>', null)
+                ->count('id');
+            array_push($orders, $orderCount);
+        }
+
+        return view('Pages.product.index', compact('revenue', 'orders'));
     }
 
 }
