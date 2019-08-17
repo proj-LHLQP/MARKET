@@ -10,6 +10,7 @@ use App\View;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -125,8 +126,12 @@ class HomeController extends Controller
         return view('Pages.cart-detail');
     }
     public function getPostProduct(){
+        if(Auth::guard('customer')->id()){
+            return view('Pages.post-product');
+        } else {
+            return redirect()->route('home');
+        }
 
-        return view('Pages.post-product');
     }
     public function getNotFound(){
         return view('404_notfound');

@@ -111,4 +111,26 @@ class MyController extends Controller
 //        });
 //        return 'OK';
 //    }
+
+    public function topup(){
+        if(Auth::guard('customer')->id()){
+            return view('Pages.charge-money');
+        } else {
+            return redirect()->route('home');
+        }
+    }
+
+    public function charge(Request $request){
+        $amout = $request->amout;
+        if(Auth::guard('customer')->id()){
+            $idCustomer = Auth::guard('customer')->id();
+            $customer = Customer::find($idCustomer);
+            $customer->wallet += $amout;
+            $customer->save();
+            return redirect()->back()->with('message-success', 'Topup money success!');
+        } else {
+            return redirect()->route('home');
+        }
+    }
+
 }

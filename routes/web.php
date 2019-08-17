@@ -19,6 +19,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@getHomePage')->name('home');
 
+Route::get('topup','MyController@topup')->name('topup');
+Route::post('charge','MyController@charge')->name('charge');
+
+Route::get('confirm-buy','BuyProductController@getDetail')->name('confirm.buy');
+
 //demo
 Route::get('/getProvince','MyController@getProvince');
 Route::get('/getDistrict','MyController@getDistrict');
