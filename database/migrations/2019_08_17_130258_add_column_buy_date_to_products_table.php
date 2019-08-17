@@ -14,7 +14,9 @@ class AddColumnBuyDateToProductsTable extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->timestamp('buy_date')->after('active')->nullable();
+            Schema::table('products', function (Blueprint $table) {
+                $table->timestamp('buy_date')->after('active')->nullable();
+            });
         });
     }
 
@@ -26,7 +28,9 @@ class AddColumnBuyDateToProductsTable extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('buy_date');
+            Schema::table('products', function (Blueprint $table) {
+                $table->dropColumn('buy_date');
+            });
         });
     }
 }
