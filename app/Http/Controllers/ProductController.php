@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Address;
+use App\Category;
 use App\CommentProduct;
 use App\Product;
 use App\ProductCategory;
@@ -132,4 +133,28 @@ class ProductController extends Controller
         $customer = $comment->customer;
         return $comment;
     }
+    public function deleteProduct(Request $request){
+        $id = $request->id;
+        $product = Product::find($id);
+        $product->delete();
+
+        return redirect('posted-product/'.$product->customer->id);
+    }
+    public function getProductLatest(Request $request){
+        $category_id = $request->category_id;
+        $products =  Product::
+        join('product_categories', 'products.id', '=', 'product_categories.product_id')
+            ->join('categories', 'categories.id', '=', 'product_categories.category_id')
+            ->where([['categories.id',$category_id],['products.active',1],['seller_id',null]])
+            ->orWhere([['categories.id',$category_id],['products.active',1],['buyer_id',null]])
+            ->select('products.*')
+            ->orderBy('created_at')
+            ->limit(6)
+            ->get();
+       foreach ($products as $product){
+           $product->images;
+       }
+        return $products;
+    }
+
 }

@@ -36,6 +36,9 @@ class Customer extends Authenticatable
             return number_format($star, 1);
         return 0;
     }
+    public function watchedProduct(){
+        return $this->belongsToMany('App\Product','App\WatchedProduct','customer_id','product_id','id');
+    }
     public function starDetail(){
         $starDetail = CustomerRate::where([['customer_id',$this->id],['active',1]])->get();
         $starDetail->total = count($starDetail);

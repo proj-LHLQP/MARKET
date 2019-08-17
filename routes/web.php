@@ -27,11 +27,13 @@ Route::get('/getVillage','MyController@getVillage');
 Route::get('/list-cate','MyController@getCate');
 Route::get('/category-child','MyController@getCateChild');
 
-//post-products
+Route::post('report-customer','CustomerController@reportCustomer');
+Route::post('comment-product','ProductController@postCommentProduct');
+Route::get('delete-product/{id}','ProductController@deleteProduct')->middleware('deleteProduct');
 Route::post('post-product','ProductController@saveProducts');
 Route::post('uploadImg', 'ProductController@postImages');
 Route::post('deleteImg', 'ProductController@deleteImages');
-
+Route::post('porduct-latest','ProductController@getProductLatest');
 //listCategory
 Route::get('list-category','CategoryController@getAllCategory');
 //DEMO
@@ -45,7 +47,7 @@ Route::get('/product-detail/{id}','HomeController@getProductDetail')->middleware
 Route::get('/checkout','HomeController@getCheckOut');
 Route::get('/cart-detail','HomeController@getCartDetail');
 Route::get('/post-product',"HomeController@getPostProduct");
-Route::get('/posted-product',"HomeController@getPostedProduct")->middleware('view_posted');
+Route::get('/posted-product/{id}',"HomeController@getPostedProduct")->middleware('view_posted');
 Route::get('/not-found',"HomeController@getNotFound");
 //homepage
 Route::post('login', 'MyController@postLogin')->name(CLIENT_LOGIN);
@@ -59,8 +61,7 @@ Route::post('delete-wishlist','MyController@postDeleteWishList');
 
 //post-rate
 Route::post('rate-user','RateController@postRateUser');
-//comment product
-Route::post('comment-product','ProductController@postCommentProduct');
+
 //seach
 Route::get('/search/name', 'SearchController@searchByName');
 Route::get('/search/category', 'SearchController@searchByCategory');
