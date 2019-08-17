@@ -907,7 +907,7 @@ img.alignright{
 }
 .cart-block .cart-block-content  .product-info .p-left .remove_link{
     position: absolute;
-    left: 0;
+    left: -8px;
     top: 0;
 }
 .cart-block .cart-block-content  .product-info .p-left .remove_link:after{

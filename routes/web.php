@@ -60,6 +60,7 @@ Route::post('login-page', 'MyController@postLoginPage');
 
 //WishList
 Route::post('wishlist','MyController@postWishList');
+Route::post('delete-wishlist','MyController@postDeleteWishList');
 
 //post-rate
 Route::post('rate-user','RateController@postRateUser');

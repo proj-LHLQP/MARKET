@@ -12,13 +12,16 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Mail;
 
 class ProductController extends Controller
 {
 
+    var $product;
     public function saveProducts(Request $request){
 //        DB::beginTransaction();
 //        try {
+
             if($request->status ==0){
                 $product = Product::create([
                     'name' => $request->name,
@@ -43,6 +46,7 @@ class ProductController extends Controller
                     'status'=>$request->status,
                 ]);
             }
+            $this->product = $product;
             $address = Address::create([
                 'product_id' => $product->id,
                 'province_id' => $request->province,
@@ -66,6 +70,15 @@ class ProductController extends Controller
             foreach ($product_images as $product_image){
                 $product_image->update(['product_id'=>$product->id]);
             }
+            //send mail
+            //dd($this->product->customer->email);
+//            $product->customer;
+//            $data =(array)  $this->product;
+            $data =['customer_name'=>$product->customer->name,'product_name'=>$product->name];
+            Mail::send('Email.mail-content',$data,function ($message){
+                $message->to($this->product->customer->email)->subject('Đăng sản phẩm thành công');
+            });
+
             DB::commit();
             return redirect()->route(HOME_PAGE);
 //        } catch (Exception $e) {

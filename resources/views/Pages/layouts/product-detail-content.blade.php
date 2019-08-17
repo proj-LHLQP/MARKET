@@ -407,6 +407,7 @@
                                     <div style="width: 100%; margin-top: 120px">
                                         <hr>
                                         @if(Auth::guard('customer')->check())
+                                            <input id="customer-comment" value="{{Auth::guard('customer')->user()->id}}" type="hidden">
                                             <div class="form-group">
                                                 <label for="comment">Đánh giá: </label>
                                                 <textarea class="form-control" style="width: 100%;height: 140px" name="comment" id="comment-product"></textarea>
@@ -908,7 +909,7 @@
                 }
             });
             jQuery('#send-comment').click(function () {
-                let customer_id = jQuery("#user_rate_id").val();
+                let customer_id = jQuery("#customer-comment").val();
                 let product_id = data.id;
                 let comment = jQuery('#comment-product').val();
                 let _token = jQuery("input[name=_token]").val();
