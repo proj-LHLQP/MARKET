@@ -2,22 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56423ba0-5b85-41b3-a735-4f008f37bfc0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/public/assets-home/images/heart-png-white-8-transparent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/photography.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/product-homepage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/market2nd.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/market2nd.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Address.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Address.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Customer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Customer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_07_29_172648_create_addresses_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_07_29_172648_create_addresses_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2019_07_29_172810_create_products_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_07_29_172810_create_products_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/wishlist.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/wishlist.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/Pages/layouts/main.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Pages/layouts/main.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/Pages/layouts/post-product-content.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Pages/layouts/post-product-content.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Pages/layouts/posted-product-content.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Pages/layouts/posted-product-content.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Pages/layouts/product-detail-content.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Pages/layouts/product-detail-content.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/Pages/layouts/product-homepage.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Pages/layouts/product-homepage.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Pages/layouts/top-menu-homepage.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Pages/layouts/top-menu-homepage.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_files.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_files.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,8 +37,21 @@
       <executable />
     </execution>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -120,13 +138,22 @@
       <path value="$PROJECT_DIR$/vendor/sebastian/exporter" />
       <path value="$PROJECT_DIR$/vendor/spatie/laravel-permission" />
       <path value="$PROJECT_DIR$/vendor/unisharp/laravel-ckeditor" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/vendor/laravel/socialite" />
+      <path value="$PROJECT_DIR$/vendor/league/oauth1-client" />
+      <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/vendor/jenssegers/model" />
+      <path value="$PROJECT_DIR$/vendor/genealabs/laravel-caffeine" />
     </include_path>
   </component>
   <component name="ProjectId" id="1OiSug2TeMxfdGioLuMGjC2XMy1" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/images" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -134,7 +161,13 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\market2nd\public\images" />
+      <recent name="C:\xampp\htdocs\market2nd\public\assets-home\images" />
+      <recent name="C:\xampp\htdocs\market2nd\public\js" />
       <recent name="C:\xampp\htdocs\market2nd\public\dropzone" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\market2nd\app\Http\ViewCompoers" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -173,6 +206,26 @@
       <workItem from="1565115962062" duration="18000" />
       <workItem from="1565141982510" duration="2399000" />
       <workItem from="1565146620229" duration="3489000" />
+      <workItem from="1565161482723" duration="169000" />
+      <workItem from="1565166711882" duration="19562000" />
+      <workItem from="1565232090202" duration="17265000" />
+      <workItem from="1565251697192" duration="18367000" />
+      <workItem from="1565339734246" duration="20986000" />
+      <workItem from="1565404204580" duration="15255000" />
+      <workItem from="1565457841452" duration="1489000" />
+      <workItem from="1565459391637" duration="120000" />
+      <workItem from="1565487956588" duration="34472000" />
+      <workItem from="1565575880778" duration="14852000" />
+      <workItem from="1565608430926" duration="681000" />
+      <workItem from="1565620310804" duration="16089000" />
+      <workItem from="1565668307462" duration="36204000" />
+      <workItem from="1565767381866" duration="6728000" />
+      <workItem from="1565795306372" duration="6303000" />
+      <workItem from="1565833702309" duration="7272000" />
+      <workItem from="1565857873984" duration="8908000" />
+      <workItem from="1565920690841" duration="4979000" />
+      <workItem from="1565944638204" duration="3012000" />
+      <workItem from="1566006945890" duration="8102000" />
     </task>
     <servers />
   </component>
@@ -196,14 +249,24 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/resources/views/Pages/layouts/product-homepage.blade.php</url>
-          <line>538</line>
-          <option name="timeStamp" value="1" />
+          <url>file://$PROJECT_DIR$/resources/views/Pages/layouts/post-product-content.blade.php</url>
+          <line>86</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/Pages/layouts/product-homepage.blade.php</url>
-          <line>270</line>
-          <option name="timeStamp" value="2" />
+          <line>332</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/Pages/layouts/posted-product-content.blade.php</url>
+          <line>12</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/Pages/layouts/product-homepage.blade.php</url>
+          <line>334</line>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
