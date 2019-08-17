@@ -259,7 +259,7 @@
             background: white;
         }
     </style>
-    @endsection
+@endsection
 @section('css')
     <style>
         label{
@@ -270,5 +270,5 @@
             font-size: 15px;
         }
     </style>
-    @endsection
+@endsection
 <!-- ./page wapper-->

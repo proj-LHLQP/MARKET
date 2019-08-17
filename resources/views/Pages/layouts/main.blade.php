@@ -204,13 +204,6 @@
                                 </a>
                             </li>
                             <hr>
-
-                            <li><a style="padding: 10px 0; margin: 5px  " href="posted-product/{{Auth::guard('customer')->user()->id}}"><i style="font-size: 20px; color: #00b5e9"class="fas fa-upload"></i>&nbsp;Sản phẩn đã đăng</a></li>
-                            <li><a style="padding: 10px 0; margin: 5px  " href="posted-product?id={{Auth::guard('customer')->user()->id}}"><i style="font-size: 20px; color: red"class="fas fa-shopping-bag"></i>&nbsp;Sản phẩn đã giao dịch</a></li>
-                            <li><a style="padding: 10px 0; margin: 5px  " href=""><i style="font-size: 20px; color: #ba8b00"class="fas fa-wallet"></i>&nbsp;Ví Tiền</a></li>
-                            <li><a style="padding: 10px 0; margin: 5px  " href=""><i style="font-size: 20px; color: #9561e2"class="fas fa-file-invoice-dollar"></i>&nbsp;Ví đóng băng</a></li>
-                            <li><a style="padding: 10px 0; margin: 5px  " href=""><i style="font-size: 20px; color:#2fa360"class="fas fa-donate"></i>&nbsp;Điểm thưởng</a></li>
-
                             <li><a style="padding: 10px 0; margin: 5px  " href="posted-product?id={{Auth::guard('customer')->user()->id}}"><i style="font-size: 20px; color: #00b5e9" class="fas fa-upload"></i>&nbsp;Sản phẩn đã đăng</a></li>
                             <li><a style="padding: 10px 0; margin: 5px  " href="posted-product?id={{Auth::guard('customer')->user()->id}}"><i style="font-size: 20px; color: red" class="fas fa-shopping-bag"></i>&nbsp;Sản phẩn đã giao dịch</a></li>
                             <li><a style="padding: 10px 0; margin: 5px  " href=""><i style="font-size: 20px; color: #ba8b00" class="fas fa-wallet"></i>&nbsp;Ví Tiền</a></li>
@@ -565,14 +558,16 @@
 <script>
     CKEDITOR.replace( 'article-ckeditor' );
 </script>
+
+@yield('script')
+@yield('script-1')
+
 {{--Chart JS--}}
 <script type="text/javascript" src="{{asset('Highcharts/code/highcharts.js')}}"></script>
 <script type="text/javascript" src="{{asset('Highcharts/code/modules/series-label.js')}}"></script>
 <script type="text/javascript" src="{{asset('Highcharts/code/modules/exporting.js')}}"></script>
 <script type="text/javascript" src="{{asset('Highcharts/code/modules/export-data.js')}}"></script>
 <script type="text/javascript" src="{{ asset('js/charts.js') }}"></script>
-@yield('script')
-@yield('script-1')
 
 
 </body>
