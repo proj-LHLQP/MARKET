@@ -106,3 +106,7 @@ Route::get('auth/google', 'GoogleAuthController@redirectToProvider')->name('goog
 Route::get('auth/google/callback', 'GoogleAuthController@handleProviderCallback');
 
 Route::get('test-mail', 'MyController@testMail');
+
+//Chart
+Route::get('charts/{id}', 'ProductController@showChart');
+
