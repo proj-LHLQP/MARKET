@@ -54,67 +54,65 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul class="list-unstyled">
+                                    @foreach ($errors->all() as $error)
+                                        <div class="error-msg">
+                                            <i class="fa fa-times-circle"></i>
+                                            {{$error}}
+                                        </div>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <form action="{{route('admin.user.update',$user->id)}}" enctype="multipart/form-data" method="POST">
                             <div class="card">
                                 <div class="card-header">
                                     <div class="card-title">Edit User</div>
                                 </div>
-                                @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    <ul class="list-unstyled">
-                                        @foreach ($errors->all() as $error)
-                                        <div class="error-msg">
-                                            <i class="fa fa-times-circle"></i>
-                                            {{$error}}
-                                        </div>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                                @endif
                                 <div class="card-body">
+                                    @csrf
+                                    <input name="id" value="{{$user->id}}" hidden>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="name">FullName</label>
+                                            <input class="form-control" name="name" value="{{$user->name}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <input class="form-control " name="email" value="{{$user->email}}" >
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group form-floating-label">
+                                            <input name="password" id="inputFloatingLabel" type="password" class="form-control input-border-bottom" >
+                                            <label for="inputFloatingLabel" class="placeholder">Password</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group form-floating-label">
+                                            <input name="password_confirmation" id="inputFloatingLabel" type="password" class="form-control input-border-bottom" >
+                                            <label for="inputFloatingLabel" class="placeholder">Confirm Password</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label class="form-label">Role</label>
+                                            <div class="selectgroup selectgroup-pills">
+                                                @foreach($roles as $r)
+                                                <label class="selectgroup-item">
 
-                                        @csrf
-                                        <input name="id" value="{{$user->id}}" hidden>
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <label for="name">FullName</label>
-                                                <input class="form-control" name="name" value="{{$user->name}}">
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <label for="email">Email</label>
-                                                <input class="form-control " name="email" value="{{$user->email}}" >
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <div class="form-group form-floating-label">
-                                                <input name="password" id="inputFloatingLabel" type="password" class="form-control input-border-bottom" >
-                                                <label for="inputFloatingLabel" class="placeholder">Password</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <div class="form-group form-floating-label">
-                                                <input name="password_confirmation" id="inputFloatingLabel" type="password" class="form-control input-border-bottom" >
-                                                <label for="inputFloatingLabel" class="placeholder">Confirm Password</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <label class="form-label">Role</label>
-                                                <div class="selectgroup selectgroup-pills">
-                                                    @foreach($roles as $r)
-                                                    <label class="selectgroup-item">
+                                                    <input id="role-{{$r->id}}" {{in_array($r->id,$idRoleSelected)?'checked="checked"':''}} type="checkbox" name="roles[]" value="{{$r->id}}" class="selectgroup-input" >
+                                                    <span class="selectgroup-button">{{$r->name}}</span>
+                                                </label>
+                                                @endforeach
 
-                                                        <input id="role-{{$r->id}}" {{in_array($r->id,$idRoleSelected)?'checked="checked"':''}} type="checkbox" name="roles[]" value="{{$r->id}}" class="selectgroup-input" >
-                                                        <span class="selectgroup-button">{{$r->name}}</span>
-                                                    </label>
-                                                    @endforeach
-
-                                                </div>
                                             </div>
                                         </div>
-
+                                    </div>
                                 </div>
                                 <div class="card-action">
                                     <a href="{{route('admin.user.index')}}"><button type="button" class="btn btn-danger">Cancel</button></a>
