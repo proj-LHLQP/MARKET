@@ -31,7 +31,7 @@
                                             <a href="product-detail/{{$product->id}}"><img style="height: 209px" src="uploads/product_images/no-image.jpg" alt="Product"></a>
                                         @endif
                                         <div class="group-tool-button">
-                                            <a class="withlist" id-product = "{{$product->id}}" style="cursor: pointer">withlist</a>
+                                            <a class="wishlist withlist" id-product = "{{$product->id}}" style="cursor: pointer">withlist</a>
                                             <a class="cart" href="#">cart</a>
                                         </div>
                                     </div>
@@ -3390,20 +3390,4 @@
     </div>
 </div>
 
-@section('script-1')
-    <script>
-        jQuery(document).ready(function () {
-            jQuery('.withlist').click(function () {
-                let product_id = jQuery(this).attr('id-product');
-                jQuery.ajax({
-                    url:'wishlist',
-                    method:'post',
-                    data:{'product_id':product_id, "_token": "{{ csrf_token() }}"}
-                }).done(function (result) {
-                    console.log(result);
-                })
-            })
-        })
-    </script>
 
-    @endsection

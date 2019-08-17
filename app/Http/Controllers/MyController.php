@@ -7,6 +7,7 @@ use App\Customer;
 use App\District;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Product;
 use App\Province;
 use App\Village;
 use App\Ward;
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Mail;
 
 class MyController extends Controller
 {
+    var $email;
     public function getProvince(){
         $provinces = Province::OrderBy('name')->get();
         return $provinces;
@@ -79,10 +81,10 @@ class MyController extends Controller
         return response()->json(['status' => false, 'message' => __('message.login_failed')]);
     }
     public function postLoginPage(Request $request){
-        if (Auth::guard('customer')->attempt(['email' => $request->email, 'password' => $request->password])) {
-            return response()->json(['status' => true]);
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            return redirect('/admin/dashboard');
         }
-        return redirect('/login');
+        return redirect('/login')->with('thongbao','Sai tên đăng nhập hoặc mật khẩu');
     }
     public function getLogout()
     {
@@ -99,10 +101,29 @@ class MyController extends Controller
                 $wish->customer_id = $customer->id;
                 $wish->product_id = $request->product_id;
                 $wish->save();
+
+                $product =  Product::find($request->product_id);
+                $product->images;
+                $product->customer;
+                return $product;
             }
-            return $wish;
+            return -1;
         }
-        return -1;
+        return 0;
+    }
+    public function postDeleteWishList(Request $request){
+        $customer_id = Auth::guard('customer')->user()->id;
+        WishList::where([['customer_id',$customer_id],['product_id',$request->product_id]])->delete();
+        return 'ok';
+    }
+    public function testMail(){
+        $this->email = 'nmquang21@gmail.com';
+        $EMAIL = 'nmquang21@gmail.com';
+        $data =['name'=>'QUANG','messages'=>'Đăng kí tài khoản thành công'];
+        Mail::send('Email.mail-content',$data,function ($message){
+            $message->to($this->email)->subject('Market2nd Feedback!');
+        });
+        return 'OK';
     }
 //    public function testMail(){
 //        $data =['name'=>'QUANG','messages'=>'Đăng kí tài khoản thành công'];
@@ -111,4 +132,26 @@ class MyController extends Controller
 //        });
 //        return 'OK';
 //    }
+
+    public function topup(){
+        if(Auth::guard('customer')->id()){
+            return view('Pages.charge-money');
+        } else {
+            return redirect()->route('home');
+        }
+    }
+
+    public function charge(Request $request){
+        $amout = $request->amout;
+        if(Auth::guard('customer')->id()){
+            $idCustomer = Auth::guard('customer')->id();
+            $customer = Customer::find($idCustomer);
+            $customer->wallet += $amout;
+            $customer->save();
+            return redirect()->back()->with('message-success', 'Topup money success!');
+        } else {
+            return redirect()->route('home');
+        }
+    }
+
 }

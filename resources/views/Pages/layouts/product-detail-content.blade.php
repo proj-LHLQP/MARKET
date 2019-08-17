@@ -361,8 +361,10 @@
                                     <a class="btn-add-cart" href="#">Add to cart</a>
                                 </div>
                                 <div class="button-group">
-                                    <a class="wishlist" href="#"><i class="fa fa-heart-o"></i>
-                                        <br>Wishlist</a>
+                                    <a class="wishlist" id-product ="{{$product->id}}"style="cursor: pointer">
+                                        <i class="fa fa-heart-o"></i>
+                                        <br>Wishlist
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -405,6 +407,7 @@
                                     <div style="width: 100%; margin-top: 120px">
                                         <hr>
                                         @if(Auth::guard('customer')->check())
+                                            <input id="customer-comment" value="{{Auth::guard('customer')->user()->id}}" type="hidden">
                                             <div class="form-group">
                                                 <label for="comment">Đánh giá: </label>
                                                 <textarea class="form-control" style="width: 100%;height: 140px" name="comment" id="comment-product"></textarea>
@@ -534,7 +537,7 @@
 {{--                                        <a class="btn-comment" href="#">Write your review !</a>--}}
 {{--                                    </p>--}}
                                     <div style="width: 100%; margin-top: 120px">
-                                        @if(Auth::guard('customer')->check())
+                                        @if(Auth::guard('customer')->check() && Auth::guard('customer')->user()->id != $product->customer->id)
                                             <div class="card">
                                                 <div class="card-header">
                                                     Gửi đánh giá của bạn
@@ -559,7 +562,7 @@
 
                                                 </div>
                                             </div>
-                                        @else
+                                        @elseif(!Auth::guard('customer')->check())
                                             <a data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">
                                                 <button class="btn btn-info">Đăng nhập để đánh giá</button>
                                             </a>
@@ -583,8 +586,7 @@
                                         </a>
                                         <div class="quick-view">
                                             <a title="Add to my wishlist" class="heart" href="#"></a>
-                                            <a title="Add to compare" class="compare" href="#"></a>
-                                            <a title="Quick view" class="search" href="#"></a>
+                                            <a title="Quick view" class="search" href="product-detail/{{$product->id}}"></a>
                                         </div>
                                         <div class="add-to-cart">
                                             <a title="Add to Cart" href="#add">Add to Cart</a>
@@ -907,7 +909,7 @@
                 }
             });
             jQuery('#send-comment').click(function () {
-                let customer_id = jQuery("#user_rate_id").val();
+                let customer_id = jQuery("#customer-comment").val();
                 let product_id = data.id;
                 let comment = jQuery('#comment-product').val();
                 let _token = jQuery("input[name=_token]").val();

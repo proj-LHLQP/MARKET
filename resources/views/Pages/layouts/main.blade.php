@@ -42,6 +42,7 @@
 </head>
 <body class="home option7">
 <!-- HEADER -->
+@csrf
 <div id="header" class="header">
     <div class="top-header">
         <div class="container">
@@ -55,90 +56,76 @@
                 <a href="#"><i class="fa fa-pinterest"></i></a>
                 <a href="#"><i class="fa fa-google-plus"></i></a>
             </div>
-            <div class="bolock-heart-topbar" id="cart-block">
-                <a href="{{asset('cart-detail')}}">Wishlist<span class="count">0</span></a>
-                <div class="cart-block">
-                    <div class="cart-block-content">
-                        <strong  class="cart-title text-center">2 Items in my Wishlist</strong>
-                        <div class="cart-block-list">
-                            <ul>
-                                <li class="product-info">
-                                    <div class="p-left">
-                                        <a href="#">
-                                            <img class="img-responsive" src="assets-home/data/product-100x122.jpg" alt="p10">
-                                        </a>
-                                    </div>
-                                    <div class="p-right">
-                                        <p class="p-name">Donec Ac Tempus</p>
-                                        <p class="p-rice">61,19 €</p>
-                                        <p>Qty: 1</p>
-                                    </div>
-                                </li>
-                                <li class="product-info">
-                                    <div class="p-left">
-                                        <a href="#">
-                                            <img class="img-responsive" src="assets-home/data/product-100x122.jpg" alt="p10">
-                                        </a>
-                                    </div>
-                                    <div class="p-right">
-                                        <p class="p-name">Donec Ac Tempus</p>
-                                        <p class="p-rice">61,19 €</p>
-                                        <p>Qty: 1</p>
-                                    </div>
-                                </li>
-                                <li class="product-info">
-                                    <div class="p-left">
-                                        <a href="#">
-                                            <img class="img-responsive" src="assets-home/data/product-100x122.jpg" alt="p10">
-                                        </a>
-                                    </div>
-                                    <div class="p-right">
-                                        <p class="p-name">Donec Ac Tempus</p>
-                                        <p class="p-rice">61,19 €</p>
-                                        <p>Qty: 1</p>
-                                    </div>
-                                </li>
-                                <li class="product-info">
-                                    <div class="p-left">
-                                        <a href="#">
-                                            <img class="img-responsive" src="assets-home/data/product-100x122.jpg" alt="p10">
-                                        </a>
-                                    </div>
-                                    <div class="p-right">
-                                        <p class="p-name">Donec Ac Tempus</p>
-                                        <p class="p-rice">61,19 €</p>
-                                        <p>Qty: 1</p>
-                                    </div>
-                                </li>
-                                <li class="product-info">
-                                    <div class="p-left">
-                                        <a href="#">
-                                            <img class="img-responsive" src="assets-home/data/product-100x122.jpg" alt="p10">
-                                        </a>
-                                    </div>
-                                    <div class="p-right">
-                                        <p class="p-name">Donec Ac Tempus</p>
-                                        <p class="p-rice">61,19 €</p>
-                                        <p>Qty: 1</p>
-                                    </div>
-                                </li>
-                                <li class="product-info">
-                                    <div class="p-left">
-                                        <a href="#">
-                                            <img class="img-responsive" src="assets-home/data/product-s5-100x122.jpg" alt="p10">
-                                        </a>
-                                    </div>
-                                    <div class="p-right">
-                                        <p class="p-name">Donec Ac Tempus</p>
-                                        <p class="p-rice">61,19 €</p>
-                                        <p>Qty: 1</p>
-                                    </div>
-                                </li>
-                            </ul>
+{{--            modal--}}
+            <div class="modal fade" id="modal_1" role="dialog">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h5 class="modal-title">Đã có trong danh sách yêu thích</h5>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal fade" id="modal_2" role="dialog">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h5 class="modal-title">Bạn cần đăng nhập để sử dụng chức năng này</h5>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="btn btn-success" data-dismiss="modal" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Login</a>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="bolock-heart-topbar" id="cart-block">
+                    <a style="cursor: pointer">Wishlist<span class="count" id="count-wishlist">{{count($wishlist_product)}}</span></a>
+                    <div class="cart-block">
+                        <div class="cart-block-content">
+                            <strong  class="cart-title text-center">Danh sách yêu thích</strong>
+                            <hr>
+                            <div class="cart-block-list" id="list-wishlist">
+                                <ul>
+                                    @foreach($wishlist_product as $product)
+                                        <li class="product-info" id="wishlist-{{$product->id}}">
+                                            <div class="p-left">
+                                                <a style="cursor: pointer" id-product="{{$product->id}}" class="remove_link remove-wishlist-online" ></a>
+                                                <a style="padding-left: 16px" href="product-detail/{{$product->id}}">
+                                                    @if(count($product->images)>0)
+                                                        <img class="img-responsive" width="80%" src="{{$product->images[0]->image_path}}" alt="p10">
+                                                        @else
+                                                        <img id="product-zoom" height="85px" src='uploads/product_images/no-image.jpg' data-zoom-image="uploads/product_images/no-image.jpg"/>
+                                                    @endif
+                                                </a>
+                                            </div>
+                                            <div class="p-right">
+                                                <strong class="p-name">{{$product->name}}</strong>
+                                                <div>
+                                                    <span style="color: red">${{$product->price-($product->price*$product->sale/100)}}</span>
+                                                </div>
+                                                @if($product->status == 0)
+                                                    <div><strong style="color: red">
+                                                        Cần bán
+                                                    </strong></div>
+                                                @else
+                                                    <div><strong style="color: #2fa360">Cần mua</strong></div>
+                                                @endif
+                                                <i>Nguời đăng: {{$product->customer->name}}</i>
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             <div class="bolock-cart-topbar" id="cart-block">
                 <a title="My cart" href="{{asset('cart-detail')}}">Cart<span class="count">2</span></a>
                 <div class="cart-block">
@@ -207,7 +194,11 @@
                             <li>
                                 <a href="customer-info">
                                     <div>
-                                        <img style="width: 35px; border: 1px solid #1269db" src="{{Auth::guard('customer')->user()->avatar}}">
+                                        @if(Auth::guard('customer')->user()->avatar)
+                                            <img style="width: 40px; border: 1px solid #1269db" src="{{Auth::guard('customer')->user()->avatar}}">
+                                        @else
+                                            <img style="width: 40px; border: 1px solid #1269db" src="uploads/product_images/no-image.jpg">
+                                        @endif
                                         {{Auth::guard('customer')->user()->name}}
                                     </div>
                                 </a>
@@ -752,6 +743,7 @@
 <script type="text/javascript" src="{{asset('js/search.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/rater.js')}}" charset="utf-8"></script>
 <script type="text/javascript" src="{{asset('js/notify.js')}}" charset="utf-8"></script>
+<script type="text/javascript" src="{{asset('js/wishlist.js')}}" charset="utf-8"></script>
 <!-- Main JS-->
 <script src="{{ asset('dist/js/main.min.js') }}"></script>
 <script src="{{ asset('dist/js/custom.min.js') }}"></script>
@@ -768,10 +760,7 @@
 <script type="text/javascript" src="{{ asset('js/charts.js') }}"></script>
 @yield('script')
 @yield('script-1')
-<script>
 
-
-</script>
 
 </body>
 

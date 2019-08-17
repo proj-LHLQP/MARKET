@@ -12,12 +12,17 @@
 */
 
 Route::get('/', function () {
-    return view('homepage');
+    return view('Pages.homepage');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@getHomePage')->name('home');
+
+Route::get('topup','MyController@topup')->name('topup');
+Route::post('charge','MyController@charge')->name('charge');
+
+Route::get('confirm-buy','BuyProductController@getDetail')->name('confirm.buy');
 
 //demo
 Route::get('/getProvince','MyController@getProvince');
@@ -51,10 +56,11 @@ Route::get('/not-found',"HomeController@getNotFound");
 Route::post('login', 'MyController@postLogin')->name(CLIENT_LOGIN);
 Route::post('register', 'MyController@postRegister')->name(CLIENT_REGISTER);
 Route::get('logout', 'MyController@getLogout')->name(CLIENT_LOGOUT);
-Route::post('login-page', 'MyController@postLoginPage')->name(CLIENT_LOGIN);
+Route::post('login-page', 'MyController@postLoginPage');
 
 //WishList
 Route::post('wishlist','MyController@postWishList');
+Route::post('delete-wishlist','MyController@postDeleteWishList');
 
 //post-rate
 Route::post('rate-user','RateController@postRateUser');
@@ -72,9 +78,9 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'],function ()
     })->name('not-permit');
 
     //Phong start user manager
-    Route::group(['middleware' => 'role:'.config('access.roles.admin')],function(){
+//    Route::group(['middleware' => 'role:'.config('access.roles.admin')],function(){
         Route::get('users','UserController@index')->name('user.index');
-    });
+//    });
 
     Route::get('create-user','UserController@create')->name('user.create');
     Route::get('profile','UserController@profile')->name('user.profile');

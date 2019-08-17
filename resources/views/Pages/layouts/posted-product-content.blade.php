@@ -55,7 +55,7 @@
                                                                    @else
                                                                        <a class="thumbnail pull-left mr-3" href="#"> <img class="media-object" src="uploads/product_images/no-image.jpg" style="width: 72px; height: 72px;"> </a>
                                                                    @endif
-                                                                   <div class="media-body">
+                                                                   <div class="m    edia-body">
                                                                        <h4 class="media-heading"><a href="#">{{$sell->name}}</a></h4>
                                                                        <h5 class="media-heading"> by <a href="#"></a></h5>
                                                                        <span>Status: </span>
@@ -130,7 +130,7 @@
                                                                             <span>Status: </span><span class="text-success"></span>
                                                                                 <span class="text-success">
 
-                                                                               @if($sell->active == 0)
+                                                                               @if($buy->active == 0)
                                                                                         <strong class="text-danger">Chưa xác thực </strong>
                                                                                     @else
                                                                                         <strong class="text-success">Đã xác thực </strong>
@@ -140,7 +140,7 @@
                                                                         </div>
                                                                     </div></td>
                                                                 <td class="col-sm-1 col-md-1" style="text-align: center">
-                                                                    <input type="email" class="form-control" id="exampleInputEmail1" value="{{$sell->active}}">
+                                                                    <input type="email" class="form-control" id="exampleInputEmail1" value="{{$buy->active}}">
                                                                 </td>
                                                                 <td class="col-sm-1 col-md-1 text-center" style="color: red"><strong>{{$buy->price}}$</strong></td>
                                                                 <td class="col-sm-1 col-md-1 text-center"><strong>xx</strong></td>

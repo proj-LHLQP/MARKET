@@ -24,6 +24,9 @@ class Customer extends Authenticatable
             return false;
         }
     }
+    public function wishList(){
+        return $this->belongsToMany('App\Product','App\WishList','customer_id','product_id','id');
+    }
     public function rates(){
         return $this->hasMany('App\CustomerRate','customer_id','id');
     }
