@@ -22,7 +22,8 @@ Route::get('/home', 'HomeController@getHomePage')->name('home');
 Route::get('topup','MyController@topup')->name('topup');
 Route::post('charge','MyController@charge')->name('charge');
 
-Route::get('confirm-buy','BuyProductController@getDetail')->name('confirm.buy');
+Route::post('action-buy','BuyProductController@actionBuy')->name('actionbuy');
+Route::get('confirm-buy/{pid}','BuyProductController@getDetail')->name('confirm.buy');
 
 //demo
 Route::get('/getProvince','MyController@getProvince');
