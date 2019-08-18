@@ -12,11 +12,10 @@ jQuery(document).ready(function () {
             if(result == -1){
                 jQuery("#modal_1").modal();
             }
-            if(result == 0){
+            else if(result == 0){
                 jQuery("#modal_2").modal();
             }
             else{
-
                 let html ='';
                 html+='<li class="product-info" id="wishlist-'+result.id+'">';
                 html+='<div class="p-left">';
@@ -41,8 +40,6 @@ jQuery(document).ready(function () {
                 html+='<i>Nguời đăng: '+result.customer.name+'</i>';
                 html+='</div>';
                 html+='</li>';
-
-
                 jQuery('#list-wishlist').append(html);
                 let upCount = parseInt(jQuery('#count-wishlist').html())+1;
                 jQuery('#count-wishlist').html(upCount);
@@ -51,6 +48,7 @@ jQuery(document).ready(function () {
     })
     jQuery('.remove-wishlist-online').click(function () {
         let product_id = jQuery(this).attr('id-product');
+        console.log(product_id);
         jQuery.ajax({
             url:'delete-wishlist',
             method:'post',

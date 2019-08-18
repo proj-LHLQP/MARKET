@@ -7,10 +7,12 @@ use App\CommentProduct;
 use App\CustomerRate;
 use App\Product;
 use App\View;
+use App\WatchedProduct;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 
 class HomeController extends Controller
 {
@@ -41,9 +43,19 @@ class HomeController extends Controller
     public function getHomePage()
     {
         $productHotDeal = Product::where([['active',1],['sale','<>','null']])->orderBy('sale','DESC')->limit(10)->get();
-//        dd($productHotDeal);
+        $watchedProduct =[];
+        if(Auth::guard('customer')->check()){
+            $watchedProduct = Auth::guard('customer')->user()->watchedProduct;
+        }
+        $productSellLatest = Product::where([['active',1],['status','1']])->orderBy('created_at','DESC')->limit(8)->get();
+        $productBuyLatest = Product::where([['active',1],['status','0']])->orderBy('created_at','DESC')->limit(8)->get();
+
+//        $productBuy
         return view('Pages.homepage')->with([
-            'productHotDeal'=>$productHotDeal
+            'productHotDeal'=>$productHotDeal,
+            'watchedProduct'=>$watchedProduct,
+            'productBuyLatest'=>$productBuyLatest,
+            'productSellLatest'=>$productSellLatest
         ]);
     }
     public function getBlogsPage(){
@@ -89,12 +101,21 @@ class HomeController extends Controller
             session()->put($sessionKey, 1);
             $view->increment('view');
         }
+        if(Auth::guard('customer')->check()){
+            $customer_id = Auth::guard('customer')->user()->id;
+            $watched_product = WatchedProduct::where([['product_id',$id],['customer_id',$customer_id]])->first();
+            if(!$watched_product){
+                WatchedProduct::create(['product_id'=>$id,'customer_id'=>$customer_id]);
+            }
+        }
 
         $product = Product::find($id);
 
         $product->category1 = $product->category[1];
         $product->category2 = $product->category[0];
 
+
+         $related_product = Category::find($product->category2->id)->product;
         $temps =[];
         $temps[] = $product->address->village();
         $temps[] = $product->address->ward();

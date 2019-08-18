@@ -1,6 +1,6 @@
 <!-- page wapper-->
 <div class="columns-container">
-    <div class="container wapper-page" id="columns">
+    <div class="container wapper-page" id="columns"  style="background-image: url(images/photography.png)">
         <!-- breadcrumb -->
         <div class="breadcrumb clearfix">
             <a class="home" href="#" title="Return to Home">Home</a>
@@ -10,7 +10,7 @@
         <!-- ./breadcrumb -->
         <!-- page heading-->
         <h2 class="page-heading">
-            <span class="page-heading-title2 text-danger"><strong>POST PRODUCT</strong></span>
+            <span class="page-heading-title2 text-danger"><strong>Đăng tin</strong></span>
         </h2>
         <!-- ../page heading-->
         <div class="page-content page-contact" style="width: 600px; margin-right: auto; margin-left: auto; font-size: 20px">
@@ -18,57 +18,57 @@
                 @csrf
                 <input name="customer_id" value="{{Auth::guard('customer')->user()->id}}" hidden>
                 <div class="place" style="border: 1px solid #ccc; padding: 30px; border-radius: 5px; box-shadow: 0px 0px 10px 0.5px">
-                    <div class="text-center"><strong>Place</strong></div>
+                    <div class="text-center"><strong>Địa Chỉ</strong></div>
                     <div class="form-group mt-5">
-                        <label for="province">Province:</label>
+                        <label for="province">Tỉnh/Thành phố:</label>
                         <select class="form-control" name="province" id="province">
                             <option value="0">Toàn Quốc</option>
                         </select>
                     </div>
                     <div class="form-group mt-2">
-                        <label for="district">District:</label>
+                        <label for="district">Quận/Huyện:</label>
                         <select class="form-control" name="district" id="district">
                         </select>
                     </div>
                     <div class="form-group mt-2">
-                        <label for="ward">Ward:</label>
+                        <label for="ward">Xã/Phường/Thị trấn:</label>
                         <select class="form-control" name="ward" id="ward">
                         </select>
                     </div>
                     <div class="form-group mt-2">
-                        <label for="village">Village:</label>
+                        <label for="village">Thôn/Xóm:</label>
                         <select class="form-control" name="village" id="village">
                         </select>
                     </div>
                 </div>
                 <hr>
                 <div class="place mt-5" style="border: 1px solid #ccc; padding: 30px; border-radius: 5px; box-shadow: 0px 0px 10px 0.5px">
-                    <div class="text-center"><strong>Product Info</strong></div>
+                    <div class="text-center"><strong>Thông Tin</strong></div>
                     <div class="form-group mt-5">
-                        <label for="category">Select Category: </label>
+                        <label for="category">Chọn sanh mục: </label>
                         <select type="text" class="form-control" name="category" id="category" required >
                             <option></option>
                         </select>
                     </div>
 
                     <div class="form-group mt-5" >
-                        <label for="category-child">Select Category Detail: </label>
+                        <label for="category-child">Chọn sanh mục: </label>
                         <select type="text" class="form-control" name="category_child" id="category-child" required>
                         </select>
                     </div>
                     <div class="form-group mt-5" >
-                        <label class="mb-2">You Post:</label>
+                        <label class="mb-2">Bạn đăng:</label>
                         <p>
                             <input type="radio" id="sell" name="status" value="0">
-                            <label  class="option_" for="sell">Need sell</label>
+                            <label  class="option_" for="sell">Cần bán</label>
                         </p>
                         <p>
                             <input type="radio" id="buy" name="status" value="1">
-                            <label class="option_" for="buy">Need buy</label>
+                            <label class="option_" for="buy">Cần mua</label>
                         </p>
                     </div>
                     <div class="form-group mt-5" >
-                        <label for="price">Price(VND): </label>
+                        <label for="price">Giá(VND): </label>
                         <input style="color: red" type="text" class="form-control" name="price" id="price" required >
                     </div>
                     <div class="form-group mt-5" id="sale">
@@ -78,23 +78,23 @@
                         <label class="mb-2">Tình trạng:</label>
                         <p>
                             <input type="radio" id="new" name="new" value="0">
-                            <label class="option_" for="new">New</label>
+                            <label class="option_" for="new">Mới</label>
                         </p>
                         <p>
                             <input type="radio" id="used" name="new" value="1">
-                            <label class="option_" for="used">Used</label>
+                            <label class="option_" for="used">Đã qua sử dụng</label>
                         </p>
                     </div>
                     <div class="form-group mt-5" >
-                        <label for="price">Name: </label>
+                        <label for="price">Tên: </label>
                         <input style="" type="text" class="form-control" name="name" id="name" required>
                     </div>
                     <div class="form-group mt-5" >
-                        <label for="price">Detail: </label>
+                        <label for="price">Chi tiết: </label>
                         <textarea  type="text" class="form-control ckeditor" name="detail" id="detail" ></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="myDropzone">Cover: </label>
+                        <label for="myDropzone">Ảnh: </label>
                         <div class="dropzone" id="my-dropzone" name="myDropzone">
 
                         </div>
@@ -102,7 +102,7 @@
                 </div>
 
                 <div class="text-center" style="margin-top: 50px">
-                    <button  type="submit" class="btn-success btn"  id="submit" type="submit">Submit</button>
+                    <button  type="submit" class="btn-success btn"  id="submit" type="submit">Đăng tin</button>
                 </div>
             </form>
 
@@ -259,7 +259,7 @@
             background: white;
         }
     </style>
-    @endsection
+@endsection
 @section('css')
     <style>
         label{
@@ -270,5 +270,5 @@
             font-size: 15px;
         }
     </style>
-    @endsection
+@endsection
 <!-- ./page wapper-->

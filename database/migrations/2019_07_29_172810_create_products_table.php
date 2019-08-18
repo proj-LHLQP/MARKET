@@ -27,7 +27,7 @@ class CreateProductsTable extends Migration
             $table->tinyInteger('new');
             $table->tinyInteger('status');
             $table->tinyInteger('active')->default(0);
-//
+            $table->softDeletes();
             $table->timestamps();
 
         });

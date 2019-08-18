@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
     protected $fillable = ['name','customer_id','seller_id','buyer_id','detail','price','sale','new','status','active'];
 
     public function images(){
