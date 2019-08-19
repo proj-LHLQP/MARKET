@@ -45,14 +45,14 @@
                 <div class="place mt-5" style="border: 1px solid #ccc; padding: 30px; border-radius: 5px; box-shadow: 0px 0px 10px 0.5px">
                     <div class="text-center"><strong>Thông Tin</strong></div>
                     <div class="form-group mt-5">
-                        <label for="category">Chọn sanh mục: </label>
+                        <label for="category">Chọn danh mục: </label>
                         <select type="text" class="form-control" name="category" id="category" required >
                             <option></option>
                         </select>
                     </div>
 
                     <div class="form-group mt-5" >
-                        <label for="category-child">Chọn sanh mục: </label>
+                        <label for="category-child">Chọn danh mục: </label>
                         <select type="text" class="form-control" name="category_child" id="category-child" required>
                         </select>
                     </div>
