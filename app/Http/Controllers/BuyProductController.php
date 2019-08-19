@@ -46,20 +46,23 @@ class BuyProductController extends Controller
 
     public function actionBuy(Request $request){
         if(Auth::guard('customer')->id()) {
+            //Lay gia tri
             $idBuyer = Auth::guard('customer')->id();
             $buyer = Customer::find($idBuyer);
             $feeShip = $request->shipFee;
-            if($buyer->wallet < $feeShip){
-                return redirect()->route('topup')->withErrors(['Tài khoản của bạn không đủ, vui lòng nạp tiền rồi mua lại sản phẩm trong wishlist!']);
-            }
             $idProductBuying = $request->productId;
             $idAddressReceiver = $request->addressId;
             $productBuying = Product::find($idProductBuying);
             $seller = Customer::find($productBuying->seller_id);
+            dd($feeShip+$productBuying->price);
+            //Nghiep vu
+            if($buyer->wallet < ($feeShip+$productBuying->price)){
+                return redirect()->route('topup')->withErrors(['Tài khoản của bạn không đủ, vui lòng nạp tiền rồi mua lại sản phẩm trong wishlist!']);
+            }
 
             //Thuc hien transaction gom cac qua trinh:
             //1. Tru vi nguoi ban
-            //2. Tru ship nguoi mua (neu co)
+            //2. Tru ship(neu co) và giá trị sp tu nguoi mua
             //3. Ghi history
             //4. Xoa wishlist
             DB::beginTransaction();
@@ -72,8 +75,9 @@ class BuyProductController extends Controller
 
                 if($feeShip != -1) {
                     $buyer->wallet -= $feeShip;
-                    $buyer->save();
                 }
+                $buyer->wallet -= $productBuying->price;
+                $buyer->save();
 
                 $historyTransaction = new History();
                 $historyTransaction->product_id = $idProductBuying;

@@ -1,6 +1,9 @@
 @if(session('message-success'))
 <div class="alert alert-success container">{{session('message-success')}}</div>
 @endif
+@if($errors->any())
+<div class="alert alert-danger container" style="background-color: coral">{{$errors->first()}}</div>
+@endif
 <div class="nav-top-menu" >
     <div class="container">
         <div class="row">
