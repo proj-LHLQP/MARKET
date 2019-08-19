@@ -33,7 +33,7 @@ jQuery(document).ready(function () {
                 html+='<span style="color: red">$'+(result.price-(result.price*result.sale)/100)+'</span>';
                 html+='</div>';
                 if(result.status == 0)
-                    html+='<div><strong style="color: red">Cần bán;</strong></div>';
+                    html+='<div><strong style="color: red">Cần bán</strong></div>';
                 else
                     html+='<strong style="color: #2fa360">Cần mua</strong>';
 

@@ -166,7 +166,9 @@
                                     </div>
                                     <div class="product-info">
                                         <h5 class="product-name"><a href="product-detail/{{$product->id}}">{{$product->name}}</a></h5>
-
+                                        <div class="product-rating">
+                                            <div style="color: black">{{$product->customer->name}}</div>
+                                        </div>
                                         <div class="box-price">
                                             <span class="product-price" >${{$product->price-($product->price*$product->sale/100)}}</span>
                                             @if($product->status == 0)
@@ -196,6 +198,9 @@
                                         <div class="product-info">
                                             <h5 class="product-name"><a href="product-detail/{{$product->id}}">{{$product->name}}</a></h5>
 
+                                            <div class="product-rating">
+                                                <div style="color: black">{{$product->customer->name}}</div>
+                                            </div>
                                             <div class="box-price">
                                                 <span class="product-price" style="color: #2fa360">${{$product->price-($product->price*$product->sale/100)}}</span>
                                                 @if($product->status == 0)
@@ -240,7 +245,7 @@
                 <div class="block-sub-cat owl-carousel" data-items="1" data-nav="true" data-loop="true" data-dots="false">
                     <ul class="list-cat">
                         @foreach($categories as $category)
-                            <li><a href="#">{{$category->name}}</a></li>
+                            <li><a style="cursor: pointer" class="post-care" id_cate = {{$category->id}}>{{$category->name}}</a></li>
                         @endforeach
                     </ul>
                     <ul class="list-cat">
@@ -254,73 +259,65 @@
             <div class="block-product-right">
                 <div class="tab-container">
                     <div id="tab-3" class="tab-panel active">
-                        <ul class="products">
-                            <li class="product">
-                                <div class="product-container">
-                                    <div class="product-image">
-                                        <a href="#"><img src="assets-home/data/option7/p14.jpg" alt="Product"></a>
-                                        <div class="group-tool-button">
-                                            <a class="search" href="#">search</a>
-                                            <a class="withlist" href="#">withlist</a>
-                                            <a class="compare" href="#">compare</a>
-                                            <a class="cart" href="#">cart</a>
+                        <ul class="products" id="care-product-sell">
+                           @foreach($productSellCare as $product)
+                                <li class="product">
+                                    <div class="product-container">
+                                        <div class="product-image">
+                                            <a href="product-detail/{{$product->id}}"><img style="height: 242.94px" src="{{$product->image_path}}" alt="Product"></a>
+                                            <div class="group-tool-button" style="left: 67%">
+                                                <a class="withlist wishlist" id-product="{{$product->id}}">withlist</a>
+                                                <a class="cart" href="#">cart</a>
+                                            </div>
+                                            <a href="product-detail/{{$product->id}}" class="quick-view">Qick view</a>
                                         </div>
-                                        <a href="#" class="quick-view">Qick view</a>
-                                        <span class="status-new"></span>
-                                    </div>
-                                    <div class="product-info">
-                                        <h5 class="product-name"><a href="#">Headphone & earphone</a></h5>
-                                        <div class="product-rating">
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-
-                                        <div class="box-price">
-                                            <span class="product-price">$99.95</span>
-                                            <span class="old-price">$110</span>
+                                        <div class="product-info">
+                                            <h5 class="product-name"><a href="product-detail/{{$product->id}}">{{$product->name}}</a></h5>
+                                            <div><i class="fas fa-eye" style="margin-top:5px "></i><strong> {{$product->view}}</strong></div>
+                                            <div class="product-rating">
+                                                <div style="color: black">{{$product->customer->name}}</div>
+                                            </div>
+                                            <div class="box-price">
+                                                <span class="product-price" style="color: red">${{$product->price-($product->price*$product->sale/100)}}</span>
+                                                @if($product->status == 0)
+                                                    <span class="old-price">${{$product->price}}</span>
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </li>
-
-                            </li>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                     <div id="tab-4" class="tab-panel">
-                        <ul class="products">
-                            <li class="product">
-                                <div class="product-container">
-                                    <div class="product-image">
-                                        <a href="#"><img src="assets-home/data/option7/p21.jpg" alt="Product"></a>
-                                        <div class="group-tool-button">
-                                            <a class="search" href="#">search</a>
-                                            <a class="withlist" href="#">withlist</a>
-                                            <a class="compare" href="#">compare</a>
-                                            <a class="cart" href="#">cart</a>
+                        <ul class="products" id="care-product-buy">
+                            @foreach($productBuyCare as $product)
+                                <li class="product">
+                                    <div class="product-container">
+                                        <div class="product-image">
+                                            <a href="product-detail/{{$product->id}}"><img style="height: 242.94px" src="{{$product->image_path}}" alt="Product"></a>
+                                            <div class="group-tool-button" style="left: 67%">
+                                                <a class="withlist wishlist" id-product="{{$product->id}}">withlist</a>
+                                                <a class="cart" href="#">cart</a>
+                                            </div>
+                                            <a href="product-detail/{{$product->id}}" class="quick-view">Qick view</a>
                                         </div>
-                                        <a href="#" class="quick-view">Qick view</a>
-                                        <span class="status-new"></span>
-                                    </div>
-                                    <div class="product-info">
-                                        <h5 class="product-name"><a href="#">Headphone & earphone</a></h5>
-                                        <div class="product-rating">
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-
-                                        <div class="box-price">
-                                            <span class="product-price">$99.95</span>
-                                            <span class="old-price">$110</span>
+                                        <div class="product-info">
+                                            <h5 class="product-name"><a href="product-detail/{{$product->id}}">{{$product->name}}</a></h5>
+                                            <div><i class="fas fa-eye" style="margin-top:5px "></i><strong> {{$product->view}}</strong></div>
+                                            <div class="product-rating">
+                                                <div style="color: black">{{$product->customer->name}}</div>
+                                            </div>
+                                            <div class="box-price">
+                                                <span class="product-price" style="color: #2fa360">${{$product->price-($product->price*$product->sale/100)}}</span>
+                                                @if($product->status == 0)
+                                                    <span class="old-price">${{$product->price}}</span>
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </li>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>

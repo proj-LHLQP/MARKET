@@ -41,152 +41,11 @@
                     </div>
                 </div>
                 <!-- ./block category  -->
-                <!-- block best sellers -->
-                <div class="block left-module">
-                    <p class="title_block">BEST SELLERS</p>
-                    <div class="block_content">
-                        <div class="owl-carousel owl-best-sell" data-loop="true" data-nav = "false" data-margin = "0" data-autoplayTimeout="1000" data-autoplay="true" data-autoplayHoverPause = "true" data-items="1">
-                            <ul class="products-block best-sell">
-                                <li>
-                                    <div class="products-block-left">
-                                        <a href="#">
-                                            <img src="assets-home/data/product-100x122.jpg" alt="SPECIAL PRODUCTS">
-                                        </a>
-                                    </div>
-                                    <div class="products-block-right">
-                                        <p class="product-name">
-                                            <a href="#">Woman Within Plus Size Flared</a>
-                                        </p>
-                                        <p class="product-price">$38,95</p>
-                                        <p class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-half-o"></i>
-                                        </p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="products-block-left">
-                                        <a href="#">
-                                            <img src="assets-home/data/p11.jpg" alt="SPECIAL PRODUCTS">
-                                        </a>
-                                    </div>
-                                    <div class="products-block-right">
-                                        <p class="product-name">
-                                            <a href="#">Woman Within Plus Size Flared</a>
-                                        </p>
-                                        <p class="product-price">$38,95</p>
-                                        <p class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-half-o"></i>
-                                        </p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="products-block-left">
-                                        <a href="#">
-                                            <img src="assets-home/data/p12.jpg" alt="SPECIAL PRODUCTS">
-                                        </a>
-                                    </div>
-                                    <div class="products-block-right">
-                                        <p class="product-name">
-                                            <a href="#">Plus Size Rock Star Skirt</a>
-                                        </p>
-                                        <p class="product-price">$38,95</p>
-                                        <p class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-half-o"></i>
-                                        </p>
-                                    </div>
-                                </li>
-                            </ul>
-                            <ul class="products-block best-sell">
-                                <li>
-                                    <div class="products-block-left">
-                                        <a href="#">
-                                            <img src="assets-home/data/p13.jpg" alt="SPECIAL PRODUCTS">
-                                        </a>
-                                    </div>
-                                    <div class="products-block-right">
-                                        <p class="product-name">
-                                            <a href="#">Woman Within Plus Size Flared</a>
-                                        </p>
-                                        <p class="product-price">$38,95</p>
-                                        <p class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-half-o"></i>
-                                        </p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="products-block-left">
-                                        <a href="#">
-                                            <img src="assets-home/data/p14.jpg" alt="SPECIAL PRODUCTS">
-                                        </a>
-                                    </div>
-                                    <div class="products-block-right">
-                                        <p class="product-name">
-                                            <a href="#">Woman Within Plus Size Flared</a>
-                                        </p>
-                                        <p class="product-price">$38,95</p>
-                                        <p class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-half-o"></i>
-                                        </p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="products-block-left">
-                                        <a href="#">
-                                            <img src="assets-home/data/p15.jpg" alt="SPECIAL PRODUCTS">
-                                        </a>
-                                    </div>
-                                    <div class="products-block-right">
-                                        <p class="product-name">
-                                            <a href="#">Plus Size Rock Star Skirt</a>
-                                        </p>
-                                        <p class="product-price">$38,95</p>
-                                        <p class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-half-o"></i>
-                                        </p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- ./block best sellers  -->
 
-                <!-- left silide -->
-                <div class="col-left-slide left-module">
-                    <ul class="owl-carousel owl-style2" data-loop="true" data-nav = "false" data-margin = "0" data-autoplayTimeout="1000" data-autoplayHoverPause = "true" data-items="1" data-autoplay="true">
-                        <li><a href="#"><img src="assets-home/data/slide-left.jpg" alt="slide-left"></a></li>
-                        <li><a href="#"><img src="assets-home/data/slide-left2.jpg" alt="slide-left"></a></li>
-                        <li><a href="#"><img src="assets-home/data/slide-left3.png" alt="slide-left"></a></li>
-                    </ul>
-                </div>
                 <!--./left silde-->
                 <!-- block best sellers -->
                 <div class="block left-module">
-                    <p class="title_block">ON SALE</p>
+                    <p class="title_block">Giảm giá</p>
                     <div class="block_content product-onsale">
                         <ul class="product-list owl-carousel" data-loop="true" data-nav = "false" data-margin = "0" data-autoplayTimeout="1000" data-autoplayHoverPause = "true" data-items="1" data-autoplay="true">
                             <li>
@@ -275,6 +134,15 @@
                 </div>
                 <!-- ./block best sellers  -->
                 <!-- left silide -->
+                <!-- left silide -->
+                <div class="col-left-slide left-module">
+                    <ul class="owl-carousel owl-style2" data-loop="true" data-nav = "false" data-margin = "0" data-autoplayTimeout="1000" data-autoplayHoverPause = "true" data-items="1" data-autoplay="true">
+                        <li><a href="#"><img src="assets-home/data/slide-left.jpg" alt="slide-left"></a></li>
+                        <li><a href="#"><img src="assets-home/data/slide-left2.jpg" alt="slide-left"></a></li>
+                        <li><a href="#"><img src="assets-home/data/slide-left3.png" alt="slide-left"></a></li>
+                    </ul>
+                </div>
+
                 <div class="col-left-slide left-module">
                     <div class="banner-opacity">
                         <a href="#"><img src="assets-home/data/ads-banner.jpg" alt="ads-banner"></a>
@@ -610,37 +478,38 @@
                     <div class="page-product-box">
                         <h3 class="heading">Sản phẩm liên quan</h3>
                         <ul class="product-list owl-carousel" data-dots="false" data-loop="true" data-nav = "true" data-margin = "30" data-autoplayTimeout="1000" data-autoplayHoverPause = "true" data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":3}}'>
-                            <li>
-                                <div class="product-container">
-                                    <div class="left-block">
-                                        <a href="#">
-                                            <img class="img-responsive" alt="product" src="assets-home/data/p40.jpg" />
-                                        </a>
-                                        <div class="quick-view">
-                                            <a title="Add to my wishlist" class="heart" href="#"></a>
-                                            <a title="Quick view" class="search" href="product-detail/{{$product->id}}"></a>
+                             @foreach($relatedProduct as $product)
+                                <li>
+                                    <div class="product-container">
+                                        <div class="left-block">
+                                            <a href="#">
+                                                <a href="product-detail/{{$product->id}}"><img style="height: 242.94px" src="{{$product->images[0]->image_path}}" alt="Product"></a>
+                                            </a>
+                                            <div class="quick-view">
+                                                <a title="Add to my wishlist" class="heart wishlist" style="cursor: pointer" id-product="{{$product->id}}"></a>
+                                                <a title="Quick view" class="search" href="product-detail/{{$product->id}}"></a>
+                                            </div>
+                                            <div class="add-to-cart">
+                                                <a title="Add to Cart" href="#add">Add to Cart</a>
+                                            </div>
                                         </div>
-                                        <div class="add-to-cart">
-                                            <a title="Add to Cart" href="#add">Add to Cart</a>
+                                        <div class="right-block">
+                                            <h5 class="product-name"><a href="#">{{$product->name}}</a></h5>
+                                            <div class="product-rating">
+                                                <strong style="color: black">{{$product->customer->name}}</strong>
+                                            </div>
+                                            <div class="content_price">
+                                                @if($product->status == 0)
+                                                    <span class="product-price" style="color: red">${{$product->price-($product->price*$product->sale/100)}}</span>
+                                                    <span class="old-price">${{$product->price}}</span>
+                                                @elseif($product->status == 1)
+                                                    <span class="product-price" style="color: #2fa360">${{$product->price}}</span>
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="right-block">
-                                        <h5 class="product-name"><a href="#">Maecenas consequat mauris</a></h5>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-half-o"></i>
-                                        </div>
-                                        <div class="content_price">
-                                            <span class="price product-price">$38,95</span>
-                                            <span class="price old-price">$52,00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-
+                                </li>
+                                @endforeach
                         </ul>
                     </div>
                     <!-- ./box product -->

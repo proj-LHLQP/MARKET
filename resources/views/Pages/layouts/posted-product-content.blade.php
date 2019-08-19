@@ -55,7 +55,7 @@
                                                                        <a class="thumbnail pull-left mr-3" href="product-detail/{{$sell->id}}"> <img class="media-object" src="uploads/product_images/no-image.jpg" style="width: 72px; height: 72px;"> </a>
                                                                    @endif
                                                                    <div class="m    edia-body">
-                                                                       <h4 class="media-heading"><a href="#">{{$sell->name}}</a></h4>
+                                                                       <h4 class="media-heading"><a href="product-detail/{{$sell->id}}">{{$sell->name}}</a></h4>
                                                                        <span>Status: </span>
                                                                        <span class="text-success">
 
@@ -122,7 +122,7 @@
                                                                         @else
                                                                             <a class="thumbnail pull-left mr-3" href="product-detail/{{$buy->id}}"> <img class="media-object" src="uploads/product_images/no-image.jpg" style="width: 72px; height: 72px;"> </a>
                                                                         @endif                                                                        <div class="media-body">
-                                                                            <h4 class="media-heading"><a href="#">{{$buy->name}}</a></h4>
+                                                                            <h4 class="media-heading"><a href="product-detail/{{$buy->id}}">{{$buy->name}}</a></h4>
                                                                             <h5 class="media-heading"> by <a href="#"></a></h5>
                                                                             <span>Status: </span><span class="text-success"></span>
                                                                                 <span class="text-success">

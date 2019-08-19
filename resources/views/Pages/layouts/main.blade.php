@@ -204,14 +204,14 @@
                                 </a>
                             </li>
                             <hr>
-                            <li><a style="padding: 10px 0; margin: 5px  " href="posted-product?id={{Auth::guard('customer')->user()->id}}"><i style="font-size: 20px; color: #00b5e9" class="fas fa-upload"></i>&nbsp;Sản phẩn đã đăng</a></li>
+                            <li><a style="padding: 10px 0; margin: 5px  " href="posted-product/{{Auth::guard('customer')->user()->id}}"><i style="font-size: 20px; color: #00b5e9" class="fas fa-upload"></i>&nbsp;Sản phẩn đã đăng</a></li>
                             <li><a style="padding: 10px 0; margin: 5px  " href="posted-product?id={{Auth::guard('customer')->user()->id}}"><i style="font-size: 20px; color: red" class="fas fa-shopping-bag"></i>&nbsp;Sản phẩn đã giao dịch</a></li>
                             <li><a style="padding: 10px 0; margin: 5px  " href=""><i style="font-size: 20px; color: #ba8b00" class="fas fa-wallet"></i>&nbsp;Ví Tiền</a></li>
                             <li><a style="padding: 10px 0; margin: 5px  " href=""><i style="font-size: 20px; color: #9561e2" class="fas fa-file-invoice-dollar"></i>&nbsp;Ví đóng băng</a></li>
                             <li><a style="padding: 10px 0; margin: 5px  " href=""><i style="font-size: 20px; color:#2fa360" class="fas fa-donate"></i>&nbsp;Điểm thưởng</a></li>
                             <li id="show-charts">
                                 <a style="padding: 10px 0; margin: 5px" href="charts/{{Auth::guard('customer')->user()->id}}">
-                                    <i style="font-size: 20px; color:#2fa360" class="fas fa-donate"></i>&nbsp;Charts
+                                    <i style="font-size: 20px; color:#ff7700" class="fas fa-chart-pie"></i>&nbsp;Charts
                                 </a>
                             </li>
                             <hr>

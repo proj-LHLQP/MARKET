@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Address;
 use App\Category;
 use App\CommentProduct;
+use App\CustomerRate;
 use App\Product;
 use App\ProductCategory;
 use App\ProductImage;
@@ -23,30 +24,37 @@ class ProductController extends Controller
     public function saveProducts(Request $request){
 //        DB::beginTransaction();
 //        try {
-
+        $customer_id = $request->customer_id;
+        $customer_star = CustomerRate::where([['customer_id',$customer_id],['active',1]])->avg('star');
             if($request->status ==0){
-                $product = Product::create([
-                    'name' => $request->name,
-                    'customer_id'=>$request->customer_id,
-                    'seller_id'=>$request->customer_id,
-                    'detail'=>$request->detail,
-                    'price'=>$request->price,
-                    'sale'=>$request->sale,
-                    'new'=>$request->new,
-                    'status'=>$request->status,
-                ]);
+                $product = new Product();
+                    $product->name = $request->name;
+                    $product->customer_id=$request->customer_id;
+                    $product->seller_id=$request->customer_id;
+                    $product->detail=$request->detail;
+                    $product->price=$request->price;
+                    $product->sale=$request->sale;
+                    $product->new=$request->new;
+                    $product->status=$request->status;
+                    if($customer_star!=null && $customer_star>=4.3){
+                        $product->active = 1;
+                    }
+                $product->save();
             }
             else if($request->status ==1){
-                $product = Product::create([
-                    'name' => $request->name,
-                    'customer_id'=>$request->customer_id,
-                    'buyer_id'=>$request->customer_id,
-                    'detail'=>$request->detail,
-                    'price'=>$request->price,
-                    'sale'=>$request->sale,
-                    'new'=>$request->new,
-                    'status'=>$request->status,
-                ]);
+                $product = new Product();
+                $product->name = $request->name;
+                $product->customer_id=$request->customer_id;
+                $product->buyer_id=$request->customer_id;
+                $product->detail=$request->detail;
+                $product->price=$request->price;
+                $product->sale=$request->sale;
+                $product->new=$request->new;
+                $product->status=$request->status;
+                if($customer_star!=null && $customer_star>=4.3){
+                    $product->active = 1;
+                }
+                $product->save();
             }
             $this->product = $product;
             $address = Address::create([
@@ -155,10 +163,28 @@ class ProductController extends Controller
             ->get();
        foreach ($products as $product){
            $product->images;
+           $product->customer;
        }
         return $products;
     }
-
+    public function getProductCare(Request $request){
+        $category_id = $request->category_id;
+        $products =  Product::
+        join('product_categories', 'products.id', '=', 'product_categories.product_id')
+            ->join('categories', 'categories.id', '=', 'product_categories.category_id')
+            ->join('views','products.id','=','views.product_id')
+            ->where([['categories.id',$category_id],['products.active',1],['seller_id',null]])
+            ->orWhere([['categories.id',$category_id],['products.active',1],['buyer_id',null]])
+            ->select('products.*','views.view')
+            ->orderBy('views.view','DESC')
+            ->limit(6)
+            ->get();
+        foreach ($products as $product){
+            $product->images;
+            $product->customer;
+        }
+        return $products;
+    }
 
 
     public function showChart(Request $request)
