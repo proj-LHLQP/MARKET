@@ -226,17 +226,21 @@
                                 <strong>Địa chỉ: {{$product->address}}</strong>
 
                             </div>
+                            @if($product->seller_id != Auth::guard('customer')->id() && !isset($product->buyer_id))
                             <div class="form-action">
                                 <div class="button-group">
-                                    <a class="btn-add-cart" href="#">Add to cart</a>
-                                </div>
-                                <div class="button-group">
-                                    <a class="wishlist" id-product ="{{$product->id}}"style="cursor: pointer">
+                                    <a class="btn-add-cart" href="confirm-buy/{{$product->id}}">Buy now</a>
+                                    <a class="wishlist" id-product ="{{$product->id}}" style="cursor: pointer">
                                         <i class="fa fa-heart-o"></i>
-                                        <br>Wishlist
+                                        Add to Wishlist
                                     </a>
                                 </div>
                             </div>
+                            @elseif (isset($product->buyer_id))
+                            <p style="color: red">Sản phẩm này đã bán</p>
+                            @else
+                            <p style="color: red">Sản phẩm của bạn đang được bày bán</p>
+                            @endif
                         </div>
                     </div>
                     <!-- tab product -->

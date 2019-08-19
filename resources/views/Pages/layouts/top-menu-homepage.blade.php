@@ -1,3 +1,6 @@
+@if(session('message-success'))
+<div class="alert alert-success container">{{session('message-success')}}</div>
+@endif
 <div class="nav-top-menu" >
     <div class="container">
         <div class="row">
