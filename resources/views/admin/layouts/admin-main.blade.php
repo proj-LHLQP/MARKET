@@ -374,6 +374,26 @@
                 </li>
 
                 <li class="nav-item">
+                    <a data-toggle="collapse" href="#rate_customers">
+                        <i class="fas icon-star"></i>
+                        <p>Rate Customer</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="rate_customers">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="{{asset('admin/rate-customer')}}">
+                                    <i class="fas fa-check-circle"></i></i><span>Active</span>
+                                </a>
+                                <a href="{{asset('admin/rate-customer-actived')}}">
+                                    <i class="fas fa-list"></i><span>List</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="nav-item">
                     <a data-toggle="collapse" href="#category">
                         <i class="fas icon-people"></i>
                         <p>Category</p>

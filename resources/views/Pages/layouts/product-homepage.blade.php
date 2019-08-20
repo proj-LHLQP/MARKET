@@ -6,14 +6,12 @@
                 <div class="col-sm-12 col-md-1 col-lg-1">
                     <div class="hot-deals-tab">
                         <div class="hot-deals-title vertical-text">
-                            <span>h</span>
-                            <span>o</span>
-                            <span>t</span>
-                            <span class="yellow">d</span>
-                            <span class="yellow">e</span>
-                            <span class="yellow">a</span>
-                            <span class="yellow">l</span>
-                            <span class="yellow">s</span>
+                            <span class="mt-4">G</span>
+                            <span class="mt-2">I</span>
+                            <span class="mt-2">Á</span>
+                            <span class="yellow mt-5">T</span>
+                            <span class="yellow mt-2">Ố</span>
+                            <span class="yellow mt-2">T</span>
                         </div>
 
                     </div>
@@ -42,8 +40,7 @@
                                         </div>
                                         <span class="status-sale"></span>
                                         <div class="box-price">
-                                            <span class="product-price">${{$product->price-($product->price*$product->sale/100)}}</span>
-                                            <span class="old-price">${{$product->price}}</span>
+                                            <span class="product-price">{{$product->price}} vnđ</span>
                                         </div>
                                     </div>
                                 </div>
@@ -86,16 +83,22 @@
                                     <div class="product-rating">
                                         <div style="color: black">{{$product->customer->name}}</div>
                                         @if($product->status == 0)
-                                            <button class="btn btn-danger">Cần bán</button>
+                                            @if($product->seller_id==null || $product->buyer_id==null)
+                                                <button class="btn btn-danger">Cần bán</button>
+                                                @else
+                                                <button class="btn btn-primary">Đã bán</button>
+                                            @endif
+
                                         @else
                                             <button class="btn btn-info">Cần mua</button>
                                         @endif
                                     </div>
                                     <div class="box-price">
-                                        <span class="product-price">${{$product->price-($product->price*$product->sale/100)}}</span>
                                         @if($product->status == 0)
-                                        <span class="old-price">${{$product->price}}</span>
-                                            @endif
+                                            <span class="product-price">{{$product->price}} vnđ</span>
+                                            @else
+                                            <span class="product-price"style="color: #2fa360">{{$product->price}} vnđ</span>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -170,10 +173,7 @@
                                             <div style="color: black">{{$product->customer->name}}</div>
                                         </div>
                                         <div class="box-price">
-                                            <span class="product-price" >${{$product->price-($product->price*$product->sale/100)}}</span>
-                                            @if($product->status == 0)
-                                                <span class="old-price">${{$product->price}}</span>
-                                            @endif
+                                            <span class="product-price" >{{$product->price}} vnđ</span>
                                         </div>
                                     </div>
                                 </div>
@@ -204,7 +204,7 @@
                                             <div class="box-price">
                                                 <span class="product-price" style="color: #2fa360">${{$product->price-($product->price*$product->sale/100)}}</span>
                                                 @if($product->status == 0)
-                                                    <span class="old-price">${{$product->price}}</span>
+                                                    <span class="old-price">{{$product->price}} vnđ</span>
                                                 @endif
                                             </div>
                                         </div>
@@ -278,10 +278,7 @@
                                                 <div style="color: black">{{$product->customer->name}}</div>
                                             </div>
                                             <div class="box-price">
-                                                <span class="product-price" style="color: red">${{$product->price-($product->price*$product->sale/100)}}</span>
-                                                @if($product->status == 0)
-                                                    <span class="old-price">${{$product->price}}</span>
-                                                @endif
+                                                <span class="product-price" style="color: red">${{$product->price}} vnđ</span>
                                             </div>
                                         </div>
                                     </div>
@@ -309,10 +306,7 @@
                                                 <div style="color: black">{{$product->customer->name}}</div>
                                             </div>
                                             <div class="box-price">
-                                                <span class="product-price" style="color: #2fa360">${{$product->price-($product->price*$product->sale/100)}}</span>
-                                                @if($product->status == 0)
-                                                    <span class="old-price">${{$product->price}}</span>
-                                                @endif
+                                                <span class="product-price" style="color: #2fa360">${{$product->price}} vnđ</span>
                                             </div>
                                         </div>
                                     </div>

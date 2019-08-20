@@ -247,10 +247,9 @@
                                     </div>
                                     <div class="content_price">
                                         @if($product->status == 0)
-                                            <span class="price product-price">${{$product->price-($product->price*$product->sale/100)}}</span>
-                                            <span class="price old-price">${{$product->price}}</span>
+                                            <span class="price product-price">{{$product->price}} vnđ</span>
                                         @else
-                                            <span class="price product-price" style="color: #2fa360">${{$product->price}}</span>
+                                            <span class="price product-price" style="color: #2fa360">{{$product->price}} vnđ</span>
                                         @endif
                                     </div>
                                     <div class="info-orther">

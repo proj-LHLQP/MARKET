@@ -198,11 +198,7 @@
                                 </div>
                             </div>
                             <div class="product-price-group">
-                                <span class="price">${{$product->price-($product->price*$product->sale/100)}}</span>
-                                @if($product->status == 0 && $product->sale != 0)
-                                    <span class="old-price">${{$product->price}}</span>
-                                    <span class="discount">{{$product->sale}}%</span>
-                                @endif
+                                <span class="price">${{$product->price}}</span>
                             </div>
 
                             <div class="product-desc">

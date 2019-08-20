@@ -111,6 +111,10 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'],function ()
     Route::get('edit-role/{id}','RoleController@edit');
     Route::post('update-role/{id}','RoleController@update')->name('role.update');
     Route::get('delete-role/{id}','RoleController@destroy');
+    //rate customer
+    Route::get('rate-customer','CustomerControlller@rateCustomer');
+    Route::post('active-rate-customer','CustomerControlller@activeRateCustomer');
+    Route::get('rate-customer-actived','CustomerControlller@rateCustomerActived');
 
 });
 

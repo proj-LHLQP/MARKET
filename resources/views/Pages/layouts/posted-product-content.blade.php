@@ -40,7 +40,6 @@
                                                            <th><strong>Product</strong></th>
                                                            <th><strong>Tình trạng</strong></th>
                                                            <th class="text-center"><strong>Giá</strong></th>
-                                                           <th class="text-center"><strong>Giảm giá</strong></th>
                                                            <th> </th>
                                                            <th> </th>
                                                        </tr>
@@ -75,7 +74,6 @@
                                                                     <td style="color: #ff7700"><strong>Đã bán</strong></td>
                                                                 @endif
                                                                 <td class="col-sm-1 col-md-1 text-center"style="color: red"><strong>{{$sell->price}}$</strong></td>
-                                                                <td class="col-sm-1 col-md-1 text-center"style="color: red"><strong>{{$sell->sale}}%</strong></td>
                                                                 @if($sell->buyer_id != null)
                                                                     <td class="col-sm-1 col-md-1">
                                                                         <button type="button" class="btn btn-success" disabled>

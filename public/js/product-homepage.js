@@ -24,11 +24,10 @@ jQuery(document).ready(function () {
         product+='</div>';
         product+='<div class="box-price">';
         if(result.status == 0){
-            product+='<span class="product-price">$'+(result.price-(result.price*result.sale)/100)+'</span>';
-            product+='<span class="old-price">$'+result.price+'</span>';
+            product+='<span class="product-price">'+(result.price)+' vnđ</span>';
         }
         else{
-            product+='<span class="product-price" style="color: #2fa360">$'+result.price+'</span>';
+            product+='<span class="product-price" style="color: #2fa360">$'+result.price+' vnđ</span>';
         }
         product+='</div>';
         product+='</div>';

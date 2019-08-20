@@ -141,8 +141,8 @@ class HomeController extends Controller
 
         $product = Product::find($id);
 
-        $product->category2 = $product->category[1];
-        $product->category1 = $product->category[0];
+        $product->category2 = $product->category()[1];
+        $product->category1 = $product->category()[0];
 
 
         $relatedProduct = Product::
