@@ -112,17 +112,17 @@
 @section('script')
     <script>
         jQuery(document).ready(function () {
-            $('input[type=radio][name=status]').change(function() {
-                if(this.value == 0){
-                    jQuery('#sale').html(
-                        '<label for="sale">Sale(%): </label>' +
-                        '<input style="color: red" type="text" class="form-control" name="sale" id="sale" >'
-                    )
-                }
-                else {
-                    jQuery('#sale').html('');
-                }
-            });
+            // $('input[type=radio][name=status]').change(function() {
+            //     if(this.value == 0){
+            //         jQuery('#sale').html(
+            //             '<label for="sale">Sale(%): </label>' +
+            //             '<input style="color: red" type="text" class="form-control" name="sale" id="sale" >'
+            //         )
+            //     }
+            //     else {
+            //         jQuery('#sale').html('');
+            //     }
+            // });
 
 
             jQuery('#submit').click(()=>{

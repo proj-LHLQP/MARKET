@@ -247,9 +247,9 @@
                                     </div>
                                     <div class="content_price">
                                         @if($product->status == 0)
-                                            <span class="price product-price">{{$product->price}} vnđ</span>
+                                            <span class="price product-price">Giá: {{$product->price}}đ</span>
                                         @else
-                                            <span class="price product-price" style="color: #2fa360">{{$product->price}} vnđ</span>
+                                            <span class="price product-price" style="color: #2fa360">Giá: {{$product->price}}đ</span>
                                         @endif
                                     </div>
                                     <div class="info-orther">

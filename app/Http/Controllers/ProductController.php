@@ -33,7 +33,6 @@ class ProductController extends Controller
                     $product->seller_id=$request->customer_id;
                     $product->detail=$request->detail;
                     $product->price=$request->price;
-                    $product->sale=$request->sale;
                     $product->new=$request->new;
                     $product->status=$request->status;
                     if($customer_star!=null && $customer_star>=4.3){
@@ -48,7 +47,6 @@ class ProductController extends Controller
                 $product->buyer_id=$request->customer_id;
                 $product->detail=$request->detail;
                 $product->price=$request->price;
-                $product->sale=$request->sale;
                 $product->new=$request->new;
                 $product->status=$request->status;
                 if($customer_star!=null && $customer_star>=4.3){
@@ -89,7 +87,7 @@ class ProductController extends Controller
 //                $message->to($this->product->customer->email)->subject('Đăng sản phẩm thành công');
 //            });
 
-            DB::commit();
+           // DB::commit();
             return redirect()->route(HOME_PAGE);
 //        } catch (Exception $e) {
 //            DB::rollBack();

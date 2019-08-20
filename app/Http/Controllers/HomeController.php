@@ -144,6 +144,9 @@ class HomeController extends Controller
         $product->category2 = $product->category()[1];
         $product->category1 = $product->category()[0];
 
+        $productLatest = Product::where([['active',1],['seller_id',null]])
+            ->orwhere([['active',1],['buyer_id',null]])
+            ->orderBy('created_at','DESC')->limit(3)->get();
 
         $relatedProduct = Product::
         join('product_categories', 'products.id', '=', 'product_categories.product_id')
@@ -181,7 +184,8 @@ class HomeController extends Controller
             'product'=>$product,
             'rates'=>$rates,
             'comments'=>$comments,
-            'relatedProduct'=>$relatedProduct
+            'relatedProduct'=>$relatedProduct,
+            'productLatest'=>$productLatest
         ]);
     }
     public function getCheckOut(){

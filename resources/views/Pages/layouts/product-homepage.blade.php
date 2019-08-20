@@ -40,7 +40,7 @@
                                         </div>
                                         <span class="status-sale"></span>
                                         <div class="box-price">
-                                            <span class="product-price">{{$product->price}} vnđ</span>
+                                            <span class="product-price">Giá: {{$product->price}}đ</span>
                                         </div>
                                     </div>
                                 </div>
@@ -95,9 +95,9 @@
                                     </div>
                                     <div class="box-price">
                                         @if($product->status == 0)
-                                            <span class="product-price">{{$product->price}} vnđ</span>
+                                            <span class="product-price">Giá: {{$product->price}}đ</span>
                                             @else
-                                            <span class="product-price"style="color: #2fa360">{{$product->price}} vnđ</span>
+                                            <span class="product-price"style="color: #2fa360">Giá: {{$product->price}}đ</span>
                                         @endif
                                     </div>
                                 </div>
@@ -173,7 +173,7 @@
                                             <div style="color: black">{{$product->customer->name}}</div>
                                         </div>
                                         <div class="box-price">
-                                            <span class="product-price" >{{$product->price}} vnđ</span>
+                                            <span class="product-price" >Giá: {{$product->price}}đ</span>
                                         </div>
                                     </div>
                                 </div>
@@ -202,10 +202,7 @@
                                                 <div style="color: black">{{$product->customer->name}}</div>
                                             </div>
                                             <div class="box-price">
-                                                <span class="product-price" style="color: #2fa360">${{$product->price-($product->price*$product->sale/100)}}</span>
-                                                @if($product->status == 0)
-                                                    <span class="old-price">{{$product->price}} vnđ</span>
-                                                @endif
+                                                <span class="product-price" style="color: #2fa360">Giá: {{$product->price}}đ</span>
                                             </div>
                                         </div>
                                     </div>
@@ -278,7 +275,7 @@
                                                 <div style="color: black">{{$product->customer->name}}</div>
                                             </div>
                                             <div class="box-price">
-                                                <span class="product-price" style="color: red">${{$product->price}} vnđ</span>
+                                                <span class="product-price" style="color: red">Giá: {{$product->price}}đ</span>
                                             </div>
                                         </div>
                                     </div>
@@ -306,7 +303,7 @@
                                                 <div style="color: black">{{$product->customer->name}}</div>
                                             </div>
                                             <div class="box-price">
-                                                <span class="product-price" style="color: #2fa360">${{$product->price}} vnđ</span>
+                                                <span class="product-price" style="color: #2fa360">Giá: {{$product->price}}đ</span>
                                             </div>
                                         </div>
                                     </div>

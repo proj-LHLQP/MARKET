@@ -24,10 +24,10 @@ jQuery(document).ready(function () {
         product+='</div>';
         product+='<div class="box-price">';
         if(result.status == 0){
-            product+='<span class="product-price">'+(result.price)+' vnđ</span>';
+            product+='<span class="product-price">Giá: '+(result.price)+'đ</span>';
         }
         else{
-            product+='<span class="product-price" style="color: #2fa360">$'+result.price+' vnđ</span>';
+            product+='<span class="product-price" style="color: #2fa360">Giá:'+result.price+'đ</span>';
         }
         product+='</div>';
         product+='</div>';
