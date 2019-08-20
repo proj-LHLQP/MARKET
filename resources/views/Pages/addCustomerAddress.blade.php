@@ -29,23 +29,23 @@
                         <div class="text-center"><strong>Địa Chỉ</strong></div>
                         <div class="form-group mt-5">
                             <label for="province_id">Tỉnh/Thành phố:</label>
-                            <select class="form-control" name="province_id" id="province">
+                            <select class="form-control" name="province_id" id="province" required>
                                 <option value="0">Toàn Quốc</option>
                             </select>
                         </div>
                         <div class="form-group mt-2">
                             <label for="district_id">Quận/Huyện:</label>
-                            <select class="form-control" name="district_id" id="district">
+                            <select class="form-control" name="district_id" id="district" required>
                             </select>
                         </div>
                         <div class="form-group mt-2">
                             <label for="ward_id">Xã/Phường/Thị trấn:</label>
-                            <select class="form-control" name="ward_id" id="ward">
+                            <select class="form-control" name="ward_id" id="ward" required>
                             </select>
                         </div>
                         <div class="form-group mt-2">
                             <label for="village_id">Thôn/Xóm:</label>
-                            <select class="form-control" name="village_id" id="village">
+                            <select class="form-control" name="village_id" id="village" required>
                             </select>
                         </div>
                         <div class="form-group mt-2">

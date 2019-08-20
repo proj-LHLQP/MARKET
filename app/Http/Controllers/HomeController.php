@@ -36,14 +36,20 @@ class HomeController extends Controller
         $data = Product::
             join('product_categories', 'products.id', '=', 'product_categories.product_id')
             ->join('categories', 'categories.id', '=', 'product_categories.category_id')
-                ->where([['categories.id',$categoryId],['active',1]])->select('products.*')
+            ->where([['categories.id',$categoryId],['active',1],['seller_id',null]])
+            ->orwhere([['categories.id',$categoryId],['active',1],['buyer_id',null]])
+            ->select('products.*')
             ->paginate(6);
         return $data;
     }
 
     public function getHomePage()
     {
-        $productHotDeal = Product::where([['active',1],['sale','<>','null']])->orderBy('sale','DESC')->limit(10)->get();
+        $productHotDeal = Product::where([['active',1],['sale','<>','null'],['seller_id',null]])
+            ->orwhere([['active',1],['sale','<>','null'],['buyer_id',null]])
+            ->orderBy('sale','DESC')->limit(10)->get();
+
+
         $watchedProduct =[];
         if(Auth::guard('customer')->check()){
             $watchedProduct = Auth::guard('customer')->user()->watchedProduct;
@@ -99,8 +105,6 @@ class HomeController extends Controller
         return view('Pages.contact');
     }
     public function getCategory(Request $request){
-
-
         $category = Category::find($request->id);
         $parentCategory='';
         if($category->parent_id != 0){

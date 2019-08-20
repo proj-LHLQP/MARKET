@@ -29,7 +29,8 @@ class Category extends Model
         $productActived = [];
         foreach ($products as $product){
             if($product->active == 1){
-                $productActived[] = $product;
+                if($product->seller_id==null || $product->buyer_id==null)
+                    $productActived[] = $product;
             }
         }
         return $productActived;

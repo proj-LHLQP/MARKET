@@ -38,6 +38,7 @@
                                                        <thead>
                                                        <tr>
                                                            <th><strong>Product</strong></th>
+                                                           <th><strong>Tình trạng</strong></th>
                                                            <th class="text-center"><strong>Giá</strong></th>
                                                            <th class="text-center"><strong>Giảm giá</strong></th>
                                                            <th> </th>
@@ -68,24 +69,44 @@
                                                                        </span>
                                                                    </div>
                                                                </div></td>
+                                                                @if($sell->buyer_id == null)
+                                                                    <td style="color: #9561e2"><strong>Chưa bán</strong> </td>
+                                                                    @else
+                                                                    <td style="color: #ff7700"><strong>Đã bán</strong></td>
+                                                                @endif
                                                                 <td class="col-sm-1 col-md-1 text-center"style="color: red"><strong>{{$sell->price}}$</strong></td>
                                                                 <td class="col-sm-1 col-md-1 text-center"style="color: red"><strong>{{$sell->sale}}%</strong></td>
+                                                                @if($sell->buyer_id != null)
+                                                                    <td class="col-sm-1 col-md-1">
+                                                                        <button type="button" class="btn btn-success" disabled>
+                                                                            <span class="glyphicon glyphicon-edit"></span> Sửa
+                                                                        </button>
+                                                                    </td>
+                                                                    <td class="col-sm-1 col-md-1">
+                                                                        <button type="button" class="btn btn-danger" disabled>
+                                                                            <span class="glyphicon glyphicon-remove"></span> Xóa
+                                                                        </button>
 
-                                                            <td class="col-sm-1 col-md-1">
-                                                                <a href="edit-product/{{$sell->id}}">
-                                                                    <button type="button" class="btn btn-success">
-                                                                        <span class="glyphicon glyphicon-edit"></span> Sửa
-                                                                    </button>
-                                                                </a>
-                                                            </td>
+                                                                    </td>
+                                                                @else
+                                                                    <td class="col-sm-1 col-md-1">
+                                                                        <a href="edit-product/{{$sell->id}}">
+                                                                            <button type="button" class="btn btn-success">
+                                                                                <span class="glyphicon glyphicon-edit"></span> Sửa
+                                                                            </button>
+                                                                        </a>
+                                                                    </td>
 
-                                                            <td class="col-sm-1 col-md-1">
-                                                                <a href="delete-product/{{$sell->id}}">
-                                                                    <button type="button" class="btn btn-danger">
-                                                                        <span class="glyphicon glyphicon-remove"></span> Xóa
-                                                                    </button>
-                                                                </a>
-                                                            </td>
+                                                                    <td class="col-sm-1 col-md-1">
+                                                                        <a href="delete-product/{{$sell->id}}">
+                                                                            <button type="button" class="btn btn-danger">
+                                                                                <span class="glyphicon glyphicon-remove"></span> Xóa
+                                                                            </button>
+                                                                        </a>
+                                                                    </td>
+                                                                @endif
+
+
 
                                                        </tr>
                                                        @endforeach

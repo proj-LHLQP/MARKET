@@ -66,6 +66,7 @@ class Kernel extends HttpKernel
         'view_posted' => \App\Http\Middleware\ViewPosted::class,
         'checkActiveProduct' => \App\Http\Middleware\CheckActivedProduct::class,
         'deleteProduct' => \App\Http\Middleware\DeleteProduct::class,
+        'productTraded'=>\App\Http\Middleware\ProductTraded::class,
     ];
 
     /**

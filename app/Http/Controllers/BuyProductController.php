@@ -54,7 +54,7 @@ class BuyProductController extends Controller
             $idAddressReceiver = $request->addressId;
             $productBuying = Product::find($idProductBuying);
             $seller = Customer::find($productBuying->seller_id);
-            dd($feeShip+$productBuying->price);
+//            dd($feeShip+$productBuying->price);
             //Nghiep vu
             if($buyer->wallet < ($feeShip+$productBuying->price)){
                 return redirect()->route('topup')->withErrors(['Tài khoản của bạn không đủ, vui lòng nạp tiền rồi mua lại sản phẩm trong wishlist!']);
