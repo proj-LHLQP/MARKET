@@ -1,3 +1,9 @@
+@if(session('message-success'))
+<div class="alert alert-success container">{{session('message-success')}}</div>
+@endif
+@if($errors->any())
+<div class="alert alert-danger container" style="background-color: coral">{{$errors->first()}}</div>
+@endif
 <div class="nav-top-menu" >
     <div class="container">
         <div class="row">
@@ -90,7 +96,7 @@
             <div class="col-sm-4 col-md-3 col-lg-2">
                 @if(!Auth::guard('customer')->check())
                     <a  href="javascript:void(0)" onclick="openLoginModal();" class="text-center">
-                        <button style="background-color: #1269db; width: 100%;height: 40px; color: #fff; border-radius: 2px"><strong>Post Product</strong></button>
+                        <button style="background-color: #1269db; width: 100%;height: 40px; color: #fff; border-radius: 2px"><strong>Đăng tin</strong></button>
                     </a>
                 @else
                     <a  href="{{'post-product'}}" class="text-center">

@@ -40,13 +40,9 @@
                                 </fieldset>
                                 <div class="form-group">
                                     <label>Parent_id</label>
-                                    <select class="form-control" name="parent_id">
+                                    <select class="form-control" name="parent_id" id="parent_id">
 
-                                        <option value="1">Chọn</option>
-                                        <option value="2">Đồ điện tử</option>
-                                        <option value="3">Bất động sản</option>
-                                        <option value="4">Thời trang</option>
-                                        <option value="5"> Dịch vụ du lịch</option>
+                                        <option value="0">Chọn</option>
                                     </select>
                                 </div>
                                 <button type="submit" class="btn btn-success">Submit Button</button>
@@ -60,4 +56,21 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script-category')
+    <script>
+        jQuery(document).ready(function () {
+            jQuery.ajax({
+                url:'admin/list-parent-category',
+                method:'POST'
+            }).done(function (result) {
+                let html ='';
+                for(let i = 0; i<result.length; i++){
+                    html+='<option value="'+result[i].id+'">'+result[i].name+'</option>';
+                }
+                jQuery('#parent_id').append(html)
+            })
+        })
+    </script>
 @endsection

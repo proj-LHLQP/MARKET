@@ -5,12 +5,12 @@
         <div class="breadcrumb clearfix">
             <a class="home" href="#" title="Return to Home">Home</a>
             <span class="navigation-pipe">&nbsp;</span>
-            <span class="navigation_page">Posted Product</span>
+            <span class="navigation_page">Sản phẩm đã đăng</span>
         </div>
         <!-- ./breadcrumb -->
         <!-- page heading-->
         <h2 class="page-heading">
-            <span class="page-heading-title2 text-primary"><strong>POSTED PRODUCT</strong></span>
+            <span class="page-heading-title2 text-primary"><strong>SẢN PHẨM ĐÃ ĐĂNG</strong></span>
         </h2>
         <!-- ../page heading-->
         <div class="page-content page-contact">
@@ -38,9 +38,9 @@
                                                        <thead>
                                                        <tr>
                                                            <th><strong>Product</strong></th>
-                                                           <th><strong>Quantity</strong></th>
-                                                           <th class="text-center"><strong>Price</strong></th>
-                                                           <th class="text-center"><strong>Sell</strong></th>
+                                                           <th><strong>Tình trạng</strong></th>
+                                                           <th class="text-center"><strong>Giá</strong></th>
+                                                           <th class="text-center"><strong>Giảm giá</strong></th>
                                                            <th> </th>
                                                            <th> </th>
                                                        </tr>
@@ -51,13 +51,12 @@
                                                            <td class="col-sm-7 col-md-6">
                                                                <div class="media">
                                                                    @if(count($sell->images)>0)
-                                                                   <a class="thumbnail pull-left mr-3" href="#"> <img class="media-object" src="{{$sell->images[0]->image_path}}" style="width: 72px; height: 72px;"> </a>
+                                                                   <a class="thumbnail pull-left mr-3" href="product-detail/{{$sell->id}}"> <img class="media-object" src="{{$sell->images[0]->image_path}}" style="width: 72px; height: 72px;"> </a>
                                                                    @else
-                                                                       <a class="thumbnail pull-left mr-3" href="#"> <img class="media-object" src="uploads/product_images/no-image.jpg" style="width: 72px; height: 72px;"> </a>
+                                                                       <a class="thumbnail pull-left mr-3" href="product-detail/{{$sell->id}}"> <img class="media-object" src="uploads/product_images/no-image.jpg" style="width: 72px; height: 72px;"> </a>
                                                                    @endif
                                                                    <div class="m    edia-body">
-                                                                       <h4 class="media-heading"><a href="#">{{$sell->name}}</a></h4>
-                                                                       <h5 class="media-heading"> by <a href="#"></a></h5>
+                                                                       <h4 class="media-heading"><a href="product-detail/{{$sell->id}}">{{$sell->name}}</a></h4>
                                                                        <span>Status: </span>
                                                                        <span class="text-success">
 
@@ -70,23 +69,44 @@
                                                                        </span>
                                                                    </div>
                                                                </div></td>
-                                                           <td class="col-sm-1 col-md-1" style="text-align: center">
-                                                               <input type="email" class="form-control" id="exampleInputEmail1" value="{{$sell->active}}">
-                                                           </td>
+                                                                @if($sell->buyer_id == null)
+                                                                    <td style="color: #9561e2"><strong>Chưa bán</strong> </td>
+                                                                    @else
+                                                                    <td style="color: #ff7700"><strong>Đã bán</strong></td>
+                                                                @endif
                                                                 <td class="col-sm-1 col-md-1 text-center"style="color: red"><strong>{{$sell->price}}$</strong></td>
                                                                 <td class="col-sm-1 col-md-1 text-center"style="color: red"><strong>{{$sell->sale}}%</strong></td>
+                                                                @if($sell->buyer_id != null)
+                                                                    <td class="col-sm-1 col-md-1">
+                                                                        <button type="button" class="btn btn-success" disabled>
+                                                                            <span class="glyphicon glyphicon-edit"></span> Sửa
+                                                                        </button>
+                                                                    </td>
+                                                                    <td class="col-sm-1 col-md-1">
+                                                                        <button type="button" class="btn btn-danger" disabled>
+                                                                            <span class="glyphicon glyphicon-remove"></span> Xóa
+                                                                        </button>
 
-                                                            <td class="col-sm-1 col-md-1">
-                                                                <button type="button" class="btn btn-success">
-                                                                    <span class="glyphicon glyphicon-edit"></span> Edit
-                                                                </button>
-                                                            </td>
+                                                                    </td>
+                                                                @else
+                                                                    <td class="col-sm-1 col-md-1">
+                                                                        <a href="edit-product/{{$sell->id}}">
+                                                                            <button type="button" class="btn btn-success">
+                                                                                <span class="glyphicon glyphicon-edit"></span> Sửa
+                                                                            </button>
+                                                                        </a>
+                                                                    </td>
 
-                                                            <td class="col-sm-1 col-md-1">
-                                                                <button type="button" class="btn btn-danger">
-                                                                    <span class="glyphicon glyphicon-remove"></span> Remove
-                                                                </button>
-                                                            </td>
+                                                                    <td class="col-sm-1 col-md-1">
+                                                                        <a href="delete-product/{{$sell->id}}">
+                                                                            <button type="button" class="btn btn-danger">
+                                                                                <span class="glyphicon glyphicon-remove"></span> Xóa
+                                                                            </button>
+                                                                        </a>
+                                                                    </td>
+                                                                @endif
+
+
 
                                                        </tr>
                                                        @endforeach
@@ -108,11 +128,9 @@
                                                         <thead>
                                                         <tr>
                                                             <th><strong>Product</strong></th>
-                                                            <th><strong>Quantity</strong></th>
                                                             <th class="text-center"><strong>Price</strong></th>
-                                                            <th class="text-center"><strong>Sell</strong></th>
-                                                            <th></th>
-                                                            <th></th>
+                                                            <th><strong>Sửa</strong></th>
+                                                            <th><strong>Xóa</strong></th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
@@ -121,11 +139,11 @@
                                                                 <td class="col-sm-7 col-md-6">
                                                                     <div class="media">
                                                                         @if(count($buy->images)>0)
-                                                                            <a class="thumbnail pull-left mr-3" href="#"> <img class="media-object" src="{{$buy->images[0]->image_path}}" style="width: 72px; height: 72px;"> </a>
+                                                                            <a class="thumbnail pull-left mr-3" href="product-detail/{{$buy->id}}"> <img class="media-object" src="{{$buy->images[0]->image_path}}" style="width: 72px; height: 72px;"> </a>
                                                                         @else
-                                                                            <a class="thumbnail pull-left mr-3" href="#"> <img class="media-object" src="uploads/product_images/no-image.jpg" style="width: 72px; height: 72px;"> </a>
+                                                                            <a class="thumbnail pull-left mr-3" href="product-detail/{{$buy->id}}"> <img class="media-object" src="uploads/product_images/no-image.jpg" style="width: 72px; height: 72px;"> </a>
                                                                         @endif                                                                        <div class="media-body">
-                                                                            <h4 class="media-heading"><a href="#">{{$buy->name}}</a></h4>
+                                                                            <h4 class="media-heading"><a href="product-detail/{{$buy->id}}">{{$buy->name}}</a></h4>
                                                                             <h5 class="media-heading"> by <a href="#"></a></h5>
                                                                             <span>Status: </span><span class="text-success"></span>
                                                                                 <span class="text-success">
@@ -139,20 +157,20 @@
                                                                                 </span>
                                                                         </div>
                                                                     </div></td>
-                                                                <td class="col-sm-1 col-md-1" style="text-align: center">
-                                                                    <input type="email" class="form-control" id="exampleInputEmail1" value="{{$buy->active}}">
-                                                                </td>
+
                                                                 <td class="col-sm-1 col-md-1 text-center" style="color: red"><strong>{{$buy->price}}$</strong></td>
-                                                                <td class="col-sm-1 col-md-1 text-center"><strong>xx</strong></td>
+
                                                                 <td class="col-sm-1 col-md-1">
                                                                     <button type="button" class="btn btn-success">
                                                                         <span class="glyphicon glyphicon-edit"></span> Edit
                                                                     </button>
                                                                 </td>
                                                                 <td class="col-sm-1 col-md-1">
-                                                                    <button type="button" class="btn btn-danger">
-                                                                        <span class="glyphicon glyphicon-remove"></span> Remove
-                                                                    </button>
+                                                                    <a href="delete-product/{{$buy->id}}">
+                                                                        <button type="button" class="btn btn-danger">
+                                                                            <span class="glyphicon glyphicon-remove"></span> Remove
+                                                                        </button>
+                                                                    </a>
                                                                 </td>
                                                             </tr>
                                                         @endforeach

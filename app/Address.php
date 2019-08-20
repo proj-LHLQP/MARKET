@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Address extends Model
 {
-    protected $fillable =['product_id','province_id','district_id','ward_id','village_id'];
+    protected $fillable =['product_id','province_id','district_id','ward_id','village_id','customer_id','detail'];
     public function province(){
         $province = Province::where('provinceid',$this->province_id)->get();
         return $province[0]->name;

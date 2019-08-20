@@ -20,12 +20,17 @@ class Category extends Model
     public function product(){
         return $this->belongsToMany('App\Product','product_categories','category_id','product_id');
     }
+    public function parentCategory(){
+        $parentCategory = Category::where('id',$this->parent_id)->select('name')->first();
+        return $parentCategory;
+    }
     public function productActived(){
         $products = $this->product;
         $productActived = [];
         foreach ($products as $product){
             if($product->active == 1){
-                $productActived[] = $product;
+                if($product->seller_id==null || $product->buyer_id==null)
+                    $productActived[] = $product;
             }
         }
         return $productActived;

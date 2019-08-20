@@ -65,7 +65,7 @@
                             <h5 class="modal-title">Đã có trong danh sách yêu thích</h5>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
                         </div>
                     </div>
 
@@ -79,8 +79,21 @@
                             <h5 class="modal-title">Bạn cần đăng nhập để sử dụng chức năng này</h5>
                         </div>
                         <div class="modal-footer">
-                            <a class="btn btn-success" data-dismiss="modal" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Login</a>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <a class="btn btn-success" data-dismiss="modal" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Đăng nhập</a>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal_3" role="dialog">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h5 class="modal-title">Đã thêm vào danh sách yêu thích</h5>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
                         </div>
                     </div>
                 </div>
@@ -177,10 +190,10 @@
             <div id="user-info-top" class="user-info pull-right">
                 @if(!Auth::guard('customer')->check())
                     <div class="dropdown">
-                        <a class="current-open" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><span>My Account</span></a>
+                        <a class="current-open" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><span>Tài Khoản</span></a>
                         <ul class="dropdown-menu mega_dropdown" role="menu">
-                            <li><a class="btn big-login" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Login</a></li>
-                            <li><a class="btn big-register" data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();">Register</a></li>
+                            <li><a class="btn big-login" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Đăng nhập</a></li>
+                            <li><a class="btn big-register" data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();">Đăng ký</a></li>
                         </ul>
                     </div>
                 @else
@@ -188,7 +201,7 @@
                         <a class="current-open" data-toggle="dropdown" aria-haspopup="true"
                            aria-expanded="false" href="#"><span>{{ Auth::guard('customer')->user()->name}}</span></a>
                         <ul class="dropdown-menu mega_dropdown" role="menu">
-                            <li><a href="{{ route(CLIENT_LOGOUT) }}">Logout</a></li>
+                            <li><a href="{{ route(CLIENT_LOGOUT) }}">Đăng xuất</a></li>
                         </ul>
                         <ul class="dropdown-menu mega_dropdown p-3" role="menu" style="min-width: 270px">
                             <li>
@@ -204,14 +217,14 @@
                                 </a>
                             </li>
                             <hr>
-                            <li><a style="padding: 10px 0; margin: 5px  " href="posted-product?id={{Auth::guard('customer')->user()->id}}"><i style="font-size: 20px; color: #00b5e9" class="fas fa-upload"></i>&nbsp;Sản phẩn đã đăng</a></li>
+                            <li><a style="padding: 10px 0; margin: 5px  " href="posted-product/{{Auth::guard('customer')->user()->id}}"><i style="font-size: 20px; color: #00b5e9" class="fas fa-upload"></i>&nbsp;Sản phẩn đã đăng</a></li>
                             <li><a style="padding: 10px 0; margin: 5px  " href="posted-product?id={{Auth::guard('customer')->user()->id}}"><i style="font-size: 20px; color: red" class="fas fa-shopping-bag"></i>&nbsp;Sản phẩn đã giao dịch</a></li>
                             <li><a style="padding: 10px 0; margin: 5px  " href=""><i style="font-size: 20px; color: #ba8b00" class="fas fa-wallet"></i>&nbsp;Ví Tiền</a></li>
                             <li><a style="padding: 10px 0; margin: 5px  " href=""><i style="font-size: 20px; color: #9561e2" class="fas fa-file-invoice-dollar"></i>&nbsp;Ví đóng băng</a></li>
                             <li><a style="padding: 10px 0; margin: 5px  " href=""><i style="font-size: 20px; color:#2fa360" class="fas fa-donate"></i>&nbsp;Điểm thưởng</a></li>
                             <li id="show-charts">
                                 <a style="padding: 10px 0; margin: 5px" href="charts/{{Auth::guard('customer')->user()->id}}">
-                                    <i style="font-size: 20px; color:#2fa360" class="fas fa-donate"></i>&nbsp;Charts
+                                    <i style="font-size: 20px; color:#ff7700" class="fas fa-chart-pie"></i>&nbsp;Charts
                                 </a>
                             </li>
                             <hr>
@@ -230,7 +243,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Login with</h4>
+                        <h4 class="modal-title">Đăng Nhập</h4>
                     </div>
                     <div class="text-center">
                         <span class="font-size-message" id="message"></span>
@@ -248,7 +261,7 @@
                                 </div>
                                 <div class="division">
                                     <div class="line l"></div>
-                                    <span>or</span>
+                                    <span>hoặc</span>
                                     <div class="line r"></div>
                                 </div>
                                 <div class="error"></div>
@@ -260,10 +273,10 @@
                                             <span class="text-error message-validate" data-error="email"></span>
                                         </div>
                                         <div>
-                                            <input id="password" class="form-control" type="password" placeholder="Password" name="password">
+                                            <input id="password" class="form-control" type="password" placeholder="Mật khẩu" name="password">
                                             <span class="text-error message-validate" data-error="password"></span>
                                         </div>
-                                        <input id="user-login" class="btn btn-default btn-login" type="button" value="Login">
+                                        <input id="user-login" class="btn btn-default btn-login" type="button" value="Đăng nhập">
                                     </form>
                                 </div>
                             </div>
@@ -297,8 +310,8 @@
                     </div>
                     <div class="modal-footer">
                         <div class="forgot login-footer">
-                            <span>Looking to
-                                 <a href="javascript: showRegisterForm();">create an account</a>
+                            <span>
+                                 <a href="javascript: showRegisterForm();">Tạo tài khoản</a>
                             ?</span>
                         </div>
                         <div class="forgot register-footer" style="display:none">
@@ -329,205 +342,11 @@
                             </div>
                             <div id="navbar" class="navbar-collapse collapse">
                                 <ul class="nav navbar-nav">
-                                    <li class=""><a href="{{asset('homepage')}}">Home</a></li>
-                                    <li class="dropdown">
-                                        <a href="category.html" class="dropdown-toggle" data-toggle="dropdown">Fashion</a>
-                                        <ul class="dropdown-menu mega_dropdown" role="menu" style="width: 830px;">
-                                            <li class="block-container col-sm-3">
-                                                <ul class="block">
-                                                    <li class="img_container">
-                                                        <a href="#">
-                                                            <img class="img-responsive" src="assets-home/data/men.png" alt="sport">
-                                                        </a>
-                                                    </li>
-                                                    <li class="link_container group_header">
-                                                        <a href="#">MEN'S</a>
-                                                    </li>
-                                                    <li class="link_container"><a href="#">Skirts</a></li>
-                                                    <li class="link_container"><a href="#">Jackets</a></li>
-                                                    <li class="link_container"><a href="#">Tops</a></li>
-                                                    <li class="link_container"><a href="#">Scarves</a></li>
-                                                    <li class="link_container"><a href="#">Pants</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="block-container col-sm-3">
-                                                <ul class="block">
-                                                    <li class="img_container">
-                                                        <a href="#">
-                                                            <img class="img-responsive" src="assets-home/data/women.png" alt="sport">
-                                                        </a>
-                                                    </li>
-                                                    <li class="link_container group_header">
-                                                        <a href="#">WOMEN'S</a>
-                                                    </li>
-                                                    <li class="link_container"><a href="#">Skirts</a></li>
-                                                    <li class="link_container"><a href="#">Jackets</a></li>
-                                                    <li class="link_container"><a href="#">Tops</a></li>
-                                                    <li class="link_container"><a href="#">Scarves</a></li>
-                                                    <li class="link_container"><a href="#">Pants</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="block-container col-sm-3">
-                                                <ul class="block">
-                                                    <li class="img_container">
-                                                        <a href="#">
-                                                            <img class="img-responsive" src="assets-home/data/kid.png" alt="sport">
-                                                        </a>
-                                                    </li>
-                                                    <li class="link_container group_header">
-                                                        <a href="#">Kids</a>
-                                                    </li>
-                                                    <li class="link_container"><a href="#">Shoes</a></li>
-                                                    <li class="link_container"><a href="#">Clothing</a></li>
-                                                    <li class="link_container"><a href="#">Tops</a></li>
-                                                    <li class="link_container"><a href="#">Scarves</a></li>
-                                                    <li class="link_container"><a href="#">Accessories</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="block-container col-sm-3">
-                                                <ul class="block">
-                                                    <li class="img_container">
-                                                        <a href="#">
-                                                            <img class="img-responsive" src="assets-home/data/trending.png" alt="sport">
-                                                        </a>
-                                                    </li>
-                                                    <li class="link_container group_header">
-                                                        <a href="#">TRENDING</a>
-                                                    </li>
-                                                    <li class="link_container"><a href="#">Men's Clothing</a></li>
-                                                    <li class="link_container"><a href="#">Kid's Clothing</a></li>
-                                                    <li class="link_container"><a href="#">Women's Clothing</a></li>
-                                                    <li class="link_container"><a href="#">Accessories</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="category.html" class="dropdown-toggle" data-toggle="dropdown">Sports<span class="notify notify-right">new</span></a>
+                                    <li class=""><a href="{{asset('homepage')}}">Trang chủ</a></li>
 
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="category.html" class="dropdown-toggle" data-toggle="dropdown">Foods</a>
-                                        <ul class="mega_dropdown dropdown-menu" style="width: 830px;">
-                                            <li class="block-container col-sm-3">
-                                                <ul class="block">
-                                                    <li class="link_container group_header">
-                                                        <a href="#">Asian</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Vietnamese Pho</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Noodles</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Seafood</a>
-                                                    </li>
-                                                    <li class="link_container group_header">
-                                                        <a href="#">Sausages</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Meat Dishes</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Desserts</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Tops</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Tops</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="block-container col-sm-3">
-                                                <ul class="block">
-                                                    <li class="link_container group_header">
-                                                        <a href="#">European</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Greek Potatoes</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Famous Spaghetti</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Famous Spaghetti</a>
-                                                    </li>
-                                                    <li class="link_container group_header">
-                                                        <a href="#">Chicken</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Italian Pizza</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">French Cakes</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Tops</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Tops</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="block-container col-sm-3">
-                                                <ul class="block">
-                                                    <li class="link_container group_header">
-                                                        <a href="#">FAST</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Hamberger</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Pizza</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Noodles</a>
-                                                    </li>
-                                                    <li class="link_container group_header">
-                                                        <a href="#">Sandwich</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Salad</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Paste</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Tops</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Tops</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="block-container col-sm-3">
-                                                <ul class="block">
-                                                    <li class="img_container">
-                                                        <img src="assets-home/data/banner-topmenu.jpg" alt="Banner">
-                                                    </li>
-                                                </ul>
-                                            </li>
-
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="category.html" class="dropdown-toggle" data-toggle="dropdown">Digital</a>
-                                        <ul class="dropdown-menu container-fluid">
-                                            <li class="block-container">
-                                                <ul class="block">
-                                                    <li class="link_container"><a href="#">Mobile</a></li>
-                                                    <li class="link_container"><a href="#">Tablets</a></li>
-                                                    <li class="link_container"><a href="#">Laptop</a></li>
-                                                    <li class="link_container"><a href="#">Memory Cards</a></li>
-                                                    <li class="link_container"><a href="#">Accessories</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="{{asset('contact')}}">Contact</a></li>
-                                    <li><a href="{{asset('about')}}">About</a></li>
-                                    <li><a href="{{asset('blogs')}}">Blog</a></li>
+                                    <li><a href="{{asset('contact')}}">Liên hệ</a></li>
+                                    <li><a href="{{asset('about')}}">Giới thiệu</a></li>
+                                    <li><a href="{{asset('blogs')}}">Tin tức</a></li>
                                 </ul>
                             </div><!--/.nav-collapse -->
                         </div>
@@ -752,14 +571,16 @@
 <script>
     CKEDITOR.replace( 'article-ckeditor' );
 </script>
+
+@yield('script')
+@yield('script-1')
+
 {{--Chart JS--}}
 <script type="text/javascript" src="{{asset('Highcharts/code/highcharts.js')}}"></script>
 <script type="text/javascript" src="{{asset('Highcharts/code/modules/series-label.js')}}"></script>
 <script type="text/javascript" src="{{asset('Highcharts/code/modules/exporting.js')}}"></script>
 <script type="text/javascript" src="{{asset('Highcharts/code/modules/export-data.js')}}"></script>
 <script type="text/javascript" src="{{ asset('js/charts.js') }}"></script>
-@yield('script')
-@yield('script-1')
 
 
 </body>

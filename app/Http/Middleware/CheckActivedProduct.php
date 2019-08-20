@@ -17,8 +17,13 @@ class checkActivedProduct
     public function handle($request, Closure $next)
     {
         $product = Product::find($request->id);
+//        dd($product->buyer_id);
         if(isset($product) && $product->active == 1)
-            return $next($request);
+
+            if($product->seller_id==null || $product->buyer_id==null)
+                return $next($request);
+            else
+                return redirect('not-found');
         else{
             return redirect('not-found');
         }

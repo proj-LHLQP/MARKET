@@ -36,6 +36,9 @@
             @if(session('message-success'))
             <div id="msg" class="alert alert-success">{{session('message-success')}}</div>
             @endif
+            @if($errors->any())
+            <div class="alert alert-danger" style="background-color: coral">{{$errors->first()}}</div>
+            @endif
             <div class="card-header" style="background: #fff;">
                 <h2 class="card-title text-primary" >Chọn ngân hàng</h2>
             </div>

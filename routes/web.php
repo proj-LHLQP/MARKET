@@ -22,7 +22,10 @@ Route::get('/home', 'HomeController@getHomePage')->name('home');
 Route::get('topup','MyController@topup')->name('topup');
 Route::post('charge','MyController@charge')->name('charge');
 
-Route::get('confirm-buy','BuyProductController@getDetail')->name('confirm.buy');
+Route::post('action-buy','BuyProductController@actionBuy')->name('actionbuy');
+Route::get('confirm-buy/{pid}','BuyProductController@getDetail')->name('confirm.buy');
+Route::post('add-customer-address','CustomerControlller@addCustomerAddress');
+Route::post('save-customer-address','CustomerControlller@saveCustomerAddress');
 
 //demo
 Route::get('/getProvince','MyController@getProvince');
@@ -32,11 +35,14 @@ Route::get('/getVillage','MyController@getVillage');
 Route::get('/list-cate','MyController@getCate');
 Route::get('/category-child','MyController@getCateChild');
 
-//post-products
+Route::post('report-customer','CustomerController@reportCustomer');
+Route::post('comment-product','ProductController@postCommentProduct');
+Route::get('delete-product/{id}','ProductController@deleteProduct')->middleware('deleteProduct');
 Route::post('post-product','ProductController@saveProducts');
 Route::post('uploadImg', 'ProductController@postImages');
 Route::post('deleteImg', 'ProductController@deleteImages');
-
+Route::post('porduct-latest','ProductController@getProductLatest');
+Route::post('porduct-care','ProductController@getProductCare');
 //listCategory
 Route::get('list-category','CategoryController@getAllCategory');
 //DEMO
@@ -50,7 +56,7 @@ Route::get('/product-detail/{id}','HomeController@getProductDetail')->middleware
 Route::get('/checkout','HomeController@getCheckOut');
 Route::get('/cart-detail','HomeController@getCartDetail');
 Route::get('/post-product',"HomeController@getPostProduct");
-Route::get('/posted-product',"HomeController@getPostedProduct")->middleware('view_posted');
+Route::get('/posted-product/{id}',"HomeController@getPostedProduct")->middleware('view_posted');
 Route::get('/not-found',"HomeController@getNotFound");
 //homepage
 Route::post('login', 'MyController@postLogin')->name(CLIENT_LOGIN);
@@ -64,8 +70,7 @@ Route::post('delete-wishlist','MyController@postDeleteWishList');
 
 //post-rate
 Route::post('rate-user','RateController@postRateUser');
-//comment product
-Route::post('comment-product','ProductController@postCommentProduct');
+
 //seach
 Route::get('/search/name', 'SearchController@searchByName');
 Route::get('/search/category', 'SearchController@searchByCategory');
@@ -78,9 +83,9 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'],function ()
     })->name('not-permit');
 
     //Phong start user manager
-//    Route::group(['middleware' => 'role:'.config('access.roles.admin')],function(){
+    Route::group(['middleware' => 'role:'.config('access.roles.admin')],function(){
         Route::get('users','UserController@index')->name('user.index');
-//    });
+    });
 
     Route::get('create-user','UserController@create')->name('user.create');
     Route::get('profile','UserController@profile')->name('user.profile');
@@ -93,7 +98,12 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'],function ()
 
     //category
     Route::resource('category','CategoryController');
+    Route::post('list-parent-category','CategoryController@getAllCategory');
 
+    //active product
+    Route::get('posted-products','ProductController@getListProduct');
+    Route::post('active-product','ProductController@activeProduct');
+    Route::get('posted-products-actived','ProductController@productActived');
     //Phong start role manager
     Route::get('role','RoleController@index')->name('role.index');
     Route::get('create-role','RoleController@create')->name('role.create');

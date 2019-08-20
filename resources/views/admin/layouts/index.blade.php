@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+{{--    <base href="{{asset('')}}">--}}
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Admin-Market</title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
@@ -31,10 +32,13 @@
     </style>
 </head>
 <body>
-
-
-
-
+<div class="wrapper">
+    @include('Admin.layouts.admin-main')
+    @yield('content')
+    @yield('script')
+    @include('Admin.layouts.custom')
+</div>
+</body>
 <script src="{{asset('assets/js/core/jquery.3.2.1.min.js')}}"></script>
 <script src="{{asset('assets/js/core/popper.min.js')}}"></script>
 <script src="{{asset('assets/js/core/bootstrap.min.js')}}"></script>
@@ -76,7 +80,14 @@
 <script src="{{asset('assets/js/setting-demo.js')}}"></script>
 <script src="{{asset('assets/js/demo.js')}}"></script>
 <script src="{{asset('js/ajax.js')}}"></script>
-@yield('script')
+
+{{--Chart JS--}}
+<script type="text/javascript" src="{{asset('Highcharts/code/highcharts.js')}}"></script>
+<script type="text/javascript" src="{{asset('Highcharts/code/modules/series-label.js')}}"></script>
+<script type="text/javascript" src="{{asset('Highcharts/code/modules/exporting.js')}}"></script>
+<script type="text/javascript" src="{{asset('Highcharts/code/modules/export-data.js')}}"></script>
+<script type="text/javascript" src="{{ asset('js/charts.js') }}"></script>
+
 <script>
     Circles.create({
         id:'circles-1',
@@ -84,14 +95,14 @@
         value:90,
         maxValue:100,
         width:7,
-        text: 50,
+        text: customers,
         colors:['#f1f1f1', '#FF9E27'],
         duration:400,
         wrpClass:'circles-wrp',
         textClass:'circles-text',
         styleWrapper:true,
         styleText:true
-    })
+    });
 
     Circles.create({
         id:'circles-2',
@@ -99,14 +110,14 @@
         value:70,
         maxValue:100,
         width:7,
-        text: 36,
+        text: sellers,
         colors:['#f1f1f1', '#2BB930'],
         duration:400,
         wrpClass:'circles-wrp',
         textClass:'circles-text',
         styleWrapper:true,
         styleText:true
-    })
+    });
 
     Circles.create({
         id:'circles-3',
@@ -114,26 +125,26 @@
         value:40,
         maxValue:100,
         width:7,
-        text: 12,
+        text: buyers,
         colors:['#f1f1f1', '#F25961'],
         duration:400,
         wrpClass:'circles-wrp',
         textClass:'circles-text',
         styleWrapper:true,
         styleText:true
-    })
+    });
 
     var totalIncomeChart = document.getElementById('totalIncomeChart').getContext('2d');
 
     var mytotalIncomeChart = new Chart(totalIncomeChart, {
         type: 'bar',
         data: {
-            labels: ["S", "M", "T", "W", "T", "F", "S", "S", "M", "T"],
+            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
             datasets : [{
-                label: "Total Income",
+                label: "Total Orders",
                 backgroundColor: '#ff9e27',
                 borderColor: 'rgb(23, 125, 255)',
-                data: [6, 4, 9, 5, 4, 6, 4, 3, 8, 10],
+                data: JSON.parse(orders)
             }],
         },
         options: {
@@ -171,11 +182,5 @@
         fillColor: 'rgba(255, 165, 52, .14)'
     });
 </script>
-<div class="wrapper">
-    @include('Admin.layouts.admin-main')
-    @yield('content')
-
-    @include('Admin.layouts.custom')
-</div>
-</body>
+@yield('script-category')
 </html>
