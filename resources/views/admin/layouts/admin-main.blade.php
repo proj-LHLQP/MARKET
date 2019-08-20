@@ -400,6 +400,9 @@
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{asset('admin/posted-products')}}">
+                                    <i class="fas fa-check-circle"></i></i><span>Active</span>
+                                </a>
+                                <a href="{{asset('admin/posted-products-actived')}}">
                                     <i class="fas fa-list"></i><span>List</span>
                                 </a>
                             </li>

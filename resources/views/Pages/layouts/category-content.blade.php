@@ -85,7 +85,7 @@
                                         <input type="checkbox" id="brand1" name="cc" />
                                         <label for="brand1">
                                             <span class="button"></span>
-                                            Cần mua<span class="count">{{count($products[1])}}</span>
+                                            Cần mua<span class="count"></span>
                                         </label>
                                     </li>
                                     <li>

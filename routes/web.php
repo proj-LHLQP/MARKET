@@ -24,6 +24,8 @@ Route::post('charge','MyController@charge')->name('charge');
 
 Route::post('action-buy','BuyProductController@actionBuy')->name('actionbuy');
 Route::get('confirm-buy/{pid}','BuyProductController@getDetail')->name('confirm.buy');
+Route::post('add-customer-address','CustomerControlller@addCustomerAddress');
+Route::post('save-customer-address','CustomerControlller@saveCustomerAddress');
 
 //demo
 Route::get('/getProvince','MyController@getProvince');
@@ -96,7 +98,12 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'],function ()
 
     //category
     Route::resource('category','CategoryController');
+    Route::post('list-parent-category','CategoryController@getAllCategory');
 
+    //active product
+    Route::get('posted-products','ProductController@getListProduct');
+    Route::post('active-product','ProductController@activeProduct');
+    Route::get('posted-products-actived','ProductController@productActived');
     //Phong start role manager
     Route::get('role','RoleController@index')->name('role.index');
     Route::get('create-role','RoleController@create')->name('role.create');

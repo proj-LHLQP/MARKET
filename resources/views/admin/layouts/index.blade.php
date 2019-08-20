@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+{{--    <base href="{{asset('')}}">--}}
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Admin-Market</title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
@@ -31,10 +32,13 @@
     </style>
 </head>
 <body>
+<div class="wrapper">
+    @include('Admin.layouts.admin-main')
+    @yield('content')
 
-
-
-
+    @include('Admin.layouts.custom')
+</div>
+</body>
 <script src="{{asset('assets/js/core/jquery.3.2.1.min.js')}}"></script>
 <script src="{{asset('assets/js/core/popper.min.js')}}"></script>
 <script src="{{asset('assets/js/core/bootstrap.min.js')}}"></script>
@@ -76,7 +80,7 @@
 <script src="{{asset('assets/js/setting-demo.js')}}"></script>
 <script src="{{asset('assets/js/demo.js')}}"></script>
 <script src="{{asset('js/ajax.js')}}"></script>
-@yield('script')
+
 <script>
     Circles.create({
         id:'circles-1',
@@ -171,11 +175,6 @@
         fillColor: 'rgba(255, 165, 52, .14)'
     });
 </script>
-<div class="wrapper">
-    @include('Admin.layouts.admin-main')
-    @yield('content')
-
-    @include('Admin.layouts.custom')
-</div>
-</body>
+@yield('script')
+@yield('script-category')
 </html>

@@ -23,7 +23,7 @@
 @if(session('message-success'))
 <div id="msg" class="alert alert-success">{{session('message-success')}}</div>
 @endif
-<section class="p-2 ">
+<section class="p-2 mt-5">
     <div class="container">
         <div class="row" style="background: #fff">
             <div class="border-delivery"></div>
@@ -42,6 +42,17 @@
 
                         </div>
                     </div>
+                @if(count(\App\Address::where('customer_id',Auth::guard('customer')->user()->id)->get())<5)
+                <div style="float: right" class="p-2 pb-4">
+{{--                    <a  href="{{'add-customer-address'}}" class="text-center">--}}
+                        <form action="add-customer-address" method="Post">
+                            @csrf
+                            <input name="product_id" value="{{$product->id}}" hidden>
+                            <button class="btn btn-success">Thêm địa chỉ</button>
+                        </form>
+                @endif
+{{--                    </a>--}}
+                </div>
             </div>
         </div>
     </div>
@@ -84,7 +95,7 @@
                             <tbody class="cart_product">
                             <tr>
                                 <th class="col-sm-4">{{$product->name}}</th>
-                                <th class="col-sm-4"><img src="{{$product->images()->first()}}" style="height: 100px;width:auto;"></th>
+                                <th class="col-sm-4" ><img  src="{{$product->images()->first()->image_path}}" style="height: 100px;width:auto;"></th>
                                 <th class="col-sm-4" id="price">{{number_format($product->price,0)}}</th>
                             </tr>
                             </tbody>
@@ -95,7 +106,7 @@
         </div>
     </div>
 </section>
-<section class="p-2">
+<section class="p-2 mb-5">
     <div class="container">
         <div class="row" style="background: #fff">
             <div class="col-sm-12">

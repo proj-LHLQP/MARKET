@@ -39,7 +39,7 @@
                         <div class="card-header">
                             <div class="d-flex align-items-center">
                                 <h4 class="card-title">List Category</h4>
-                                <a href="category/create" class="ml-auto">
+                                <a href="{{asset('admin/category/create')}}" class="ml-auto">
                                     <button class="btn btn-primary btn-round">
                                         <i class="fa fa-plus"></i>
                                         Add Category
@@ -57,10 +57,11 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Parent_id</th>
+                                        <th>Parent Category</th>
                                         <th>Create At</th>
                                         <th>Update_at</th>
-                                        <th style="width: 10%">Action</th>
+                                        <th style="width: 8%">Edit</th>
+                                        <th style="width: 8%">Delete</th>
                                     </tr>
                                     </thead>
 {{--                                    <tfoot>--}}
@@ -78,14 +79,19 @@
                                         <tr>
                                             <td>{{$key+1}}</td>
                                             <td>{{$value->name}}</td>
-                                            <td>{{$value->parent_id}}</td>
+                                            @if($value->parentCategory()!=null)
+                                                <td>{{$value->parentCategory()->name}}</td>
+                                                @else
+                                                <td></td>
+                                            @endif
                                             <td>{{$value->created_at}}</td>
-                                            <td>{{$value->updeat_at}}</td>
+                                            <td>{{$value->updated_at}}</td>
                                             <td>
                                                 <button class="btn btn-primary edit" title="{{ "Sửa ".$value->name }}" data-toggle="modal" data-target="#edit" type="button" data-id="{{ $value->id }}"><i class="fas fa-edit"></i></button>
+                                            </td>
+                                            <td>
                                                 <button class="btn btn-danger delete" title="{{ "Xóa ".$value->name }}" data-toggle="modal" data-target="#deleteCategory" type="button" data-id="{{ $value->id }}"><i class="fas fa-trash-alt"></i></button>
                                             </td>
-
 
                                         </tr>
                                     @endforeach
@@ -119,12 +125,8 @@
                                 </fieldset>
                                 <div class="form-group">
                                     <label>Parent_id</label>
-                                    <select class="form-control parent_id" name="parent_id">
+                                    <select class="form-control parent_id" name="parent_id" id="parent_id">
                                         <option value="0" ></option>
-                                        <option value="1" >Đồ điện tử</option>
-                                        <option value="2">Bất động sản</option>
-                                        <option value="3">Thời trang</option>
-                                        <option value="4"> Dịch vụ du lịch</option>
                                     </select>
                                 </div>
                                 <button type="submit" class="btn btn-success">Submit Button</button>

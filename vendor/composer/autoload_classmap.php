@@ -12,6 +12,7 @@ return array(
     'App\\Category' => $baseDir . '/app/Category.php',
     'App\\CommentProduct' => $baseDir . '/app/CommentProduct.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
+    'App\\Contact' => $baseDir . '/app/Contact.php',
     'App\\Customer' => $baseDir . '/app/Customer.php',
     'App\\CustomerRate' => $baseDir . '/app/CustomerRate.php',
     'App\\District' => $baseDir . '/app/District.php',

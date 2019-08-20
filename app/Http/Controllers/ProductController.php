@@ -22,7 +22,7 @@ class ProductController extends Controller
 
     var $product;
     public function saveProducts(Request $request){
-//        DB::beginTransaction();
+//                  nTransaction();
 //        try {
         $customer_id = $request->customer_id;
         $customer_star = CustomerRate::where([['customer_id',$customer_id],['active',1]])->avg('star');
@@ -84,10 +84,10 @@ class ProductController extends Controller
             //dd($this->product->customer->email);
 //            $product->customer;
 //            $data =(array)  $this->product;
-            $data =['customer_name'=>$product->customer->name,'product_name'=>$product->name];
-            Mail::send('Email.mail-content',$data,function ($message){
-                $message->to($this->product->customer->email)->subject('Đăng sản phẩm thành công');
-            });
+//            $data =['customer_name'=>$product->customer->name,'product_name'=>$product->name];
+//            Mail::send('Email.mail-content',$data,function ($message){
+//                $message->to($this->product->customer->email)->subject('Đăng sản phẩm thành công');
+//            });
 
             DB::commit();
             return redirect()->route(HOME_PAGE);
@@ -210,6 +210,27 @@ class ProductController extends Controller
         }
 
         return view('Pages.product.index', compact('revenue', 'orders'));
+    }
+
+    //active product
+
+    public function getListProduct(){
+        $product = Product::where('active',0)->get();
+        return view('admin.posted-product.post-product')->with('product',$product);
+    }
+    public function activeProduct(Request $request){
+        $checked = $request->checked;
+        foreach($checked as $ck) {
+            $product = Product::find($ck);
+            $product->active = 1;
+            $product->save();
+        }
+        return "success";
+    }
+
+    public function productActived(){
+        $product = Product::where('active',1)->get();
+        return view('admin.posted-product.list-product')->with('product',$product);
     }
 
 }

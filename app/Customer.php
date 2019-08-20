@@ -66,4 +66,5 @@ class Customer extends Authenticatable
         }
         return $starDetail;
     }
+
 }

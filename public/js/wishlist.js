@@ -43,6 +43,7 @@ jQuery(document).ready(function () {
                 jQuery('#list-wishlist').append(html);
                 let upCount = parseInt(jQuery('#count-wishlist').html())+1;
                 jQuery('#count-wishlist').html(upCount);
+                jQuery("#modal_3").modal();
             }
         })
     })

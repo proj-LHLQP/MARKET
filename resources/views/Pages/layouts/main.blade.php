@@ -65,7 +65,7 @@
                             <h5 class="modal-title">Đã có trong danh sách yêu thích</h5>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
                         </div>
                     </div>
 
@@ -79,8 +79,21 @@
                             <h5 class="modal-title">Bạn cần đăng nhập để sử dụng chức năng này</h5>
                         </div>
                         <div class="modal-footer">
-                            <a class="btn btn-success" data-dismiss="modal" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Login</a>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <a class="btn btn-success" data-dismiss="modal" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Đăng nhập</a>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal_3" role="dialog">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h5 class="modal-title">Đã thêm vào danh sách yêu thích</h5>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
                         </div>
                     </div>
                 </div>
@@ -177,10 +190,10 @@
             <div id="user-info-top" class="user-info pull-right">
                 @if(!Auth::guard('customer')->check())
                     <div class="dropdown">
-                        <a class="current-open" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><span>My Account</span></a>
+                        <a class="current-open" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><span>Tài Khoản</span></a>
                         <ul class="dropdown-menu mega_dropdown" role="menu">
-                            <li><a class="btn big-login" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Login</a></li>
-                            <li><a class="btn big-register" data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();">Register</a></li>
+                            <li><a class="btn big-login" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Đăng nhập</a></li>
+                            <li><a class="btn big-register" data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();">Đăng ký</a></li>
                         </ul>
                     </div>
                 @else
@@ -188,7 +201,7 @@
                         <a class="current-open" data-toggle="dropdown" aria-haspopup="true"
                            aria-expanded="false" href="#"><span>{{ Auth::guard('customer')->user()->name}}</span></a>
                         <ul class="dropdown-menu mega_dropdown" role="menu">
-                            <li><a href="{{ route(CLIENT_LOGOUT) }}">Logout</a></li>
+                            <li><a href="{{ route(CLIENT_LOGOUT) }}">Đăng xuất</a></li>
                         </ul>
                         <ul class="dropdown-menu mega_dropdown p-3" role="menu" style="min-width: 270px">
                             <li>
@@ -230,7 +243,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Login with</h4>
+                        <h4 class="modal-title">Đăng Nhập</h4>
                     </div>
                     <div class="text-center">
                         <span class="font-size-message" id="message"></span>
@@ -248,7 +261,7 @@
                                 </div>
                                 <div class="division">
                                     <div class="line l"></div>
-                                    <span>or</span>
+                                    <span>hoặc</span>
                                     <div class="line r"></div>
                                 </div>
                                 <div class="error"></div>
@@ -260,10 +273,10 @@
                                             <span class="text-error message-validate" data-error="email"></span>
                                         </div>
                                         <div>
-                                            <input id="password" class="form-control" type="password" placeholder="Password" name="password">
+                                            <input id="password" class="form-control" type="password" placeholder="Mật khẩu" name="password">
                                             <span class="text-error message-validate" data-error="password"></span>
                                         </div>
-                                        <input id="user-login" class="btn btn-default btn-login" type="button" value="Login">
+                                        <input id="user-login" class="btn btn-default btn-login" type="button" value="Đăng nhập">
                                     </form>
                                 </div>
                             </div>
@@ -297,8 +310,8 @@
                     </div>
                     <div class="modal-footer">
                         <div class="forgot login-footer">
-                            <span>Looking to
-                                 <a href="javascript: showRegisterForm();">create an account</a>
+                            <span>
+                                 <a href="javascript: showRegisterForm();">Tạo tài khoản</a>
                             ?</span>
                         </div>
                         <div class="forgot register-footer" style="display:none">
@@ -329,11 +342,11 @@
                             </div>
                             <div id="navbar" class="navbar-collapse collapse">
                                 <ul class="nav navbar-nav">
-                                    <li class=""><a href="{{asset('homepage')}}">Home</a></li>
+                                    <li class=""><a href="{{asset('homepage')}}">Trang chủ</a></li>
 
-                                    <li><a href="{{asset('contact')}}">Contact</a></li>
-                                    <li><a href="{{asset('about')}}">About</a></li>
-                                    <li><a href="{{asset('blogs')}}">Blog</a></li>
+                                    <li><a href="{{asset('contact')}}">Liên hệ</a></li>
+                                    <li><a href="{{asset('about')}}">Giới thiệu</a></li>
+                                    <li><a href="{{asset('blogs')}}">Tin tức</a></li>
                                 </ul>
                             </div><!--/.nav-collapse -->
                         </div>

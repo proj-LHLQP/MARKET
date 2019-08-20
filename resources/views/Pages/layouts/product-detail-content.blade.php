@@ -226,21 +226,74 @@
                                 <strong>Địa chỉ: {{$product->address}}</strong>
 
                             </div>
-                            @if($product->seller_id != Auth::guard('customer')->id() && !isset($product->buyer_id))
-                            <div class="form-action">
-                                <div class="button-group">
-                                    <a class="btn-add-cart" href="confirm-buy/{{$product->id}}">Buy now</a>
-                                    <a class="wishlist" id-product ="{{$product->id}}" style="cursor: pointer">
-                                        <i class="fa fa-heart-o"></i>
-                                        Add to Wishlist
-                                    </a>
-                                </div>
-                            </div>
-                            @elseif (isset($product->buyer_id))
-                            <p style="color: red">Sản phẩm này đã bán</p>
+{{--                            @if($product->seller_id != Auth::guard('customer')->id() && !isset($product->buyer_id))--}}
+                            @if(Auth::guard('customer')->check())
+                                @if($product->customer_id == Auth::guard('customer')->user()->id && $product->status == 0)
+                                        <p style="color: red">Sản phẩm của bạn đang được bày bán</p>
+                                @elseif($product->customer_id == Auth::guard('customer')->user()->id && $product->status == 1)
+                                    <p style="color: #2fa360">Sản phẩm của bạn đang được đăng mua</p>
+                                @else
+                                    @if($product->status == 0)
+                                        <div class="form-action">
+                                            <div class="button-group">
+                                                <a class="btn-add-cart" href="confirm-buy/{{$product->id}}">Buy now</a>
+                                                <a class="wishlist" id-product ="{{$product->id}}" style="cursor: pointer">
+                                                    <i class="fa fa-heart-o"></i>
+                                                    Add to Wishlist
+                                                </a>
+                                            </div>
+                                        </div>
+                                    @else
+                                        <div class="form-action">
+                                            <div class="button-group">
+                                                <a  href="{{'post-product'}}" class="text-center">
+                                                    <button class="btn btn-success">Đăng bán sản phẩm</button>
+                                                </a>
+                                                <a class="wishlist" id-product ="{{$product->id}}" style="cursor: pointer">
+                                                    <i class="fa fa-heart-o"></i>
+                                                    Add to Wishlist
+                                                </a>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endif
                             @else
-                            <p style="color: red">Sản phẩm của bạn đang được bày bán</p>
+                                @if($product->status == 0)
+                                    <div class="form-action">
+                                        <div class="button-group">
+                                            <a class="btn-add-cart" href="confirm-buy/{{$product->id}}">Buy now</a>
+                                            <a class="wishlist" id-product ="{{$product->id}}" style="cursor: pointer">
+                                                <i class="fa fa-heart-o"></i>
+                                                Add to Wishlist
+                                            </a>
+                                        </div>
+                                    </div>
+                                    @else
+                                    <div class="form-action">
+                                        <div class="button-group">
+                                            @if(!Auth::guard('customer')->check())
+                                                <a  href="javascript:void(0)" onclick="openLoginModal();" class="text-center">
+                                                    <button class="btn btn-success">Đăng bán sản phẩm</button>
+                                                </a>
+                                            @else
+                                                <a  href="{{'post-product'}}" class="text-center">
+                                                    <button class="btn btn-success">Đăng bán sản phẩm</button>
+                                                </a>
+                                            @endif
+
+                                            <a class="wishlist" id-product ="{{$product->id}}" style="cursor: pointer">
+                                                <i class="fa fa-heart-o"></i>
+                                                Add to Wishlist
+                                            </a>
+                                        </div>
+                                    </div>
+                                @endif
                             @endif
+{{--                            @elseif (isset($product->buyer_id))--}}
+{{--                            <p style="color: red">Sản phẩm này đã bán</p>--}}
+{{--                            @else--}}
+{{--                            <p style="color: red">Sản phẩm của bạn đang được bày bán</p>--}}
+{{--                            @endif--}}
                         </div>
                     </div>
                     <!-- tab product -->

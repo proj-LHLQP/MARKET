@@ -37,4 +37,13 @@ class Product extends Model
         }
         return $result;
     }
+    public function sellerName(){
+        return $this->belongsTo('App\Customer','seller_id','id');
+    }
+    public function customerName(){
+        return $this->belongsTo('App\Customer','customer_id','id');
+    }
+    public function buyerName(){
+        return $this->belongsTo('App\Customer','buyer_id','id');
+    }
 }
