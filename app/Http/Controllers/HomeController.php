@@ -45,11 +45,13 @@ class HomeController extends Controller
 
     public function getHomePage()
     {
-        $productHotDeal = Product::where([['active',1],['sale','<>','null'],['seller_id',null]])
-            ->orwhere([['active',1],['sale','<>','null'],['buyer_id',null]])
-            ->orderBy('sale','DESC')->limit(10)->get();
+        $productTop = Product::join('top_products','products.id','=','top_products.product_id')
+            ->where([['products.active',1],['products.seller_id',null]])
+            ->orwhere([['products.active',1],['products.buyer_id',null]])
+            ->select('products.*')
+            ->orderBy('top_products.updated_at','DESC')->limit(12)->get();
 
-
+//        dd($productTop);
         $watchedProduct =[];
         if(Auth::guard('customer')->check()){
             $watchedProduct = Auth::guard('customer')->user()->watchedProduct;
@@ -82,7 +84,7 @@ class HomeController extends Controller
         }
 //        dd($productBuyCare);
         return view('Pages.homepage')->with([
-            'productHotDeal'=>$productHotDeal,
+            'productTop'=>$productTop,
             'watchedProduct'=>$watchedProduct,
             'productBuyLatest'=>$productBuyLatest,
             'productSellLatest'=>$productSellLatest,

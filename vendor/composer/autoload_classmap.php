@@ -66,6 +66,7 @@ return array(
     'App\\Role' => $baseDir . '/app/Role.php',
     'App\\SellerRate' => $baseDir . '/app/SellerRate.php',
     'App\\Tag' => $baseDir . '/app/Tag.php',
+    'App\\TopProduct' => $baseDir . '/app/TopProduct.php',
     'App\\Traits\\Attribute\\RoleAttribute' => $baseDir . '/app/Traits/Attribute/RoleAttribute.php',
     'App\\Traits\\Method\\RoleMethod' => $baseDir . '/app/Traits/Method/RoleMethod.php',
     'App\\User' => $baseDir . '/app/User.php',

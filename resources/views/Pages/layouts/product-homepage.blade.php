@@ -6,11 +6,11 @@
                 <div class="col-sm-12 col-md-1 col-lg-1">
                     <div class="hot-deals-tab">
                         <div class="hot-deals-title vertical-text">
-                            <span class="mt-4">G</span>
+                            <span class="mt-4">N</span>
+                            <span class="mt-2">Ổ</span>
                             <span class="mt-2">I</span>
-                            <span class="mt-2">Á</span>
-                            <span class="yellow mt-5">T</span>
-                            <span class="yellow mt-2">Ố</span>
+                            <span class="yellow mt-5">B</span>
+                            <span class="yellow mt-2">Ậ</span>
                             <span class="yellow mt-2">T</span>
                         </div>
 
@@ -19,7 +19,7 @@
                 <div class="col-sm-12 col-md-11 col-lg-11 hot-deals-tab-content-col">
                     <div class="hot-deals-tab-content tab-container">
                         <ul class="products owl-carousel" data-dots="false" data-loop="true" data-nav = "true" data-margin = "15" data-autoplayTimeout="1000" data-autoplayHoverPause = "true" data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4},"1200":{"items":5}}'>
-                            @foreach($productHotDeal as $product)
+                            @foreach($productTop as $product)
                                 <li class="product">
                                 <div class="product-container">
                                     <div class="product-image">
