@@ -34,12 +34,14 @@
                     <h4 class="page-title">My Profile</h4>
                 </div>
                 <div class="row">
-                    @if($errors->any())
-                    <div class="alert alert-danger" style="background-color: coral">{{$errors->first()}}</div>
-                    @endif
-                    @if(session('message-success'))
-                    <div class="alert alert-success" style="background-color: cyan">{{session('message-success')}}</div>
-                    @endif
+                    <div class="col-md-12">
+                        @if($errors->any())
+                            <div class="alert alert-danger" style="background-color: coral">{{$errors->first()}}</div>
+                        @endif
+                        @if(session('message-success'))
+                            <div class="alert alert-success" style="background-color: cyan">{{session('message-success')}}</div>
+                        @endif
+                    </div>
                     <div class="col-md-12">
                         <form method="post" enctype="multipart/form-data" action="{{route('admin.user.update-infor')}}">
                         @csrf

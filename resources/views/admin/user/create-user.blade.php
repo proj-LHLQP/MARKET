@@ -54,23 +54,24 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul class="list-unstyled">
+                                    @foreach ($errors->all() as $error)
+                                        <div class="error-msg">
+                                            <i class="fa fa-times-circle"></i>
+                                            {{$error}}
+                                        </div>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
                         <form action="{{route('admin.user.store')}}" method="POST">
                             <div class="card">
                                 <div class="card-header">
                                     <div class="card-title">Create User</div>
                                 </div>
-                                @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    <ul class="list-unstyled">
-                                        @foreach ($errors->all() as $error)
-                                        <div class="error-msg">
-                                            <i class="fa fa-times-circle"></i>
-                                            {{$error}}
-                                        </div>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                                @endif
                                 <div class="card-body">
                                     @csrf
                                     <div class="col-sm-12">
