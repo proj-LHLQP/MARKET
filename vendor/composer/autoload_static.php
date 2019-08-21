@@ -598,6 +598,7 @@ class ComposerStaticInite8a2ce8691e5c0fd047035f7a96931cb
         'App\\Role' => __DIR__ . '/../..' . '/app/Role.php',
         'App\\SellerRate' => __DIR__ . '/../..' . '/app/SellerRate.php',
         'App\\Tag' => __DIR__ . '/../..' . '/app/Tag.php',
+        'App\\TopProduct' => __DIR__ . '/../..' . '/app/TopProduct.php',
         'App\\Traits\\Attribute\\RoleAttribute' => __DIR__ . '/../..' . '/app/Traits/Attribute/RoleAttribute.php',
         'App\\Traits\\Method\\RoleMethod' => __DIR__ . '/../..' . '/app/Traits/Method/RoleMethod.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
