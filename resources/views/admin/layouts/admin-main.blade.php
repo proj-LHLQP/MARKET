@@ -353,7 +353,7 @@
 
                 <li class="nav-item">
                     <a data-toggle="collapse" href="#customers">
-                        <i class="fas icon-people"></i>
+                        <i class="fas fa-user-friends"></i>
                         <p>Customer</p>
                         <span class="caret"></span>
                     </a>
@@ -375,7 +375,7 @@
 
                 <li class="nav-item">
                     <a data-toggle="collapse" href="#rate_customers">
-                        <i class="fas icon-star"></i>
+                        <i class="fas fa-star"></i>
                         <p>Rate Customer</p>
                         <span class="caret"></span>
                     </a>
@@ -395,7 +395,7 @@
 
                 <li class="nav-item">
                     <a data-toggle="collapse" href="#category">
-                        <i class="fas icon-people"></i>
+                        <i class="fas fa-align-left"></i>
                         <p>Category</p>
                         <span class="caret"></span>
                     </a>

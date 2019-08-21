@@ -129,15 +129,13 @@
                                         <option value="0" ></option>
                                     </select>
                                 </div>
-                                <button type="submit" class="btn btn-success">Submit Button</button>
-                                <button type="reset" class="btn btn-primary">Reset Button</button>
                             </form>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success update">Save</button>
-                    <button type="reset" class="btn btn-primary">Làm Lại</button>
+                    <button type="reset" class="btn btn-primary">Reset</button>
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
