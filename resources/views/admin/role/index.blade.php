@@ -143,5 +143,18 @@
 
             });
         });
+
+        //Đoạn này xử lý thêm số user =0 nếu ko có
+        window.onload = function() {
+            $( "tbody tr" ).each(function( index ) {
+              var a = $( this );
+              if (a.find( "td" ).length == 4) {
+                var action = a.find( "td:eq(3)" ).html();
+                a.find( "td:eq(3)" ).html('0');
+                a.append('<td>'+action+'</td>');
+
+              }
+            });
+        };
     </script>
     @endsection
