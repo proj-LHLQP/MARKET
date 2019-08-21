@@ -61,7 +61,7 @@ Route::get('/not-found',"HomeController@getNotFound");
 Route::post('login', 'MyController@postLogin')->name(CLIENT_LOGIN);
 Route::post('register', 'MyController@postRegister')->name(CLIENT_REGISTER);
 Route::get('logout', 'MyController@getLogout')->name(CLIENT_LOGOUT);
-Route::get('logout-user', 'MyController@getLogoutUser');
+
 Route::post('login-page', 'MyController@postLoginPage');
 
 //WishList
@@ -116,7 +116,7 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'],function ()
     Route::post('active-rate-customer','CustomerControlller@activeRateCustomer');
     Route::get('rate-customer-actived','CustomerControlller@rateCustomerActived');
 
-
+    Route::post('logout-user', 'MyController@getLogoutUser')->name('logout-user');
 });
 
 //social login

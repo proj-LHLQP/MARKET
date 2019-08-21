@@ -95,7 +95,7 @@ class MyController extends Controller
     public function getLogoutUser()
     {
         Auth::logout();
-        return redirect()->route('/login');
+        return redirect('/login');
     }
 
     public function postWishList(Request $request){
