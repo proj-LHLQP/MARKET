@@ -156,11 +156,12 @@
             scales: {
                 yAxes: [{
                     ticks: {
-                        display: false //this will remove only the label
+                        beginAtZero: true,
+                        display: true //this will remove only the label
                     },
                     gridLines : {
                         drawBorder: false,
-                        display : false
+                        display : true
                     }
                 }],
                 xAxes : [ {
