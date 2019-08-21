@@ -65,7 +65,7 @@
     <script>
         jQuery(document).ready(function () {
             jQuery.ajax({
-                url:'/public/admin/list-parent-category',
+                url:'admin/list-parent-category',
                 method:'POST'
             }).done(function (result) {
                 let html ='';
