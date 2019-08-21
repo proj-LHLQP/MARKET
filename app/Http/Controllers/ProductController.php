@@ -233,6 +233,7 @@ class ProductController extends Controller
         $product = Product::where('active',1)->get();
         return view('admin.posted-product.list-product')->with('product',$product);
     }
+
     public function addToTop(Request $request){
         $product_id =  $request->idProduct;
         $customer_id = Auth::guard('customer')->id();

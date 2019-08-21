@@ -35,10 +35,11 @@
 <div class="wrapper">
     @include('Admin.layouts.admin-main')
     @yield('content')
-    @yield('script')
+
     @include('Admin.layouts.custom')
 </div>
 </body>
+
 <script src="{{asset('assets/js/core/jquery.3.2.1.min.js')}}"></script>
 <script src="{{asset('assets/js/core/popper.min.js')}}"></script>
 <script src="{{asset('assets/js/core/bootstrap.min.js')}}"></script>
@@ -87,7 +88,7 @@
 <script type="text/javascript" src="{{asset('Highcharts/code/modules/exporting.js')}}"></script>
 <script type="text/javascript" src="{{asset('Highcharts/code/modules/export-data.js')}}"></script>
 <script type="text/javascript" src="{{ asset('js/charts.js') }}"></script>
-
+@yield('script')
 <script>
     Circles.create({
         id:'circles-1',
@@ -183,5 +184,7 @@
         fillColor: 'rgba(255, 165, 52, .14)'
     });
 </script>
+
 @yield('script-category')
+
 </html>
