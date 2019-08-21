@@ -76,7 +76,7 @@
                                     <div class="form-group form-inline">
                                         <label for="name" class="col-md-3 col-form-label">Name</label>
                                         <div class="col-md-9 p-0">
-                                            <input name="name" type="text" value="{{$user->name}}" class="form-control input-full" id="name" placeholder="Type Name">
+                                            <input name="name" type="text" {{$user->name == config('access.roles.admin') ? 'readonly' : ''}} value="{{$user->name}}" class="form-control input-full" id="name" placeholder="Type Name">
                                         </div>
                                     </div>
                                     <div class="form-group form-inline">
