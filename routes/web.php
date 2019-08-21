@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('Pages.homepage');
-});
+Route::get('/','HomeController@getHomePage');
 
 Auth::routes();
 
@@ -63,6 +61,7 @@ Route::get('/not-found',"HomeController@getNotFound");
 Route::post('login', 'MyController@postLogin')->name(CLIENT_LOGIN);
 Route::post('register', 'MyController@postRegister')->name(CLIENT_REGISTER);
 Route::get('logout', 'MyController@getLogout')->name(CLIENT_LOGOUT);
+Route::get('logout-user', 'MyController@getLogoutUser');
 Route::post('login-page', 'MyController@postLoginPage');
 
 //WishList
@@ -116,6 +115,7 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'],function ()
     Route::get('rate-customer','CustomerControlller@rateCustomer');
     Route::post('active-rate-customer','CustomerControlller@activeRateCustomer');
     Route::get('rate-customer-actived','CustomerControlller@rateCustomerActived');
+
 
 });
 

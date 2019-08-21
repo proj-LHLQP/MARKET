@@ -300,7 +300,7 @@
         jQuery(document).ready(function () {
             // let parentCategory = jQuery('#parent-category').attr('value');
             let token = jQuery('input[name=_token]').val();
-            let subCategory = jQuery('#sub-category').attr('value');
+            let category = jQuery('#sub-category').attr('value');
             let filterPrice ='';
             let filterCC ='';
             jQuery('.filter-price').change(function () {
@@ -309,6 +309,7 @@
                     url:'filter-product',
                     method:'POST',
                     data:{
+                        'category':category,
                         'filterPrice':filterPrice,
                         'filterCC':filterCC,
                         '_token':token,
@@ -323,6 +324,7 @@
                     url:'filter-product',
                     method:'POST',
                     data:{
+                        'category':category,
                         'filterPrice':filterPrice,
                         'filterCC':filterCC,
                         '_token':token,
