@@ -211,9 +211,16 @@ class HomeController extends Controller
     }
     public  function getPostedProduct(Request $request){
         $id = $request->id;
-        $categories = Category::where('parent_id',0)->get();
         $needBuy = Product::where([['customer_id',$id],['status',1]])->get();
         $needSell = Product::where([['customer_id',$id],['status',0]])->get();
-       return view('Pages.posted-product')->with(['neddBuy'=>$needBuy,'needSell'=>$needSell,'categories'=>$categories]);
+       return view('Pages.posted-product')->with(['neddBuy'=>$needBuy,'needSell'=>$needSell]);
+    }
+    public function getTradedProduct(Request $request){
+        $id = $request->id;
+//        dd($id);
+        $bought=Product::where([['buyer_id',$id],['seller_id','<>',null],['active',1]])->get();
+        $selled=Product::where([['seller_id',$id],['buyer_id','<>',null],['active',1]])->get();
+        return view('Pages.traded-product')->with(['bought'=>$bought,'selled'=>$selled]);
+
     }
 }

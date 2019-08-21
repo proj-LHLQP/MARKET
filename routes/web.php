@@ -39,6 +39,9 @@ Route::get('delete-product/{id}','ProductController@deleteProduct')->middleware(
 Route::post('post-product','ProductController@saveProducts');
 Route::post('uploadImg', 'ProductController@postImages');
 Route::post('deleteImg', 'ProductController@deleteImages');
+Route::get('/post-product',"HomeController@getPostProduct");
+Route::get('/posted-product/{id}',"HomeController@getPostedProduct")->middleware('view_posted');
+Route::get('/traded-product/{id}',"HomeController@getTradedProduct")->middleware('view_posted');
 Route::post('porduct-latest','ProductController@getProductLatest');
 Route::post('porduct-care','ProductController@getProductCare');
 Route::post('filter-product','ProductController@filterProduct');
@@ -55,8 +58,7 @@ Route::get('/category/{id}','HomeController@getCategory');
 Route::get('/product-detail/{id}','HomeController@getProductDetail')->middleware('checkActiveProduct');
 Route::get('/checkout','HomeController@getCheckOut');
 Route::get('/cart-detail','HomeController@getCartDetail');
-Route::get('/post-product',"HomeController@getPostProduct");
-Route::get('/posted-product/{id}',"HomeController@getPostedProduct")->middleware('view_posted');
+
 Route::get('/not-found',"HomeController@getNotFound");
 //homepage
 Route::post('login', 'MyController@postLogin')->name(CLIENT_LOGIN);

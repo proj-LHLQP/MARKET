@@ -218,7 +218,7 @@
                             </li>
                             <hr>
                             <li><a style="padding: 10px 0; margin: 5px  " href="posted-product/{{Auth::guard('customer')->user()->id}}"><i style="font-size: 20px; color: #00b5e9" class="fas fa-upload"></i>&nbsp;Sản phẩm đã đăng</a></li>
-                            <li><a style="padding: 10px 0; margin: 5px  " href="posted-product?id={{Auth::guard('customer')->user()->id}}"><i style="font-size: 20px; color: red" class="fas fa-shopping-bag"></i>&nbsp;Sản phẩm đã giao dịch</a></li>
+                            <li><a style="padding: 10px 0; margin: 5px  " href="traded-product/{{Auth::guard('customer')->user()->id}}"><i style="font-size: 20px; color: red" class="fas fa-shopping-bag"></i>&nbsp;Sản phẩm đã giao dịch</a></li>
                             <hr>
                             <li><a style="padding: 10px 0; margin: 5px  " href=""><i style="font-size: 20px; color: #ba8b00" class="fas fa-wallet"></i>&nbsp;Ví Tiền
                                 <span style="float: right; color: red">{{Auth::guard('customer')->user()->wallet}}đ</span>
