@@ -45,23 +45,30 @@ class RoleController extends Controller
         }
     }
 
-    public function edit($id){
-        $role = RoleOrigin::findById($id);
-        if($role !== null) {
-            $permissions = $role->permissions;
-            $allPermit = Permission::all();
-            //        dd($allPermit);
-            $allNamePermit = [];
-            foreach ($permissions as $p) {
-                $allNamePermit[] = $p->name;
+    public function edit($id, Request $request){
+
+        try {
+            $role = RoleOrigin::findById($id);
+            if ($role->name == 'administrator') {
+                $request->session()->flash('message-err', 'Không được sửa quyền của administrator!');
+                return redirect(route('admin.role.index'));
             }
-            //        dd($allNamePermit);
-            return view('admin.role.edit-role')->with(['allNamePermit' => $allNamePermit, 'allPermit' => $allPermit, 'role' => $role]);
-            //        return view('admin.role.edit-role',compact(['permissions','role']));
-        }else{
+            if($role !== null) {
+                $permissions = $role->permissions;
+                $allPermit = Permission::all();
+
+                $allNamePermit = [];
+                foreach ($permissions as $p) {
+                    $allNamePermit[] = $p->name;
+                }
+
+                return view('admin.role.edit-role')->with(['allNamePermit' => $allNamePermit, 'allPermit' => $allPermit, 'role' => $role]);
+            }
+        } catch (\Spatie\Permission\Exceptions\RoleDoesNotExist $e) {
             $request->session()->flash('message-err', 'Không tìm thấy Role cần sửa!');
             return redirect(route('admin.role.index'));
         }
+
     }
 
     public function update(Request $request,$id, Role $role){

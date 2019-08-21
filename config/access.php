@@ -2,7 +2,7 @@
 return [
     // Vai trò mặc định
     'roles' => [
-        'admin' => 'admin',
+        'admin' => 'administrator',
         'censor' => 'censor',
         'hr' => 'hr',
         'editor' => 'editor',

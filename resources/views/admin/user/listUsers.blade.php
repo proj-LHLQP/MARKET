@@ -82,10 +82,10 @@
                                                 <td>{{$user->id}}</td>
                                                 <td>{{$user->name}}</td>
                                                 <td>{{$user->email}}</td>
-                                                <td class="text-center"><img src="{{$user->avatar}}" alt="..." class=" avatar-img rounded-circle"></td>
+                                                <td class="text-center"><img src="{{asset($user->avatar)}}" alt="..." class=" avatar-img rounded-circle"></td>
                                                 <td>{{$user->created_at}}</td>
                                                 <td class="text-center">
-                                                    @if($user->name !== 'administrator')
+                                                    @if($user->name !== config('access.roles.admin'))
                                                     <div class="form-button-action">
                                                        <a href="edit-user/{{$user->id}}">
                                                            <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
