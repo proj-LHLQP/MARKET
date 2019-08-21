@@ -6,10 +6,10 @@
 
             @if($parentCategory!='')
                 <span class="navigation-pipe">&nbsp;</span>
-                <a href="category/{{$parentCategory->id}}" class="navigation_page">{{$parentCategory->name}}</a>
+                <a href="category/{{$parentCategory->id}}" id="parent-category" value="{{$parentCategory->id}}" class="navigation_page">{{$parentCategory->name}}</a>
             @endif
             <span class="navigation-pipe">&nbsp;</span>
-            <a href="category/{{$category->id}}" class="navigation_page">{{$category->name}}</a>
+            <a href="category/{{$category->id}}" id="sub-category" value="{{$category->id}}" class="navigation_page">{{$category->name}}</a>
         </div>
         <!-- ./breadcrumb -->
         <!-- row -->
@@ -39,6 +39,7 @@
                 @endif
                 <!-- ./block category  -->
                 <!-- block filter -->
+                @csrf
                 <div class="block left-module">
                     <p class="title_block">Lọc </p>
                     <div class="block_content">
@@ -48,30 +49,26 @@
                             <!-- filter price -->
                             <div class="layered_subtitle">Giá</div>
                             <div class="layered-content slider-range">
-
-                                <div data-label-reasult="Range:" data-min="0" data-max="500" data-unit="$" class="slider-range-price" data-value-min="50" data-value-max="350"></div>
-                                <div class="amount-range-price">Range: $50 - $350</div>
                                 <ul class="check-box-list">
                                     <li>
-                                        <input type="checkbox" id="p1" name="cc" />
-                                        <label for="p1">
-                                            <span class="button"></span>
-                                            $20 - $50<span class="count">(0)</span>
-                                        </label>
+                                        <input type="radio" id="p1" name="price" class="filter-price" value="p1" />
+                                        <label style="color: red" for="p1">Dưới 2 triệu</label>
                                     </li>
                                     <li>
-                                        <input type="checkbox" id="p2" name="cc" />
-                                        <label for="p2">
-                                            <span class="button"></span>
-                                            $50 - $100<span class="count">(0)</span>
-                                        </label>
+                                        <input type="radio" id="p2" name="price" class="filter-price" value="p2"/>
+                                        <label style="color: red" for="p2">Từ 2 - 4 triệu</label>
                                     </li>
                                     <li>
-                                        <input type="checkbox" id="p3" name="cc" />
-                                        <label for="p3">
-                                            <span class="button"></span>
-                                            $100 - $250<span class="count">(0)</span>
-                                        </label>
+                                        <input type="radio" id="p3" name="price" class="filter-price" value="p3"/>
+                                        <label style="color: red" for="p3">Từ 4 - 6 triệu</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" id="p4" name="price" class="filter-price" value="p4"/>
+                                        <label style="color: red" for="p4">Từ 6 - 10 triệu</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" id="p5" name="price" class="filter-price" value="p5"/>
+                                        <label style="color: red" for="p5">Trên 10 triệu</label>
                                     </li>
                                 </ul>
                             </div>
@@ -80,20 +77,14 @@
                             <!-- ./filter brand -->
                             <div class="layered_subtitle">Sản Phẩm</div>
                             <div class="layered-content filter-brand">
-                                <ul class="check-box-list">
+                                <ul class="check-box-list" >
                                     <li>
-                                        <input type="checkbox" id="brand1" name="cc" />
-                                        <label for="brand1">
-                                            <span class="button"></span>
-                                            Cần mua<span class="count"></span>
-                                        </label>
+                                        <input type="radio" id="brand1" name="cc" class="filter-cc" value="cc1"/>
+                                        <label style="color: #2fa360" for="brand1">Cần mua</label>
                                     </li>
                                     <li>
-                                        <input type="checkbox" id="brand2" name="cc" />
-                                        <label for="brand2">
-                                            <span class="button"></span>
-                                            Cần bán<span class="count">(0)</span>
-                                        </label>
+                                        <input type="radio" id="brand2" name="cc" class="filter-cc" value="cc2"/>
+                                        <label style="color: #2fa360" for="brand2">Cần bán</label>
                                     </li>
                                 </ul>
                             </div>
@@ -247,10 +238,9 @@
                                     </div>
                                     <div class="content_price">
                                         @if($product->status == 0)
-                                            <span class="price product-price">${{$product->price-($product->price*$product->sale/100)}}</span>
-                                            <span class="price old-price">${{$product->price}}</span>
+                                            <span class="price product-price">Giá: {{$product->price}}đ</span>
                                         @else
-                                            <span class="price product-price" style="color: #2fa360">${{$product->price}}</span>
+                                            <span class="price product-price" style="color: #2fa360">Giá: {{$product->price}}đ</span>
                                         @endif
                                     </div>
                                     <div class="info-orther">
@@ -305,3 +295,45 @@
         <!-- ./row-->
     </div>
 </div>
+@section('script')
+    <script>
+        jQuery(document).ready(function () {
+            // let parentCategory = jQuery('#parent-category').attr('value');
+            let token = jQuery('input[name=_token]').val();
+            let category = jQuery('#sub-category').attr('value');
+            let filterPrice ='';
+            let filterCC ='';
+            jQuery('.filter-price').change(function () {
+                filterPrice = jQuery(this).val();
+                jQuery.ajax({
+                    url:'filter-product',
+                    method:'POST',
+                    data:{
+                        'category':category,
+                        'filterPrice':filterPrice,
+                        'filterCC':filterCC,
+                        '_token':token,
+                    }
+                }).done((result)=>{
+                    console.log(result);
+                })
+            })
+            jQuery('.filter-cc').change(function () {
+                filterCC = jQuery(this).val();
+                jQuery.ajax({
+                    url:'filter-product',
+                    method:'POST',
+                    data:{
+                        'category':category,
+                        'filterPrice':filterPrice,
+                        'filterCC':filterCC,
+                        '_token':token,
+                    }
+                }).done((result)=>{
+                    console.log(result);
+                })
+            })
+
+        })
+    </script>
+    @endsection

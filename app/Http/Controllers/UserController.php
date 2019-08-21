@@ -237,7 +237,7 @@ class UserController extends Controller
                     $avatarReceiver->getClientMimeType() ==   'image/png') && $avatarReceiver->isValid()){
                     $newNameAvatar = $userLoging->id.'-_-'.$avatarReceiver->getClientOriginalName();
                     $avatarReceiver->move('avatars',$newNameAvatar);
-                    $pathAvatar = '../avatars/'.$newNameAvatar;
+                    $pathAvatar = 'avatars/'.$newNameAvatar;
     //                $arrRequest['avatar'] = $pathAvatar;
                 } else{
                     return Redirect::back()->withErrors(['Ảnh tải lên không hợp lệ!']);

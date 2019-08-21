@@ -226,14 +226,14 @@
                 <li class="nav-item dropdown hidden-caret">
                     <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
                         <div class="avatar-sm">
-                            <img src="{{ Auth::user()->avatar }}" alt="..." class="avatar-img rounded-circle">
+                            <img src="{{ asset(Auth::user()->avatar) }}" alt="..." class="avatar-img rounded-circle">
                         </div>
                     </a>
                     <ul class="dropdown-menu dropdown-user animated fadeIn">
                         <div class="dropdown-user-scroll scrollbar-outer">
                             <li>
                                 <div class="user-box">
-                                    <div class="avatar-lg"><img src="{{ Auth::user()->avatar }}" alt="image profile" class="avatar-img rounded"></div>
+                                    <div class="avatar-lg"><img src="{{ asset(Auth::user()->avatar) }}" alt="image profile" class="avatar-img rounded"></div>
                                     <div class="u-text">
                                         <h4>{{ Auth::user()->name }}</h4>
                                         <p class="text-muted">{{ Auth::user()->email }}</p><a href="{{route('admin.user.profile')}}" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
@@ -252,7 +252,7 @@
                                    onclick="event.preventDefault();
                                       document.getElementById('logout-form').submit();">Logout
                                 </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                <form id="logout-form" action="logout-user" method="POST" style="display: none;">
                                     @csrf
                                 </form>
                             </li>
@@ -353,7 +353,7 @@
 
                 <li class="nav-item">
                     <a data-toggle="collapse" href="#customers">
-                        <i class="fas icon-people"></i>
+                        <i class="fas fa-user-friends"></i>
                         <p>Customer</p>
                         <span class="caret"></span>
                     </a>
@@ -374,15 +374,35 @@
                 </li>
 
                 <li class="nav-item">
+                    <a data-toggle="collapse" href="#rate_customers">
+                        <i class="fas fa-star"></i>
+                        <p>Rate Customer</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="rate_customers">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="{{asset('admin/rate-customer')}}">
+                                    <i class="fas fa-check-circle"></i></i><span>Active</span>
+                                </a>
+                                <a href="{{asset('admin/rate-customer-actived')}}">
+                                    <i class="fas fa-list"></i><span>List</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="nav-item">
                     <a data-toggle="collapse" href="#category">
-                        <i class="fas icon-people"></i>
+                        <i class="fas fa-align-left"></i>
                         <p>Category</p>
                         <span class="caret"></span>
                     </a>
                     <div class="collapse" id="category">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="category">
+                                <a href="{{asset('admin/category')}}">
                                     <i class="fas fa-list"></i><span>List Category</span>
                                 </a>
                             </li>

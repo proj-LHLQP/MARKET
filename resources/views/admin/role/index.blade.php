@@ -50,7 +50,7 @@
                                         <thead>
                                             <tr>
                                                 <th>TT</th>
-                                                <th>Vai trò</th>
+                                                <th>Roles</th>
                                                 <th>Quyền</th>
                                                 <th>Số user</th>
                                                 <th>Action</th>
@@ -61,27 +61,41 @@
                                             <tr>
                                                 <td>{{$i+1}}</td>
                                                 <td>{{$r->name}}</td>
-                                                <td>{{$r->name}}</td>
+
+                                                @if($r->name == config('access.roles.admin'))
+                                                    <td style="color: red">Full Permission</td>
+                                                @else
+                                                    <td style="color: blue">@foreach ($r->permissions as $p)
+                                                            {{$p->name.' |'}}
+                                                        @endforeach
+                                                    </td>
+                                                @endif
+
                                                 @foreach($allUserHasRoleGroupByRoles as $k => $v)
                                                 @if($k === $r->id)
-                                                <td>{{$v->count()}}</td>
+                                                <td class="text-center" >{{$v->count()}}</td>
                                                 @break
                                                 @endif
                                                 @endforeach
-                                                <td>
-                                                    <div class="form-button-action">
-                                                    <a href="edit-role/{{$r->id}}">
-                                                        <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
-                                                            <i class="fa fa-edit"></i>
-                                                        </button>
-                                                    </a>
-                                                    <a href="delete-role/{{$r->id}}">
-                                                        <button type="button" data-toggle="tooltip" onclick="return confirm('Bạn chắc chắn xóa ?')" title="" class="btn btn-link btn-danger" data-original-title="Remove">
-                                                            <i class="fa fa-times"></i>
-                                                        </button>
-                                                    </a>
-                                                    </div>
-                                                </td>
+
+                                                @if($r->name == config('access.roles.admin'))
+                                                    <td class="text-center" style="color: red">Disabled</td>
+                                                @else
+                                                    <td class="text-center">
+                                                        <div class="form-button-action">
+                                                        <a href="edit-role/{{$r->id}}">
+                                                            <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
+                                                                <i class="fa fa-edit"></i>
+                                                            </button>
+                                                        </a>
+                                                        <a href="delete-role/{{$r->id}}">
+                                                            <button type="button" data-toggle="tooltip" onclick="return confirm('Bạn chắc chắn xóa ?')" title="" class="btn btn-link btn-danger" data-original-title="Remove">
+                                                                <i class="fa fa-times"></i>
+                                                            </button>
+                                                        </a>
+                                                        </div>
+                                                    </td>
+                                                @endif
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -143,5 +157,18 @@
 
             });
         });
+
+        //Đoạn này xử lý thêm số user =0 nếu ko có
+        window.onload = function() {
+            $( "tbody tr" ).each(function( index ) {
+              var a = $( this );
+              if (a.find( "td" ).length == 4) {
+                var action = a.find( "td:eq(3)" ).html();
+                a.find( "td:eq(3)" ).html('0');
+                a.append('<td class="text-center" >'+action+'</td>');
+
+              }
+            });
+        };
     </script>
     @endsection

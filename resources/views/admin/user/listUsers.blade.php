@@ -1,5 +1,4 @@
 @extends('Admin.layouts.index')
-
 @section('content')
 <style ref="">
     td .avatar-img {
@@ -44,57 +43,56 @@
                 @if(session('message-success'))
                     <div class="alert alert-success">{{session('message-success')}}</div>
                 @endif
-            </div>
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="align-items-center pull">
-                            <h4 class="card-title pull-left">List Users</h4>
-                            <a class="pull-right" href="{{route('admin.user.create')}}"><button class="btn btn-primary btn-round ml-auto " data-toggle="modal" data-target="#addRowModal">
-                                <i class="fa fa-plus"></i>
-                                Add User
-                            </button></a>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="add-row" class="display table table-striped table-hover" >
-                                <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Avatar</th>
-                                    <th>Create At</th>
-                                    <th>Action</th>
-                                </tr>
-                                </thead>
-                                <tfoot>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Avatar</th>
-                                    <th>Create At</th>
-                                    <th>Action</th>
-                                </tr>
-                                </tfoot>
-                                <tbody>
-                                @foreach($datas as $user)
-                                    <tr>
-                                        <td>{{$user->id}}</td>
-                                        <td>{{$user->name}}</td>
-                                        <td>{{$user->email}}</td>
-                                        <td class="text-center"><img src="{{$user->avatar}}" alt="..." class=" avatar-img rounded-circle"></td>
-                                        <td>{{$user->created_at}}</td>
-                                        <td class="text-center">
-                                            @if($user->name !== 'administrator')
-                                            <div class="form-button-action">
-                                               <a href="edit-user/{{$user->id}}">
-                                                   <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
-                                                       <i class="fa fa-edit"></i>
-                                                   </button>
-                                               </a>
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="align-items-center pull">
+                                    <h4 class="card-title pull-left">List Users</h4>
+                                    <a class="pull-right" href="{{route('admin.user.create')}}"><button class="btn btn-primary btn-round ml-auto " data-toggle="modal" data-target="#addRowModal">
+                                        <i class="fa fa-plus"></i>
+                                        Add User
+                                    </button></a>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="add-row" class="display table table-striped table-hover" >
+                                        <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Avatar</th>
+                                            <th>Create At</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tfoot>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Avatar</th>
+                                            <th>Create At</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        </tfoot>
+                                        <tbody>
+                                        @foreach($datas as $user)
+                                            <tr>
+                                                <td>{{$user->id}}</td>
+                                                <td>{{$user->name}}</td>
+                                                <td>{{$user->email}}</td>
+                                                <td class="text-center"><img src="{{asset($user->avatar)}}" alt="..." class=" avatar-img rounded-circle"></td>
+                                                <td>{{$user->created_at}}</td>
+                                                <td class="text-center">
+                                                    @if($user->name !== config('access.roles.admin'))
+                                                    <div class="form-button-action">
+                                                       <a href="edit-user/{{$user->id}}">
+                                                           <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
+                                                               <i class="fa fa-edit"></i>
+                                                           </button>
+                                                       </a>
 <!--                                                        <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove">-->
 <!--                                                            <i class="fa fa-times"></i>-->
 <!--                                                        </button>-->

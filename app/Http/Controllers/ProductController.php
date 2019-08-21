@@ -5,14 +5,17 @@ namespace App\Http\Controllers;
 use App\Address;
 use App\Category;
 use App\CommentProduct;
+use App\Customer;
 use App\CustomerRate;
 use App\Product;
 use App\ProductCategory;
 use App\ProductImage;
+use App\TopProduct;
 use App\View;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
@@ -33,7 +36,6 @@ class ProductController extends Controller
                     $product->seller_id=$request->customer_id;
                     $product->detail=$request->detail;
                     $product->price=$request->price;
-                    $product->sale=$request->sale;
                     $product->new=$request->new;
                     $product->status=$request->status;
                     if($customer_star!=null && $customer_star>=4.3){
@@ -48,7 +50,6 @@ class ProductController extends Controller
                 $product->buyer_id=$request->customer_id;
                 $product->detail=$request->detail;
                 $product->price=$request->price;
-                $product->sale=$request->sale;
                 $product->new=$request->new;
                 $product->status=$request->status;
                 if($customer_star!=null && $customer_star>=4.3){
@@ -89,7 +90,7 @@ class ProductController extends Controller
 //                $message->to($this->product->customer->email)->subject('Đăng sản phẩm thành công');
 //            });
 
-            DB::commit();
+           // DB::commit();
             return redirect()->route(HOME_PAGE);
 //        } catch (Exception $e) {
 //            DB::rollBack();
@@ -232,5 +233,33 @@ class ProductController extends Controller
         $product = Product::where('active',1)->get();
         return view('admin.posted-product.list-product')->with('product',$product);
     }
+    public function addToTop(Request $request){
+        $product_id =  $request->idProduct;
+        $customer_id = Auth::guard('customer')->id();
+        $customer = Customer::find($customer_id);
+        $top = TopProduct::where('product_id',$product_id)->first();
+        if(isset($top)){
+           return 0;
+        }
+        else{
+            if($customer->wallet < 150000){
+                return -1;
+            }
+            $customer->wallet = $customer->wallet-150000;
+            $customer->update([
+                'wallet' => $customer->wallet-150000
+            ]);
+            $top = new TopProduct();
+            $top->product_id =$product_id;
+            $top->save();
+            return 1;
+        }
+    }
 
+    public function filter($filterPrice, $fiterCC){
+
+    }
+    public function filterProduct(Request $request){
+        return $request;
+    }
 }

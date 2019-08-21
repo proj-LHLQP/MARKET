@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Address;
+use App\CustomerRate;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -18,5 +19,22 @@ class CustomerControlller extends Controller
         $customerAddress->save();
         return redirect('confirm-buy/'.$request->product_id);
 
+    }
+    public function rateCustomer(){
+        $rates = CustomerRate::where('active',0)->get();
+        return view('admin.customer-rate.active-rate')->with('rates',$rates);
+    }
+    public function rateCustomerActived(){
+        $rates = CustomerRate::where('active',1)->get();
+        return view('admin.customer-rate.list-rate')->with('rates',$rates);
+    }
+    public function activeRateCustomer(Request $request){
+        $checked = $request->checked;
+        foreach($checked as $ck) {
+            $rate = CustomerRate::find($ck);
+            $rate->active = 1;
+            $rate->save();
+        }
+        return "success";
     }
 }

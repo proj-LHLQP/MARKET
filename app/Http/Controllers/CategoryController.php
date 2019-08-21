@@ -23,6 +23,7 @@ class CategoryController extends Controller
             'name'=>$request->name,
             'parent_id'=>$request->parent_id,
         ]);
+        session()->flash('message-success','Add Category Success!!');
         return redirect()->route('admin.category.index');
 
 

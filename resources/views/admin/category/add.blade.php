@@ -1,4 +1,7 @@
 @extends('admin.layouts.index')
+@section('css')
+    <base href="{{asset('/public')}}">
+    @endsection
 @section('content')
     <div class="main-panel">
         <div class="content">
@@ -45,8 +48,8 @@
                                         <option value="0">Chọn</option>
                                     </select>
                                 </div>
-                                <button type="submit" class="btn btn-success">Submit Button</button>
-                                <button type="reset" class="btn btn-primary">Reset Button</button>
+                                <button type="submit" class="btn btn-success">Submit</button>
+                                <button type="reset" class="btn btn-primary">Reset</button>
                             </form>
 
                         </div>

@@ -22,7 +22,13 @@ class Product extends Model
         return $this->hasOne('App\Address','product_id','id');
     }
     public function category(){
-        return $this->belongsToMany('App\Category','product_categories','product_id','category_id');
+        $listCate = Product::join('product_categories','product_categories.product_id','=','products.id')
+            ->join('categories','product_categories.category_id','=','categories.id')
+            ->where('products.id',$this->id)
+            ->orderBy('categories.id','ASC')
+            ->select('categories.*')->get();
+        return $listCate;
+//        return $this->belongsToMany('App\Category','product_categories','product_id','category_id');
     }
     public function view(){
         return $this->hasOne('App\View','product_id','id');

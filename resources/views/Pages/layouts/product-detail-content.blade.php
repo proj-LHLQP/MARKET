@@ -45,90 +45,40 @@
                 <!--./left silde-->
                 <!-- block best sellers -->
                 <div class="block left-module">
-                    <p class="title_block">Giảm giá</p>
+                    <p class="title_block">Đăng gần đây</p>
                     <div class="block_content product-onsale">
                         <ul class="product-list owl-carousel" data-loop="true" data-nav = "false" data-margin = "0" data-autoplayTimeout="1000" data-autoplayHoverPause = "true" data-items="1" data-autoplay="true">
+                            @foreach($productLatest as $item)
                             <li>
-                                <div class="product-container">
+                                <div class="product-container"style="text-align: center">
                                     <div class="left-block">
-                                        <a href="#">
-                                            <img class="img-responsive" alt="product" src="assets-home/data/product-260x317.jpg" />
+                                        <a href="product-detail/{{$item->id}}">
+                                            <img class="img-responsive" alt="product" src="{{$item->images[0]->image_path}}" />
                                         </a>
-                                        <div class="price-percent-reduction2">-30% OFF</div>
                                     </div>
                                     <div class="right-block">
-                                        <h5 class="product-name"><a href="#">Maecenas consequat mauris</a></h5>
+                                        <h5 class="product-name"><a href="product-detail/{{$item->id}}">{{$item->name}}</a></h5>
                                         <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-half-o"></i>
+
                                         </div>
                                         <div class="content_price">
-                                            <span class="price product-price">$38,95</span>
-                                            <span class="price old-price">$52,00</span>
+                                            <span class="price product-price">Giá: {{$item->price}}đ</span>
                                         </div>
                                     </div>
-                                    <div class="product-bottom">
-                                        <a class="btn-add-cart" title="Add to Cart" href="#add">Add to Cart</a>
+                                    <div >
+                                        @if($product->status == 0)
+                                            <button class="btn btn-danger">Cần bán</button>
+                                        @else
+                                            <button class="btn btn-info">Cần mua</button>
+                                        @endif
                                     </div>
+
+{{--                                    <div class="product-bottom">--}}
+{{--                                        <a class="btn-add-cart" title="Add to Cart" href="#add">Add to Cart</a>--}}
+{{--                                    </div>--}}
                                 </div>
                             </li>
-                            <li>
-                                <div class="product-container">
-                                    <div class="left-block">
-                                        <a href="#">
-                                            <img class="img-responsive" alt="product" src="assets-home/data/p35.jpg" />
-                                        </a>
-                                        <div class="price-percent-reduction2">-10% OFF</div>
-                                    </div>
-                                    <div class="right-block">
-                                        <h5 class="product-name"><a href="#">Maecenas consequat mauris</a></h5>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-half-o"></i>
-                                        </div>
-                                        <div class="content_price">
-                                            <span class="price product-price">$38,95</span>
-                                            <span class="price old-price">$52,00</span>
-                                        </div>
-                                    </div>
-                                    <div class="product-bottom">
-                                        <a class="btn-add-cart" title="Add to Cart" href="#add">Add to Cart</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="product-container">
-                                    <div class="left-block">
-                                        <a href="#">
-                                            <img class="img-responsive" alt="product" src="assets-home/data/p37.jpg" />
-                                        </a>
-                                        <div class="price-percent-reduction2">-42% OFF</div>
-                                    </div>
-                                    <div class="right-block">
-                                        <h5 class="product-name"><a href="#">Maecenas consequat mauris</a></h5>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-half-o"></i>
-                                        </div>
-                                        <div class="content_price">
-                                            <span class="price product-price">$38,95</span>
-                                            <span class="price old-price">$52,00</span>
-                                        </div>
-                                    </div>
-                                    <div class="product-bottom">
-                                        <a class="btn-add-cart" title="Add to Cart" href="#add">Add to Cart</a>
-                                    </div>
-                                </div>
-                            </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -198,11 +148,7 @@
                                 </div>
                             </div>
                             <div class="product-price-group">
-                                <span class="price">${{$product->price-($product->price*$product->sale/100)}}</span>
-                                @if($product->status == 0 && $product->sale != 0)
-                                    <span class="old-price">${{$product->price}}</span>
-                                    <span class="discount">{{$product->sale}}%</span>
-                                @endif
+                                <span class="price">Giá: {{$product->price}} VNĐ</span>
                             </div>
 
                             <div class="product-desc">
@@ -547,16 +493,15 @@
                                             </div>
                                         </div>
                                         <div class="right-block">
-                                            <h5 class="product-name"><a href="#">{{$product->name}}</a></h5>
+                                            <h5 class="product-name"><a href="product-detail/{{$product->id}}">{{$product->name}}</a></h5>
                                             <div class="product-rating">
                                                 <strong style="color: black">{{$product->customer->name}}</strong>
                                             </div>
                                             <div class="content_price">
                                                 @if($product->status == 0)
-                                                    <span class="product-price" style="color: red">${{$product->price-($product->price*$product->sale/100)}}</span>
-                                                    <span class="old-price">${{$product->price}}</span>
+                                                    <span class="product-price" style="color: red">Giá: {{$product->price}}đ</span>
                                                 @elseif($product->status == 1)
-                                                    <span class="product-price" style="color: #2fa360">${{$product->price}}</span>
+                                                    <span class="product-price" style="color: #2fa360">Giá: {{$product->price}}đ</span>
                                                 @endif
                                             </div>
                                         </div>

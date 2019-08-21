@@ -8,6 +8,70 @@
             <span class="navigation_page">Sản phẩm đã đăng</span>
         </div>
         <!-- ./breadcrumb -->
+        @csrf
+        <div class="modal fade" id="modal_danoibat" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h5 class="modal-title">Đã có trong danh sách nổi bật</h5>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="modal fade" id="modal_thieutien" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h5 class="modal-title">Không đủ tiền trong tài khoản</h5>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-success"  id="naptien" data-dismiss="modal">Nạp tiền</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="modal fade" id="modal_noibat" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h5 class="modal-title">Đã thêm vào danh sách nổi bật</h5>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div id="top-product" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-md">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <strong class="modal-title"><h4>Thêm vào tin nổi bật</h4></strong>
+                    </div>
+                    <div class="modal-body">
+                        <h5>Bạn có muốn thêm bài đăng này vào tin nổi bật với giá: <strong style="color: red">149999đ</strong></h5>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="add-to-top">Thêm</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
         <!-- page heading-->
         <h2 class="page-heading">
             <span class="page-heading-title2 text-primary"><strong>SẢN PHẨM ĐÃ ĐĂNG</strong></span>
@@ -40,9 +104,9 @@
                                                            <th><strong>Product</strong></th>
                                                            <th><strong>Tình trạng</strong></th>
                                                            <th class="text-center"><strong>Giá</strong></th>
-                                                           <th class="text-center"><strong>Giảm giá</strong></th>
-                                                           <th> </th>
-                                                           <th> </th>
+                                                           <th><strong>Sửa</strong></th>
+                                                           <th><strong>Xóa</strong></th>
+                                                           <th><strong>Nổi bật</strong></th>
                                                        </tr>
                                                        </thead>
                                                        <tbody>
@@ -75,7 +139,6 @@
                                                                     <td style="color: #ff7700"><strong>Đã bán</strong></td>
                                                                 @endif
                                                                 <td class="col-sm-1 col-md-1 text-center"style="color: red"><strong>{{$sell->price}}$</strong></td>
-                                                                <td class="col-sm-1 col-md-1 text-center"style="color: red"><strong>{{$sell->sale}}%</strong></td>
                                                                 @if($sell->buyer_id != null)
                                                                     <td class="col-sm-1 col-md-1">
                                                                         <button type="button" class="btn btn-success" disabled>
@@ -86,7 +149,11 @@
                                                                         <button type="button" class="btn btn-danger" disabled>
                                                                             <span class="glyphicon glyphicon-remove"></span> Xóa
                                                                         </button>
-
+                                                                    </td>
+                                                                    <td class="col-sm-1 col-md-1">
+                                                                        <button type="button" class="btn btn-primary" disabled>
+                                                                            <i class="fas fa-bullhorn"></i>Nổi bật
+                                                                        </button>
                                                                     </td>
                                                                 @else
                                                                     <td class="col-sm-1 col-md-1">
@@ -103,6 +170,11 @@
                                                                                 <span class="glyphicon glyphicon-remove"></span> Xóa
                                                                             </button>
                                                                         </a>
+                                                                    </td>
+                                                                    <td class="col-sm-1 col-md-1">
+                                                                        <button type="button" class="btn btn-primary noibat" data-toggle="modal" data-target="#top-product" id-product="{{$sell->id}}">
+                                                                            <i class="fas fa-bullhorn"></i> Nổi bật
+                                                                        </button>
                                                                     </td>
                                                                 @endif
 
@@ -128,9 +200,11 @@
                                                         <thead>
                                                         <tr>
                                                             <th><strong>Product</strong></th>
-                                                            <th class="text-center"><strong>Price</strong></th>
+                                                            <th><strong>Tình trạng</strong></th>
+                                                            <th class="text-center"><strong>Giá</strong></th>
                                                             <th><strong>Sửa</strong></th>
                                                             <th><strong>Xóa</strong></th>
+                                                            <th><strong>Nổi bật</strong></th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
@@ -158,20 +232,52 @@
                                                                         </div>
                                                                     </div></td>
 
-                                                                <td class="col-sm-1 col-md-1 text-center" style="color: red"><strong>{{$buy->price}}$</strong></td>
+{{--                                                                <td class="col-sm-1 col-md-1 text-center" style="color: red"><strong>{{$buy->price}}$</strong></td>--}}
 
-                                                                <td class="col-sm-1 col-md-1">
-                                                                    <button type="button" class="btn btn-success">
-                                                                        <span class="glyphicon glyphicon-edit"></span> Edit
-                                                                    </button>
-                                                                </td>
-                                                                <td class="col-sm-1 col-md-1">
-                                                                    <a href="delete-product/{{$buy->id}}">
-                                                                        <button type="button" class="btn btn-danger">
-                                                                            <span class="glyphicon glyphicon-remove"></span> Remove
+                                                                @if($buy->seller_id == null)
+                                                                    <td style="color: #ff7700"><strong>Chưa mua</strong> </td>
+                                                                @else
+                                                                    <td style="color: #2fa360"><strong>Đã mua</strong></td>
+                                                                @endif
+                                                                <td class="col-sm-1 col-md-1 text-center"style="color: red"><strong>{{$buy->price}}$</strong></td>
+                                                                @if($buy->seller_id != null)
+                                                                    <td class="col-sm-1 col-md-1">
+                                                                        <button type="button" class="btn btn-success" disabled>
+                                                                            <span class="glyphicon glyphicon-edit"></span> Sửa
                                                                         </button>
-                                                                    </a>
-                                                                </td>
+                                                                    </td>
+                                                                    <td class="col-sm-1 col-md-1">
+                                                                        <button type="button" class="btn btn-danger" disabled>
+                                                                            <span class="glyphicon glyphicon-remove"></span> Xóa
+                                                                        </button>
+                                                                    </td>
+                                                                    <td class="col-sm-1 col-md-1">
+                                                                        <button type="button" class="btn btn-primary" disabled>
+                                                                            <i class="fas fa-bullhorn"></i>Nổi bật
+                                                                        </button>
+                                                                    </td>
+                                                                @else
+                                                                    <td class="col-sm-1 col-md-1">
+                                                                        <a href="edit-product/{{$buy->id}}">
+                                                                            <button type="button" class="btn btn-success">
+                                                                                <span class="glyphicon glyphicon-edit"></span> Sửa
+                                                                            </button>
+                                                                        </a>
+                                                                    </td>
+
+                                                                    <td class="col-sm-1 col-md-1">
+                                                                        <a href="delete-product/{{$buy->id}}">
+                                                                            <button type="button" class="btn btn-danger">
+                                                                                <span class="glyphicon glyphicon-remove"></span> Xóa
+                                                                            </button>
+                                                                        </a>
+                                                                    </td>
+                                                                    <td class="col-sm-1 col-md-1">
+                                                                        <button type="button" class="btn btn-primary noibat" data-toggle="modal" data-target="#top-product" id-product="{{$buy->id}}">
+                                                                            <i class="fas fa-bullhorn"></i> Nổi bật
+                                                                        </button>
+                                                                    </td>
+                                                                @endif
                                                             </tr>
                                                         @endforeach
                                                         </tbody>
@@ -188,3 +294,37 @@
         </div>
     </div>
 </div>
+@section('script')
+    <script>
+        jQuery(document).ready(function () {
+            let token = jQuery('input[name=_token]').val();
+            let idProduct=0;
+            jQuery('.noibat').click(function () {
+                idProduct = jQuery(this).attr('id-product')
+            })
+            jQuery('#add-to-top').click(function () {
+                jQuery.ajax({
+                    url:'add-to-top',
+                    method:'POST',
+                    data:{
+                        '_token':token,
+                        'idProduct':idProduct
+                    }
+                }).done(function (result) {
+                    if(result==0){
+                        jQuery("#modal_danoibat").modal();
+                    }
+                    if(result==1){
+                        jQuery("#modal_noibat").modal();
+                    }
+                    else if(result==-1){
+                        jQuery("#modal_thieutien").modal();
+                    }
+                })
+            })
+            jQuery('#naptien').click(function () {
+                window.location="topup";
+            })
+        })
+    </script>
+@endsection

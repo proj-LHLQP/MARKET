@@ -10,4 +10,7 @@ class CustomerRate extends Model
     public function customerRate(){
         return $this->belongsTo('App\Customer','customer_rate_id','id');
     }
+    public function customer(){
+        return $this->belongsTo('App\Customer','customer_id','id');
+    }
 }

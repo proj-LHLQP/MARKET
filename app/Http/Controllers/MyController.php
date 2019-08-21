@@ -86,10 +86,16 @@ class MyController extends Controller
         }
         return redirect('/login')->with('thongbao','Sai tên đăng nhập hoặc mật khẩu');
     }
+
     public function getLogout()
     {
         Auth::guard('customer')->logout();
         return redirect()->route(HOME_PAGE);
+    }
+    public function getLogoutUser()
+    {
+        Auth::logout();
+        return redirect('/login');
     }
 
     public function postWishList(Request $request){

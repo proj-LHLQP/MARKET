@@ -90,6 +90,9 @@
             </div>
         </div>
     </div>
+
+@endsection
+@section('script')
     <script>
         $(document).ready(function () {
             $('#submit').click(function () {
@@ -102,19 +105,19 @@
                 //checked = checked.toString();
                 console.log(checked)
 
-                        $.ajax({
-                            url: "active-product",
-                            method: "POST",
-                            data: {checked : checked},
-                            success: function (data) {
-                                //$('#result').html(data);
-                                if(data == "success") {
-                                    location.reload();
-                                }
+                $.ajax({
+                    url: "active-product",
+                    method: "POST",
+                    data: {checked : checked},
+                    success: function (data) {
+                        //$('#result').html(data);
+                        if(data == "success") {
+                            location.reload();
+                        }
 
-                            }
-                        });
+                    }
+                });
             });
         });
     </script>
-@endsection
+    @endsection
