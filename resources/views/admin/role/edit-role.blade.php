@@ -46,15 +46,30 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-6">
+                                    <div class="col-12">
                                         <div class="form-group">
                                             <label for="email">Quyền</label>
-                                            @if($allPermit->count())
+                                            {{--<!-- @if($allPermit->count())
                                             @foreach($allPermit as $ap)
                                                 <input type="checkbox" class="form-control" {{in_array($ap->name,$allNamePermit)?'checked':''}} value="{{$ap->id}}" name="permission[]" >
                                             {{$ap->name}} <br/>
                                             @endforeach
-                                            @endif
+                                            @endif -->--}}
+
+
+                                            <div class="selectgroup selectgroup-pills">
+                                                @if($allPermit->count())
+                                                @foreach($allPermit as $ap)
+                                                <label class="selectgroup-item">
+
+                                                    <input id="per-{{$ap->id}}" {{in_array($ap->name,$allNamePermit)?'checked="checked"':''}} type="checkbox" name="permission[]" value="{{$ap->id}}" class="selectgroup-input" >
+                                                    <span class="selectgroup-button">{{$ap->name}}</span>
+                                                </label>
+                                                @endforeach
+                                                @endif
+                                            </div>
+
+
                                         </div>
                                     </div>
 

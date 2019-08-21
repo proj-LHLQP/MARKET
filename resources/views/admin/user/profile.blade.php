@@ -69,7 +69,7 @@
                                     <p class="label">Your roles</p>
                                     @foreach($nameOfRoles as $r)
                                     <span style="margin-bottom: 2px" class="badge badge-pill badge-info">{{$r}}</span><br>
-                                    @if($r=='admin')
+                                    @if($r==config('access.roles.admin'))
                                     <span>Full permission</span>
                                     @endif
                                     @endforeach

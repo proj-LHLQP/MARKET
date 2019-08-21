@@ -35,7 +35,8 @@ return [
     ],
 
     'default' =>[
-        'avatar' => '../avatars/default-user.png'
+        'avatar' => 'avatars/default-user.png',
+        'email' => 'admin@vn.vn'
     ]
 
 
