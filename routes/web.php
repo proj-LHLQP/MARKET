@@ -43,6 +43,7 @@ Route::post('uploadImg', 'ProductController@postImages');
 Route::post('deleteImg', 'ProductController@deleteImages');
 Route::post('porduct-latest','ProductController@getProductLatest');
 Route::post('porduct-care','ProductController@getProductCare');
+Route::post('filter-product','ProductController@filterProduct');
 //listCategory
 Route::get('list-category','CategoryController@getAllCategory');
 //DEMO

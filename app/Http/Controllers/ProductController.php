@@ -230,5 +230,7 @@ class ProductController extends Controller
         $product = Product::where('active',1)->get();
         return view('admin.posted-product.list-product')->with('product',$product);
     }
-
+    public function filterProduct(Request $request){
+        return $request;
+    }
 }
