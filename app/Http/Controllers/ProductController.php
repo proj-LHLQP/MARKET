@@ -231,4 +231,10 @@ class ProductController extends Controller
         return view('admin.posted-product.list-product')->with('product',$product);
     }
 
+    public function filter($filterPrice, $fiterCC){
+
+    }
+    public function filterProduct(Request $request){
+        return $request;
+    }
 }
