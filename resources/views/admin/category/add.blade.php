@@ -1,4 +1,7 @@
 @extends('admin.layouts.index')
+@section('css')
+    <base href="{{asset('/public')}}">
+    @endsection
 @section('content')
     <div class="main-panel">
         <div class="content">
@@ -62,7 +65,7 @@
     <script>
         jQuery(document).ready(function () {
             jQuery.ajax({
-                url:'admin/list-parent-category',
+                url:'/public/admin/list-parent-category',
                 method:'POST'
             }).done(function (result) {
                 let html ='';
