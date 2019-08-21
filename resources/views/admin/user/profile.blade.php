@@ -154,64 +154,69 @@
                 </div>
             </div>
         </div>
-        <script type="text/javascript">
-            function readURL(input) {
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-                    reader.onload = function (e) {
-                        jQuery('#blah').attr('src', e.target.result);
-                    };
-                    reader.readAsDataURL(input.files[0]);
-                }
-            }
-            jQuery('#file-upload').change(function () {
-                readURL(this);
-            });
-
-        </script>
-
-        <!--Doan nay de popup error-->
-        <script type="text/javascript">
-            $('#alert_demo_3_2').click(function(e) {
-                swal("Good job!", "You clicked the button!", {
-                    icon : "error",
-                    buttons: {
-                        confirm: {
-                            className : 'btn btn-danger'
-                        }
-                    },
-                });
-            });
-        </script>
-        @if(session()->has('message'))
-        <!--Doan nay de popup success-->
-        <script type="text/javascript">
-            var SweetAlert2Demo = function() {
-                var initDemos = function () {
-                    function (e) {
-                        swal("{{ session()->get('message') }}", "You clicked the button!", {
-                            icon: "success",
-                            buttons: {
-                                confirm: {
-                                    className: 'btn btn-success'
-                                }
-                            },
-                        });
-                    }
-                };
-                return {
-                    //== Init
-                    init: function () {
-                        initDemos();
-                    },
-                };
-            }();
-            //== Class Initialization
-            jQuery(document).ready(function() {
-                SweetAlert2Demo.init();
-            });
-        </script>
-        @endif
+        
         @include('Admin.layouts.footer')
     </div>
     @endsection
+
+
+@section('script')
+    <script type="text/javascript">
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    jQuery('#blah').attr('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        jQuery('#file-upload').change(function () {
+            readURL(this);
+        });
+
+    </script>
+
+    <!--Doan nay de popup error-->
+    <script type="text/javascript">
+        $('#alert_demo_3_2').click(function(e) {
+            swal("Good job!", "You clicked the button!", {
+                icon : "error",
+                buttons: {
+                    confirm: {
+                        className : 'btn btn-danger'
+                    }
+                },
+            });
+        });
+    </script>
+    @if(session()->has('message'))
+    <!--Doan nay de popup success-->
+    <script type="text/javascript">
+        var SweetAlert2Demo = function() {
+            var initDemos = function () {
+                function (e) {
+                    swal("{{ session()->get('message') }}", "You clicked the button!", {
+                        icon: "success",
+                        buttons: {
+                            confirm: {
+                                className: 'btn btn-success'
+                            }
+                        },
+                    });
+                }
+            };
+            return {
+                //== Init
+                init: function () {
+                    initDemos();
+                },
+            };
+        }();
+        //== Class Initialization
+        jQuery(document).ready(function() {
+            SweetAlert2Demo.init();
+        });
+    </script>
+    @endif
+@endsection
