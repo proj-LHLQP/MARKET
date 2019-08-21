@@ -273,7 +273,7 @@
                                                                         </a>
                                                                     </td>
                                                                     <td class="col-sm-1 col-md-1">
-                                                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#top-product">
+                                                                        <button type="button" class="btn btn-primary noibat" data-toggle="modal" data-target="#top-product" id-product="{{$buy->id}}">
                                                                             <i class="fas fa-bullhorn"></i> Nổi bật
                                                                         </button>
                                                                     </td>
