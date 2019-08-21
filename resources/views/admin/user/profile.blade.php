@@ -51,7 +51,7 @@
                                 <div class="col-md-3 float-left">
                                     <div class="avatar avatar-xxl">
                                         @if(isset($user->avatar))
-                                            <img id="blah" src="{{$user->avatar}}" alt="..." class="avatar-img rounded-circle">
+                                            <img id="blah" src="{{asset($user->avatar)}}" alt="..." class="avatar-img rounded-circle">
                                         @else
                                             <i style="font-size: 120px" class="fas fa-user"></i>
                                         @endif
