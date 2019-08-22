@@ -194,7 +194,7 @@ class ProductController extends Controller
         $orders = [];
         for ($i=1; $i<=12 ; $i++) {
             $stats = DB::table('products')
-                ->where('user_id', $request->id)
+                ->where('customer_id', $request->id)
                 ->whereMonth('buy_date', '=', $i)
                 ->where('status', 0)
                 ->where('buyer_id', '<>', null)
@@ -202,7 +202,7 @@ class ProductController extends Controller
             array_push($revenue, $stats);
 
             $orderCount = DB::table('products')
-                ->where('user_id', $request->id)
+                ->where('customer_id', $request->id)
                 ->whereMonth('buy_date', '=', $i)
                 ->where('status', 0)
                 ->where('buyer_id', '<>', null)

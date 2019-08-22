@@ -35,7 +35,7 @@
 <div class="wrapper">
     @include('Admin.layouts.admin-main')
     @yield('content')
-
+    @yield('script-charts')
     @include('Admin.layouts.custom')
 </div>
 </body>
