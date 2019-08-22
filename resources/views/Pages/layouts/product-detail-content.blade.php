@@ -242,7 +242,26 @@
 {{--                            @endif--}}
                         </div>
                     </div>
+{{--                    modal--}}
                     <!-- tab product -->
+                    <div id="reportModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Báo cáo người đăng</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Báo cáo không chuẩn có thể bị phạt, bạn có chắc?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="baocao">Báo Cáo</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                     <div class="product-tab">
                         <ul class="nav-tab">
                             <li class="active">
@@ -456,22 +475,29 @@
                                 </div>
 
                             </div>
+
                             <div id="report_user" class="tab-panel">
                                 <div class="product-comments-block-tab" >
-                                        <ul class="list-group">
+                                    <ul class="list-group check-box-list"  id="other">
                                         <li class="list-group-item">
-                                            <input type="radio" name="1" value="1">
-                                            <label for="1">First item</label>
+                                            <input type="radio" name="report" id="report1" value="Có dấu hiệu lừa đảo">
+                                            <label for="report1">Có dấu hiệu lừa đảo</label>
                                         </li>
                                         <li class="list-group-item">
-                                            <input type="radio" name="1">
-                                            <label for="1">First item</label>
+                                            <input type="radio" name="report" id="report2" value="Bài đăng sai phạm">
+                                            <label for="report2">Bài đăng sai phạm</label>
                                         </li>
                                         <li class="list-group-item">
-                                            <input type="radio" name="1">
-                                            <label for="1">First item</label>
+                                            <input type="radio" name="report" id="report3" value="Nội dung không lành mạnh">
+                                            <label for="report3">Nội dung không lành mạnh</label>
                                         </li>
+                                        <li class="list-group-item">
+                                            <input type="radio" name="report" id="report4" value="0">
+                                            <label for="report4">Ý kiến khác</label>
+                                        </li>
+
                                     </ul>
+                                    <button class="btn btn-danger" style="float: right" id="send-report" data-toggle="modal" data-target="#reportModal">Gửi</button>
                                 </div>
                             </div>
                         </div>
@@ -481,31 +507,31 @@
                     <div class="page-product-box">
                         <h3 class="heading">Sản phẩm liên quan</h3>
                         <ul class="product-list owl-carousel" data-dots="false" data-loop="true" data-nav = "true" data-margin = "30" data-autoplayTimeout="1000" data-autoplayHoverPause = "true" data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":3}}'>
-                             @foreach($relatedProduct as $product)
+                             @foreach($relatedProduct as $pro)
                                 <li>
                                     <div class="product-container">
                                         <div class="left-block">
                                             <a href="#">
-                                                <a href="product-detail/{{$product->id}}"><img style="height: 242.94px" src="{{$product->images[0]->image_path}}" alt="Product"></a>
+                                                <a href="product-detail/{{$pro->id}}"><img style="height: 242.94px" src="{{$pro->images[0]->image_path}}" alt="Product"></a>
                                             </a>
                                             <div class="quick-view">
-                                                <a title="Add to my wishlist" class="heart wishlist" style="cursor: pointer" id-product="{{$product->id}}"></a>
-                                                <a title="Quick view" class="search" href="product-detail/{{$product->id}}"></a>
+                                                <a title="Add to my wishlist" class="heart wishlist" style="cursor: pointer" id-product="{{$pro->id}}"></a>
+                                                <a title="Quick view" class="search" href="product-detail/{{$pro->id}}"></a>
                                             </div>
                                             <div class="add-to-cart">
                                                 <a title="Add to Cart" href="#add">Add to Cart</a>
                                             </div>
                                         </div>
                                         <div class="right-block">
-                                            <h5 class="product-name"><a href="product-detail/{{$product->id}}">{{$product->name}}</a></h5>
+                                            <h5 class="product-name"><a href="product-detail/{{$pro->id}}">{{$pro->name}}</a></h5>
                                             <div class="product-rating">
-                                                <strong style="color: black">{{$product->customer->name}}</strong>
+                                                <strong style="color: black">{{$pro->customer->name}}</strong>
                                             </div>
                                             <div class="content_price">
-                                                @if($product->status == 0)
-                                                    <span class="product-price" style="color: red">Giá: {{$product->price}}đ</span>
-                                                @elseif($product->status == 1)
-                                                    <span class="product-price" style="color: #2fa360">Giá: {{$product->price}}đ</span>
+                                                @if($pro->status == 0)
+                                                    <span class="product-price" style="color: red">Giá: {{$pro->price}}đ</span>
+                                                @elseif($pro->status == 1)
+                                                    <span class="product-price" style="color: #2fa360">Giá: {{$pro->price}}đ</span>
                                                 @endif
                                             </div>
                                         </div>
@@ -598,7 +624,7 @@
                         break;
                 }
                 star = data.to;
-                console.log(data.to);
+                // console.log(data.to);
             });
             jQuery('#send-rate').click(function () {
                 if(star == 0){
@@ -663,6 +689,36 @@
                     jQuery('#comment-product').val('');
                 })
             })
+            jQuery('#report4').click(function () {
+                jQuery('#other').append('<li class="list-group-item"><textarea style="width: 100%" id="other-report"></textarea></li>')
+            })
+
+            let report='';
+            jQuery('#send-report').click(function () {
+                report = jQuery('input[name=report]:checked').val();
+                if(report==='0'){
+                    report = jQuery('#other-report').val();
+                }
+            });
+            jQuery('#baocao').click(function () {
+                let customer_report_id = jQuery("#customer-comment").val();
+                let customer_id = data.customer_id;
+                let _token = jQuery("input[name=_token]").val();
+                jQuery.ajax({
+                    url:'report-customer',
+                    method:'POST',
+                    data:{
+                        'customer_id':customer_id,
+                        'customer_report_id':customer_report_id,
+                        'content':report,
+                        '_token':_token
+                    }
+                }).done((result)=>{
+                    console.log(result);
+                })
+            })
+
+
         });
     </script>
  @endsection

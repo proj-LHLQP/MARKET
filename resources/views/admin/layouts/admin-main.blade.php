@@ -392,6 +392,22 @@
                         </ul>
                     </div>
                 </li>
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#report_customers">
+                        <i class="fas fa-angry"></i>
+                        <p>Report Customer</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="report_customers">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="{{asset('admin/report-list')}}">
+                                    <i class="fas fa-list"></i><span>List</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
 
                 <li class="nav-item">
                     <a data-toggle="collapse" href="#category">

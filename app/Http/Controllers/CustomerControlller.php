@@ -4,13 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Address;
 use App\CustomerRate;
+use App\ReportCustomer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class CustomerControlller extends Controller
 {
-    public function reportCustomer(Request $request){
-    }
     public function addCustomerAddress(Request $request){
         return view('Pages.addCustomerAddress')->with('product_id',$request->product_id);
     }
@@ -36,5 +35,14 @@ class CustomerControlller extends Controller
             $rate->save();
         }
         return "success";
+    }
+    public function reportCustomer(Request $request){
+//        $report = ReportCustomer::where('customer_report_id',$request->customer_id)->get();
+        ReportCustomer::create($request->all());
+        return 'success';
+    }
+    public function reportList(){
+        $reports = ReportCustomer::paginate(10);
+        return view('admin.customer-rate.report-list')->with('reports',$reports);
     }
 }

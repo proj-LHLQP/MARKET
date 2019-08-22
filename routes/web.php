@@ -33,7 +33,7 @@ Route::get('/getVillage','MyController@getVillage');
 Route::get('/list-cate','MyController@getCate');
 Route::get('/category-child','MyController@getCateChild');
 
-Route::post('report-customer','CustomerController@reportCustomer');
+Route::post('report-customer','CustomerControlller@reportCustomer');
 Route::post('comment-product','ProductController@postCommentProduct');
 Route::get('delete-product/{id}','ProductController@deleteProduct')->middleware('deleteProduct');
 Route::post('post-product','ProductController@saveProducts');
@@ -73,6 +73,7 @@ Route::post('delete-wishlist','MyController@postDeleteWishList');
 
 //post-rate
 Route::post('rate-user','RateController@postRateUser');
+
 
 //seach
 Route::get('/search/name', 'SearchController@searchByName');
@@ -122,6 +123,7 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'],function ()
     Route::get('rate-customer','CustomerControlller@rateCustomer');
     Route::post('active-rate-customer','CustomerControlller@activeRateCustomer');
     Route::get('rate-customer-actived','CustomerControlller@rateCustomerActived');
+    Route::get('report-list','CustomerControlller@reportList');
 
     Route::post('logout-user', 'MyController@getLogoutUser')->name('logout-user');
 });
