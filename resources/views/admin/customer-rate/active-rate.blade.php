@@ -130,7 +130,7 @@
 
             // Add Row
             $('#add-row').DataTable({
-
+                "paging": false
             });
         });
     </script>

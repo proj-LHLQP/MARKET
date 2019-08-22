@@ -2,7 +2,7 @@
     <!-- Logo Header -->
     <div class="logo-header" data-background-color="blue">
 
-        <a href="index.html" class="logo">
+        <a href="dashboard" class="logo">
             <img  width="50px" src="{{asset('shopping-basket.png')}}" alt="navbar brand" class="navbar-brand">
             &nbsp&nbsp;<span class="text-white"><strong>Admin</strong></span>
         </a>
@@ -392,6 +392,22 @@
                         </ul>
                     </div>
                 </li>
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#report_customers">
+                        <i class="fas fa-angry"></i>
+                        <p>Report Customer</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="report_customers">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="{{asset('admin/report-list')}}">
+                                    <i class="fas fa-list"></i><span>List</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
 
                 <li class="nav-item">
                     <a data-toggle="collapse" href="#category">
@@ -409,7 +425,22 @@
                         </ul>
                     </div>
                 </li>
-
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#top-products">
+                        <i class="fas fa-tv"></i>
+                        <p>Top Products</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="top-products">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="{{asset('admin/top-products')}}">
+                                    <i class="fas fa-list"></i><span>List</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
                 <li class="nav-item">
                     <a data-toggle="collapse" href="#posted-products">
                         <i class="fas fa-lock"></i>

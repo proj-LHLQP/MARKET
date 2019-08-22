@@ -1,17 +1,5 @@
 @extends('Admin.layouts.index')
 @section('content')
-    <style ref="">
-        td .avatar-img {
-            width: auto;
-            height: 80px;
-            -o-object-fit: cover;
-            /* text-align: center; */
-            object-fit: cover;
-            border-radius: 0 !important;
-            border: none;
-            margin: 5px;
-        }
-    </style>
     <div class="main-panel">
         <div class="content">
             <div class="page-inner">
@@ -26,13 +14,13 @@
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="#">Rate Customer</a>
+                            <a href="#">Report Customer List</a>
                         </li>
                         <li class="separator">
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="#">List</a>
+                            <a href="#">Report Customer List</a>
                         </li>
                     </ul>
                 </div>
@@ -40,7 +28,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="align-items-center pull">
-                                <h4 class="card-title pull-left">List Rate Customer</h4>
+                                <h4 class="card-title pull-left">Report Customer List</h4>
                             </div>
                         </div>
                         <div class="card-body">
@@ -50,38 +38,33 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Customer</th>
-                                        <th>Star</th>
-                                        <th>Comment</th>
-                                        <th>Customer Rate</th>
+                                        <th>Customer Report</th>
+                                        <th>Content</th>
                                         <th>Create At</th>
-                                        <th>Update At</th>
                                     </tr>
                                     </thead>
                                     <tfoot>
                                     <tr>
                                         <th>ID</th>
                                         <th>Customer</th>
-                                        <th>Star</th>
-                                        <th>Comment</th>
-                                        <th>Customer Rate</th>
+                                        <th>Customer Report</th>
+                                        <th>Content</th>
                                         <th>Create At</th>
-                                        <th>Update At</th>
                                     </tr>
                                     </tfoot>
                                     <tbody>
-                                    @foreach($rates as $rate)
+                                    @foreach($reports as $report)
                                         <tr>
-                                            <td>{{$rate->id}}</td>
-                                            <td>{{$rate->customer->name}}</td>
-                                            <td>{{$rate->star}}</td>
-                                            <td>{{$rate->comment}}</td>
-                                            <td>{{$rate->customerRate->name}}</td>
-                                            <td>{{$rate->created_at}}</td>
-                                            <td>{{$rate->updated_at}}</td>
-                                        </tr>
+                                            <td>{{$report->id}}</td>
+{{--                                            <td>{{$rate->customer->name}}</td>--}}
+                                            <td>{{$report->customer->name}}</td>
+                                            <td>{{$report->customerReport->name}}</td>
+                                            <td>{{$report->content}}</td>
+                                            <td>{{$report->created_at}}</td></tr>
                                     @endforeach
                                     </tbody>
                                 </table>
+                                <div class="pull-right">{{ $reports->links() }}</div>
                             </div>
                         </div>
                     </div>

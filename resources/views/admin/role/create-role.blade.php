@@ -45,13 +45,24 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-6">
+                                    <div class="col-12">
                                         <div class="form-group">
                                             <label for="email">Quyền</label>
-                                            @foreach($permissions as $p)
+                                            {{--<!-- @foreach($permissions as $p)
                                                 <input type="checkbox" class="form-control" value="{{$p->id}}" name="permission[]" >
                                             {{$p->name}} <br/>
-                                            @endforeach
+                                            @endforeach -->--}}
+
+                                            <div class="selectgroup selectgroup-pills">
+                                                @foreach($permissions as $p)
+                                                <label class="selectgroup-item">
+                                                    <input id="per-{{$p->id}}" type="checkbox" name="permission[]" value="{{$p->id}}" class="selectgroup-input" >
+                                                    <span class="selectgroup-button">{{$p->name}}</span>
+                                                </label>
+                                                @endforeach
+                                            </div>
+
+
                                         </div>
                                     </div>
 

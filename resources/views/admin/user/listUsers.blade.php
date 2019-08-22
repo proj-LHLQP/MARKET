@@ -61,6 +61,7 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>Name</th>
+                                            <th>Vai trò</th>
                                             <th>Email</th>
                                             <th>Avatar</th>
                                             <th>Create At</th>
@@ -71,6 +72,7 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>Name</th>
+                                            <th>Vai trò</th>
                                             <th>Email</th>
                                             <th>Avatar</th>
                                             <th>Create At</th>
@@ -82,6 +84,13 @@
                                             <tr>
                                                 <td>{{$user->id}}</td>
                                                 <td>{{$user->name}}</td>
+
+                                                <td style="color: blue">
+                                                    @foreach ($user->roles as $r)
+                                                        {{$r->name}}
+                                                    @endforeach
+                                                </td>
+
                                                 <td>{{$user->email}}</td>
                                                 <td class="text-center"><img src="{{asset($user->avatar)}}" alt="..." class=" avatar-img rounded-circle"></td>
                                                 <td>{{$user->created_at}}</td>

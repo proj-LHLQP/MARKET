@@ -49,7 +49,7 @@ class RoleController extends Controller
 
         try {
             $role = RoleOrigin::findById($id);
-            if ($role->name == 'administrator') {
+            if ($role->name == config('access.roles.admin')) {
                 $request->session()->flash('message-err', 'Không được sửa quyền của administrator!');
                 return redirect(route('admin.role.index'));
             }

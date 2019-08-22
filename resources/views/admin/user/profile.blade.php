@@ -69,7 +69,7 @@
                                     <p class="label">Your roles</p>
                                     @foreach($nameOfRoles as $r)
                                     <span style="margin-bottom: 2px" class="badge badge-pill badge-info">{{$r}}</span><br>
-                                    @if($r=='admin')
+                                    @if($r==config('access.roles.admin'))
                                     <span>Full permission</span>
                                     @endif
                                     @endforeach
@@ -78,7 +78,7 @@
                                     <div class="form-group form-inline">
                                         <label for="name" class="col-md-3 col-form-label">Name</label>
                                         <div class="col-md-9 p-0">
-                                            <input name="name" type="text" value="{{$user->name}}" class="form-control input-full" id="name" placeholder="Type Name">
+                                            <input name="name" type="text" {{$user->name == config('access.roles.admin') ? 'readonly' : ''}} value="{{$user->name}}" class="form-control input-full" id="name" placeholder="Type Name">
                                         </div>
                                     </div>
                                     <div class="form-group form-inline">

@@ -16,12 +16,12 @@ class UserController extends Controller
 {
     public function index(Request $request){
         $users = User::all();
-        $roles = DB::table('roles')->where('name','<>','admin')->get();
+        $roles = DB::table('roles')->where('name','<>',config('access.roles.admin'))->get();
         return view('admin.user.listUsers')->with(['datas'=>$users,'roles'=>$roles]);
     }
 
     public function create(){
-        $roles = DB::table('roles')->where('name','<>','admin')->get();
+        $roles = DB::table('roles')->where('name','<>',config('access.roles.admin'))->get();
         return view('admin.user.create-user')->with(['roles'=>$roles]);
     }
 
@@ -56,7 +56,7 @@ class UserController extends Controller
         $user = new User();
         $user->email = $request->email;
         $user->name = $request->name;
-        $user->avatar = config('access.default.avatar','../avatars/default-user.png');
+        $user->avatar = config('access.default.avatar','avatars/default-user.png');
         $user->password = Hash::make($request->password);
         $user->assignRole($roleID);
 
@@ -74,7 +74,10 @@ class UserController extends Controller
 
     public function edit($id){
         $user = User::find($id);
-        $roles = DB::table('roles')->where('name','<>','admin')->get();
+        if ($user->name == config('access.roles.admin')) {
+            return redirect(route('admin.user.index'))->withErrors(['Từ chối truy cập!']);
+        }
+        $roles = DB::table('roles')->where('name','<>',config('access.roles.admin'))->get();
         //Lay role cua user co id nay
         $roleOfUser = DB::table('model_has_roles')->where('model_id',$id)->get();
         $idRoleSelected = [];
@@ -226,6 +229,7 @@ class UserController extends Controller
         //Lay avatar va Name tu request ve
         $avatarReceiver = $request->avatar;
         $nameReceiver = $request->name;
+        $uploadAvatar = false;
 
         DB::beginTransaction();
         try {
@@ -235,6 +239,7 @@ class UserController extends Controller
     //            if (in_array($avatarReceiver->getClientMimeType(),config('access.format-image'))){
                 if ( ($avatarReceiver->getClientMimeType() ==   'image/jpeg' ||
                     $avatarReceiver->getClientMimeType() ==   'image/png') && $avatarReceiver->isValid()){
+                    $uploadAvatar = true;
                     $newNameAvatar = $userLoging->id.'-_-'.$avatarReceiver->getClientOriginalName();
                     $avatarReceiver->move('avatars',$newNameAvatar);
                     $pathAvatar = 'avatars/'.$newNameAvatar;
@@ -243,11 +248,11 @@ class UserController extends Controller
                     return Redirect::back()->withErrors(['Ảnh tải lên không hợp lệ!']);
                 }
             }
-    //        if(isset($nameReceiver)){
-    //            $arrRequest['name'] = $nameReceiver;
-    //        }
-    //        dd($arrRequest);
-    //        $rs = $userLoging->update($arrRequest);
+            // Nếu tên đang đăng nhập là administrator mà avatar giữ nguyên thì từ chối update
+            if($userLoging->name == config('access.roles.admin') && $uploadAvatar == false){
+                return Redirect::back()->withErrors(['Chỉ được phép đổi avatar hoặc password!']);
+            }
+
             if (isset($avatarReceiver)) {
                 //Neu avatar co up thi cap nhat avatar
                 $userLoging->avatar = $pathAvatar;

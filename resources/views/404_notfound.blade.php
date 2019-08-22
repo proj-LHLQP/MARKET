@@ -120,9 +120,9 @@
         <div class="notfound-404">
             <h1>4<span></span>4</h1>
         </div>
-        <h2>Oops! Page Not Be Found</h2>
-        <p>Sorry but the page you are looking for does not exist, have been removed. name changed or is temporarily unavailable</p>
-        <a href="homepage">Back to homepage</a>
+        <h2>Oops! Không tìm thấy trang</h2>
+        <p>Trang bạn đang tìm kiếm không tồn tại, đã bị xóa. tên đã thay đổi hoặc tạm thời không có</p>
+        <a href="homepage">Quay lại trang chủ</a>
     </div>
 </div>
 </body>

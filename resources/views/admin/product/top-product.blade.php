@@ -1,17 +1,7 @@
 @extends('Admin.layouts.index')
 @section('content')
-    <style ref="">
-        td .avatar-img {
-            width: auto;
-            height: 80px;
-            -o-object-fit: cover;
-            /* text-align: center; */
-            object-fit: cover;
-            border-radius: 0 !important;
-            border: none;
-            margin: 5px;
-        }
-    </style>
+
+
     <div class="main-panel">
         <div class="content">
             <div class="page-inner">
@@ -26,7 +16,7 @@
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="#">Rate Customer</a>
+                            <a href="#">Top product</a>
                         </li>
                         <li class="separator">
                             <i class="flaticon-right-arrow"></i>
@@ -36,11 +26,28 @@
                         </li>
                     </ul>
                 </div>
+                @csrf
+                <div id="deleteModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Do you want to Delete?</h4>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger" id="delete" data-dismiss="modal">Delete</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
                             <div class="align-items-center pull">
-                                <h4 class="card-title pull-left">List Rate Customer</h4>
+                                <h4 class="card-title pull-left">List Top Product</h4>
                             </div>
                         </div>
                         <div class="card-body">
@@ -50,38 +57,45 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Customer</th>
-                                        <th>Star</th>
-                                        <th>Comment</th>
-                                        <th>Customer Rate</th>
+                                        <th>Name</th>
+                                        <th>Image</th>
+                                        <th>Price</th>
                                         <th>Create At</th>
                                         <th>Update At</th>
+                                        <th>Delete</th>
                                     </tr>
                                     </thead>
                                     <tfoot>
                                     <tr>
                                         <th>ID</th>
                                         <th>Customer</th>
-                                        <th>Star</th>
-                                        <th>Comment</th>
-                                        <th>Customer Rate</th>
+                                        <th>Name</th>
+                                        <th>Image</th>
+                                        <th>Price</th>
                                         <th>Create At</th>
                                         <th>Update At</th>
+                                        <th>Delete</th>
                                     </tr>
                                     </tfoot>
                                     <tbody>
-                                    @foreach($rates as $rate)
+                                    @foreach($topProduct as $product)
                                         <tr>
-                                            <td>{{$rate->id}}</td>
-                                            <td>{{$rate->customer->name}}</td>
-                                            <td>{{$rate->star}}</td>
-                                            <td>{{$rate->comment}}</td>
-                                            <td>{{$rate->customerRate->name}}</td>
-                                            <td>{{$rate->created_at}}</td>
-                                            <td>{{$rate->updated_at}}</td>
+                                            <td>{{$product->id}}</td>
+                                            <td>{{$product->customer->name}}</td>
+                                            <td>{{$product->name}}</td>
+                                            <td><img width="60px" src="{{asset($product->images[0]->image_path)}}"></td>
+
+                                            <th style="color: red">{{$product->price}}đ</th>
+                                            <td>{{$product->created_at}}</td>
+                                            <td>{{$product->updated_at}}</td>
+                                            <td>
+                                                <button class="btn btn-danger delete-top" value="{{$product->id}}"data-toggle="modal" data-target="#deleteModal"><i class="fas fa-trash-alt"></i>  Delete</button>
+                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>
                                 </table>
+                                <div class="pull-right">{{$topProduct->links() }}</div>
                             </div>
                         </div>
                     </div>
@@ -125,6 +139,23 @@
             $('#add-row').DataTable({
                 "paging": false
             });
+            let id_product=0;
+            let token = jQuery('input[name=_token]').val();
+            jQuery('.delete-top').click(function () {
+                id_product= jQuery(this).val();
+            })
+            jQuery('#delete').click(function () {
+                jQuery.ajax({
+                    url:'delete-top',
+                    method:"POST",
+                    data:{
+                        '_token':token,
+                        'product_id':id_product
+                    }
+                }).done(function (result) {
+                    location.reload();
+                })
+            })
         });
     </script>
 @endsection
