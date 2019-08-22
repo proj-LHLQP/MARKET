@@ -104,7 +104,8 @@
 
             // Add Row
             $('#add-row').DataTable({
-                "paging": false
+                "paging": false,
+                "aaSorting": []
             });
         });
     </script>

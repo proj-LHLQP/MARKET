@@ -125,12 +125,12 @@
                                             <td>{{$report->content}}</td>
                                             <td>
                                                 <label class="switch">
-                                                    <input type="checkbox">
+                                                    <input type="checkbox" class="switch-button" value="{{$report->id}}">
                                                     <span class="slider round"></span>
                                                 </label>
                                             </td>
                                             <td>{{$report->created_at}}</td>
-                                            <td><button class="btn btn-danger"><i class="fas fa-trash-alt"></i>  Delete</button></td>
+                                            <td><button class="btn btn-danger delete-report" value="{{$report->id}}" data-toggle="modal" data-target="#deleteModal"><i class="fas fa-trash-alt"></i>  Delete</button></td>
                                         </tr>
 
                                     @endforeach
@@ -139,6 +139,22 @@
                                 <div class="pull-right">{{ $reports->links() }}</div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade "id="deleteModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Do you want to Delete?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger" id="accept-delete">Delete</button>
                     </div>
                 </div>
             </div>
@@ -181,6 +197,37 @@
                 "paging": false,
                 "aaSorting": []
             });
+            let report_id = 0;
+            let token = jQuery('input[name=_token]').val();
+            jQuery('.switch-button').change(function () {
+                report_id = jQuery(this).val();
+                jQuery.ajax({
+                    url:'active-report',
+                    method:'POST',
+                    data:{
+                        '_token':token,
+                        'report_id':report_id
+                    }
+                }).done((result)=>{
+                    location.reload();
+                    console.log(result)
+                })
+            })
+            jQuery('.delete-report').click(function () {
+                report_id = jQuery(this).val();
+            })
+            jQuery('#accept-delete').click(function () {
+                jQuery.ajax({
+                    url:'delete-report',
+                    method:'POST',
+                    data:{
+                        '_token':token,
+                        'report_id':report_id
+                    }
+                }).done((result)=>{
+                    location.reload();
+                })
+            })
         });
     </script>
 @endsection
