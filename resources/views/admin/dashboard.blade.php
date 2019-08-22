@@ -521,7 +521,7 @@
     </div>
 @endsection
 
-@section('script')
+@section('script-charts')
     <script>
         let customers = '{{ json_encode($customers) }}';
         let sellers = '{{ json_encode($sellers) }}';

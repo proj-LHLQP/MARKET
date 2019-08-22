@@ -35,7 +35,7 @@
 <div class="wrapper">
     @include('Admin.layouts.admin-main')
     @yield('content')
-    @yield('script')
+    @yield('script-charts')
     @include('Admin.layouts.custom')
 </div>
 </body>
@@ -183,5 +183,6 @@
         fillColor: 'rgba(255, 165, 52, .14)'
     });
 </script>
+@yield('script')
 @yield('script-category')
 </html>
