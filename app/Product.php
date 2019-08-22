@@ -52,4 +52,13 @@ class Product extends Model
     public function buyerName(){
         return $this->belongsTo('App\Customer','buyer_id','id');
     }
+    public function history(){
+        return $this->hasOne('App\History','product_id','id');
+    }
+    public function seller(){
+        return $this->belongsTo('App\Customer','seller_id','id');
+    }
+    public function buyer(){
+        return $this->belongsTo('App\Customer','buyer_id','id');
+    }
 }

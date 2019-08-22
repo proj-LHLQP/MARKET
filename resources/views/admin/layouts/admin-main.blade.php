@@ -2,7 +2,7 @@
     <!-- Logo Header -->
     <div class="logo-header" data-background-color="blue">
 
-        <a href="index.html" class="logo">
+        <a href="dashboard" class="logo">
             <img  width="50px" src="{{asset('shopping-basket.png')}}" alt="navbar brand" class="navbar-brand">
             &nbsp&nbsp;<span class="text-white"><strong>Admin</strong></span>
         </a>

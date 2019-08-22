@@ -53,8 +53,14 @@
                                                                    @else
                                                                        <a class="thumbnail pull-left mr-3" href="product-detail/{{$sell->id}}"> <img class="media-object" src="uploads/product_images/no-image.jpg" style="width: 72px; height: 72px;"> </a>
                                                                    @endif
-                                                                   <div class="m    edia-body">
+                                                                   <div class="media-body">
                                                                        <h4 class="media-heading"><a href="product-detail/{{$sell->id}}">{{$sell->name}}</a></h4>
+                                                                   </div>
+                                                                   <a href="customer-profile/{{$sell->buyer->id}}">
+                                                                       Nguời mua: {{$sell->buyer->name}}
+                                                                   </a>
+                                                                   <div style="color: #6cb2eb">
+                                                                       Ngày bán: {{$sell->history->created_at}}
                                                                    </div>
                                                                </div></td>
                                                                     <td style="color: #ff7700"><strong>Đã bán</strong></td>
@@ -92,10 +98,18 @@
                                                                             <a class="thumbnail pull-left mr-3" href="product-detail/{{$buy->id}}"> <img class="media-object" src="{{$buy->images[0]->image_path}}" style="width: 72px; height: 72px;"> </a>
                                                                         @else
                                                                             <a class="thumbnail pull-left mr-3" href="product-detail/{{$buy->id}}"> <img class="media-object" src="uploads/product_images/no-image.jpg" style="width: 72px; height: 72px;"> </a>
-                                                                        @endif                                                                        <div class="media-body">
+                                                                        @endif
+                                                                        <div class="media-body">
                                                                             <h4 class="media-heading"><a href="product-detail/{{$buy->id}}">{{$buy->name}}</a></h4>
                                                                         </div>
-                                                                    </div></td>
+                                                                            <a href="customer-profile/{{$buy->seller->id}}">
+                                                                                Người bán: {{$buy->seller->name}}
+                                                                            </a>
+                                                                        <div style="color: #6cb2eb">
+                                                                            Ngày mua: {{$buy->history->created_at}}
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
 
                                                                     <td style="color: #2fa360"><strong>Đã mua</strong></td>
                                                                 <td class="col-sm-1 col-md-1 text-center"style="color: red"><strong>{{$buy->price}}$</strong></td>

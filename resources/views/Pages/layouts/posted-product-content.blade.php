@@ -119,9 +119,9 @@
                                                                    @else
                                                                        <a class="thumbnail pull-left mr-3" href="product-detail/{{$sell->id}}"> <img class="media-object" src="uploads/product_images/no-image.jpg" style="width: 72px; height: 72px;"> </a>
                                                                    @endif
-                                                                   <div class="m    edia-body">
+                                                                   <div class="media-body">
                                                                        <h4 class="media-heading"><a href="product-detail/{{$sell->id}}">{{$sell->name}}</a></h4>
-                                                                       <span>Status: </span>
+                                                                       <span>Trạng thái: </span>
                                                                        <span class="text-success">
 
                                                                                @if($sell->active == 0)
@@ -131,8 +131,12 @@
                                                                            @endif
 
                                                                        </span>
+                                                                       <div>
+                                                                           Ngày đăng: {{$sell->created_at}}
+                                                                       </div>
                                                                    </div>
-                                                               </div></td>
+                                                               </div>
+                                                           </td>
                                                                 @if($sell->buyer_id == null)
                                                                     <td style="color: #9561e2"><strong>Chưa bán</strong> </td>
                                                                     @else
@@ -218,8 +222,7 @@
                                                                             <a class="thumbnail pull-left mr-3" href="product-detail/{{$buy->id}}"> <img class="media-object" src="uploads/product_images/no-image.jpg" style="width: 72px; height: 72px;"> </a>
                                                                         @endif                                                                        <div class="media-body">
                                                                             <h4 class="media-heading"><a href="product-detail/{{$buy->id}}">{{$buy->name}}</a></h4>
-                                                                            <h5 class="media-heading"> by <a href="#"></a></h5>
-                                                                            <span>Status: </span><span class="text-success"></span>
+                                                                            <span>Trạng thái: </span><span class="text-success"></span>
                                                                                 <span class="text-success">
 
                                                                                @if($buy->active == 0)
@@ -229,8 +232,12 @@
                                                                                     @endif
 
                                                                                 </span>
+                                                                                <div>
+                                                                                    Ngày đăng: {{$buy->created_at}}
+                                                                                </div>
                                                                         </div>
-                                                                    </div></td>
+                                                                    </div>
+                                                                </td>
 
 {{--                                                                <td class="col-sm-1 col-md-1 text-center" style="color: red"><strong>{{$buy->price}}$</strong></td>--}}
 

@@ -307,7 +307,11 @@
                                 <div class="product-comments-block-tab">
                                     <div>
                                         <strong>Người đăng:  </strong>
-                                        <img width="30px"; style="border: 1px solid #ba8b00;border-radius: 50%" src="h2.png">&nbsp;{{$product->customer->name}}
+                                        @if($product->customer->avatar)
+                                            <img width="30px"; style="border: 1px solid #ba8b00;border-radius: 50%" src="{{$product->customer->avatar}}">&nbsp;{{$product->customer->name}}
+                                        @else
+                                            <img width="30px"; style="border: 1px solid #ba8b00;border-radius: 50%" src="uploads/product_images/no-image.jpg">  {{$product->customer->name}}
+                                        @endif
                                     </div>
                                     <hr>
                                     <div class="comment row">
@@ -599,6 +603,9 @@
             jQuery('#send-rate').click(function () {
                 if(star == 0){
                     alert("Bạn chưa đánh giá sao")
+                }
+                else if(jQuery('#comment').val()==''){
+                    alert("Bạn chưa nhập bình luận")
                 }
                 else{
                     let user_rate_id = jQuery("#user_rate_id").val();

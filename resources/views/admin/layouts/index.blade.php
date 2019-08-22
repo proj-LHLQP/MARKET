@@ -39,7 +39,7 @@
     @include('Admin.layouts.custom')
 </div>
 </body>
-
+@yield('script')
 <script src="{{asset('assets/js/core/jquery.3.2.1.min.js')}}"></script>
 <script src="{{asset('assets/js/core/popper.min.js')}}"></script>
 <script src="{{asset('assets/js/core/bootstrap.min.js')}}"></script>
@@ -184,6 +184,6 @@
         fillColor: 'rgba(255, 165, 52, .14)'
     });
 </script>
-@yield('script')
+
 @yield('script-category')
 </html>
