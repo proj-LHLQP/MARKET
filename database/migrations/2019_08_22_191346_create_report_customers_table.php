@@ -17,7 +17,9 @@ class CreateReportCustomersTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('customer_id');
             $table->bigInteger('customer_report_id');
+            $table->bigInteger('product_id');
             $table->string('content');
+            $table->integer('active')->default(0);
             $table->timestamps();
         });
     }

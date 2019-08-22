@@ -124,6 +124,8 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'],function ()
     Route::post('active-rate-customer','CustomerControlller@activeRateCustomer');
     Route::get('rate-customer-actived','CustomerControlller@rateCustomerActived');
     Route::get('report-list','CustomerControlller@reportList');
+    Route::get('report-list-active','CustomerControlller@reportListActive');
+    Route::get('active-report','CustomerControlller@activeReport');
 
     Route::post('logout-user', 'MyController@getLogoutUser')->name('logout-user');
 });

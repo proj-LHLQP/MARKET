@@ -42,7 +42,14 @@ class CustomerControlller extends Controller
         return 'success';
     }
     public function reportList(){
-        $reports = ReportCustomer::paginate(10);
+        $reports = ReportCustomer::where('active',1)->paginate(10);
         return view('admin.customer-rate.report-list')->with('reports',$reports);
+    }
+    public function activeReport(){
+
+    }
+    public function reportListActive(){
+        $reports = ReportCustomer::where('active',0)->orderBy('created_at','DESC')->paginate(10);
+        return view('admin.customer-rate.report-active')->with('reports',$reports);
     }
 }

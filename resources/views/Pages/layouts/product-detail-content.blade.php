@@ -497,7 +497,7 @@
                                         </li>
 
                                     </ul>
-                                    <button class="btn btn-danger" style="float: right" id="send-report" data-toggle="modal" data-target="#reportModal">Gửi</button>
+                                    <button class="btn btn-danger" style="float: right" id="send-report">Gửi</button>
                                 </div>
                             </div>
                         </div>
@@ -698,7 +698,15 @@
                 report = jQuery('input[name=report]:checked').val();
                 if(report==='0'){
                     report = jQuery('#other-report').val();
+                    jQuery("#reportModal").modal();
                 }
+                else if(report==null){
+                    alert("Bạn chưa chọn phản hồi")
+                }
+                else{
+                    jQuery("#reportModal").modal();
+                }
+
             });
             jQuery('#baocao').click(function () {
                 let customer_report_id = jQuery("#customer-comment").val();
@@ -710,6 +718,7 @@
                     data:{
                         'customer_id':customer_id,
                         'customer_report_id':customer_report_id,
+                        'product_id':data.id,
                         'content':report,
                         '_token':_token
                     }
