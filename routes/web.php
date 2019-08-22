@@ -107,6 +107,10 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'],function ()
     Route::get('posted-products','ProductController@getListProduct');
     Route::post('active-product','ProductController@activeProduct');
     Route::get('posted-products-actived','ProductController@productActived');
+    //
+
+    Route::get('top-products','ProductController@topProduct');
+    Route::POST('delete-top','ProductController@deleteTop');
     //Phong start role manager
     Route::get('role','RoleController@index')->name('role.index');
     Route::get('create-role','RoleController@create')->name('role.create');

@@ -82,9 +82,9 @@
                 <form class="form-inline">
                     <div class="form-group form-category">
                         <select class="select-category">
-                            <option value="2">All Categories</option>
-                            <option value="1">Men</option>
-                            <option value="4">Women</option>
+                            <option value="2">Tất cả</option>
+                            <option value="1">Cần bán</option>
+                            <option value="4">Cần mua</option>
                         </select>
                     </div>
                     <div class="form-group input-serach">

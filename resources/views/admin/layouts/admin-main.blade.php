@@ -409,7 +409,22 @@
                         </ul>
                     </div>
                 </li>
-
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#top-products">
+                        <i class="fas fa-tv"></i>
+                        <p>Top Products</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="top-products">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="{{asset('admin/top-products')}}">
+                                    <i class="fas fa-list"></i><span>List</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
                 <li class="nav-item">
                     <a data-toggle="collapse" href="#posted-products">
                         <i class="fas fa-lock"></i>

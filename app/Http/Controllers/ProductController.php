@@ -230,7 +230,7 @@ class ProductController extends Controller
     }
 
     public function productActived(){
-        $product = Product::where('active',1)->get();
+        $product = Product::where('active',1)->paginate(10);
         return view('admin.posted-product.list-product')->with('product',$product);
     }
 
@@ -256,7 +256,19 @@ class ProductController extends Controller
             return 1;
         }
     }
-
+    public function topProduct(){
+        $productTop = Product::join('top_products','products.id','=','top_products.product_id')
+            ->where([['products.active',1],['products.seller_id',null]])
+            ->orwhere([['products.active',1],['products.buyer_id',null]])
+            ->select('products.*')
+            ->orderBy('top_products.updated_at','DESC')->paginate(10);
+        return view('admin.product.top-product')->with('topProduct',$productTop);
+    }
+    public function deleteTop(Request $request){
+        $product_id =  $request->product_id;
+        TopProduct::where('product_id',$product_id)->delete();
+        return 'success';
+    }
     public function filter($filterPrice, $fiterCC){
 
     }
