@@ -72,13 +72,21 @@ class MyController extends Controller
 
     public function postLogin(LoginRequest $request)
     {
-//        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-//            return response()->json(['status' => true]);
-//        }
-        if (Auth::guard('customer')->attempt(['email' => $request->email, 'password' => $request->password])) {
-            return response()->json(['status' => true]);
+//        dd($request);
+
+        $customer = Customer::where('email',$request->email)->first();
+        if(!$customer){
+            return response()->json(['status' => false, 'message' => __('message.does_not_exist')]);
         }
-        return response()->json(['status' => false, 'message' => __('message.login_failed')]);
+        else if($customer->active == 0){
+            return response()->json(['status' => false, 'message' => __('message.block_account')]);
+        }
+        else{
+            if (Auth::guard('customer')->attempt(['email' => $request->email, 'password' => $request->password])) {
+                return response()->json(['status' => true]);
+            }
+            return response()->json(['status' => false, 'message' => __('message.login_failed')]);
+        }
     }
     public function postLoginPage(Request $request){
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
@@ -90,6 +98,7 @@ class MyController extends Controller
     public function getLogout()
     {
         Auth::guard('customer')->logout();
+        session()->flush();
         return redirect()->route(HOME_PAGE);
     }
     public function getLogoutUser()

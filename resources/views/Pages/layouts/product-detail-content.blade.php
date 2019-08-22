@@ -249,7 +249,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Báo cáo người đăng</h4>
+                                    <h4 class="modal-title">Báo cáo vi phạm</h4>
                                 </div>
                                 <div class="modal-body">
                                     <p>Báo cáo không chuẩn có thể bị phạt, bạn có chắc?</p>
@@ -275,7 +275,7 @@
                             </li>
                             @if(Auth::guard('customer')->check() && Auth::guard('customer')->user()->id != $product->customer->id)
                                 <li>
-                                    <a data-toggle="tab" href="#report_user">Báo cáo người đăng</a>
+                                    <a data-toggle="tab" href="#report_user">Báo cáo vi phạm</a>
                                 </li>
                             @endif
                         </ul>
