@@ -273,6 +273,88 @@ class ProductController extends Controller
 
     }
     public function filterProduct(Request $request){
-        return $request;
+        $price = $request->filterPrice;
+        $can = $request->filterCC;
+        $price1 = -1; $price2 = -1;
+        $status = -1;
+        switch ($price){
+            case 'p1':
+                $price1 = 0;
+                $price2 = 2000000;
+                break;
+            case 'p2':
+                $price1 = 2000000;
+                $price2 = 4000000;
+                break;
+            case 'p3':
+                $price1 = 4000000;
+                $price2 = 6000000;
+                break;
+            case 'p4':
+                $price1 = 6000000;
+                $price2 = 10000000;
+                break;
+            case 'p5':
+                $price1 = 10000000;
+                $price2 = -1;
+                break;
+        }
+        switch ($can){
+            case'cc1':
+                $status = 1;
+                break;
+            case 'cc2':
+                $status =0;
+                break;
+        }
+        if($can == null){
+            if($price2 == -1){
+                $product = Product::join('product_categories', 'products.id', '=', 'product_categories.product_id')
+                    ->join('categories', 'categories.id', '=', 'product_categories.category_id')
+                    ->join('views','products.id','=','views.product_id')
+                    ->where([['products.price','>',$price1],['categories.id',$request->category],['products.active',1],['seller_id',null]])
+                    ->orwhere([['products.price','>',$price1],['categories.id',$request->category],['products.active',1],['buyer_id',null]])
+                    ->select('products.*','views.view')->get();
+            }
+            else{
+                $product = Product::join('product_categories', 'products.id', '=', 'product_categories.product_id')
+                    ->join('categories', 'categories.id', '=', 'product_categories.category_id')
+                    ->join('views','products.id','=','views.product_id')
+                    ->where([['products.price','>',$price1],['products.price','<',$price2],['categories.id',$request->category],['products.active',1],['seller_id',null]])
+                    ->orwhere([['products.price','>',$price1],['products.price','<',$price2],['categories.id',$request->category],['products.active',1],['buyer_id',null]])
+                    ->select('products.*','views.view')->get();
+            }
+        }
+        else if($price1 == -1){
+            $product = Product::join('product_categories', 'products.id', '=', 'product_categories.product_id')
+                ->join('categories', 'categories.id', '=', 'product_categories.category_id')
+                ->join('views','products.id','=','views.product_id')
+                ->where([['products.status',$status],['categories.id',$request->category],['products.active',1],['seller_id',null]])
+                ->orwhere([['products.status',$status],['categories.id',$request->category],['products.active',1],['buyer_id',null]])
+                ->select('products.*','views.view')->get();
+        }
+        else{
+            if($price2 == -1){
+                $product = Product::join('product_categories', 'products.id', '=', 'product_categories.product_id')
+                    ->join('categories', 'categories.id', '=', 'product_categories.category_id')
+                    ->join('views','products.id','=','views.product_id')
+                    ->where([['products.price','>',$price1],['categories.id',$request->category],['products.status',$status],['products.active',1],['seller_id',null]])
+                    ->orwhere([['products.price','>',$price1],['categories.id',$request->category],['products.status',$status],['products.active',1],['buyer_id',null]])
+                    ->select('products.*','views.view')->get();
+            }
+            else{
+                $product = Product::join('product_categories', 'products.id', '=', 'product_categories.product_id')
+                    ->join('categories', 'categories.id', '=', 'product_categories.category_id')
+                    ->join('views','products.id','=','views.product_id')
+                    ->where([['products.price','>',$price1],['products.price','<',$price2],['products.status',$status],['categories.id',$request->category],['products.active',1],['seller_id',null]])
+                    ->orwhere([['products.price','>',$price1],['products.price','<',$price2],['products.status',$status],['categories.id',$request->category],['products.active',1],['buyer_id',null]])
+                    ->select('products.*','views.view')->get();
+            }
+        }
+        foreach ($product as $item){
+            $item->images;
+            $item->customer;
+        }
+        return $product;
     }
 }

@@ -202,7 +202,7 @@
                         </li>
                     </ul>
                     <!-- PRODUCT LIST -->
-                    <ul class="row product-list grid">
+                    <ul class="row product-list grid" id="list-product">
                         @foreach($products as $product)
                             <li class="col-sx-12 col-sm-4">
                             <div class="product-container">
@@ -244,8 +244,7 @@
                                         @endif
                                     </div>
                                     <div class="info-orther">
-                                        <p>Item Code: {{$product->id}}</p>
-                                        <p class="availability">Availability: <span>In stock</span></p>
+                                        <p>Id Product: {{$product->id}}</p>
                                         <div class="product-desc">
                                             {!! $product->detail !!}
                                         </div>
@@ -298,6 +297,54 @@
 @section('script')
     <script>
         jQuery(document).ready(function () {
+            function product(result){
+                let html = '';
+                html+='<li class="col-sx-12 col-sm-4">';
+                html+='<div class="product-container">';
+                html+='<div class="left-block">';
+                html+='<a href="product-detail/'+result.id+'">';
+                if(result.images.length>0)
+                    html+='<img class="img-responsive" style="height: 270px" alt="product" src="'+result.images[0].image_path+'" alt="Product">';
+                else
+                    html+='<img class="img-responsive" style="height: 270px"  alt="product" src="uploads/product_images/no-image.jpg" alt="Product">';
+                html+='</a>';
+                html+='<div class="quick-view">';
+                html+='<a title="Add to my wishlist" class="heart wishlist" id-product = "'+result.id+'"></a>';
+                html+='<a title="Quick view" class="search" href="product-detail/'+result.id+'"></a>';
+                html+='</div>';
+                html+='<div class="add-to-cart">';
+                html+='<a title="Add to Cart" href="#add">Add to Cart</a>';
+                html+='</div>';
+                html+='</div>';
+                html+='<div class="right-block">';
+                html+='<h5 class="product-name"><a href="#">'+result.name+'</a></h5>';
+                html+='<div>';
+                html+='Người đăng: <strong>'+result.customer.name+'</strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;<i style="font-size: 15px" class="fas fa-eye mt-1">'+result.view+'</i>';
+
+                html+='</div>';
+                html+='<div class="product-rating">';
+                html+='   <div style="color: black">{{$product->customer->name}}</div>';
+                if(result.status == 0)
+                    html+='   <button class="btn btn-danger">Cần bán</button>';
+                else
+                    html+='<button class="btn btn-info">Cần mua</button>';
+                html+='</div>';
+                html+='<div class="content_price">';
+                if(result.status == 0)
+                    html+='<span class="price product-price">Giá: '+result.price+'đ</span>';
+                else
+                    html+='<span class="price product-price" style="color: #2fa360">Giá: '+result.price+'đ</span>';
+                html+='</div>';
+                html+='<div class="info-orther">';
+                html+='<p>Id Product:'+result.id+'</p>';
+                html+='<div class="product-desc">';
+                html+='</div>';
+                html+='</div>';
+                html+='</div>';
+                html+='</div>';
+                html+='</li>';
+                return html;
+            }
             // let parentCategory = jQuery('#parent-category').attr('value');
             let token = jQuery('input[name=_token]').val();
             let category = jQuery('#sub-category').attr('value');
@@ -315,7 +362,16 @@
                         '_token':token,
                     }
                 }).done((result)=>{
-                    console.log(result);
+                    if(result.length == 0){
+                        jQuery('#list-product').html('<div style="color: red;padding: 50px">Không có sản phẩm nào phù hợp<div>');
+                    }
+                    else{
+                        let html = '';
+                        for(let i = 0; i<result.length; i++){
+                            html+= product(result[i]);
+                        }
+                        jQuery('#list-product').html(html);
+                    }
                 })
             })
             jQuery('.filter-cc').change(function () {
@@ -330,7 +386,16 @@
                         '_token':token,
                     }
                 }).done((result)=>{
-                    console.log(result);
+                    if(result.length == 0){
+                        jQuery('#list-product').html('<div style="color: red;padding: 50px">Không có sản phẩm nào phù hợp<div>');
+                    }
+                    else{
+                        let html = '';
+                        for(let i = 0; i<result.length; i++){
+                            html+= product(result[i]);
+                        }
+                        jQuery('#list-product').html(html);
+                    }
                 })
             })
 

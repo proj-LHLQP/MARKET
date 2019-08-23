@@ -61,4 +61,6 @@ class Product extends Model
     public function buyer(){
         return $this->belongsTo('App\Customer','buyer_id','id');
     }
+
+
 }

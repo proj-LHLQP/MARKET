@@ -44,7 +44,9 @@ Route::get('/posted-product/{id}',"HomeController@getPostedProduct")->middleware
 Route::get('/traded-product/{id}',"HomeController@getTradedProduct")->middleware('view_posted');
 Route::post('porduct-latest','ProductController@getProductLatest');
 Route::post('porduct-care','ProductController@getProductCare');
+
 Route::post('filter-product','ProductController@filterProduct');
+
 Route::post('add-to-top','ProductController@addToTop');
 //listCategory
 Route::get('list-category','CategoryController@getAllCategory');
