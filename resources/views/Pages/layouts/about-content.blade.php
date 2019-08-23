@@ -5,7 +5,7 @@
         <div class="breadcrumb clearfix">
             <a class="home" href="#" title="Return to Home">Home</a>
             <span class="navigation-pipe">&nbsp;</span>
-            <span class="navigation_page">About Us</span>
+            <span class="navigation_page">Giới thiệu</span>
         </div>
         <!-- ./breadcrumb -->
         <!-- row -->
@@ -14,7 +14,7 @@
             <div class="column col-xs-12 col-sm-3" id="left_column">
                 <!-- block category -->
                 <div class="block left-module">
-                    <p class="title_block">Infomations</p>
+                    <p class="title_block"></p>
                     <div class="block_content">
                         <!-- layered -->
                         <div class="layered layered-category">
@@ -47,23 +47,54 @@
             <div class="center_column col-xs-12 col-sm-9" id="center_column">
                 <!-- page heading-->
                 <h2 class="page-heading">
-                    <span class="page-heading-title2">About Us</span>
+                    <span class="page-heading-title2">Gới Thiệu</span>
                 </h2>
                 <!-- Content page -->
                 <div class="content-text clearfix">
 
                     <img src="assets-home/data/about-us.jpg" class="alignleft" width="310" alt="">
 
-                    <p>Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Donec sit amet eros. Lorem ipsum dolor sit amet, consecvtetuer adipiscing elit. Mauris fermentum dictum magna. Sed laoreet aliquam leo. Ut tellus dolor, dapibus eget, elementum vel.</p>
+                    <p>Với thị trường nhu cầu mua sắm lớn như hiện nay, không chỉ hàng mới hay hàng hiệu mà hàng cũ cũng được rất nhiều người quan tâm. </p>
 
-                    <p>Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus. Vestibulum libero nisl, porta vel, scelerisque eget, malesuada at, neque. Vivamus eget nibh. Etiam cursus leo vel metus. Nulla facilisi. Aenean nec eros.</p>
+                    <p>Hàng cũ, đã qua sử dụng được đối tượng bình dân, sinh viên hay những người săn đồ độc lạ ưa chuộng. Không những thế, nếu có nhu cầu đăng bán sản phẩm mà không thể đăng ký làm shop trên những hệ thống thương mại điện tử lớn, hệ thống này hoàn toàn có thể giúp bất kỳ ai đăng bán các sản phẩm cũ của mình.</p>
 
-                    <p>Integer rutrum ante eu lacus.Vestibulum libero nisl, porta vel, scelerisque eget, <a href="#">malesuada at</a>, neque. Vivamus eget nibh. Etiam cursus leo vel metus. Nulla facilisi. Aenean nec eros. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse sollicitudin velit sed leo. Ut pharetra augue nec augue. </p>
 
-                    <p>Nam elit agna,endrerit sit amet, tincidunt ac, viverra sed, nulla. Donec porta diam eu massa. Quisque diam lorem, interdum vitae,dapibus ac, scelerisque vitae, pede. Donec eget tellus non erat lacinia fermentum. Donec in velit vel ipsum auctor pulvinar. Vestibulum iaculis lacinia est. Proin dictum elementum velit. Fusce euismod consequat ante. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Pellentesque sed dolor. Aliquam congue fermentum nisl. </p>
-                    <p>Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus. Vestibulum libero nisl, porta vel, scelerisque eget, malesuada at, neque. Vivamus eget nibh. Etiam cursus leo vel metus. Nulla facilisi. Aenean nec eros.</p>
+                    <p>. Ngoài ra, những đánh giá, phản hồi của người mua, người bán dành cho nhau có thể giúp tăng mức độ uy tín của người dùng, từ đó kèm theo nhiều lợi ích.</p>
 
-                    <p>Integer rutrum ante eu lacus.Vestibulum libero nisl, porta vel, scelerisque eget, <a href="#">malesuada at</a>, neque. Vivamus eget nibh. Etiam cursus leo vel metus. Nulla facilisi. Aenean nec eros. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse sollicitudin velit sed leo. Ut pharetra augue nec augue. </p>
+
+                </div >
+                <div  class="content-text clearfix">
+                    <p><strong>Bạn vui lòng làm theo các bước sau đây để đăng ký mua hàng</strong></p>
+
+                    <p> Bước 1: Truy cập vào website tìm món hàng muốn mua theo các cách sau:</p>
+
+
+                    <p>   1. Sử dụng công cụ tìm kiếm, gõ tên sản phẩm muốn mua.</p>
+                    <p>  2. Xem các ngành hàng của chúng tôi.</p>
+
+
+                    <p>    Bước 2: Vào chi tiết sản phẩm cần mua, chọn "Mua hàng".</p>
+
+
+                    <p>   Bước 3: Chọn màu sắc, kích cỡ, số lượng sản phẩm.</p>
+
+
+                    <p>   Bước 4: Bấm "Mua ngay" để tiến hành thanh toán.</p>
+
+
+                    <p>   Bước 5: Tiến hành thanh toán.</p>
+
+
+                    <p>    Bước 6: Nhập thông tin giao hàng và chọn phương thức thanh toán.</p>
+
+
+                    <p>   Bạn sẽ nhận được thông báo khi đặt hàng thành công.</p>
+
+                    <p>   Lưu ý:
+                    <p>  1. Bạn nên tham khảo phần chi tiết sản phẩm, đánh giá Shop, đánh giá sản phẩm, mục hỏi đáp của khách hàng với nhà bán hàng.</p>
+                    <p>  2. Nếu cần thêm thông tin sản phẩm, bạn có thể nhấp vào mục “Chat ngay” để nhà bán hàng có thể tư vấn rõ hơn.</p>
+                    <p> 3. Bạn bắt buộc phải đăng nhập mới có thể mua hàng . Trường hợp chưa có tài khoản, bạn có thể đăng ký tài khoản bằng email/số điện thoại hoặc tài khoản Facebook/Google.</p>
+
 
                 </div>
                 <!-- ./Content page -->

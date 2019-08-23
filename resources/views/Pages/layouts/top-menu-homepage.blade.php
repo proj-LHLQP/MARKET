@@ -88,7 +88,7 @@
                         </select>
                     </div>
                     <div class="form-group input-serach">
-                        <input type="text" class="search-input" autocomplete="off" style="width: 100%" placeholder="Type Your Keyword...">
+                        <input type="text" class="search-input" autocomplete="off" style="width: 100%" placeholder="Tìm kiếm...">
                     </div>
                     <button type="submit" class="pull-right btn-search"><i class="fa fa-search"></i></button>
                 </form>

@@ -159,8 +159,8 @@ class ProductController extends Controller
             ->where([['categories.id',$category_id],['products.active',1],['seller_id',null]])
             ->orWhere([['categories.id',$category_id],['products.active',1],['buyer_id',null]])
             ->select('products.*')
-            ->orderBy('created_at')
-            ->limit(6)
+            ->orderBy('created_at','DESC')
+            ->limit(12)
             ->get();
        foreach ($products as $product){
            $product->images;

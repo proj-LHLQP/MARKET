@@ -26,9 +26,13 @@ class FacebookAuthController extends Controller
         $authCustomer = $this->findOrCreateCustomer($customer);
 
 
-
-       Auth::guard('customer')->login($authCustomer);
-        return redirect()->route('homepage');
+        if($authCustomer->active == 0){
+            return view('block');
+        }
+        else{
+            Auth::guard('customer')->login($authCustomer);
+            return redirect()->route('homepage');
+        }
     }
 
     private function findOrCreateCustomer($facebookUser){

@@ -204,7 +204,7 @@
                     <!-- PRODUCT LIST -->
                     <ul class="row product-list grid" id="list-product">
                         @foreach($products as $product)
-                            <li class="col-sx-12 col-sm-4">
+                            <li class="col-sx-12 col-sm-4" style="height: 450px">
                             <div class="product-container">
                                 <div class="left-block">
                                     <a href="product-detail/{{$product->id}}">
@@ -229,7 +229,7 @@
 
                                     </div>
                                     <div class="product-rating">
-                                        <div style="color: black">{{$product->customer->name}}</div>
+{{--                                        <div style="color: black">{{$product->customer->name}}</div>--}}
                                         @if($product->status == 0)
                                             <button class="btn btn-danger">Cần bán</button>
                                         @else
@@ -323,7 +323,7 @@
 
                 html+='</div>';
                 html+='<div class="product-rating">';
-                html+='   <div style="color: black">{{$product->customer->name}}</div>';
+                html+='   <div style="color: black">'+result.customer.name+'</div>';
                 if(result.status == 0)
                     html+='   <button class="btn btn-danger">Cần bán</button>';
                 else

@@ -156,10 +156,10 @@
                     <div id="tab-1" class="tab-panel active">
                         <ul class="products" id="latest-product-sell">
                             @foreach($productBuyLatest as $product)
-                                <li class="product">
+                                <li class="product" >
                                 <div class="product-container">
                                     <div class="product-image">
-                                        <a href="product-detail/{{$product->id}}"><img style="height: 242.94px" src="{{$product->images[0]->image_path}}" alt="Product"></a>
+                                        <a href="product-detail/{{$product->id}}"><img style="height: 221px" src="{{$product->images[0]->image_path}}" alt="Product"></a>
                                         <div class="group-tool-button" style="left: 67%">
                                             <a class="withlist wishlist" id-product="{{$product->id}}">withlist</a>
                                             <a class="cart" href="#">cart</a>
@@ -187,7 +187,7 @@
                                 <li class="product">
                                     <div class="product-container">
                                         <div class="product-image">
-                                            <a href="product-detail/{{$product->id}}"><img style="height: 242.94px" src="{{$product->images[0]->image_path}}" alt="Product"></a>
+                                            <a href="product-detail/{{$product->id}}"><img style="height: 221px" src="{{$product->images[0]->image_path}}" alt="Product"></a>
                                             <div class="group-tool-button" style="left: 67%">
                                                 <a class="withlist wishlist" id-product="{{$product->id}}">withlist</a>
                                                 <a class="cart" href="#">cart</a>
@@ -261,7 +261,7 @@
                                 <li class="product">
                                     <div class="product-container">
                                         <div class="product-image">
-                                            <a href="product-detail/{{$product->id}}"><img style="height: 242.94px" src="{{$product->image_path}}" alt="Product"></a>
+                                            <a href="product-detail/{{$product->id}}"><img style="height: 221px" src="{{$product->image_path}}" alt="Product"></a>
                                             <div class="group-tool-button" style="left: 67%">
                                                 <a class="withlist wishlist" id-product="{{$product->id}}">withlist</a>
                                                 <a class="cart" href="#">cart</a>
@@ -289,7 +289,7 @@
                                 <li class="product">
                                     <div class="product-container">
                                         <div class="product-image">
-                                            <a href="product-detail/{{$product->id}}"><img style="height: 242.94px" src="{{$product->image_path}}" alt="Product"></a>
+                                            <a href="product-detail/{{$product->id}}"><img style="height: 221px" src="{{$product->image_path}}" alt="Product"></a>
                                             <div class="group-tool-button" style="left: 67%">
                                                 <a class="withlist wishlist" id-product="{{$product->id}}">withlist</a>
                                                 <a class="cart" href="#">cart</a>

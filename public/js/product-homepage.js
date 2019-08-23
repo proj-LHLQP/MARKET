@@ -4,7 +4,7 @@ jQuery(document).ready(function () {
         product+='<li class="product">';
         product+='<div class="product-container">';
         product+='<div class="product-image">';
-        product+='<a href="product-detail/'+result.id+'"><img style="height: 242.94px" src="'+result.images[0].image_path+'" alt="Product"></a>';
+        product+='<a href="product-detail/'+result.id+'"><img style="height: 221px" src="'+result.images[0].image_path+'" alt="Product"></a>';
         product+='<div class="group-tool-button" style="left: 67%">';
         product+='<a class="withlist wishlist" id-product="'+result.id+'">withlist</a>';
         product+='<a class="cart" href="#">cart</a>';
