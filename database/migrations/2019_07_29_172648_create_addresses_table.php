@@ -17,6 +17,8 @@ class CreateAddressesTable extends Migration
             $table->engine = 'MyISAM';
             $table->bigIncrements('id');
             $table->bigInteger('product_id');
+            $table->bigInteger('customer_id');
+
             $table->string('province_id');
             $table->string('district_id')->nullable();
             $table->string('ward_id')->nullable();
