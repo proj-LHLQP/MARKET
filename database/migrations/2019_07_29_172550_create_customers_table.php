@@ -18,7 +18,7 @@ class CreateCustomersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->nullable();
             $table->string('avatar')->nullable();
-            $table->string('username')->unique();
+            $table->string('username')->nullable();
             $table->string('email')->unique();
             $table->double('wallet')->default(0);
             $table->double('wallet_freeze')->default(0);

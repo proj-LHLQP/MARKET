@@ -98,7 +98,7 @@
             };
             getAjax('getProvince','GET').done((result)=>{
                 result.forEach((data)=>{
-                    jQuery('#province').append('<option value="'+data.provinceid+'">'+data.name+'</option>')
+                    jQuery('#provinces').append('<option value="'+data.provinceid+'">'+data.name+'</option>')
                 });
             })
             getAjax('list-cate','GET').done((result)=>{
@@ -117,7 +117,7 @@
                     });
                 })
             })
-            jQuery('#province').change(function () {
+            jQuery('#provinces').change(function () {
                 location.province
                 jQuery('#district').html('');
                 jQuery('#district').append('<option></option>');

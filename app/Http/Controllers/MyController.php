@@ -56,6 +56,7 @@ class MyController extends Controller
 
     public function postRegister(RegisterRequest $request)
     {
+
         if ($request->isMethod('post')) {
             $input = $request->all();
             $input['password'] = bcrypt($request->password);
