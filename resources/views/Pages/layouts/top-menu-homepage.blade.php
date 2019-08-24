@@ -15,6 +15,7 @@
                     </h4>
                     <div class="vertical-menu-content is-home" id="list-cate" style="display: none">
                         <ul class="vertical-menu-list">
+                            @if(count($categories)>0)
                             @for($i = 0; $i < 11;$i++)
                                 @if(count($categories[$i]->subCategory)!=0)
                                     <li>
@@ -73,6 +74,7 @@
                                         </li>
                                     @endif
                                 @endfor
+                                @endif
                         </ul>
                         <div class="all-category"><span class="open-cate">Tất cả danh mục</span></div>
                     </div>
