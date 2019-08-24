@@ -10,7 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('demo',function (){
+    \App\Customer::create([
+        'name'=>"ADMIN",
+        'username' =>  'heroku@gmail.com',
+        'email' => 'heroku@gmail.com',
+        'password' => bcrypt('11111111'),
+    ]);
+});
 Route::get('/','HomeController@getHomePage');
 
 Auth::routes();
