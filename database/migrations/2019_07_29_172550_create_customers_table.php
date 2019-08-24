@@ -25,9 +25,9 @@ class CreateCustomersTable extends Migration
             $table->bigInteger('reward')->nullable();
             $table->unsignedTinyInteger('active')->default(1);
             $table->string('password');
-            $table->string('provider');
-            $table->string('provider_id');
-            $table->rememberToken();
+            $table->string('provider')->nullable();;
+            $table->string('provider_id')->nullable();;
+            $table->rememberToken()->nullable();;
             $table->timestamps();
             $table->softDeletes();
         });
